@@ -1,0 +1,33 @@
+{
+  "applications": ["campaign", "gateway"],
+  "changelogDate": "20220223115711",
+  "clientRootFolder": "campaign",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "campaign_user",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "campaign",
+  "name": "CampaignUser",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "campaign",
+      "otherEntityRelationshipName": "campaignUser",
+      "relationshipName": "campaignId",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "campaignUser",
+      "relationshipName": "user",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceClass"
+}
