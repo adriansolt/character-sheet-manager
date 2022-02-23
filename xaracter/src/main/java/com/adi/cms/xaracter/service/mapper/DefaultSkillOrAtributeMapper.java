@@ -1,0 +1,14 @@
+package com.adi.cms.xaracter.service.mapper;
+
+import com.adi.cms.xaracter.domain.DefaultSkillOrAtribute;
+import com.adi.cms.xaracter.service.dto.DefaultSkillOrAtributeDTO;
+import org.mapstruct.*;
+
+/**
+ * Mapper for the entity {@link DefaultSkillOrAtribute} and its DTO {@link DefaultSkillOrAtributeDTO}.
+ */
+@Mapper(componentModel = "spring", uses = { SkillMapper.class })
+public interface DefaultSkillOrAtributeMapper extends EntityMapper<DefaultSkillOrAtributeDTO, DefaultSkillOrAtribute> {
+    @Mapping(target = "skillId", source = "skillId", qualifiedByName = "id")
+    DefaultSkillOrAtributeDTO toDto(DefaultSkillOrAtribute s);
+}

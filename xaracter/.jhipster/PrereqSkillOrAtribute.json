@@ -1,0 +1,36 @@
+{
+  "applications": ["xaracter", "gateway"],
+  "changelogDate": "20220223131523",
+  "clientRootFolder": "xaracter",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "prereq_skill_or_atribute",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "level",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "xaracter",
+  "name": "PrereqSkillOrAtribute",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "skill",
+      "otherEntityRelationshipName": "prereqSkillOrAtribute",
+      "relationshipName": "skillId",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

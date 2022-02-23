@@ -1,0 +1,30 @@
+{
+  "applications": ["xaracter", "gateway"],
+  "changelogDate": "20220223131423",
+  "clientRootFolder": "xaracter",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "note",
+  "fields": [
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "xaracter",
+  "name": "Note",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "xaracter",
+      "otherEntityRelationshipName": "note",
+      "relationshipName": "xaracterId",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}
