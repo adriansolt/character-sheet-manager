@@ -1,0 +1,33 @@
+{
+  "applications": ["item", "gateway"],
+  "changelogDate": "20220223123629",
+  "clientRootFolder": "item",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "weapon_maneuver",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "item",
+  "name": "WeaponManeuver",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "weapon",
+      "otherEntityRelationshipName": "weaponManeuver",
+      "relationshipName": "weaponId",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "maneuver",
+      "otherEntityRelationshipName": "weaponManeuver",
+      "relationshipName": "maneuverId",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

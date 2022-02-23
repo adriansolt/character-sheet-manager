@@ -1,0 +1,53 @@
+{
+  "applications": ["item", "gateway"],
+  "changelogDate": "20220223123529",
+  "clientRootFolder": "item",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "weapon",
+  "fields": [
+    {
+      "fieldName": "reach",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "baseDamage",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "requiredST",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "1"
+    },
+    {
+      "fieldName": "damageModifier",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "item",
+  "name": "Weapon",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "xaracterEquippedWeapon",
+      "otherEntityRelationshipName": "weaponId",
+      "relationshipName": "xaracterEquippedWeapon",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "weaponManeuver",
+      "otherEntityRelationshipName": "weaponId",
+      "relationshipName": "weaponManeuver",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}
