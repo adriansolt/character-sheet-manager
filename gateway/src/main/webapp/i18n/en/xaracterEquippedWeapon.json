@@ -1,0 +1,26 @@
+{
+  "gatewayApp": {
+    "xaracterEquippedWeapon": {
+      "home": {
+        "title": "Xaracter Equipped Weapons",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Xaracter Equipped Weapon",
+        "createOrEditLabel": "Create or edit a Xaracter Equipped Weapon",
+        "notFound": "No Xaracter Equipped Weapons found"
+      },
+      "created": "A new Xaracter Equipped Weapon is created with identifier {{ param }}",
+      "updated": "A Xaracter Equipped Weapon is updated with identifier {{ param }}",
+      "deleted": "A Xaracter Equipped Weapon is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Xaracter Equipped Weapon {{ id }}?"
+      },
+      "detail": {
+        "title": "Xaracter Equipped Weapon"
+      },
+      "id": "ID",
+      "xaracterId": "Xaracter Id",
+      "hand": "Hand",
+      "weaponId": "Weapon Id"
+    }
+  }
+}

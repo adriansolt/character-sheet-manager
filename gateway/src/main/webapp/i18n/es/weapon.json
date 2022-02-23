@@ -1,0 +1,29 @@
+{
+  "gatewayApp": {
+    "weapon": {
+      "home": {
+        "title": "Weapons",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Weapon",
+        "createOrEditLabel": "Crear o editar Weapon",
+        "notFound": "Ningún Weapons encontrado"
+      },
+      "created": "Un nuevo Weapon ha sido creado con el identificador {{ param }}",
+      "updated": "Un Weapon ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Weapon ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Weapon {{ id }}?"
+      },
+      "detail": {
+        "title": "Weapon"
+      },
+      "id": "ID",
+      "reach": "Reach",
+      "baseDamage": "Base Damage",
+      "requiredST": "Required ST",
+      "damageModifier": "Damage Modifier",
+      "xaracterEquippedWeapon": "Xaracter Equipped Weapon",
+      "weaponManeuver": "Weapon Maneuver"
+    }
+  }
+}

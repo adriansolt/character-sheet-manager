@@ -1,0 +1,133 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-weapon-heading" data-cy="WeaponCreateUpdateHeading" jhiTranslate="gatewayApp.weapon.home.createOrEditLabel">
+        Create or edit a Weapon
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gatewayApp.weapon.reach" for="field_reach">Reach</label>
+          <input type="number" class="form-control" name="reach" id="field_reach" data-cy="reach" formControlName="reach" />
+          <div *ngIf="editForm.get('reach')!.invalid && (editForm.get('reach')!.dirty || editForm.get('reach')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('reach')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('reach')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gatewayApp.weapon.baseDamage" for="field_baseDamage">Base Damage</label>
+          <input
+            type="number"
+            class="form-control"
+            name="baseDamage"
+            id="field_baseDamage"
+            data-cy="baseDamage"
+            formControlName="baseDamage"
+          />
+          <div *ngIf="editForm.get('baseDamage')!.invalid && (editForm.get('baseDamage')!.dirty || editForm.get('baseDamage')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('baseDamage')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('baseDamage')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 0 }"
+            >
+              This field should be at least 0.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('baseDamage')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gatewayApp.weapon.requiredST" for="field_requiredST">Required ST</label>
+          <input
+            type="number"
+            class="form-control"
+            name="requiredST"
+            id="field_requiredST"
+            data-cy="requiredST"
+            formControlName="requiredST"
+          />
+          <div *ngIf="editForm.get('requiredST')!.invalid && (editForm.get('requiredST')!.dirty || editForm.get('requiredST')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('requiredST')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('requiredST')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 1 }"
+            >
+              This field should be at least 1.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('requiredST')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gatewayApp.weapon.damageModifier" for="field_damageModifier"
+            >Damage Modifier</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="damageModifier"
+            id="field_damageModifier"
+            data-cy="damageModifier"
+            formControlName="damageModifier"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

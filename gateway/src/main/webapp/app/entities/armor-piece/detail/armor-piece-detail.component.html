@@ -1,0 +1,36 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="armorPiece">
+      <h2 data-cy="armorPieceDetailsHeading"><span jhiTranslate="gatewayApp.armorPiece.detail.title">Armor Piece</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ armorPiece.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.armorPiece.location">Location</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'gatewayApp.ArmorLocation.' + armorPiece.location }}">{{ armorPiece.location }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.armorPiece.defenseModifier">Defense Modifier</span></dt>
+        <dd>
+          <span>{{ armorPiece.defenseModifier }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/armor-piece', armorPiece.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

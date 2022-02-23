@@ -1,0 +1,10 @@
+{
+  "gatewayApp": {
+    "Handedness": {
+      "null": "",
+      "RIGHT": "RIGHT",
+      "LEFT": "LEFT",
+      "BOTH": "BOTH"
+    }
+  }
+}

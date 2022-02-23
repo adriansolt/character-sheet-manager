@@ -1,0 +1,28 @@
+{
+  "gatewayApp": {
+    "campaign": {
+      "home": {
+        "title": "Campaigns",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Campaign",
+        "createOrEditLabel": "Crear o editar Campaign",
+        "notFound": "Ningún Campaigns encontrado"
+      },
+      "created": "Un nuevo Campaign ha sido creado con el identificador {{ param }}",
+      "updated": "Un Campaign ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Campaign ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Campaign {{ id }}?"
+      },
+      "detail": {
+        "title": "Campaign"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "map": "Map",
+      "masterId": "Master Id",
+      "campaignUser": "Campaign User"
+    }
+  }
+}

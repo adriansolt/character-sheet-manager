@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="item">
+      <h2 data-cy="itemDetailsHeading"><span jhiTranslate="gatewayApp.item.detail.title">Item</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ item.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.item.name">Name</span></dt>
+        <dd>
+          <span>{{ item.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.item.description">Description</span></dt>
+        <dd>
+          <span>{{ item.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.item.weight">Weight</span></dt>
+        <dd>
+          <span>{{ item.weight }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.item.quality">Quality</span></dt>
+        <dd>
+          <span>{{ item.quality }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.item.picture">Picture</span></dt>
+        <dd>
+          <div *ngIf="item.picture">
+            <a (click)="openFile(item.picture, item.pictureContentType)">
+              <img [src]="'data:' + item.pictureContentType + ';base64,' + item.picture" style="max-width: 100%" alt="item image" />
+            </a>
+            {{ item.pictureContentType }}, {{ byteSize(item.picture) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.item.xaracterId">Xaracter Id</span></dt>
+        <dd>
+          <span>{{ item.xaracterId }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.item.campaignId">Campaign Id</span></dt>
+        <dd>
+          <span>{{ item.campaignId }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/item', item.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

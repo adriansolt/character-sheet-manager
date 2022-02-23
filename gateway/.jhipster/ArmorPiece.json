@@ -1,0 +1,33 @@
+{
+  "applications": ["item", "gateway"],
+  "changelogDate": "20220223131323",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "armor_piece",
+  "fields": [
+    {
+      "fieldName": "location",
+      "fieldType": "ArmorLocation",
+      "fieldValues": "HEAD,RIGHT_SHOULDER,LEFT_SHOULDER,RIGHT_ARM,LEFT_ARM,RIGHT_HAND,LEFT_HAND,CHEST,BACK,RIGHT_LEG,LEFT_LEG,RIGHT_FOOT,LEFT_FOOT"
+    },
+    {
+      "fieldName": "defenseModifier",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ArmorPiece",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "xaracterEquippedArmor",
+      "otherEntityRelationshipName": "armorPiece",
+      "relationshipName": "xaracterEquippedArmor",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

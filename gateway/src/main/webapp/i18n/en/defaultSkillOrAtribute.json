@@ -1,0 +1,26 @@
+{
+  "gatewayApp": {
+    "defaultSkillOrAtribute": {
+      "home": {
+        "title": "Default Skill Or Atributes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Default Skill Or Atribute",
+        "createOrEditLabel": "Create or edit a Default Skill Or Atribute",
+        "notFound": "No Default Skill Or Atributes found"
+      },
+      "created": "A new Default Skill Or Atribute is created with identifier {{ param }}",
+      "updated": "A Default Skill Or Atribute is updated with identifier {{ param }}",
+      "deleted": "A Default Skill Or Atribute is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Default Skill Or Atribute {{ id }}?"
+      },
+      "detail": {
+        "title": "Default Skill Or Atribute"
+      },
+      "id": "ID",
+      "name": "Name",
+      "modifier": "Modifier",
+      "skillId": "Skill Id"
+    }
+  }
+}

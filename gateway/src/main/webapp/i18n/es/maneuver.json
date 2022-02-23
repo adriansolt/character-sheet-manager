@@ -1,0 +1,27 @@
+{
+  "gatewayApp": {
+    "maneuver": {
+      "home": {
+        "title": "Maneuvers",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Maneuver",
+        "createOrEditLabel": "Crear o editar Maneuver",
+        "notFound": "Ningún Maneuvers encontrado"
+      },
+      "created": "Un nuevo Maneuver ha sido creado con el identificador {{ param }}",
+      "updated": "Un Maneuver ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Maneuver ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Maneuver {{ id }}?"
+      },
+      "detail": {
+        "title": "Maneuver"
+      },
+      "id": "ID",
+      "name": "Name",
+      "modifier": "Modifier",
+      "description": "Description",
+      "weaponManeuver": "Weapon Maneuver"
+    }
+  }
+}

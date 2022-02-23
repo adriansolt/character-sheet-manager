@@ -1,0 +1,26 @@
+{
+  "gatewayApp": {
+    "armorPiece": {
+      "home": {
+        "title": "Armor Pieces",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Armor Piece",
+        "createOrEditLabel": "Crear o editar Armor Piece",
+        "notFound": "Ningún Armor Pieces encontrado"
+      },
+      "created": "Un nuevo Armor Piece ha sido creado con el identificador {{ param }}",
+      "updated": "Un Armor Piece ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Armor Piece ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Armor Piece {{ id }}?"
+      },
+      "detail": {
+        "title": "Armor Piece"
+      },
+      "id": "ID",
+      "location": "Location",
+      "defenseModifier": "Defense Modifier",
+      "xaracterEquippedArmor": "Xaracter Equipped Armor"
+    }
+  }
+}

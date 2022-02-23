@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="weapon">
+      <h2 data-cy="weaponDetailsHeading"><span jhiTranslate="gatewayApp.weapon.detail.title">Weapon</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ weapon.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.weapon.reach">Reach</span></dt>
+        <dd>
+          <span>{{ weapon.reach }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.weapon.baseDamage">Base Damage</span></dt>
+        <dd>
+          <span>{{ weapon.baseDamage }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.weapon.requiredST">Required ST</span></dt>
+        <dd>
+          <span>{{ weapon.requiredST }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.weapon.damageModifier">Damage Modifier</span></dt>
+        <dd>
+          <span>{{ weapon.damageModifier }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/weapon', weapon.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

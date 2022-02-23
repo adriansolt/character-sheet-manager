@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="xaracterSkill">
+      <h2 data-cy="xaracterSkillDetailsHeading"><span jhiTranslate="gatewayApp.xaracterSkill.detail.title">Xaracter Skill</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ xaracterSkill.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.xaracterSkill.points">Points</span></dt>
+        <dd>
+          <span>{{ xaracterSkill.points }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.xaracterSkill.skillModifier">Skill Modifier</span></dt>
+        <dd>
+          <span>{{ xaracterSkill.skillModifier }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.xaracterSkill.xaracterId">Xaracter Id</span></dt>
+        <dd>
+          <div *ngIf="xaracterSkill.xaracterId">
+            <a [routerLink]="['/xaracter', xaracterSkill.xaracterId?.id, 'view']">{{ xaracterSkill.xaracterId?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.xaracterSkill.skillId">Skill Id</span></dt>
+        <dd>
+          <div *ngIf="xaracterSkill.skillId">
+            <a [routerLink]="['/skill', xaracterSkill.skillId?.id, 'view']">{{ xaracterSkill.skillId?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/xaracter-skill', xaracterSkill.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

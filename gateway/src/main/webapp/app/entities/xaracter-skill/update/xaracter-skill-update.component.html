@@ -1,0 +1,91 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-xaracter-skill-heading"
+        data-cy="XaracterSkillCreateUpdateHeading"
+        jhiTranslate="gatewayApp.xaracterSkill.home.createOrEditLabel"
+      >
+        Create or edit a Xaracter Skill
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gatewayApp.xaracterSkill.points" for="field_points">Points</label>
+          <input type="number" class="form-control" name="points" id="field_points" data-cy="points" formControlName="points" />
+          <div *ngIf="editForm.get('points')!.invalid && (editForm.get('points')!.dirty || editForm.get('points')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('points')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('points')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gatewayApp.xaracterSkill.skillModifier" for="field_skillModifier"
+            >Skill Modifier</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="skillModifier"
+            id="field_skillModifier"
+            data-cy="skillModifier"
+            formControlName="skillModifier"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gatewayApp.xaracterSkill.xaracterId" for="field_xaracterId">Xaracter Id</label>
+          <select class="form-control" id="field_xaracterId" data-cy="xaracterId" name="xaracterId" formControlName="xaracterId">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="xaracterOption.id === editForm.get('xaracterId')!.value?.id ? editForm.get('xaracterId')!.value : xaracterOption"
+              *ngFor="let xaracterOption of xaractersSharedCollection; trackBy: trackXaracterById"
+            >
+              {{ xaracterOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gatewayApp.xaracterSkill.skillId" for="field_skillId">Skill Id</label>
+          <select class="form-control" id="field_skillId" data-cy="skillId" name="skillId" formControlName="skillId">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="skillOption.id === editForm.get('skillId')!.value?.id ? editForm.get('skillId')!.value : skillOption"
+              *ngFor="let skillOption of skillsSharedCollection; trackBy: trackSkillById"
+            >
+              {{ skillOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

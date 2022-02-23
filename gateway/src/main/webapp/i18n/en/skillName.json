@@ -1,0 +1,12 @@
+{
+  "gatewayApp": {
+    "SkillName": {
+      "null": "",
+      "COOKING": "COOKING",
+      "FARMING": "FARMING",
+      "FISHING": "FISHING",
+      "GEOGRAPHY": "GEOGRAPHY",
+      "ETC": "ETC"
+    }
+  }
+}

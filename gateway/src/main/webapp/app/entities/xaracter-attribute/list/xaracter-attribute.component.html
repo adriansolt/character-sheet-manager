@@ -1,0 +1,114 @@
+<div>
+  <h2 id="page-heading" data-cy="XaracterAttributeHeading">
+    <span jhiTranslate="gatewayApp.xaracterAttribute.home.title">Xaracter Attributes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="gatewayApp.xaracterAttribute.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-xaracter-attribute"
+        [routerLink]="['/xaracter-attribute/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gatewayApp.xaracterAttribute.home.createLabel"> Create a new Xaracter Attribute </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="xaracterAttributes?.length === 0">
+    <span jhiTranslate="gatewayApp.xaracterAttribute.home.notFound">No xaracterAttributes found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="xaracterAttributes && xaracterAttributes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="name">
+            <span jhiTranslate="gatewayApp.xaracterAttribute.name">Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="points">
+            <span jhiTranslate="gatewayApp.xaracterAttribute.points">Points</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="attributeModifier">
+            <span jhiTranslate="gatewayApp.xaracterAttribute.attributeModifier">Attribute Modifier</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="xaracterId.id">
+            <span jhiTranslate="gatewayApp.xaracterAttribute.xaracterId">Xaracter Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let xaracterAttribute of xaracterAttributes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/xaracter-attribute', xaracterAttribute.id, 'view']">{{ xaracterAttribute.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'gatewayApp.AttributeName.' + xaracterAttribute.name }}">{{ xaracterAttribute.name }}</td>
+          <td>{{ xaracterAttribute.points }}</td>
+          <td>{{ xaracterAttribute.attributeModifier }}</td>
+          <td>
+            <div *ngIf="xaracterAttribute.xaracterId">
+              <a [routerLink]="['/xaracter', xaracterAttribute.xaracterId?.id, 'view']">{{ xaracterAttribute.xaracterId?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/xaracter-attribute', xaracterAttribute.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/xaracter-attribute', xaracterAttribute.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(xaracterAttribute)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="xaracterAttributes && xaracterAttributes.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

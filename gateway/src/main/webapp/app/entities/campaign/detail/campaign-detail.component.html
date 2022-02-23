@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="campaign">
+      <h2 data-cy="campaignDetailsHeading"><span jhiTranslate="gatewayApp.campaign.detail.title">Campaign</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ campaign.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.campaign.name">Name</span></dt>
+        <dd>
+          <span>{{ campaign.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.campaign.description">Description</span></dt>
+        <dd>
+          <span>{{ campaign.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.campaign.map">Map</span></dt>
+        <dd>
+          <div *ngIf="campaign.map">
+            <a (click)="openFile(campaign.map, campaign.mapContentType)">
+              <img [src]="'data:' + campaign.mapContentType + ';base64,' + campaign.map" style="max-width: 100%" alt="campaign image" />
+            </a>
+            {{ campaign.mapContentType }}, {{ byteSize(campaign.map) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.campaign.masterId">Master Id</span></dt>
+        <dd>
+          <span>{{ campaign.masterId }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/campaign', campaign.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

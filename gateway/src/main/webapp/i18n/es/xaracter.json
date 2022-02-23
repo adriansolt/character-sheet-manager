@@ -1,0 +1,35 @@
+{
+  "gatewayApp": {
+    "xaracter": {
+      "home": {
+        "title": "Xaracters",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Xaracter",
+        "createOrEditLabel": "Crear o editar Xaracter",
+        "notFound": "Ningún Xaracters encontrado"
+      },
+      "created": "Un nuevo Xaracter ha sido creado con el identificador {{ param }}",
+      "updated": "Un Xaracter ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Xaracter ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Xaracter {{ id }}?"
+      },
+      "detail": {
+        "title": "Xaracter"
+      },
+      "id": "ID",
+      "name": "Name",
+      "weight": "Weight",
+      "height": "Height",
+      "points": "Points",
+      "picture": "Picture",
+      "handedness": "Handedness",
+      "campaignId": "Campaign Id",
+      "active": "Active",
+      "note": "Note",
+      "xaracterAttribute": "Xaracter Attribute",
+      "xaracterSkill": "Xaracter Skill",
+      "user": "User"
+    }
+  }
+}

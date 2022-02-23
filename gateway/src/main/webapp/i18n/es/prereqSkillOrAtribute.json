@@ -1,0 +1,26 @@
+{
+  "gatewayApp": {
+    "prereqSkillOrAtribute": {
+      "home": {
+        "title": "Prereq Skill Or Atributes",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Prereq Skill Or Atribute",
+        "createOrEditLabel": "Crear o editar Prereq Skill Or Atribute",
+        "notFound": "Ningún Prereq Skill Or Atributes encontrado"
+      },
+      "created": "Un nuevo Prereq Skill Or Atribute ha sido creado con el identificador {{ param }}",
+      "updated": "Un Prereq Skill Or Atribute ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Prereq Skill Or Atribute ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Prereq Skill Or Atribute {{ id }}?"
+      },
+      "detail": {
+        "title": "Prereq Skill Or Atribute"
+      },
+      "id": "ID",
+      "name": "Name",
+      "level": "Level",
+      "skillId": "Skill Id"
+    }
+  }
+}

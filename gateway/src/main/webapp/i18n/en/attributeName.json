@@ -1,0 +1,11 @@
+{
+  "gatewayApp": {
+    "AttributeName": {
+      "null": "",
+      "ST": "ST",
+      "DX": "DX",
+      "IQ": "IQ",
+      "HT": "HT"
+    }
+  }
+}

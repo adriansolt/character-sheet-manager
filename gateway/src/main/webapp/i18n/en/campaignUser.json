@@ -1,0 +1,25 @@
+{
+  "gatewayApp": {
+    "campaignUser": {
+      "home": {
+        "title": "Campaign Users",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Campaign User",
+        "createOrEditLabel": "Create or edit a Campaign User",
+        "notFound": "No Campaign Users found"
+      },
+      "created": "A new Campaign User is created with identifier {{ param }}",
+      "updated": "A Campaign User is updated with identifier {{ param }}",
+      "deleted": "A Campaign User is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Campaign User {{ id }}?"
+      },
+      "detail": {
+        "title": "Campaign User"
+      },
+      "id": "ID",
+      "campaignId": "Campaign Id",
+      "user": "User"
+    }
+  }
+}

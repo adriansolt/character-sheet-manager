@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="maneuver">
+      <h2 data-cy="maneuverDetailsHeading"><span jhiTranslate="gatewayApp.maneuver.detail.title">Maneuver</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ maneuver.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.maneuver.name">Name</span></dt>
+        <dd>
+          <span>{{ maneuver.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.maneuver.modifier">Modifier</span></dt>
+        <dd>
+          <span>{{ maneuver.modifier }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.maneuver.description">Description</span></dt>
+        <dd>
+          <span>{{ maneuver.description }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/maneuver', maneuver.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

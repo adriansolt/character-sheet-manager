@@ -1,0 +1,39 @@
+{
+  "applications": ["xaracter", "gateway"],
+  "changelogDate": "20220223132523",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "xaracter_attribute",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "AttributeName",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ST,DX,IQ,HT"
+    },
+    {
+      "fieldName": "points",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "attributeModifier",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "XaracterAttribute",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "xaracter",
+      "otherEntityRelationshipName": "xaracterAttribute",
+      "relationshipName": "xaracterId",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

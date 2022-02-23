@@ -1,0 +1,41 @@
+{
+  "applications": ["campaign", "gateway"],
+  "changelogDate": "20220223131423",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "campaign",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "map",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "masterId",
+      "fieldType": "Long"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Campaign",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "campaignUser",
+      "otherEntityRelationshipName": "campaignId",
+      "relationshipName": "campaignUser",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

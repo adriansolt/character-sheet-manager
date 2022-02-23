@@ -1,0 +1,27 @@
+{
+  "gatewayApp": {
+    "xaracterSkill": {
+      "home": {
+        "title": "Xaracter Skills",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Xaracter Skill",
+        "createOrEditLabel": "Crear o editar Xaracter Skill",
+        "notFound": "Ningún Xaracter Skills encontrado"
+      },
+      "created": "Un nuevo Xaracter Skill ha sido creado con el identificador {{ param }}",
+      "updated": "Un Xaracter Skill ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Xaracter Skill ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Xaracter Skill {{ id }}?"
+      },
+      "detail": {
+        "title": "Xaracter Skill"
+      },
+      "id": "ID",
+      "points": "Points",
+      "skillModifier": "Skill Modifier",
+      "xaracterId": "Xaracter Id",
+      "skillId": "Skill Id"
+    }
+  }
+}

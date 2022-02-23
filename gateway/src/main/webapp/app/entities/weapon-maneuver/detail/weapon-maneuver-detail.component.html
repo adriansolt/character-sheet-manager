@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="weaponManeuver">
+      <h2 data-cy="weaponManeuverDetailsHeading"><span jhiTranslate="gatewayApp.weaponManeuver.detail.title">Weapon Maneuver</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ weaponManeuver.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.weaponManeuver.weaponId">Weapon Id</span></dt>
+        <dd>
+          <div *ngIf="weaponManeuver.weaponId">
+            <a [routerLink]="['/weapon', weaponManeuver.weaponId?.id, 'view']">{{ weaponManeuver.weaponId?.name }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.weaponManeuver.maneuverId">Maneuver Id</span></dt>
+        <dd>
+          <div *ngIf="weaponManeuver.maneuverId">
+            <a [routerLink]="['/maneuver', weaponManeuver.maneuverId?.id, 'view']">{{ weaponManeuver.maneuverId?.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/weapon-maneuver', weaponManeuver.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "gatewayApp": {
+    "xaracterAttribute": {
+      "home": {
+        "title": "Xaracter Attributes",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Xaracter Attribute",
+        "createOrEditLabel": "Crear o editar Xaracter Attribute",
+        "notFound": "Ningún Xaracter Attributes encontrado"
+      },
+      "created": "Un nuevo Xaracter Attribute ha sido creado con el identificador {{ param }}",
+      "updated": "Un Xaracter Attribute ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Xaracter Attribute ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Xaracter Attribute {{ id }}?"
+      },
+      "detail": {
+        "title": "Xaracter Attribute"
+      },
+      "id": "ID",
+      "name": "Name",
+      "points": "Points",
+      "attributeModifier": "Attribute Modifier",
+      "xaracterId": "Xaracter Id"
+    }
+  }
+}

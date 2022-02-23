@@ -1,0 +1,39 @@
+{
+  "applications": ["xaracter", "gateway"],
+  "changelogDate": "20220223132823",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "xaracter_skill",
+  "fields": [
+    {
+      "fieldName": "points",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "skillModifier",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "XaracterSkill",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "xaracter",
+      "otherEntityRelationshipName": "xaracterSkill",
+      "relationshipName": "xaracterId",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "skill",
+      "otherEntityRelationshipName": "xaracterSkill",
+      "relationshipName": "skillId",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

@@ -1,0 +1,26 @@
+{
+  "gatewayApp": {
+    "armorPiece": {
+      "home": {
+        "title": "Armor Pieces",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Armor Piece",
+        "createOrEditLabel": "Create or edit a Armor Piece",
+        "notFound": "No Armor Pieces found"
+      },
+      "created": "A new Armor Piece is created with identifier {{ param }}",
+      "updated": "A Armor Piece is updated with identifier {{ param }}",
+      "deleted": "A Armor Piece is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Armor Piece {{ id }}?"
+      },
+      "detail": {
+        "title": "Armor Piece"
+      },
+      "id": "ID",
+      "location": "Location",
+      "defenseModifier": "Defense Modifier",
+      "xaracterEquippedArmor": "Xaracter Equipped Armor"
+    }
+  }
+}
