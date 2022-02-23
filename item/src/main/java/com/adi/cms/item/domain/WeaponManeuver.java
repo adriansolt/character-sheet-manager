@@ -23,12 +23,12 @@ public class WeaponManeuver implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "xaracterEquippedWeapons", "weaponManeuvers" }, allowSetters = true)
-    private Weapon weaponId;
+    @JsonIgnoreProperties(value = { "characterEquippedWeapons", "weaponManeuvers" }, allowSetters = true)
+    private Weapon weapon;
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "weaponManeuvers" }, allowSetters = true)
-    private Maneuver maneuverId;
+    private Maneuver maneuver;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -45,29 +45,29 @@ public class WeaponManeuver implements Serializable {
         this.id = id;
     }
 
-    public Weapon getWeaponId() {
-        return this.weaponId;
+    public Weapon getWeapon() {
+        return this.weapon;
     }
 
-    public void setWeaponId(Weapon weapon) {
-        this.weaponId = weapon;
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
     }
 
-    public WeaponManeuver weaponId(Weapon weapon) {
-        this.setWeaponId(weapon);
+    public WeaponManeuver weapon(Weapon weapon) {
+        this.setWeapon(weapon);
         return this;
     }
 
-    public Maneuver getManeuverId() {
-        return this.maneuverId;
+    public Maneuver getManeuver() {
+        return this.maneuver;
     }
 
-    public void setManeuverId(Maneuver maneuver) {
-        this.maneuverId = maneuver;
+    public void setManeuver(Maneuver maneuver) {
+        this.maneuver = maneuver;
     }
 
-    public WeaponManeuver maneuverId(Maneuver maneuver) {
-        this.setManeuverId(maneuver);
+    public WeaponManeuver maneuver(Maneuver maneuver) {
+        this.setManeuver(maneuver);
         return this;
     }
 

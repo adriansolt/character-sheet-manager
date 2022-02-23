@@ -11,7 +11,7 @@ public class CampaignUserDTO implements Serializable {
 
     private Long id;
 
-    private CampaignDTO campaignId;
+    private CampaignDTO campaign;
 
     private UserDTO user;
 
@@ -23,12 +23,12 @@ public class CampaignUserDTO implements Serializable {
         this.id = id;
     }
 
-    public CampaignDTO getCampaignId() {
-        return campaignId;
+    public CampaignDTO getCampaign() {
+        return campaign;
     }
 
-    public void setCampaignId(CampaignDTO campaignId) {
-        this.campaignId = campaignId;
+    public void setCampaign(CampaignDTO campaign) {
+        this.campaign = campaign;
     }
 
     public UserDTO getUser() {
@@ -65,7 +65,7 @@ public class CampaignUserDTO implements Serializable {
     public String toString() {
         return "CampaignUserDTO{" +
             "id=" + getId() +
-            ", campaignId=" + getCampaignId() +
+            ", campaign=" + getCampaign() +
             ", user=" + getUser() +
             "}";
     }

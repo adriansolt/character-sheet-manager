@@ -22,7 +22,7 @@
       "baseDamage": "Base Damage",
       "requiredST": "Required ST",
       "damageModifier": "Damage Modifier",
-      "xaracterEquippedWeapon": "Xaracter Equipped Weapon",
+      "characterEquippedWeapon": "Character Equipped Weapon",
       "weaponManeuver": "Weapon Maneuver"
     }
   }

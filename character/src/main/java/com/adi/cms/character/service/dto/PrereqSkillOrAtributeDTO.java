@@ -17,7 +17,7 @@ public class PrereqSkillOrAtributeDTO implements Serializable {
     @NotNull
     private Integer level;
 
-    private SkillDTO skillId;
+    private SkillDTO skill;
 
     public Long getId() {
         return id;
@@ -43,12 +43,12 @@ public class PrereqSkillOrAtributeDTO implements Serializable {
         this.level = level;
     }
 
-    public SkillDTO getSkillId() {
-        return skillId;
+    public SkillDTO getSkill() {
+        return skill;
     }
 
-    public void setSkillId(SkillDTO skillId) {
-        this.skillId = skillId;
+    public void setSkill(SkillDTO skill) {
+        this.skill = skill;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class PrereqSkillOrAtributeDTO implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", level=" + getLevel() +
-            ", skillId=" + getSkillId() +
+            ", skill=" + getSkill() +
             "}";
     }
 }

@@ -9,6 +9,6 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { SkillMapper.class })
 public interface DefaultSkillOrAtributeMapper extends EntityMapper<DefaultSkillOrAtributeDTO, DefaultSkillOrAtribute> {
-    @Mapping(target = "skillId", source = "skillId", qualifiedByName = "id")
+    @Mapping(target = "skill", source = "skill", qualifiedByName = "name")
     DefaultSkillOrAtributeDTO toDto(DefaultSkillOrAtribute s);
 }

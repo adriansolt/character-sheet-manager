@@ -1,6 +1,6 @@
 {
-  "applications": ["xaracter", "gateway"],
-  "changelogDate": "20220223132123",
+  "applications": ["character", "gateway"],
+  "changelogDate": "20220223134458",
   "databaseType": "sql",
   "dto": "mapstruct",
   "embedded": false,
@@ -26,20 +26,20 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "xaracterSkill",
-      "otherEntityRelationshipName": "skillId",
-      "relationshipName": "xaracterSkill",
+      "otherEntityName": "characterSkill",
+      "otherEntityRelationshipName": "skill",
+      "relationshipName": "characterSkill",
       "relationshipType": "one-to-many"
     },
     {
       "otherEntityName": "defaultSkillOrAtribute",
-      "otherEntityRelationshipName": "skillId",
+      "otherEntityRelationshipName": "skill",
       "relationshipName": "defaultSkillOrAtribute",
       "relationshipType": "one-to-many"
     },
     {
       "otherEntityName": "prereqSkillOrAtribute",
-      "otherEntityRelationshipName": "skillId",
+      "otherEntityRelationshipName": "skill",
       "relationshipName": "prereqSkillOrAtribute",
       "relationshipType": "one-to-many"
     }

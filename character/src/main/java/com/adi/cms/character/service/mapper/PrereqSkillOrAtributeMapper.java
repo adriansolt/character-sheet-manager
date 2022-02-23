@@ -9,6 +9,6 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { SkillMapper.class })
 public interface PrereqSkillOrAtributeMapper extends EntityMapper<PrereqSkillOrAtributeDTO, PrereqSkillOrAtribute> {
-    @Mapping(target = "skillId", source = "skillId", qualifiedByName = "id")
+    @Mapping(target = "skill", source = "skill", qualifiedByName = "name")
     PrereqSkillOrAtributeDTO toDto(PrereqSkillOrAtribute s);
 }

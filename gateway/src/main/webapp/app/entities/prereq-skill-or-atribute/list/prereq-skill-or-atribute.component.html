@@ -39,8 +39,8 @@
           <th scope="col" jhiSortBy="level">
             <span jhiTranslate="gatewayApp.prereqSkillOrAtribute.level">Level</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="skillId.id">
-            <span jhiTranslate="gatewayApp.prereqSkillOrAtribute.skillId">Skill Id</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="skill.name">
+            <span jhiTranslate="gatewayApp.prereqSkillOrAtribute.skill">Skill</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -53,8 +53,8 @@
           <td>{{ prereqSkillOrAtribute.name }}</td>
           <td>{{ prereqSkillOrAtribute.level }}</td>
           <td>
-            <div *ngIf="prereqSkillOrAtribute.skillId">
-              <a [routerLink]="['/skill', prereqSkillOrAtribute.skillId?.id, 'view']">{{ prereqSkillOrAtribute.skillId?.id }}</a>
+            <div *ngIf="prereqSkillOrAtribute.skill">
+              <a [routerLink]="['/skill', prereqSkillOrAtribute.skill?.id, 'view']">{{ prereqSkillOrAtribute.skill?.name }}</a>
             </div>
           </td>
           <td class="text-right">

@@ -1,0 +1,27 @@
+{
+  "gatewayApp": {
+    "characterAttribute": {
+      "home": {
+        "title": "Character Attributes",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Character Attribute",
+        "createOrEditLabel": "Crear o editar Character Attribute",
+        "notFound": "Ningún Character Attributes encontrado"
+      },
+      "created": "Un nuevo Character Attribute ha sido creado con el identificador {{ param }}",
+      "updated": "Un Character Attribute ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Character Attribute ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Character Attribute {{ id }}?"
+      },
+      "detail": {
+        "title": "Character Attribute"
+      },
+      "id": "ID",
+      "name": "Name",
+      "points": "Points",
+      "attributeModifier": "Attribute Modifier",
+      "character": "Character"
+    }
+  }
+}

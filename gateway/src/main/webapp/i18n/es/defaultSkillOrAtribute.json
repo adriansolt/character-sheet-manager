@@ -20,7 +20,7 @@
       "id": "ID",
       "name": "Name",
       "modifier": "Modifier",
-      "skillId": "Skill Id"
+      "skill": "Skill"
     }
   }
 }

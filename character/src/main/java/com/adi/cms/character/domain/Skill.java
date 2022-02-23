@@ -37,19 +37,19 @@ public class Skill implements Serializable {
     @Column(name = "difficulty", nullable = false)
     private Difficulty difficulty;
 
-    @OneToMany(mappedBy = "skillId")
+    @OneToMany(mappedBy = "skill")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "characterId", "skillId" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "character", "skill" }, allowSetters = true)
     private Set<CharacterSkill> characterSkills = new HashSet<>();
 
-    @OneToMany(mappedBy = "skillId")
+    @OneToMany(mappedBy = "skill")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "skillId" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "skill" }, allowSetters = true)
     private Set<DefaultSkillOrAtribute> defaultSkillOrAtributes = new HashSet<>();
 
-    @OneToMany(mappedBy = "skillId")
+    @OneToMany(mappedBy = "skill")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "skillId" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "skill" }, allowSetters = true)
     private Set<PrereqSkillOrAtribute> prereqSkillOrAtributes = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -99,10 +99,10 @@ public class Skill implements Serializable {
 
     public void setCharacterSkills(Set<CharacterSkill> characterSkills) {
         if (this.characterSkills != null) {
-            this.characterSkills.forEach(i -> i.setSkillId(null));
+            this.characterSkills.forEach(i -> i.setSkill(null));
         }
         if (characterSkills != null) {
-            characterSkills.forEach(i -> i.setSkillId(this));
+            characterSkills.forEach(i -> i.setSkill(this));
         }
         this.characterSkills = characterSkills;
     }
@@ -114,13 +114,13 @@ public class Skill implements Serializable {
 
     public Skill addCharacterSkill(CharacterSkill characterSkill) {
         this.characterSkills.add(characterSkill);
-        characterSkill.setSkillId(this);
+        characterSkill.setSkill(this);
         return this;
     }
 
     public Skill removeCharacterSkill(CharacterSkill characterSkill) {
         this.characterSkills.remove(characterSkill);
-        characterSkill.setSkillId(null);
+        characterSkill.setSkill(null);
         return this;
     }
 
@@ -130,10 +130,10 @@ public class Skill implements Serializable {
 
     public void setDefaultSkillOrAtributes(Set<DefaultSkillOrAtribute> defaultSkillOrAtributes) {
         if (this.defaultSkillOrAtributes != null) {
-            this.defaultSkillOrAtributes.forEach(i -> i.setSkillId(null));
+            this.defaultSkillOrAtributes.forEach(i -> i.setSkill(null));
         }
         if (defaultSkillOrAtributes != null) {
-            defaultSkillOrAtributes.forEach(i -> i.setSkillId(this));
+            defaultSkillOrAtributes.forEach(i -> i.setSkill(this));
         }
         this.defaultSkillOrAtributes = defaultSkillOrAtributes;
     }
@@ -145,13 +145,13 @@ public class Skill implements Serializable {
 
     public Skill addDefaultSkillOrAtribute(DefaultSkillOrAtribute defaultSkillOrAtribute) {
         this.defaultSkillOrAtributes.add(defaultSkillOrAtribute);
-        defaultSkillOrAtribute.setSkillId(this);
+        defaultSkillOrAtribute.setSkill(this);
         return this;
     }
 
     public Skill removeDefaultSkillOrAtribute(DefaultSkillOrAtribute defaultSkillOrAtribute) {
         this.defaultSkillOrAtributes.remove(defaultSkillOrAtribute);
-        defaultSkillOrAtribute.setSkillId(null);
+        defaultSkillOrAtribute.setSkill(null);
         return this;
     }
 
@@ -161,10 +161,10 @@ public class Skill implements Serializable {
 
     public void setPrereqSkillOrAtributes(Set<PrereqSkillOrAtribute> prereqSkillOrAtributes) {
         if (this.prereqSkillOrAtributes != null) {
-            this.prereqSkillOrAtributes.forEach(i -> i.setSkillId(null));
+            this.prereqSkillOrAtributes.forEach(i -> i.setSkill(null));
         }
         if (prereqSkillOrAtributes != null) {
-            prereqSkillOrAtributes.forEach(i -> i.setSkillId(this));
+            prereqSkillOrAtributes.forEach(i -> i.setSkill(this));
         }
         this.prereqSkillOrAtributes = prereqSkillOrAtributes;
     }
@@ -176,13 +176,13 @@ public class Skill implements Serializable {
 
     public Skill addPrereqSkillOrAtribute(PrereqSkillOrAtribute prereqSkillOrAtribute) {
         this.prereqSkillOrAtributes.add(prereqSkillOrAtribute);
-        prereqSkillOrAtribute.setSkillId(this);
+        prereqSkillOrAtribute.setSkill(this);
         return this;
     }
 
     public Skill removePrereqSkillOrAtribute(PrereqSkillOrAtribute prereqSkillOrAtribute) {
         this.prereqSkillOrAtributes.remove(prereqSkillOrAtribute);
-        prereqSkillOrAtribute.setSkillId(null);
+        prereqSkillOrAtribute.setSkill(null);
         return this;
     }
 

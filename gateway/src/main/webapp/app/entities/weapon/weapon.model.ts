@@ -1,4 +1,4 @@
-import { IXaracterEquippedWeapon } from 'app/entities/xaracter-equipped-weapon/xaracter-equipped-weapon.model';
+import { ICharacterEquippedWeapon } from 'app/entities/character-equipped-weapon/character-equipped-weapon.model';
 import { IWeaponManeuver } from 'app/entities/weapon-maneuver/weapon-maneuver.model';
 
 export interface IWeapon {
@@ -7,7 +7,7 @@ export interface IWeapon {
   baseDamage?: number;
   requiredST?: number;
   damageModifier?: number | null;
-  xaracterEquippedWeapons?: IXaracterEquippedWeapon[] | null;
+  characterEquippedWeapons?: ICharacterEquippedWeapon[] | null;
   weaponManeuvers?: IWeaponManeuver[] | null;
 }
 
@@ -18,7 +18,7 @@ export class Weapon implements IWeapon {
     public baseDamage?: number,
     public requiredST?: number,
     public damageModifier?: number | null,
-    public xaracterEquippedWeapons?: IXaracterEquippedWeapon[] | null,
+    public characterEquippedWeapons?: ICharacterEquippedWeapon[] | null,
     public weaponManeuvers?: IWeaponManeuver[] | null
   ) {}
 }

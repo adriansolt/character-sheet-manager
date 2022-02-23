@@ -81,6 +81,66 @@
           <li>
             <a
               class="dropdown-item"
+              routerLink="character"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"
+            >
+              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+              <span jhiTranslate="global.menu.entities.character">Character</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              routerLink="character-attribute"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"
+            >
+              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+              <span jhiTranslate="global.menu.entities.characterAttribute">Character Attribute</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              routerLink="character-equipped-armor"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"
+            >
+              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+              <span jhiTranslate="global.menu.entities.characterEquippedArmor">Character Equipped Armor</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              routerLink="character-equipped-weapon"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"
+            >
+              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+              <span jhiTranslate="global.menu.entities.characterEquippedWeapon">Character Equipped Weapon</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              routerLink="character-skill"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"
+            >
+              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+              <span jhiTranslate="global.menu.entities.characterSkill">Character Skill</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
               routerLink="default-skill-or-atribute"
               routerLinkActive="active"
               [routerLinkActiveOptions]="{ exact: true }"
@@ -172,66 +232,6 @@
             >
               <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
               <span jhiTranslate="global.menu.entities.weaponManeuver">Weapon Maneuver</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="dropdown-item"
-              routerLink="xaracter"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-              (click)="collapseNavbar()"
-            >
-              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-              <span jhiTranslate="global.menu.entities.xaracter">Xaracter</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="dropdown-item"
-              routerLink="xaracter-attribute"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-              (click)="collapseNavbar()"
-            >
-              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-              <span jhiTranslate="global.menu.entities.xaracterAttribute">Xaracter Attribute</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="dropdown-item"
-              routerLink="xaracter-equipped-armor"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-              (click)="collapseNavbar()"
-            >
-              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-              <span jhiTranslate="global.menu.entities.xaracterEquippedArmor">Xaracter Equipped Armor</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="dropdown-item"
-              routerLink="xaracter-equipped-weapon"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-              (click)="collapseNavbar()"
-            >
-              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-              <span jhiTranslate="global.menu.entities.xaracterEquippedWeapon">Xaracter Equipped Weapon</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="dropdown-item"
-              routerLink="xaracter-skill"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-              (click)="collapseNavbar()"
-            >
-              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-              <span jhiTranslate="global.menu.entities.xaracterSkill">Xaracter Skill</span>
             </a>
           </li>
           <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->

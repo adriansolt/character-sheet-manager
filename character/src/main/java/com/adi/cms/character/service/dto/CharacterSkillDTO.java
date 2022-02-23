@@ -16,9 +16,9 @@ public class CharacterSkillDTO implements Serializable {
 
     private Integer skillModifier;
 
-    private CharacterDTO characterId;
+    private CharacterDTO character;
 
-    private SkillDTO skillId;
+    private SkillDTO skill;
 
     public Long getId() {
         return id;
@@ -44,20 +44,20 @@ public class CharacterSkillDTO implements Serializable {
         this.skillModifier = skillModifier;
     }
 
-    public CharacterDTO getCharacterId() {
-        return characterId;
+    public CharacterDTO getCharacter() {
+        return character;
     }
 
-    public void setCharacterId(CharacterDTO characterId) {
-        this.characterId = characterId;
+    public void setCharacter(CharacterDTO character) {
+        this.character = character;
     }
 
-    public SkillDTO getSkillId() {
-        return skillId;
+    public SkillDTO getSkill() {
+        return skill;
     }
 
-    public void setSkillId(SkillDTO skillId) {
-        this.skillId = skillId;
+    public void setSkill(SkillDTO skill) {
+        this.skill = skill;
     }
 
     @Override
@@ -88,8 +88,8 @@ public class CharacterSkillDTO implements Serializable {
             "id=" + getId() +
             ", points=" + getPoints() +
             ", skillModifier=" + getSkillModifier() +
-            ", characterId=" + getCharacterId() +
-            ", skillId=" + getSkillId() +
+            ", character=" + getCharacter() +
+            ", skill=" + getSkill() +
             "}";
     }
 }

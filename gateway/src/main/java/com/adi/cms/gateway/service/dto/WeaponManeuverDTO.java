@@ -10,9 +10,9 @@ public class WeaponManeuverDTO implements Serializable {
 
     private Long id;
 
-    private WeaponDTO weaponId;
+    private WeaponDTO weapon;
 
-    private ManeuverDTO maneuverId;
+    private ManeuverDTO maneuver;
 
     public Long getId() {
         return id;
@@ -22,20 +22,20 @@ public class WeaponManeuverDTO implements Serializable {
         this.id = id;
     }
 
-    public WeaponDTO getWeaponId() {
-        return weaponId;
+    public WeaponDTO getWeapon() {
+        return weapon;
     }
 
-    public void setWeaponId(WeaponDTO weaponId) {
-        this.weaponId = weaponId;
+    public void setWeapon(WeaponDTO weapon) {
+        this.weapon = weapon;
     }
 
-    public ManeuverDTO getManeuverId() {
-        return maneuverId;
+    public ManeuverDTO getManeuver() {
+        return maneuver;
     }
 
-    public void setManeuverId(ManeuverDTO maneuverId) {
-        this.maneuverId = maneuverId;
+    public void setManeuver(ManeuverDTO maneuver) {
+        this.maneuver = maneuver;
     }
 
     @Override
@@ -64,8 +64,8 @@ public class WeaponManeuverDTO implements Serializable {
     public String toString() {
         return "WeaponManeuverDTO{" +
             "id=" + getId() +
-            ", weaponId=" + getWeaponId() +
-            ", maneuverId=" + getManeuverId() +
+            ", weapon=" + getWeapon() +
+            ", maneuver=" + getManeuver() +
             "}";
     }
 }

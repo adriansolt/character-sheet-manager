@@ -19,7 +19,7 @@
       },
       "id": "ID",
       "description": "Description",
-      "xaracterId": "Xaracter Id"
+      "character": "Character"
     }
   }
 }

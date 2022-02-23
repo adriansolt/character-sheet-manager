@@ -18,7 +18,7 @@
         "title": "Campaign User"
       },
       "id": "ID",
-      "campaignId": "Campaign Id",
+      "campaign": "Campaign",
       "user": "User"
     }
   }

@@ -18,14 +18,14 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="gatewayApp.campaignUser.campaignId" for="field_campaignId">Campaign Id</label>
-          <select class="form-control" id="field_campaignId" data-cy="campaignId" name="campaignId" formControlName="campaignId">
+          <label class="form-control-label" jhiTranslate="gatewayApp.campaignUser.campaign" for="field_campaign">Campaign</label>
+          <select class="form-control" id="field_campaign" data-cy="campaign" name="campaign" formControlName="campaign">
             <option [ngValue]="null"></option>
             <option
-              [ngValue]="campaignOption.id === editForm.get('campaignId')!.value?.id ? editForm.get('campaignId')!.value : campaignOption"
+              [ngValue]="campaignOption.id === editForm.get('campaign')!.value?.id ? editForm.get('campaign')!.value : campaignOption"
               *ngFor="let campaignOption of campaignsSharedCollection; trackBy: trackCampaignById"
             >
-              {{ campaignOption.id }}
+              {{ campaignOption.name }}
             </option>
           </select>
         </div>

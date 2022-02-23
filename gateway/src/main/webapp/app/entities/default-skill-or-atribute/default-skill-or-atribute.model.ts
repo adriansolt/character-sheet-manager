@@ -4,11 +4,11 @@ export interface IDefaultSkillOrAtribute {
   id?: number;
   name?: string;
   modifier?: number;
-  skillId?: ISkill | null;
+  skill?: ISkill | null;
 }
 
 export class DefaultSkillOrAtribute implements IDefaultSkillOrAtribute {
-  constructor(public id?: number, public name?: string, public modifier?: number, public skillId?: ISkill | null) {}
+  constructor(public id?: number, public name?: string, public modifier?: number, public skill?: ISkill | null) {}
 }
 
 export function getDefaultSkillOrAtributeIdentifier(defaultSkillOrAtribute: IDefaultSkillOrAtribute): number | undefined {

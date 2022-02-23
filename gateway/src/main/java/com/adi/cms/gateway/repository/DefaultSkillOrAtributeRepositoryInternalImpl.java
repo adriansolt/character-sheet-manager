@@ -46,7 +46,7 @@ class DefaultSkillOrAtributeRepositoryInternalImpl
     private final DefaultSkillOrAtributeRowMapper defaultskilloratributeMapper;
 
     private static final Table entityTable = Table.aliased("default_skill_or_atribute", EntityManager.ENTITY_ALIAS);
-    private static final Table skillIdTable = Table.aliased("skill", "skillId");
+    private static final Table skillTable = Table.aliased("skill", "skill");
 
     public DefaultSkillOrAtributeRepositoryInternalImpl(
         R2dbcEntityTemplate template,
@@ -80,14 +80,14 @@ class DefaultSkillOrAtributeRepositoryInternalImpl
 
     RowsFetchSpec<DefaultSkillOrAtribute> createQuery(Pageable pageable, Criteria criteria) {
         List<Expression> columns = DefaultSkillOrAtributeSqlHelper.getColumns(entityTable, EntityManager.ENTITY_ALIAS);
-        columns.addAll(SkillSqlHelper.getColumns(skillIdTable, "skillId"));
+        columns.addAll(SkillSqlHelper.getColumns(skillTable, "skill"));
         SelectFromAndJoinCondition selectFrom = Select
             .builder()
             .select(columns)
             .from(entityTable)
-            .leftOuterJoin(skillIdTable)
-            .on(Column.create("skill_id_id", entityTable))
-            .equals(Column.create("id", skillIdTable));
+            .leftOuterJoin(skillTable)
+            .on(Column.create("skill_id", entityTable))
+            .equals(Column.create("id", skillTable));
 
         String select = entityManager.createSelect(selectFrom, DefaultSkillOrAtribute.class, pageable, criteria);
         return db.sql(select).map(this::process);
@@ -105,7 +105,7 @@ class DefaultSkillOrAtributeRepositoryInternalImpl
 
     private DefaultSkillOrAtribute process(Row row, RowMetadata metadata) {
         DefaultSkillOrAtribute entity = defaultskilloratributeMapper.apply(row, "e");
-        entity.setSkillId(skillMapper.apply(row, "skillId"));
+        entity.setSkill(skillMapper.apply(row, "skill"));
         return entity;
     }
 

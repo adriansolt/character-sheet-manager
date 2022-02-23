@@ -41,14 +41,14 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="gatewayApp.prereqSkillOrAtribute.skillId" for="field_skillId">Skill Id</label>
-          <select class="form-control" id="field_skillId" data-cy="skillId" name="skillId" formControlName="skillId">
+          <label class="form-control-label" jhiTranslate="gatewayApp.prereqSkillOrAtribute.skill" for="field_skill">Skill</label>
+          <select class="form-control" id="field_skill" data-cy="skill" name="skill" formControlName="skill">
             <option [ngValue]="null"></option>
             <option
-              [ngValue]="skillOption.id === editForm.get('skillId')!.value?.id ? editForm.get('skillId')!.value : skillOption"
+              [ngValue]="skillOption.id === editForm.get('skill')!.value?.id ? editForm.get('skill')!.value : skillOption"
               *ngFor="let skillOption of skillsSharedCollection; trackBy: trackSkillById"
             >
-              {{ skillOption.id }}
+              {{ skillOption.name }}
             </option>
           </select>
         </div>

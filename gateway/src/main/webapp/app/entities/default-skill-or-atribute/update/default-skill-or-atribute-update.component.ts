@@ -23,7 +23,7 @@ export class DefaultSkillOrAtributeUpdateComponent implements OnInit {
     id: [],
     name: [null, [Validators.required]],
     modifier: [null, [Validators.required]],
-    skillId: [],
+    skill: [],
   });
 
   constructor(
@@ -83,12 +83,12 @@ export class DefaultSkillOrAtributeUpdateComponent implements OnInit {
       id: defaultSkillOrAtribute.id,
       name: defaultSkillOrAtribute.name,
       modifier: defaultSkillOrAtribute.modifier,
-      skillId: defaultSkillOrAtribute.skillId,
+      skill: defaultSkillOrAtribute.skill,
     });
 
     this.skillsSharedCollection = this.skillService.addSkillToCollectionIfMissing(
       this.skillsSharedCollection,
-      defaultSkillOrAtribute.skillId
+      defaultSkillOrAtribute.skill
     );
   }
 
@@ -96,7 +96,7 @@ export class DefaultSkillOrAtributeUpdateComponent implements OnInit {
     this.skillService
       .query()
       .pipe(map((res: HttpResponse<ISkill[]>) => res.body ?? []))
-      .pipe(map((skills: ISkill[]) => this.skillService.addSkillToCollectionIfMissing(skills, this.editForm.get('skillId')!.value)))
+      .pipe(map((skills: ISkill[]) => this.skillService.addSkillToCollectionIfMissing(skills, this.editForm.get('skill')!.value)))
       .subscribe((skills: ISkill[]) => (this.skillsSharedCollection = skills));
   }
 
@@ -106,7 +106,7 @@ export class DefaultSkillOrAtributeUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
       modifier: this.editForm.get(['modifier'])!.value,
-      skillId: this.editForm.get(['skillId'])!.value,
+      skill: this.editForm.get(['skill'])!.value,
     };
   }
 }

@@ -18,11 +18,11 @@ public interface DefaultSkillOrAtributeRepository
     extends ReactiveCrudRepository<DefaultSkillOrAtribute, Long>, DefaultSkillOrAtributeRepositoryInternal {
     Flux<DefaultSkillOrAtribute> findAllBy(Pageable pageable);
 
-    @Query("SELECT * FROM default_skill_or_atribute entity WHERE entity.skill_id_id = :id")
-    Flux<DefaultSkillOrAtribute> findBySkillId(Long id);
+    @Query("SELECT * FROM default_skill_or_atribute entity WHERE entity.skill_id = :id")
+    Flux<DefaultSkillOrAtribute> findBySkill(Long id);
 
-    @Query("SELECT * FROM default_skill_or_atribute entity WHERE entity.skill_id_id IS NULL")
-    Flux<DefaultSkillOrAtribute> findAllWhereSkillIdIsNull();
+    @Query("SELECT * FROM default_skill_or_atribute entity WHERE entity.skill_id IS NULL")
+    Flux<DefaultSkillOrAtribute> findAllWhereSkillIsNull();
 
     @Override
     <S extends DefaultSkillOrAtribute> Mono<S> save(S entity);

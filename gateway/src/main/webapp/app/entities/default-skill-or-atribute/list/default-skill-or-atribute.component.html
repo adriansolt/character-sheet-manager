@@ -39,8 +39,8 @@
           <th scope="col" jhiSortBy="modifier">
             <span jhiTranslate="gatewayApp.defaultSkillOrAtribute.modifier">Modifier</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="skillId.id">
-            <span jhiTranslate="gatewayApp.defaultSkillOrAtribute.skillId">Skill Id</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="skill.name">
+            <span jhiTranslate="gatewayApp.defaultSkillOrAtribute.skill">Skill</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -53,8 +53,8 @@
           <td>{{ defaultSkillOrAtribute.name }}</td>
           <td>{{ defaultSkillOrAtribute.modifier }}</td>
           <td>
-            <div *ngIf="defaultSkillOrAtribute.skillId">
-              <a [routerLink]="['/skill', defaultSkillOrAtribute.skillId?.id, 'view']">{{ defaultSkillOrAtribute.skillId?.id }}</a>
+            <div *ngIf="defaultSkillOrAtribute.skill">
+              <a [routerLink]="['/skill', defaultSkillOrAtribute.skill?.id, 'view']">{{ defaultSkillOrAtribute.skill?.name }}</a>
             </div>
           </td>
           <td class="text-right">

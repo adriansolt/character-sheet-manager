@@ -20,7 +20,7 @@
       "id": "ID",
       "name": "Name",
       "difficulty": "Difficulty",
-      "xaracterSkill": "Xaracter Skill",
+      "characterSkill": "Character Skill",
       "defaultSkillOrAtribute": "Default Skill Or Atribute",
       "prereqSkillOrAtribute": "Prereq Skill Or Atribute"
     }

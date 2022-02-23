@@ -20,18 +20,18 @@ public class WeaponManeuver implements Serializable {
     private Long id;
 
     @Transient
-    @JsonIgnoreProperties(value = { "xaracterEquippedWeapons", "weaponManeuvers" }, allowSetters = true)
-    private Weapon weaponId;
+    @JsonIgnoreProperties(value = { "characterEquippedWeapons", "weaponManeuvers" }, allowSetters = true)
+    private Weapon weapon;
 
     @Transient
     @JsonIgnoreProperties(value = { "weaponManeuvers" }, allowSetters = true)
-    private Maneuver maneuverId;
+    private Maneuver maneuver;
 
-    @Column("weapon_id_id")
-    private Long weaponIdId;
+    @Column("weapon_id")
+    private Long weaponId;
 
-    @Column("maneuver_id_id")
-    private Long maneuverIdId;
+    @Column("maneuver_id")
+    private Long maneuverId;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -48,48 +48,48 @@ public class WeaponManeuver implements Serializable {
         this.id = id;
     }
 
-    public Weapon getWeaponId() {
+    public Weapon getWeapon() {
+        return this.weapon;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+        this.weaponId = weapon != null ? weapon.getId() : null;
+    }
+
+    public WeaponManeuver weapon(Weapon weapon) {
+        this.setWeapon(weapon);
+        return this;
+    }
+
+    public Maneuver getManeuver() {
+        return this.maneuver;
+    }
+
+    public void setManeuver(Maneuver maneuver) {
+        this.maneuver = maneuver;
+        this.maneuverId = maneuver != null ? maneuver.getId() : null;
+    }
+
+    public WeaponManeuver maneuver(Maneuver maneuver) {
+        this.setManeuver(maneuver);
+        return this;
+    }
+
+    public Long getWeaponId() {
         return this.weaponId;
     }
 
-    public void setWeaponId(Weapon weapon) {
+    public void setWeaponId(Long weapon) {
         this.weaponId = weapon;
-        this.weaponIdId = weapon != null ? weapon.getId() : null;
     }
 
-    public WeaponManeuver weaponId(Weapon weapon) {
-        this.setWeaponId(weapon);
-        return this;
-    }
-
-    public Maneuver getManeuverId() {
+    public Long getManeuverId() {
         return this.maneuverId;
     }
 
-    public void setManeuverId(Maneuver maneuver) {
+    public void setManeuverId(Long maneuver) {
         this.maneuverId = maneuver;
-        this.maneuverIdId = maneuver != null ? maneuver.getId() : null;
-    }
-
-    public WeaponManeuver maneuverId(Maneuver maneuver) {
-        this.setManeuverId(maneuver);
-        return this;
-    }
-
-    public Long getWeaponIdId() {
-        return this.weaponIdId;
-    }
-
-    public void setWeaponIdId(Long weapon) {
-        this.weaponIdId = weapon;
-    }
-
-    public Long getManeuverIdId() {
-        return this.maneuverIdId;
-    }
-
-    public void setManeuverIdId(Long maneuver) {
-        this.maneuverIdId = maneuver;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="characterSkill">
+      <h2 data-cy="characterSkillDetailsHeading"><span jhiTranslate="gatewayApp.characterSkill.detail.title">Character Skill</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ characterSkill.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.characterSkill.points">Points</span></dt>
+        <dd>
+          <span>{{ characterSkill.points }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.characterSkill.skillModifier">Skill Modifier</span></dt>
+        <dd>
+          <span>{{ characterSkill.skillModifier }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.characterSkill.character">Character</span></dt>
+        <dd>
+          <div *ngIf="characterSkill.character">
+            <a [routerLink]="['/character', characterSkill.character?.id, 'view']">{{ characterSkill.character?.name }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.characterSkill.skill">Skill</span></dt>
+        <dd>
+          <div *ngIf="characterSkill.skill">
+            <a [routerLink]="['/skill', characterSkill.skill?.id, 'view']">{{ characterSkill.skill?.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/character-skill', characterSkill.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

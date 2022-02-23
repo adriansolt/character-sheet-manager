@@ -9,7 +9,7 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { CampaignMapper.class, UserMapper.class })
 public interface CampaignUserMapper extends EntityMapper<CampaignUserDTO, CampaignUser> {
-    @Mapping(target = "campaignId", source = "campaignId", qualifiedByName = "id")
+    @Mapping(target = "campaign", source = "campaign", qualifiedByName = "name")
     @Mapping(target = "user", source = "user", qualifiedByName = "login")
     CampaignUserDTO toDto(CampaignUser s);
 }

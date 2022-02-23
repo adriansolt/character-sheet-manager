@@ -9,7 +9,7 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { CharacterMapper.class, SkillMapper.class })
 public interface CharacterSkillMapper extends EntityMapper<CharacterSkillDTO, CharacterSkill> {
-    @Mapping(target = "characterId", source = "characterId", qualifiedByName = "id")
-    @Mapping(target = "skillId", source = "skillId", qualifiedByName = "id")
+    @Mapping(target = "character", source = "character", qualifiedByName = "name")
+    @Mapping(target = "skill", source = "skill", qualifiedByName = "name")
     CharacterSkillDTO toDto(CharacterSkill s);
 }

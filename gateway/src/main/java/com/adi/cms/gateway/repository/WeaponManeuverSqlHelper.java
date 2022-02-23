@@ -12,8 +12,8 @@ public class WeaponManeuverSqlHelper {
         List<Expression> columns = new ArrayList<>();
         columns.add(Column.aliased("id", table, columnPrefix + "_id"));
 
-        columns.add(Column.aliased("weapon_id_id", table, columnPrefix + "_weapon_id_id"));
-        columns.add(Column.aliased("maneuver_id_id", table, columnPrefix + "_maneuver_id_id"));
+        columns.add(Column.aliased("weapon_id", table, columnPrefix + "_weapon_id"));
+        columns.add(Column.aliased("maneuver_id", table, columnPrefix + "_maneuver_id"));
         return columns;
     }
 }

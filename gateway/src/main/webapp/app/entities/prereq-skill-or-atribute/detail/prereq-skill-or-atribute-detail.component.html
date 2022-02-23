@@ -24,10 +24,10 @@
         <dd>
           <span>{{ prereqSkillOrAtribute.level }}</span>
         </dd>
-        <dt><span jhiTranslate="gatewayApp.prereqSkillOrAtribute.skillId">Skill Id</span></dt>
+        <dt><span jhiTranslate="gatewayApp.prereqSkillOrAtribute.skill">Skill</span></dt>
         <dd>
-          <div *ngIf="prereqSkillOrAtribute.skillId">
-            <a [routerLink]="['/skill', prereqSkillOrAtribute.skillId?.id, 'view']">{{ prereqSkillOrAtribute.skillId?.id }}</a>
+          <div *ngIf="prereqSkillOrAtribute.skill">
+            <a [routerLink]="['/skill', prereqSkillOrAtribute.skill?.id, 'view']">{{ prereqSkillOrAtribute.skill?.name }}</a>
           </div>
         </dd>
       </dl>

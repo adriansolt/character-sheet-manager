@@ -53,16 +53,16 @@ public class CacheConfiguration {
             createCache(cm, com.adi.cms.item.domain.Authority.class.getName());
             createCache(cm, com.adi.cms.item.domain.User.class.getName() + ".authorities");
             createCache(cm, com.adi.cms.item.domain.ArmorPiece.class.getName());
-            createCache(cm, com.adi.cms.item.domain.ArmorPiece.class.getName() + ".xaracterEquippedArmors");
+            createCache(cm, com.adi.cms.item.domain.ArmorPiece.class.getName() + ".characterEquippedArmors");
+            createCache(cm, com.adi.cms.item.domain.CharacterEquippedArmor.class.getName());
+            createCache(cm, com.adi.cms.item.domain.CharacterEquippedWeapon.class.getName());
             createCache(cm, com.adi.cms.item.domain.Item.class.getName());
             createCache(cm, com.adi.cms.item.domain.Maneuver.class.getName());
             createCache(cm, com.adi.cms.item.domain.Maneuver.class.getName() + ".weaponManeuvers");
             createCache(cm, com.adi.cms.item.domain.Weapon.class.getName());
-            createCache(cm, com.adi.cms.item.domain.Weapon.class.getName() + ".xaracterEquippedWeapons");
+            createCache(cm, com.adi.cms.item.domain.Weapon.class.getName() + ".characterEquippedWeapons");
             createCache(cm, com.adi.cms.item.domain.Weapon.class.getName() + ".weaponManeuvers");
             createCache(cm, com.adi.cms.item.domain.WeaponManeuver.class.getName());
-            createCache(cm, com.adi.cms.item.domain.XaracterEquippedArmor.class.getName());
-            createCache(cm, com.adi.cms.item.domain.XaracterEquippedWeapon.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

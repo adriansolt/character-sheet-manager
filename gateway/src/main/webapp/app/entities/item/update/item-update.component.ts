@@ -26,7 +26,7 @@ export class ItemUpdateComponent implements OnInit {
     quality: [null, [Validators.required]],
     picture: [],
     pictureContentType: [],
-    xaracterId: [],
+    characterId: [],
     campaignId: [],
   });
 
@@ -112,7 +112,7 @@ export class ItemUpdateComponent implements OnInit {
       quality: item.quality,
       picture: item.picture,
       pictureContentType: item.pictureContentType,
-      xaracterId: item.xaracterId,
+      characterId: item.characterId,
       campaignId: item.campaignId,
     });
   }
@@ -127,7 +127,7 @@ export class ItemUpdateComponent implements OnInit {
       quality: this.editForm.get(['quality'])!.value,
       pictureContentType: this.editForm.get(['pictureContentType'])!.value,
       picture: this.editForm.get(['picture'])!.value,
-      xaracterId: this.editForm.get(['xaracterId'])!.value,
+      characterId: this.editForm.get(['characterId'])!.value,
       campaignId: this.editForm.get(['campaignId'])!.value,
     };
   }

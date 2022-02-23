@@ -1,0 +1,27 @@
+{
+  "gatewayApp": {
+    "characterSkill": {
+      "home": {
+        "title": "Character Skills",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Character Skill",
+        "createOrEditLabel": "Create or edit a Character Skill",
+        "notFound": "No Character Skills found"
+      },
+      "created": "A new Character Skill is created with identifier {{ param }}",
+      "updated": "A Character Skill is updated with identifier {{ param }}",
+      "deleted": "A Character Skill is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Character Skill {{ id }}?"
+      },
+      "detail": {
+        "title": "Character Skill"
+      },
+      "id": "ID",
+      "points": "Points",
+      "skillModifier": "Skill Modifier",
+      "character": "Character",
+      "skill": "Skill"
+    }
+  }
+}

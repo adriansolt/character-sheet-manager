@@ -48,12 +48,12 @@ describe('DefaultSkillOrAtribute Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Skill query and add missing value', () => {
       const defaultSkillOrAtribute: IDefaultSkillOrAtribute = { id: 456 };
-      const skillId: ISkill = { id: 72778 };
-      defaultSkillOrAtribute.skillId = skillId;
+      const skill: ISkill = { id: 72778 };
+      defaultSkillOrAtribute.skill = skill;
 
       const skillCollection: ISkill[] = [{ id: 46467 }];
       jest.spyOn(skillService, 'query').mockReturnValue(of(new HttpResponse({ body: skillCollection })));
-      const additionalSkills = [skillId];
+      const additionalSkills = [skill];
       const expectedCollection: ISkill[] = [...additionalSkills, ...skillCollection];
       jest.spyOn(skillService, 'addSkillToCollectionIfMissing').mockReturnValue(expectedCollection);
 
@@ -67,14 +67,14 @@ describe('DefaultSkillOrAtribute Management Update Component', () => {
 
     it('Should update editForm', () => {
       const defaultSkillOrAtribute: IDefaultSkillOrAtribute = { id: 456 };
-      const skillId: ISkill = { id: 14839 };
-      defaultSkillOrAtribute.skillId = skillId;
+      const skill: ISkill = { id: 14839 };
+      defaultSkillOrAtribute.skill = skill;
 
       activatedRoute.data = of({ defaultSkillOrAtribute });
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(defaultSkillOrAtribute));
-      expect(comp.skillsSharedCollection).toContain(skillId);
+      expect(comp.skillsSharedCollection).toContain(skill);
     });
   });
 

@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="characterEquippedArmor">
+      <h2 data-cy="characterEquippedArmorDetailsHeading">
+        <span jhiTranslate="gatewayApp.characterEquippedArmor.detail.title">Character Equipped Armor</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ characterEquippedArmor.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.characterEquippedArmor.characterId">Character Id</span></dt>
+        <dd>
+          <span>{{ characterEquippedArmor.characterId }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.characterEquippedArmor.armorPiece">Armor Piece</span></dt>
+        <dd>
+          <div *ngIf="characterEquippedArmor.armorPiece">
+            <a [routerLink]="['/armor-piece', characterEquippedArmor.armorPiece?.id, 'view']">{{
+              characterEquippedArmor.armorPiece?.name
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/character-equipped-armor', characterEquippedArmor.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

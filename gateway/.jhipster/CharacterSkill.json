@@ -1,0 +1,41 @@
+{
+  "applications": ["character", "gateway"],
+  "changelogDate": "20220223133858",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "character_skill",
+  "fields": [
+    {
+      "fieldName": "points",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "skillModifier",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CharacterSkill",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "character",
+      "otherEntityRelationshipName": "characterSkill",
+      "relationshipName": "character",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "skill",
+      "otherEntityRelationshipName": "characterSkill",
+      "relationshipName": "skill",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

@@ -53,12 +53,12 @@ describe('CampaignUser Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Campaign query and add missing value', () => {
       const campaignUser: ICampaignUser = { id: 456 };
-      const campaignId: ICampaign = { id: 10062 };
-      campaignUser.campaignId = campaignId;
+      const campaign: ICampaign = { id: 10062 };
+      campaignUser.campaign = campaign;
 
       const campaignCollection: ICampaign[] = [{ id: 22665 }];
       jest.spyOn(campaignService, 'query').mockReturnValue(of(new HttpResponse({ body: campaignCollection })));
-      const additionalCampaigns = [campaignId];
+      const additionalCampaigns = [campaign];
       const expectedCollection: ICampaign[] = [...additionalCampaigns, ...campaignCollection];
       jest.spyOn(campaignService, 'addCampaignToCollectionIfMissing').mockReturnValue(expectedCollection);
 
@@ -91,8 +91,8 @@ describe('CampaignUser Management Update Component', () => {
 
     it('Should update editForm', () => {
       const campaignUser: ICampaignUser = { id: 456 };
-      const campaignId: ICampaign = { id: 74734 };
-      campaignUser.campaignId = campaignId;
+      const campaign: ICampaign = { id: 74734 };
+      campaignUser.campaign = campaign;
       const user: IUser = { id: 'e0a1dcca-7801-4375-8c1b-698783774687' };
       campaignUser.user = user;
 
@@ -100,7 +100,7 @@ describe('CampaignUser Management Update Component', () => {
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(campaignUser));
-      expect(comp.campaignsSharedCollection).toContain(campaignId);
+      expect(comp.campaignsSharedCollection).toContain(campaign);
       expect(comp.usersSharedCollection).toContain(user);
     });
   });

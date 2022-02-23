@@ -25,8 +25,8 @@ public class WeaponManeuverRowMapper implements BiFunction<Row, String, WeaponMa
     public WeaponManeuver apply(Row row, String prefix) {
         WeaponManeuver entity = new WeaponManeuver();
         entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
-        entity.setWeaponIdId(converter.fromRow(row, prefix + "_weapon_id_id", Long.class));
-        entity.setManeuverIdId(converter.fromRow(row, prefix + "_maneuver_id_id", Long.class));
+        entity.setWeaponId(converter.fromRow(row, prefix + "_weapon_id", Long.class));
+        entity.setManeuverId(converter.fromRow(row, prefix + "_maneuver_id", Long.class));
         return entity;
     }
 }

@@ -27,7 +27,7 @@ describe('Item Service', () => {
       quality: 0,
       pictureContentType: 'image/png',
       picture: 'AAAAAAA',
-      xaracterId: 0,
+      characterId: 0,
       campaignId: 0,
     };
   });
@@ -69,7 +69,7 @@ describe('Item Service', () => {
           weight: 1,
           quality: 1,
           picture: 'BBBBBB',
-          xaracterId: 1,
+          characterId: 1,
           campaignId: 1,
         },
         elemDefault
@@ -89,7 +89,7 @@ describe('Item Service', () => {
         {
           name: 'BBBBBB',
           picture: 'BBBBBB',
-          xaracterId: 1,
+          characterId: 1,
         },
         new Item()
       );
@@ -114,7 +114,7 @@ describe('Item Service', () => {
           weight: 1,
           quality: 1,
           picture: 'BBBBBB',
-          xaracterId: 1,
+          characterId: 1,
           campaignId: 1,
         },
         elemDefault

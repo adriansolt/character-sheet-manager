@@ -1,13 +1,13 @@
-import { IXaracter } from 'app/entities/xaracter/xaracter.model';
+import { ICharacter } from 'app/entities/character/character.model';
 
 export interface INote {
   id?: number;
   description?: string | null;
-  xaracterId?: IXaracter | null;
+  character?: ICharacter | null;
 }
 
 export class Note implements INote {
-  constructor(public id?: number, public description?: string | null, public xaracterId?: IXaracter | null) {}
+  constructor(public id?: number, public description?: string | null, public character?: ICharacter | null) {}
 }
 
 export function getNoteIdentifier(note: INote): number | undefined {

@@ -44,8 +44,8 @@ public class Item implements Serializable {
     @Column(name = "picture_content_type")
     private String pictureContentType;
 
-    @Column(name = "xaracter_id")
-    private Long xaracterId;
+    @Column(name = "character_id")
+    private Long characterId;
 
     @Column(name = "campaign_id")
     private Long campaignId;
@@ -143,17 +143,17 @@ public class Item implements Serializable {
         this.pictureContentType = pictureContentType;
     }
 
-    public Long getXaracterId() {
-        return this.xaracterId;
+    public Long getCharacterId() {
+        return this.characterId;
     }
 
-    public Item xaracterId(Long xaracterId) {
-        this.setXaracterId(xaracterId);
+    public Item characterId(Long characterId) {
+        this.setCharacterId(characterId);
         return this;
     }
 
-    public void setXaracterId(Long xaracterId) {
-        this.xaracterId = xaracterId;
+    public void setCharacterId(Long characterId) {
+        this.characterId = characterId;
     }
 
     public Long getCampaignId() {
@@ -199,7 +199,7 @@ public class Item implements Serializable {
             ", quality=" + getQuality() +
             ", picture='" + getPicture() + "'" +
             ", pictureContentType='" + getPictureContentType() + "'" +
-            ", xaracterId=" + getXaracterId() +
+            ", characterId=" + getCharacterId() +
             ", campaignId=" + getCampaignId() +
             "}";
     }

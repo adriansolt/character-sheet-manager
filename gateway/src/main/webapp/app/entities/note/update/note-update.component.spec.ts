@@ -8,8 +8,8 @@ import { of, Subject, from } from 'rxjs';
 
 import { NoteService } from '../service/note.service';
 import { INote, Note } from '../note.model';
-import { IXaracter } from 'app/entities/xaracter/xaracter.model';
-import { XaracterService } from 'app/entities/xaracter/service/xaracter.service';
+import { ICharacter } from 'app/entities/character/character.model';
+import { CharacterService } from 'app/entities/character/service/character.service';
 
 import { NoteUpdateComponent } from './note-update.component';
 
@@ -18,7 +18,7 @@ describe('Note Management Update Component', () => {
   let fixture: ComponentFixture<NoteUpdateComponent>;
   let activatedRoute: ActivatedRoute;
   let noteService: NoteService;
-  let xaracterService: XaracterService;
+  let characterService: CharacterService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -40,41 +40,41 @@ describe('Note Management Update Component', () => {
     fixture = TestBed.createComponent(NoteUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
     noteService = TestBed.inject(NoteService);
-    xaracterService = TestBed.inject(XaracterService);
+    characterService = TestBed.inject(CharacterService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call Xaracter query and add missing value', () => {
+    it('Should call Character query and add missing value', () => {
       const note: INote = { id: 456 };
-      const xaracterId: IXaracter = { id: 42989 };
-      note.xaracterId = xaracterId;
+      const character: ICharacter = { id: 62417 };
+      note.character = character;
 
-      const xaracterCollection: IXaracter[] = [{ id: 79480 }];
-      jest.spyOn(xaracterService, 'query').mockReturnValue(of(new HttpResponse({ body: xaracterCollection })));
-      const additionalXaracters = [xaracterId];
-      const expectedCollection: IXaracter[] = [...additionalXaracters, ...xaracterCollection];
-      jest.spyOn(xaracterService, 'addXaracterToCollectionIfMissing').mockReturnValue(expectedCollection);
+      const characterCollection: ICharacter[] = [{ id: 90177 }];
+      jest.spyOn(characterService, 'query').mockReturnValue(of(new HttpResponse({ body: characterCollection })));
+      const additionalCharacters = [character];
+      const expectedCollection: ICharacter[] = [...additionalCharacters, ...characterCollection];
+      jest.spyOn(characterService, 'addCharacterToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ note });
       comp.ngOnInit();
 
-      expect(xaracterService.query).toHaveBeenCalled();
-      expect(xaracterService.addXaracterToCollectionIfMissing).toHaveBeenCalledWith(xaracterCollection, ...additionalXaracters);
-      expect(comp.xaractersSharedCollection).toEqual(expectedCollection);
+      expect(characterService.query).toHaveBeenCalled();
+      expect(characterService.addCharacterToCollectionIfMissing).toHaveBeenCalledWith(characterCollection, ...additionalCharacters);
+      expect(comp.charactersSharedCollection).toEqual(expectedCollection);
     });
 
     it('Should update editForm', () => {
       const note: INote = { id: 456 };
-      const xaracterId: IXaracter = { id: 48047 };
-      note.xaracterId = xaracterId;
+      const character: ICharacter = { id: 74010 };
+      note.character = character;
 
       activatedRoute.data = of({ note });
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(note));
-      expect(comp.xaractersSharedCollection).toContain(xaracterId);
+      expect(comp.charactersSharedCollection).toContain(character);
     });
   });
 
@@ -143,10 +143,10 @@ describe('Note Management Update Component', () => {
   });
 
   describe('Tracking relationships identifiers', () => {
-    describe('trackXaracterById', () => {
-      it('Should return tracked Xaracter primary key', () => {
+    describe('trackCharacterById', () => {
+      it('Should return tracked Character primary key', () => {
         const entity = { id: 123 };
-        const trackResult = comp.trackXaracterById(0, entity);
+        const trackResult = comp.trackCharacterById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

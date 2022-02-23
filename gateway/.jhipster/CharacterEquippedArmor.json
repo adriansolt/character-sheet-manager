@@ -1,0 +1,29 @@
+{
+  "applications": ["item", "gateway"],
+  "changelogDate": "20220223133658",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "character_equipped_armor",
+  "fields": [
+    {
+      "fieldName": "characterId",
+      "fieldType": "Long"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CharacterEquippedArmor",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "armorPiece",
+      "otherEntityRelationshipName": "characterEquippedArmor",
+      "relationshipName": "armorPiece",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

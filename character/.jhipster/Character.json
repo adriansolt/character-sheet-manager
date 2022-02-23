@@ -55,19 +55,19 @@
   "relationships": [
     {
       "otherEntityName": "note",
-      "otherEntityRelationshipName": "characterId",
+      "otherEntityRelationshipName": "character",
       "relationshipName": "note",
       "relationshipType": "one-to-many"
     },
     {
       "otherEntityName": "characterAttribute",
-      "otherEntityRelationshipName": "characterId",
+      "otherEntityRelationshipName": "character",
       "relationshipName": "characterAttribute",
       "relationshipType": "one-to-many"
     },
     {
       "otherEntityName": "characterSkill",
-      "otherEntityRelationshipName": "characterId",
+      "otherEntityRelationshipName": "character",
       "relationshipName": "characterSkill",
       "relationshipType": "one-to-many"
     },

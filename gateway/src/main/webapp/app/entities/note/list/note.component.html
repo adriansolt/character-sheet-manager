@@ -36,8 +36,8 @@
           <th scope="col" jhiSortBy="description">
             <span jhiTranslate="gatewayApp.note.description">Description</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="xaracterId.id">
-            <span jhiTranslate="gatewayApp.note.xaracterId">Xaracter Id</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="character.name">
+            <span jhiTranslate="gatewayApp.note.character">Character</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -49,8 +49,8 @@
           </td>
           <td>{{ note.description }}</td>
           <td>
-            <div *ngIf="note.xaracterId">
-              <a [routerLink]="['/xaracter', note.xaracterId?.id, 'view']">{{ note.xaracterId?.id }}</a>
+            <div *ngIf="note.character">
+              <a [routerLink]="['/character', note.character?.id, 'view']">{{ note.character?.name }}</a>
             </div>
           </td>
           <td class="text-right">

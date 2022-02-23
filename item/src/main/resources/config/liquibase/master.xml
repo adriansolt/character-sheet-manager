@@ -15,17 +15,17 @@
     <property name="datetimeType" value="datetime" dbms="oracle, mssql, postgresql, h2"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20220223123229_added_entity_ArmorPiece.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20220223123329_added_entity_Item.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20220223123429_added_entity_Maneuver.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20220223123529_added_entity_Weapon.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20220223123629_added_entity_WeaponManeuver.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20220223123729_added_entity_XaracterEquippedArmor.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20220223123829_added_entity_XaracterEquippedWeapon.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220223133158_added_entity_ArmorPiece.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220223133258_added_entity_CharacterEquippedArmor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220223133358_added_entity_CharacterEquippedWeapon.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220223133458_added_entity_Item.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220223133558_added_entity_Maneuver.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220223133658_added_entity_Weapon.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220223133758_added_entity_WeaponManeuver.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20220223123629_added_entity_constraints_WeaponManeuver.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20220223123729_added_entity_constraints_XaracterEquippedArmor.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20220223123829_added_entity_constraints_XaracterEquippedWeapon.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220223133258_added_entity_constraints_CharacterEquippedArmor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220223133358_added_entity_constraints_CharacterEquippedWeapon.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220223133758_added_entity_constraints_WeaponManeuver.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

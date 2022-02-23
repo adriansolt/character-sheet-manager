@@ -1,6 +1,6 @@
 {
   "applications": ["item", "gateway"],
-  "changelogDate": "20220223131823",
+  "changelogDate": "20220223134158",
   "databaseType": "sql",
   "dto": "mapstruct",
   "embedded": false,
@@ -29,7 +29,7 @@
   "relationships": [
     {
       "otherEntityName": "weaponManeuver",
-      "otherEntityRelationshipName": "maneuverId",
+      "otherEntityRelationshipName": "maneuver",
       "relationshipName": "weaponManeuver",
       "relationshipType": "one-to-many"
     }

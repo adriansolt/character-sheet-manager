@@ -1,0 +1,35 @@
+{
+  "gatewayApp": {
+    "character": {
+      "home": {
+        "title": "Characters",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Character",
+        "createOrEditLabel": "Create or edit a Character",
+        "notFound": "No Characters found"
+      },
+      "created": "A new Character is created with identifier {{ param }}",
+      "updated": "A Character is updated with identifier {{ param }}",
+      "deleted": "A Character is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Character {{ id }}?"
+      },
+      "detail": {
+        "title": "Character"
+      },
+      "id": "ID",
+      "name": "Name",
+      "weight": "Weight",
+      "height": "Height",
+      "points": "Points",
+      "picture": "Picture",
+      "handedness": "Handedness",
+      "campaignId": "Campaign Id",
+      "active": "Active",
+      "note": "Note",
+      "characterAttribute": "Character Attribute",
+      "characterSkill": "Character Skill",
+      "user": "User"
+    }
+  }
+}

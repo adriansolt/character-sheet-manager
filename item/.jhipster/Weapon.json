@@ -1,6 +1,6 @@
 {
   "applications": ["item", "gateway"],
-  "changelogDate": "20220223123529",
+  "changelogDate": "20220223133658",
   "clientRootFolder": "item",
   "databaseType": "sql",
   "dto": "mapstruct",
@@ -37,14 +37,14 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "xaracterEquippedWeapon",
-      "otherEntityRelationshipName": "weaponId",
-      "relationshipName": "xaracterEquippedWeapon",
+      "otherEntityName": "characterEquippedWeapon",
+      "otherEntityRelationshipName": "weapon",
+      "relationshipName": "characterEquippedWeapon",
       "relationshipType": "one-to-many"
     },
     {
       "otherEntityName": "weaponManeuver",
-      "otherEntityRelationshipName": "weaponId",
+      "otherEntityRelationshipName": "weapon",
       "relationshipName": "weaponManeuver",
       "relationshipType": "one-to-many"
     }

@@ -31,9 +31,10 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "name",
       "otherEntityName": "character",
       "otherEntityRelationshipName": "characterAttribute",
-      "relationshipName": "characterId",
+      "relationshipName": "character",
       "relationshipType": "many-to-one"
     }
   ],

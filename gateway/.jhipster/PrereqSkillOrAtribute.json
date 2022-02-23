@@ -1,6 +1,6 @@
 {
-  "applications": ["xaracter", "gateway"],
-  "changelogDate": "20220223132023",
+  "applications": ["character", "gateway"],
+  "changelogDate": "20220223134358",
   "databaseType": "sql",
   "dto": "mapstruct",
   "embedded": false,
@@ -24,9 +24,10 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "name",
       "otherEntityName": "skill",
       "otherEntityRelationshipName": "prereqSkillOrAtribute",
-      "relationshipName": "skillId",
+      "relationshipName": "skill",
       "relationshipType": "many-to-one"
     }
   ],

@@ -1,6 +1,6 @@
 {
-  "applications": ["xaracter", "gateway"],
-  "changelogDate": "20220223131923",
+  "applications": ["character", "gateway"],
+  "changelogDate": "20220223134258",
   "databaseType": "sql",
   "dto": "mapstruct",
   "embedded": false,
@@ -18,9 +18,10 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "xaracter",
+      "otherEntityField": "name",
+      "otherEntityName": "character",
       "otherEntityRelationshipName": "note",
-      "relationshipName": "xaracterId",
+      "relationshipName": "character",
       "relationshipType": "many-to-one"
     }
   ],

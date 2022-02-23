@@ -29,19 +29,19 @@
   "relationships": [
     {
       "otherEntityName": "characterSkill",
-      "otherEntityRelationshipName": "skillId",
+      "otherEntityRelationshipName": "skill",
       "relationshipName": "characterSkill",
       "relationshipType": "one-to-many"
     },
     {
       "otherEntityName": "defaultSkillOrAtribute",
-      "otherEntityRelationshipName": "skillId",
+      "otherEntityRelationshipName": "skill",
       "relationshipName": "defaultSkillOrAtribute",
       "relationshipType": "one-to-many"
     },
     {
       "otherEntityName": "prereqSkillOrAtribute",
-      "otherEntityRelationshipName": "skillId",
+      "otherEntityRelationshipName": "skill",
       "relationshipName": "prereqSkillOrAtribute",
       "relationshipType": "one-to-many"
     }

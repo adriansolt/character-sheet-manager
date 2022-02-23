@@ -20,7 +20,7 @@
       "id": "ID",
       "name": "Name",
       "level": "Level",
-      "skillId": "Skill Id"
+      "skill": "Skill"
     }
   }
 }

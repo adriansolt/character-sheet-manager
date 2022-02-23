@@ -44,8 +44,8 @@
           <th scope="col" jhiSortBy="picture">
             <span jhiTranslate="gatewayApp.item.picture">Picture</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="xaracterId">
-            <span jhiTranslate="gatewayApp.item.xaracterId">Xaracter Id</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="characterId">
+            <span jhiTranslate="gatewayApp.item.characterId">Character Id</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="campaignId">
             <span jhiTranslate="gatewayApp.item.campaignId">Campaign Id</span> <fa-icon icon="sort"></fa-icon>
@@ -68,7 +68,7 @@
             </a>
             <span *ngIf="item.picture">{{ item.pictureContentType }}, {{ byteSize(item.picture) }}</span>
           </td>
-          <td>{{ item.xaracterId }}</td>
+          <td>{{ item.characterId }}</td>
           <td>{{ item.campaignId }}</td>
           <td class="text-right">
             <div class="btn-group">

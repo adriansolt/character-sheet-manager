@@ -25,15 +25,17 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "name",
       "otherEntityName": "character",
       "otherEntityRelationshipName": "characterSkill",
-      "relationshipName": "characterId",
+      "relationshipName": "character",
       "relationshipType": "many-to-one"
     },
     {
+      "otherEntityField": "name",
       "otherEntityName": "skill",
       "otherEntityRelationshipName": "characterSkill",
-      "relationshipName": "skillId",
+      "relationshipName": "skill",
       "relationshipType": "many-to-one"
     }
   ],

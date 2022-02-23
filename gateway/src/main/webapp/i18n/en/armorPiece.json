@@ -20,7 +20,7 @@
       "id": "ID",
       "location": "Location",
       "defenseModifier": "Defense Modifier",
-      "xaracterEquippedArmor": "Xaracter Equipped Armor"
+      "characterEquippedArmor": "Character Equipped Armor"
     }
   }
 }

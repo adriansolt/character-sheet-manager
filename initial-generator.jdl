@@ -1,0 +1,220 @@
+application {
+  config {
+    baseName campaign
+    packageName com.adi.cms.campaign
+    applicationType microservice
+    serverPort 8083
+    prodDatabaseType postgresql
+    authenticationType oauth2
+    languages [en, es]
+    nativeLanguage en
+    serviceDiscoveryType eureka
+    testFrameworks [cypress]
+    messageBroker kafka
+  }
+  entities Campaign, CampaignUser
+}
+
+entity Campaign {
+   name String
+   description String
+   map ImageBlob
+   masterId Long
+}
+
+entity CampaignUser {}
+
+relationship OneToMany {
+   Campaign to CampaignUser{campaign(name)}
+   User to CampaignUser{user(login) required}
+}
+
+application {
+  config {
+    baseName character
+    packageName com.adi.cms.character
+    applicationType microservice
+    serverPort 8083
+    prodDatabaseType postgresql
+    authenticationType oauth2
+    languages [en, es]
+    nativeLanguage en
+    serviceDiscoveryType eureka
+    testFrameworks [cypress]
+    messageBroker kafka
+  }
+  entities Character, Note, CharacterAttribute, CharacterSkill, Skill, DefaultSkillOrAtribute, PrereqSkillOrAtribute
+}
+
+entity Character {
+   name String required
+   weight Integer required
+   height Integer required
+   points Integer required
+   picture ImageBlob
+   handedness Handedness
+   campaignId Long
+   active Boolean
+}
+
+entity Note {
+   description String
+}
+
+entity CharacterAttribute {
+   name AttributeName required
+   points Integer required
+   attributeModifier Integer
+}
+
+entity CharacterSkill {
+   points Integer required
+   skillModifier Integer
+}
+
+entity Skill {
+   name SkillName required
+   difficulty Difficulty required
+}
+
+entity DefaultSkillOrAtribute {
+   name String required
+   modifier Integer required
+}
+
+entity PrereqSkillOrAtribute {
+   name String required
+   level Integer required
+}
+
+enum Handedness {
+   RIGHT, LEFT, BOTH
+}
+
+enum AttributeName {
+   ST, DX, IQ, HT
+}
+
+enum Difficulty {
+   EASY, AVERAGE, HARD, VERY_HARD
+}
+
+enum SkillName {
+   COOKING, 
+   FARMING, 
+   FISHING, 
+   GEOGRAPHY,
+   ETC
+}
+
+relationship OneToMany {
+  Character to Note{character(name)}
+  Character to CharacterAttribute{character(name)}
+  Character to CharacterSkill{character(name)}
+  Skill to CharacterSkill{skill(name)}
+  Skill to DefaultSkillOrAtribute{skill(name)}
+  Skill to PrereqSkillOrAtribute{skill(name)}
+}
+
+application {
+  config {
+    baseName item
+    packageName com.adi.cms.item
+    applicationType microservice
+    serverPort 8083
+    prodDatabaseType postgresql
+    authenticationType oauth2
+    languages [en, es]
+    nativeLanguage en
+    serviceDiscoveryType eureka
+    testFrameworks [cypress]
+    messageBroker kafka
+  }
+  entities Item, ArmorPiece, Weapon, Maneuver, CharacterEquippedArmor, CharacterEquippedWeapon, WeaponManeuver
+}
+
+entity Item {
+  name String required
+  description String
+  weight Integer required
+  quality Integer required
+  picture ImageBlob
+  characterId Long
+  campaignId Long
+}
+
+entity Weapon {
+   reach Integer required
+   baseDamage Integer required min(0)
+   requiredST Integer required min(1)
+   damageModifier Integer
+}
+
+entity Maneuver {
+  name String required 
+  modifier Integer
+  description String required
+}
+
+entity CharacterEquippedWeapon {
+   characterId Long
+   hand Handedness
+}
+
+entity ArmorPiece {
+   location ArmorLocation
+   defenseModifier Integer
+}
+
+entity CharacterEquippedArmor {
+   characterId Long
+}
+
+entity WeaponManeuver {}
+
+enum ArmorLocation {
+   HEAD, 
+   RIGHT_SHOULDER, 
+   LEFT_SHOULDER, 
+   RIGHT_ARM, 
+   LEFT_ARM, 
+   RIGHT_HAND, 
+   LEFT_HAND, 
+   CHEST, 
+   BACK, 
+   RIGHT_LEG,
+   LEFT_LEG,
+   RIGHT_FOOT,
+   LEFT_FOOT
+}
+
+relationship OneToMany {
+  ArmorPiece to CharacterEquippedArmor{ArmorPiece(name)}
+  Weapon to CharacterEquippedWeapon{weapon(name)}
+  Weapon to WeaponManeuver{weapon(name)}
+  Maneuver to WeaponManeuver{maneuver(name)}
+}
+
+application {
+  config {
+    baseName gateway
+    packageName com.adi.cms.gateway
+    applicationType gateway
+    prodDatabaseType postgresql
+    authenticationType oauth2
+    languages [en, es]
+    nativeLanguage en
+    serviceDiscoveryType eureka
+    testFrameworks [cypress]
+    messageBroker kafka
+  }
+  entities *
+}
+
+relationship ManyToOne {
+   Character{user(login) required} to User
+}
+
+paginate * with pagination
+service * with serviceClass
+dto * with mapstruct

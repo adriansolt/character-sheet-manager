@@ -40,11 +40,11 @@ public class Weapon implements Serializable {
     private Integer damageModifier;
 
     @Transient
-    @JsonIgnoreProperties(value = { "weaponId" }, allowSetters = true)
-    private Set<XaracterEquippedWeapon> xaracterEquippedWeapons = new HashSet<>();
+    @JsonIgnoreProperties(value = { "weapon" }, allowSetters = true)
+    private Set<CharacterEquippedWeapon> characterEquippedWeapons = new HashSet<>();
 
     @Transient
-    @JsonIgnoreProperties(value = { "weaponId", "maneuverId" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "weapon", "maneuver" }, allowSetters = true)
     private Set<WeaponManeuver> weaponManeuvers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -114,34 +114,34 @@ public class Weapon implements Serializable {
         this.damageModifier = damageModifier;
     }
 
-    public Set<XaracterEquippedWeapon> getXaracterEquippedWeapons() {
-        return this.xaracterEquippedWeapons;
+    public Set<CharacterEquippedWeapon> getCharacterEquippedWeapons() {
+        return this.characterEquippedWeapons;
     }
 
-    public void setXaracterEquippedWeapons(Set<XaracterEquippedWeapon> xaracterEquippedWeapons) {
-        if (this.xaracterEquippedWeapons != null) {
-            this.xaracterEquippedWeapons.forEach(i -> i.setWeaponId(null));
+    public void setCharacterEquippedWeapons(Set<CharacterEquippedWeapon> characterEquippedWeapons) {
+        if (this.characterEquippedWeapons != null) {
+            this.characterEquippedWeapons.forEach(i -> i.setWeapon(null));
         }
-        if (xaracterEquippedWeapons != null) {
-            xaracterEquippedWeapons.forEach(i -> i.setWeaponId(this));
+        if (characterEquippedWeapons != null) {
+            characterEquippedWeapons.forEach(i -> i.setWeapon(this));
         }
-        this.xaracterEquippedWeapons = xaracterEquippedWeapons;
+        this.characterEquippedWeapons = characterEquippedWeapons;
     }
 
-    public Weapon xaracterEquippedWeapons(Set<XaracterEquippedWeapon> xaracterEquippedWeapons) {
-        this.setXaracterEquippedWeapons(xaracterEquippedWeapons);
+    public Weapon characterEquippedWeapons(Set<CharacterEquippedWeapon> characterEquippedWeapons) {
+        this.setCharacterEquippedWeapons(characterEquippedWeapons);
         return this;
     }
 
-    public Weapon addXaracterEquippedWeapon(XaracterEquippedWeapon xaracterEquippedWeapon) {
-        this.xaracterEquippedWeapons.add(xaracterEquippedWeapon);
-        xaracterEquippedWeapon.setWeaponId(this);
+    public Weapon addCharacterEquippedWeapon(CharacterEquippedWeapon characterEquippedWeapon) {
+        this.characterEquippedWeapons.add(characterEquippedWeapon);
+        characterEquippedWeapon.setWeapon(this);
         return this;
     }
 
-    public Weapon removeXaracterEquippedWeapon(XaracterEquippedWeapon xaracterEquippedWeapon) {
-        this.xaracterEquippedWeapons.remove(xaracterEquippedWeapon);
-        xaracterEquippedWeapon.setWeaponId(null);
+    public Weapon removeCharacterEquippedWeapon(CharacterEquippedWeapon characterEquippedWeapon) {
+        this.characterEquippedWeapons.remove(characterEquippedWeapon);
+        characterEquippedWeapon.setWeapon(null);
         return this;
     }
 
@@ -151,10 +151,10 @@ public class Weapon implements Serializable {
 
     public void setWeaponManeuvers(Set<WeaponManeuver> weaponManeuvers) {
         if (this.weaponManeuvers != null) {
-            this.weaponManeuvers.forEach(i -> i.setWeaponId(null));
+            this.weaponManeuvers.forEach(i -> i.setWeapon(null));
         }
         if (weaponManeuvers != null) {
-            weaponManeuvers.forEach(i -> i.setWeaponId(this));
+            weaponManeuvers.forEach(i -> i.setWeapon(this));
         }
         this.weaponManeuvers = weaponManeuvers;
     }
@@ -166,13 +166,13 @@ public class Weapon implements Serializable {
 
     public Weapon addWeaponManeuver(WeaponManeuver weaponManeuver) {
         this.weaponManeuvers.add(weaponManeuver);
-        weaponManeuver.setWeaponId(this);
+        weaponManeuver.setWeapon(this);
         return this;
     }
 
     public Weapon removeWeaponManeuver(WeaponManeuver weaponManeuver) {
         this.weaponManeuvers.remove(weaponManeuver);
-        weaponManeuver.setWeaponId(null);
+        weaponManeuver.setWeapon(null);
         return this;
     }
 

@@ -20,7 +20,7 @@ public class CharacterAttributeDTO implements Serializable {
 
     private Integer attributeModifier;
 
-    private CharacterDTO characterId;
+    private CharacterDTO character;
 
     public Long getId() {
         return id;
@@ -54,12 +54,12 @@ public class CharacterAttributeDTO implements Serializable {
         this.attributeModifier = attributeModifier;
     }
 
-    public CharacterDTO getCharacterId() {
-        return characterId;
+    public CharacterDTO getCharacter() {
+        return character;
     }
 
-    public void setCharacterId(CharacterDTO characterId) {
-        this.characterId = characterId;
+    public void setCharacter(CharacterDTO character) {
+        this.character = character;
     }
 
     @Override
@@ -91,7 +91,7 @@ public class CharacterAttributeDTO implements Serializable {
             ", name='" + getName() + "'" +
             ", points=" + getPoints() +
             ", attributeModifier=" + getAttributeModifier() +
-            ", characterId=" + getCharacterId() +
+            ", character=" + getCharacter() +
             "}";
     }
 }

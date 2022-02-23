@@ -17,17 +17,17 @@ import reactor.core.publisher.Mono;
 public interface WeaponManeuverRepository extends ReactiveCrudRepository<WeaponManeuver, Long>, WeaponManeuverRepositoryInternal {
     Flux<WeaponManeuver> findAllBy(Pageable pageable);
 
-    @Query("SELECT * FROM weapon_maneuver entity WHERE entity.weapon_id_id = :id")
-    Flux<WeaponManeuver> findByWeaponId(Long id);
+    @Query("SELECT * FROM weapon_maneuver entity WHERE entity.weapon_id = :id")
+    Flux<WeaponManeuver> findByWeapon(Long id);
 
-    @Query("SELECT * FROM weapon_maneuver entity WHERE entity.weapon_id_id IS NULL")
-    Flux<WeaponManeuver> findAllWhereWeaponIdIsNull();
+    @Query("SELECT * FROM weapon_maneuver entity WHERE entity.weapon_id IS NULL")
+    Flux<WeaponManeuver> findAllWhereWeaponIsNull();
 
-    @Query("SELECT * FROM weapon_maneuver entity WHERE entity.maneuver_id_id = :id")
-    Flux<WeaponManeuver> findByManeuverId(Long id);
+    @Query("SELECT * FROM weapon_maneuver entity WHERE entity.maneuver_id = :id")
+    Flux<WeaponManeuver> findByManeuver(Long id);
 
-    @Query("SELECT * FROM weapon_maneuver entity WHERE entity.maneuver_id_id IS NULL")
-    Flux<WeaponManeuver> findAllWhereManeuverIdIsNull();
+    @Query("SELECT * FROM weapon_maneuver entity WHERE entity.maneuver_id IS NULL")
+    Flux<WeaponManeuver> findAllWhereManeuverIsNull();
 
     @Override
     <S extends WeaponManeuver> Mono<S> save(S entity);

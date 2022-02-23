@@ -1,0 +1,73 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="character">
+      <h2 data-cy="characterDetailsHeading"><span jhiTranslate="gatewayApp.character.detail.title">Character</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ character.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.character.name">Name</span></dt>
+        <dd>
+          <span>{{ character.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.character.weight">Weight</span></dt>
+        <dd>
+          <span>{{ character.weight }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.character.height">Height</span></dt>
+        <dd>
+          <span>{{ character.height }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.character.points">Points</span></dt>
+        <dd>
+          <span>{{ character.points }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.character.picture">Picture</span></dt>
+        <dd>
+          <div *ngIf="character.picture">
+            <a (click)="openFile(character.picture, character.pictureContentType)">
+              <img
+                [src]="'data:' + character.pictureContentType + ';base64,' + character.picture"
+                style="max-width: 100%"
+                alt="character image"
+              />
+            </a>
+            {{ character.pictureContentType }}, {{ byteSize(character.picture) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.character.handedness">Handedness</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'gatewayApp.Handedness.' + character.handedness }}">{{ character.handedness }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.character.campaignId">Campaign Id</span></dt>
+        <dd>
+          <span>{{ character.campaignId }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.character.active">Active</span></dt>
+        <dd>
+          <span>{{ character.active }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.character.user">User</span></dt>
+        <dd>
+          <span>{{ character.user?.login }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/character', character.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

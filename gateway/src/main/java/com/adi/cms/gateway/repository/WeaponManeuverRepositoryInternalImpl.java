@@ -46,8 +46,8 @@ class WeaponManeuverRepositoryInternalImpl extends SimpleR2dbcRepository<WeaponM
     private final WeaponManeuverRowMapper weaponmaneuverMapper;
 
     private static final Table entityTable = Table.aliased("weapon_maneuver", EntityManager.ENTITY_ALIAS);
-    private static final Table weaponIdTable = Table.aliased("weapon", "weaponId");
-    private static final Table maneuverIdTable = Table.aliased("maneuver", "maneuverId");
+    private static final Table weaponTable = Table.aliased("weapon", "weapon");
+    private static final Table maneuverTable = Table.aliased("maneuver", "maneuver");
 
     public WeaponManeuverRepositoryInternalImpl(
         R2dbcEntityTemplate template,
@@ -83,18 +83,18 @@ class WeaponManeuverRepositoryInternalImpl extends SimpleR2dbcRepository<WeaponM
 
     RowsFetchSpec<WeaponManeuver> createQuery(Pageable pageable, Criteria criteria) {
         List<Expression> columns = WeaponManeuverSqlHelper.getColumns(entityTable, EntityManager.ENTITY_ALIAS);
-        columns.addAll(WeaponSqlHelper.getColumns(weaponIdTable, "weaponId"));
-        columns.addAll(ManeuverSqlHelper.getColumns(maneuverIdTable, "maneuverId"));
+        columns.addAll(WeaponSqlHelper.getColumns(weaponTable, "weapon"));
+        columns.addAll(ManeuverSqlHelper.getColumns(maneuverTable, "maneuver"));
         SelectFromAndJoinCondition selectFrom = Select
             .builder()
             .select(columns)
             .from(entityTable)
-            .leftOuterJoin(weaponIdTable)
-            .on(Column.create("weapon_id_id", entityTable))
-            .equals(Column.create("id", weaponIdTable))
-            .leftOuterJoin(maneuverIdTable)
-            .on(Column.create("maneuver_id_id", entityTable))
-            .equals(Column.create("id", maneuverIdTable));
+            .leftOuterJoin(weaponTable)
+            .on(Column.create("weapon_id", entityTable))
+            .equals(Column.create("id", weaponTable))
+            .leftOuterJoin(maneuverTable)
+            .on(Column.create("maneuver_id", entityTable))
+            .equals(Column.create("id", maneuverTable));
 
         String select = entityManager.createSelect(selectFrom, WeaponManeuver.class, pageable, criteria);
         return db.sql(select).map(this::process);
@@ -112,8 +112,8 @@ class WeaponManeuverRepositoryInternalImpl extends SimpleR2dbcRepository<WeaponM
 
     private WeaponManeuver process(Row row, RowMetadata metadata) {
         WeaponManeuver entity = weaponmaneuverMapper.apply(row, "e");
-        entity.setWeaponId(weaponMapper.apply(row, "weaponId"));
-        entity.setManeuverId(maneuverMapper.apply(row, "maneuverId"));
+        entity.setWeapon(weaponMapper.apply(row, "weapon"));
+        entity.setManeuver(maneuverMapper.apply(row, "maneuver"));
         return entity;
     }
 

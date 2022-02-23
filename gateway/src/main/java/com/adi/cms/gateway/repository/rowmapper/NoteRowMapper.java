@@ -26,7 +26,7 @@ public class NoteRowMapper implements BiFunction<Row, String, Note> {
         Note entity = new Note();
         entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
         entity.setDescription(converter.fromRow(row, prefix + "_description", String.class));
-        entity.setXaracterIdId(converter.fromRow(row, prefix + "_xaracter_id_id", Long.class));
+        entity.setCharacterId(converter.fromRow(row, prefix + "_character_id", Long.class));
         return entity;
     }
 }

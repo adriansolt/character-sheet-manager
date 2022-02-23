@@ -9,8 +9,9 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = {})
 public interface CampaignMapper extends EntityMapper<CampaignDTO, Campaign> {
-    @Named("id")
+    @Named("name")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    CampaignDTO toDtoId(Campaign campaign);
+    @Mapping(target = "name", source = "name")
+    CampaignDTO toDtoName(Campaign campaign);
 }

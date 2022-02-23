@@ -1,0 +1,139 @@
+<div>
+  <h2 id="page-heading" data-cy="CharacterHeading">
+    <span jhiTranslate="gatewayApp.character.home.title">Characters</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="gatewayApp.character.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-character"
+        [routerLink]="['/character/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gatewayApp.character.home.createLabel"> Create a new Character </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="characters?.length === 0">
+    <span jhiTranslate="gatewayApp.character.home.notFound">No characters found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="characters && characters.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="name"><span jhiTranslate="gatewayApp.character.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="weight">
+            <span jhiTranslate="gatewayApp.character.weight">Weight</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="height">
+            <span jhiTranslate="gatewayApp.character.height">Height</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="points">
+            <span jhiTranslate="gatewayApp.character.points">Points</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="picture">
+            <span jhiTranslate="gatewayApp.character.picture">Picture</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="handedness">
+            <span jhiTranslate="gatewayApp.character.handedness">Handedness</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="campaignId">
+            <span jhiTranslate="gatewayApp.character.campaignId">Campaign Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="active">
+            <span jhiTranslate="gatewayApp.character.active">Active</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="user.login">
+            <span jhiTranslate="gatewayApp.character.user">User</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let character of characters; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/character', character.id, 'view']">{{ character.id }}</a>
+          </td>
+          <td>{{ character.name }}</td>
+          <td>{{ character.weight }}</td>
+          <td>{{ character.height }}</td>
+          <td>{{ character.points }}</td>
+          <td>
+            <a *ngIf="character.picture" (click)="openFile(character.picture, character.pictureContentType)">
+              <img
+                [src]="'data:' + character.pictureContentType + ';base64,' + character.picture"
+                style="max-height: 30px"
+                alt="character image"
+              />
+            </a>
+            <span *ngIf="character.picture">{{ character.pictureContentType }}, {{ byteSize(character.picture) }}</span>
+          </td>
+          <td jhiTranslate="{{ 'gatewayApp.Handedness.' + character.handedness }}">{{ character.handedness }}</td>
+          <td>{{ character.campaignId }}</td>
+          <td>{{ character.active }}</td>
+          <td>
+            {{ character.user?.login }}
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/character', character.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/character', character.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(character)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="characters && characters.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

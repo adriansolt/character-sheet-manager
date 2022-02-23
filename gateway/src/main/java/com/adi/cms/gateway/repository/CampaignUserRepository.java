@@ -17,11 +17,11 @@ import reactor.core.publisher.Mono;
 public interface CampaignUserRepository extends ReactiveCrudRepository<CampaignUser, Long>, CampaignUserRepositoryInternal {
     Flux<CampaignUser> findAllBy(Pageable pageable);
 
-    @Query("SELECT * FROM campaign_user entity WHERE entity.campaign_id_id = :id")
-    Flux<CampaignUser> findByCampaignId(Long id);
+    @Query("SELECT * FROM campaign_user entity WHERE entity.campaign_id = :id")
+    Flux<CampaignUser> findByCampaign(Long id);
 
-    @Query("SELECT * FROM campaign_user entity WHERE entity.campaign_id_id IS NULL")
-    Flux<CampaignUser> findAllWhereCampaignIdIsNull();
+    @Query("SELECT * FROM campaign_user entity WHERE entity.campaign_id IS NULL")
+    Flux<CampaignUser> findAllWhereCampaignIsNull();
 
     @Query("SELECT * FROM campaign_user entity WHERE entity.user_id = :id")
     Flux<CampaignUser> findByUser(Long id);

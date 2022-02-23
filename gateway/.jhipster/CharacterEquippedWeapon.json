@@ -1,0 +1,34 @@
+{
+  "applications": ["item", "gateway"],
+  "changelogDate": "20220223133758",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "character_equipped_weapon",
+  "fields": [
+    {
+      "fieldName": "characterId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "hand",
+      "fieldType": "Handedness",
+      "fieldValues": "RIGHT,LEFT,BOTH"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CharacterEquippedWeapon",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "weapon",
+      "otherEntityRelationshipName": "characterEquippedWeapon",
+      "relationshipName": "weapon",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

@@ -24,7 +24,7 @@ export class CampaignUserUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    campaignId: [],
+    campaign: [],
     user: [null, Validators.required],
   });
 
@@ -88,13 +88,13 @@ export class CampaignUserUpdateComponent implements OnInit {
   protected updateForm(campaignUser: ICampaignUser): void {
     this.editForm.patchValue({
       id: campaignUser.id,
-      campaignId: campaignUser.campaignId,
+      campaign: campaignUser.campaign,
       user: campaignUser.user,
     });
 
     this.campaignsSharedCollection = this.campaignService.addCampaignToCollectionIfMissing(
       this.campaignsSharedCollection,
-      campaignUser.campaignId
+      campaignUser.campaign
     );
     this.usersSharedCollection = this.userService.addUserToCollectionIfMissing(this.usersSharedCollection, campaignUser.user);
   }
@@ -105,7 +105,7 @@ export class CampaignUserUpdateComponent implements OnInit {
       .pipe(map((res: HttpResponse<ICampaign[]>) => res.body ?? []))
       .pipe(
         map((campaigns: ICampaign[]) =>
-          this.campaignService.addCampaignToCollectionIfMissing(campaigns, this.editForm.get('campaignId')!.value)
+          this.campaignService.addCampaignToCollectionIfMissing(campaigns, this.editForm.get('campaign')!.value)
         )
       )
       .subscribe((campaigns: ICampaign[]) => (this.campaignsSharedCollection = campaigns));
@@ -121,7 +121,7 @@ export class CampaignUserUpdateComponent implements OnInit {
     return {
       ...new CampaignUser(),
       id: this.editForm.get(['id'])!.value,
-      campaignId: this.editForm.get(['campaignId'])!.value,
+      campaign: this.editForm.get(['campaign'])!.value,
       user: this.editForm.get(['user'])!.value,
     };
   }

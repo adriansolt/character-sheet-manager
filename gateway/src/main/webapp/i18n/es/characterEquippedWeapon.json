@@ -1,0 +1,26 @@
+{
+  "gatewayApp": {
+    "characterEquippedWeapon": {
+      "home": {
+        "title": "Character Equipped Weapons",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Character Equipped Weapon",
+        "createOrEditLabel": "Crear o editar Character Equipped Weapon",
+        "notFound": "Ningún Character Equipped Weapons encontrado"
+      },
+      "created": "Un nuevo Character Equipped Weapon ha sido creado con el identificador {{ param }}",
+      "updated": "Un Character Equipped Weapon ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Character Equipped Weapon ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Character Equipped Weapon {{ id }}?"
+      },
+      "detail": {
+        "title": "Character Equipped Weapon"
+      },
+      "id": "ID",
+      "characterId": "Character Id",
+      "hand": "Hand",
+      "weapon": "Weapon"
+    }
+  }
+}

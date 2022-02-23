@@ -12,7 +12,7 @@ public class CampaignUserSqlHelper {
         List<Expression> columns = new ArrayList<>();
         columns.add(Column.aliased("id", table, columnPrefix + "_id"));
 
-        columns.add(Column.aliased("campaign_id_id", table, columnPrefix + "_campaign_id_id"));
+        columns.add(Column.aliased("campaign_id", table, columnPrefix + "_campaign_id"));
         columns.add(Column.aliased("user_id", table, columnPrefix + "_user_id"));
         return columns;
     }

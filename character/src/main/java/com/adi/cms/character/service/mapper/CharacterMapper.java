@@ -12,8 +12,9 @@ public interface CharacterMapper extends EntityMapper<CharacterDTO, Character> {
     @Mapping(target = "user", source = "user", qualifiedByName = "login")
     CharacterDTO toDto(Character s);
 
-    @Named("id")
+    @Named("name")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    CharacterDTO toDtoId(Character character);
+    @Mapping(target = "name", source = "name")
+    CharacterDTO toDtoName(Character character);
 }

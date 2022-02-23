@@ -27,7 +27,7 @@ public class DefaultSkillOrAtributeRowMapper implements BiFunction<Row, String, 
         entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
         entity.setName(converter.fromRow(row, prefix + "_name", String.class));
         entity.setModifier(converter.fromRow(row, prefix + "_modifier", Integer.class));
-        entity.setSkillIdId(converter.fromRow(row, prefix + "_skill_id_id", Long.class));
+        entity.setSkillId(converter.fromRow(row, prefix + "_skill_id", Long.class));
         return entity;
     }
 }

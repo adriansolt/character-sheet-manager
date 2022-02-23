@@ -18,8 +18,8 @@
         "title": "Weapon Maneuver"
       },
       "id": "ID",
-      "weaponId": "Weapon Id",
-      "maneuverId": "Maneuver Id"
+      "weapon": "Weapon",
+      "maneuver": "Maneuver"
     }
   }
 }

@@ -25,7 +25,7 @@ public class CampaignUser implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "campaignUsers" }, allowSetters = true)
-    private Campaign campaignId;
+    private Campaign campaign;
 
     @ManyToOne(optional = false)
     @NotNull
@@ -46,16 +46,16 @@ public class CampaignUser implements Serializable {
         this.id = id;
     }
 
-    public Campaign getCampaignId() {
-        return this.campaignId;
+    public Campaign getCampaign() {
+        return this.campaign;
     }
 
-    public void setCampaignId(Campaign campaign) {
-        this.campaignId = campaign;
+    public void setCampaign(Campaign campaign) {
+        this.campaign = campaign;
     }
 
-    public CampaignUser campaignId(Campaign campaign) {
-        this.setCampaignId(campaign);
+    public CampaignUser campaign(Campaign campaign) {
+        this.setCampaign(campaign);
         return this;
     }
 

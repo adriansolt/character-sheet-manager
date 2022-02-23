@@ -25,7 +25,7 @@ public class CampaignUserRowMapper implements BiFunction<Row, String, CampaignUs
     public CampaignUser apply(Row row, String prefix) {
         CampaignUser entity = new CampaignUser();
         entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
-        entity.setCampaignIdId(converter.fromRow(row, prefix + "_campaign_id_id", Long.class));
+        entity.setCampaignId(converter.fromRow(row, prefix + "_campaign_id", Long.class));
         entity.setUserId(converter.fromRow(row, prefix + "_user_id", String.class));
         return entity;
     }

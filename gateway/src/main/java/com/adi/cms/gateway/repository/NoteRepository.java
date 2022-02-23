@@ -17,11 +17,11 @@ import reactor.core.publisher.Mono;
 public interface NoteRepository extends ReactiveCrudRepository<Note, Long>, NoteRepositoryInternal {
     Flux<Note> findAllBy(Pageable pageable);
 
-    @Query("SELECT * FROM note entity WHERE entity.xaracter_id_id = :id")
-    Flux<Note> findByXaracterId(Long id);
+    @Query("SELECT * FROM note entity WHERE entity.character_id = :id")
+    Flux<Note> findByCharacter(Long id);
 
-    @Query("SELECT * FROM note entity WHERE entity.xaracter_id_id IS NULL")
-    Flux<Note> findAllWhereXaracterIdIsNull();
+    @Query("SELECT * FROM note entity WHERE entity.character_id IS NULL")
+    Flux<Note> findAllWhereCharacterIsNull();
 
     @Override
     <S extends Note> Mono<S> save(S entity);

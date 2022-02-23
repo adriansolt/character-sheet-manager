@@ -17,7 +17,7 @@ public class DefaultSkillOrAtributeDTO implements Serializable {
     @NotNull
     private Integer modifier;
 
-    private SkillDTO skillId;
+    private SkillDTO skill;
 
     public Long getId() {
         return id;
@@ -43,12 +43,12 @@ public class DefaultSkillOrAtributeDTO implements Serializable {
         this.modifier = modifier;
     }
 
-    public SkillDTO getSkillId() {
-        return skillId;
+    public SkillDTO getSkill() {
+        return skill;
     }
 
-    public void setSkillId(SkillDTO skillId) {
-        this.skillId = skillId;
+    public void setSkill(SkillDTO skill) {
+        this.skill = skill;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class DefaultSkillOrAtributeDTO implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", modifier=" + getModifier() +
-            ", skillId=" + getSkillId() +
+            ", skill=" + getSkill() +
             "}";
     }
 }

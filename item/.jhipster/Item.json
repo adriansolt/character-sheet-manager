@@ -1,6 +1,6 @@
 {
   "applications": ["item", "gateway"],
-  "changelogDate": "20220223123329",
+  "changelogDate": "20220223133458",
   "clientRootFolder": "item",
   "databaseType": "sql",
   "dto": "mapstruct",
@@ -32,7 +32,7 @@
       "fieldTypeBlobContent": "image"
     },
     {
-      "fieldName": "xaracterId",
+      "fieldName": "characterId",
       "fieldType": "Long"
     },
     {

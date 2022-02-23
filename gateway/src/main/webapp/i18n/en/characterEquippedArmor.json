@@ -1,0 +1,25 @@
+{
+  "gatewayApp": {
+    "characterEquippedArmor": {
+      "home": {
+        "title": "Character Equipped Armors",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Character Equipped Armor",
+        "createOrEditLabel": "Create or edit a Character Equipped Armor",
+        "notFound": "No Character Equipped Armors found"
+      },
+      "created": "A new Character Equipped Armor is created with identifier {{ param }}",
+      "updated": "A Character Equipped Armor is updated with identifier {{ param }}",
+      "deleted": "A Character Equipped Armor is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Character Equipped Armor {{ id }}?"
+      },
+      "detail": {
+        "title": "Character Equipped Armor"
+      },
+      "id": "ID",
+      "characterId": "Character Id",
+      "armorPiece": "Armor Piece"
+    }
+  }
+}

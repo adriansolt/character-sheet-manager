@@ -12,7 +12,7 @@ public class NoteDTO implements Serializable {
 
     private String description;
 
-    private CharacterDTO characterId;
+    private CharacterDTO character;
 
     public Long getId() {
         return id;
@@ -30,12 +30,12 @@ public class NoteDTO implements Serializable {
         this.description = description;
     }
 
-    public CharacterDTO getCharacterId() {
-        return characterId;
+    public CharacterDTO getCharacter() {
+        return character;
     }
 
-    public void setCharacterId(CharacterDTO characterId) {
-        this.characterId = characterId;
+    public void setCharacter(CharacterDTO character) {
+        this.character = character;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class NoteDTO implements Serializable {
         return "NoteDTO{" +
             "id=" + getId() +
             ", description='" + getDescription() + "'" +
-            ", characterId=" + getCharacterId() +
+            ", character=" + getCharacter() +
             "}";
     }
 }

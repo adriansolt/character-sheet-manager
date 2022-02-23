@@ -161,7 +161,7 @@ describe('Item e2e test', () => {
 
       cy.setFieldImageAsBytesOfEntity('picture', 'integration-test.png', 'image/png');
 
-      cy.get(`[data-cy="xaracterId"]`).type('100').should('have.value', '100');
+      cy.get(`[data-cy="characterId"]`).type('100').should('have.value', '100');
 
       cy.get(`[data-cy="campaignId"]`).type('6549').should('have.value', '6549');
 

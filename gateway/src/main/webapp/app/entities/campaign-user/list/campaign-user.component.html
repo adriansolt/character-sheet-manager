@@ -33,8 +33,8 @@
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="campaignId.id">
-            <span jhiTranslate="gatewayApp.campaignUser.campaignId">Campaign Id</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="campaign.name">
+            <span jhiTranslate="gatewayApp.campaignUser.campaign">Campaign</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="user.login">
             <span jhiTranslate="gatewayApp.campaignUser.user">User</span> <fa-icon icon="sort"></fa-icon>
@@ -48,8 +48,8 @@
             <a [routerLink]="['/campaign-user', campaignUser.id, 'view']">{{ campaignUser.id }}</a>
           </td>
           <td>
-            <div *ngIf="campaignUser.campaignId">
-              <a [routerLink]="['/campaign', campaignUser.campaignId?.id, 'view']">{{ campaignUser.campaignId?.id }}</a>
+            <div *ngIf="campaignUser.campaign">
+              <a [routerLink]="['/campaign', campaignUser.campaign?.id, 'view']">{{ campaignUser.campaign?.name }}</a>
             </div>
           </td>
           <td>

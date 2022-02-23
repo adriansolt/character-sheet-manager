@@ -26,14 +26,14 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="gatewayApp.note.xaracterId" for="field_xaracterId">Xaracter Id</label>
-          <select class="form-control" id="field_xaracterId" data-cy="xaracterId" name="xaracterId" formControlName="xaracterId">
+          <label class="form-control-label" jhiTranslate="gatewayApp.note.character" for="field_character">Character</label>
+          <select class="form-control" id="field_character" data-cy="character" name="character" formControlName="character">
             <option [ngValue]="null"></option>
             <option
-              [ngValue]="xaracterOption.id === editForm.get('xaracterId')!.value?.id ? editForm.get('xaracterId')!.value : xaracterOption"
-              *ngFor="let xaracterOption of xaractersSharedCollection; trackBy: trackXaracterById"
+              [ngValue]="characterOption.id === editForm.get('character')!.value?.id ? editForm.get('character')!.value : characterOption"
+              *ngFor="let characterOption of charactersSharedCollection; trackBy: trackCharacterById"
             >
-              {{ xaracterOption.id }}
+              {{ characterOption.name }}
             </option>
           </select>
         </div>

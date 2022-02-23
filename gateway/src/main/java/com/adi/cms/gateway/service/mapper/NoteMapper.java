@@ -7,8 +7,8 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Note} and its DTO {@link NoteDTO}.
  */
-@Mapper(componentModel = "spring", uses = { XaracterMapper.class })
+@Mapper(componentModel = "spring", uses = { CharacterMapper.class })
 public interface NoteMapper extends EntityMapper<NoteDTO, Note> {
-    @Mapping(target = "xaracterId", source = "xaracterId", qualifiedByName = "id")
+    @Mapping(target = "character", source = "character", qualifiedByName = "name")
     NoteDTO toDto(Note s);
 }

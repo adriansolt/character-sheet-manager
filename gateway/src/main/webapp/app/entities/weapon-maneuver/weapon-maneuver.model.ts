@@ -3,12 +3,12 @@ import { IManeuver } from 'app/entities/maneuver/maneuver.model';
 
 export interface IWeaponManeuver {
   id?: number;
-  weaponId?: IWeapon | null;
-  maneuverId?: IManeuver | null;
+  weapon?: IWeapon | null;
+  maneuver?: IManeuver | null;
 }
 
 export class WeaponManeuver implements IWeaponManeuver {
-  constructor(public id?: number, public weaponId?: IWeapon | null, public maneuverId?: IManeuver | null) {}
+  constructor(public id?: number, public weapon?: IWeapon | null, public maneuver?: IManeuver | null) {}
 }
 
 export function getWeaponManeuverIdentifier(weaponManeuver: IWeaponManeuver): number | undefined {

@@ -1,4 +1,4 @@
-id;name;description;weight;quality;picture;picture_content_type;xaracter_id;campaign_id
+id;name;description;weight;quality;picture;picture_content_type;character_id;campaign_id
 1;Supervisor Berkshire;azure;22934;92381;../fake-data/blob/hipster.png;image/png;50359;19723
 2;knowledge haptic Bike;turn-key silver;42520;49065;../fake-data/blob/hipster.png;image/png;71410;57320
 3;haptic navigate;systemic portal;17687;95466;../fake-data/blob/hipster.png;image/png;7535;61278

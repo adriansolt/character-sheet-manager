@@ -23,7 +23,7 @@ export class PrereqSkillOrAtributeUpdateComponent implements OnInit {
     id: [],
     name: [null, [Validators.required]],
     level: [null, [Validators.required]],
-    skillId: [],
+    skill: [],
   });
 
   constructor(
@@ -83,20 +83,17 @@ export class PrereqSkillOrAtributeUpdateComponent implements OnInit {
       id: prereqSkillOrAtribute.id,
       name: prereqSkillOrAtribute.name,
       level: prereqSkillOrAtribute.level,
-      skillId: prereqSkillOrAtribute.skillId,
+      skill: prereqSkillOrAtribute.skill,
     });
 
-    this.skillsSharedCollection = this.skillService.addSkillToCollectionIfMissing(
-      this.skillsSharedCollection,
-      prereqSkillOrAtribute.skillId
-    );
+    this.skillsSharedCollection = this.skillService.addSkillToCollectionIfMissing(this.skillsSharedCollection, prereqSkillOrAtribute.skill);
   }
 
   protected loadRelationshipsOptions(): void {
     this.skillService
       .query()
       .pipe(map((res: HttpResponse<ISkill[]>) => res.body ?? []))
-      .pipe(map((skills: ISkill[]) => this.skillService.addSkillToCollectionIfMissing(skills, this.editForm.get('skillId')!.value)))
+      .pipe(map((skills: ISkill[]) => this.skillService.addSkillToCollectionIfMissing(skills, this.editForm.get('skill')!.value)))
       .subscribe((skills: ISkill[]) => (this.skillsSharedCollection = skills));
   }
 
@@ -106,7 +103,7 @@ export class PrereqSkillOrAtributeUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
       level: this.editForm.get(['level'])!.value,
-      skillId: this.editForm.get(['skillId'])!.value,
+      skill: this.editForm.get(['skill'])!.value,
     };
   }
 }

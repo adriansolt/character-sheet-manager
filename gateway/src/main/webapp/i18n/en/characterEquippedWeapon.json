@@ -1,0 +1,26 @@
+{
+  "gatewayApp": {
+    "characterEquippedWeapon": {
+      "home": {
+        "title": "Character Equipped Weapons",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Character Equipped Weapon",
+        "createOrEditLabel": "Create or edit a Character Equipped Weapon",
+        "notFound": "No Character Equipped Weapons found"
+      },
+      "created": "A new Character Equipped Weapon is created with identifier {{ param }}",
+      "updated": "A Character Equipped Weapon is updated with identifier {{ param }}",
+      "deleted": "A Character Equipped Weapon is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Character Equipped Weapon {{ id }}?"
+      },
+      "detail": {
+        "title": "Character Equipped Weapon"
+      },
+      "id": "ID",
+      "characterId": "Character Id",
+      "hand": "Hand",
+      "weapon": "Weapon"
+    }
+  }
+}

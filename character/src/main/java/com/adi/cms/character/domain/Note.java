@@ -27,7 +27,7 @@ public class Note implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "notes", "characterAttributes", "characterSkills", "user" }, allowSetters = true)
-    private Character characterId;
+    private Character character;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -57,16 +57,16 @@ public class Note implements Serializable {
         this.description = description;
     }
 
-    public Character getCharacterId() {
-        return this.characterId;
+    public Character getCharacter() {
+        return this.character;
     }
 
-    public void setCharacterId(Character character) {
-        this.characterId = character;
+    public void setCharacter(Character character) {
+        this.character = character;
     }
 
-    public Note characterId(Character character) {
-        this.setCharacterId(character);
+    public Note character(Character character) {
+        this.setCharacter(character);
         return this;
     }
 

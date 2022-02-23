@@ -1,11 +1,11 @@
-import { IXaracterEquippedArmor } from 'app/entities/xaracter-equipped-armor/xaracter-equipped-armor.model';
+import { ICharacterEquippedArmor } from 'app/entities/character-equipped-armor/character-equipped-armor.model';
 import { ArmorLocation } from 'app/entities/enumerations/armor-location.model';
 
 export interface IArmorPiece {
   id?: number;
   location?: ArmorLocation | null;
   defenseModifier?: number | null;
-  xaracterEquippedArmors?: IXaracterEquippedArmor[] | null;
+  characterEquippedArmors?: ICharacterEquippedArmor[] | null;
 }
 
 export class ArmorPiece implements IArmorPiece {
@@ -13,7 +13,7 @@ export class ArmorPiece implements IArmorPiece {
     public id?: number,
     public location?: ArmorLocation | null,
     public defenseModifier?: number | null,
-    public xaracterEquippedArmors?: IXaracterEquippedArmor[] | null
+    public characterEquippedArmors?: ICharacterEquippedArmor[] | null
   ) {}
 }
 

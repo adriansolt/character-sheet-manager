@@ -46,7 +46,7 @@ class CampaignUserRepositoryInternalImpl extends SimpleR2dbcRepository<CampaignU
     private final CampaignUserRowMapper campaignuserMapper;
 
     private static final Table entityTable = Table.aliased("campaign_user", EntityManager.ENTITY_ALIAS);
-    private static final Table campaignIdTable = Table.aliased("campaign", "campaignId");
+    private static final Table campaignTable = Table.aliased("campaign", "campaign");
     private static final Table userTable = Table.aliased("jhi_user", "e_user");
 
     public CampaignUserRepositoryInternalImpl(
@@ -83,15 +83,15 @@ class CampaignUserRepositoryInternalImpl extends SimpleR2dbcRepository<CampaignU
 
     RowsFetchSpec<CampaignUser> createQuery(Pageable pageable, Criteria criteria) {
         List<Expression> columns = CampaignUserSqlHelper.getColumns(entityTable, EntityManager.ENTITY_ALIAS);
-        columns.addAll(CampaignSqlHelper.getColumns(campaignIdTable, "campaignId"));
+        columns.addAll(CampaignSqlHelper.getColumns(campaignTable, "campaign"));
         columns.addAll(UserSqlHelper.getColumns(userTable, "user"));
         SelectFromAndJoinCondition selectFrom = Select
             .builder()
             .select(columns)
             .from(entityTable)
-            .leftOuterJoin(campaignIdTable)
-            .on(Column.create("campaign_id_id", entityTable))
-            .equals(Column.create("id", campaignIdTable))
+            .leftOuterJoin(campaignTable)
+            .on(Column.create("campaign_id", entityTable))
+            .equals(Column.create("id", campaignTable))
             .leftOuterJoin(userTable)
             .on(Column.create("user_id", entityTable))
             .equals(Column.create("id", userTable));
@@ -112,7 +112,7 @@ class CampaignUserRepositoryInternalImpl extends SimpleR2dbcRepository<CampaignU
 
     private CampaignUser process(Row row, RowMetadata metadata) {
         CampaignUser entity = campaignuserMapper.apply(row, "e");
-        entity.setCampaignId(campaignMapper.apply(row, "campaignId"));
+        entity.setCampaign(campaignMapper.apply(row, "campaign"));
         entity.setUser(userMapper.apply(row, "user"));
         return entity;
     }

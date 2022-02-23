@@ -27,7 +27,7 @@ public class ItemDTO implements Serializable {
     private byte[] picture;
 
     private String pictureContentType;
-    private Long xaracterId;
+    private Long characterId;
 
     private Long campaignId;
 
@@ -87,12 +87,12 @@ public class ItemDTO implements Serializable {
         this.pictureContentType = pictureContentType;
     }
 
-    public Long getXaracterId() {
-        return xaracterId;
+    public Long getCharacterId() {
+        return characterId;
     }
 
-    public void setXaracterId(Long xaracterId) {
-        this.xaracterId = xaracterId;
+    public void setCharacterId(Long characterId) {
+        this.characterId = characterId;
     }
 
     public Long getCampaignId() {
@@ -134,7 +134,7 @@ public class ItemDTO implements Serializable {
             ", weight=" + getWeight() +
             ", quality=" + getQuality() +
             ", picture='" + getPicture() + "'" +
-            ", xaracterId=" + getXaracterId() +
+            ", characterId=" + getCharacterId() +
             ", campaignId=" + getCampaignId() +
             "}";
     }

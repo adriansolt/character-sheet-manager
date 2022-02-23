@@ -7,8 +7,8 @@ import { finalize, map } from 'rxjs/operators';
 
 import { INote, Note } from '../note.model';
 import { NoteService } from '../service/note.service';
-import { IXaracter } from 'app/entities/xaracter/xaracter.model';
-import { XaracterService } from 'app/entities/xaracter/service/xaracter.service';
+import { ICharacter } from 'app/entities/character/character.model';
+import { CharacterService } from 'app/entities/character/service/character.service';
 
 @Component({
   selector: 'jhi-note-update',
@@ -17,17 +17,17 @@ import { XaracterService } from 'app/entities/xaracter/service/xaracter.service'
 export class NoteUpdateComponent implements OnInit {
   isSaving = false;
 
-  xaractersSharedCollection: IXaracter[] = [];
+  charactersSharedCollection: ICharacter[] = [];
 
   editForm = this.fb.group({
     id: [],
     description: [],
-    xaracterId: [],
+    character: [],
   });
 
   constructor(
     protected noteService: NoteService,
-    protected xaracterService: XaracterService,
+    protected characterService: CharacterService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
@@ -54,7 +54,7 @@ export class NoteUpdateComponent implements OnInit {
     }
   }
 
-  trackXaracterById(index: number, item: IXaracter): number {
+  trackCharacterById(index: number, item: ICharacter): number {
     return item.id!;
   }
 
@@ -81,22 +81,25 @@ export class NoteUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: note.id,
       description: note.description,
-      xaracterId: note.xaracterId,
+      character: note.character,
     });
 
-    this.xaractersSharedCollection = this.xaracterService.addXaracterToCollectionIfMissing(this.xaractersSharedCollection, note.xaracterId);
+    this.charactersSharedCollection = this.characterService.addCharacterToCollectionIfMissing(
+      this.charactersSharedCollection,
+      note.character
+    );
   }
 
   protected loadRelationshipsOptions(): void {
-    this.xaracterService
+    this.characterService
       .query()
-      .pipe(map((res: HttpResponse<IXaracter[]>) => res.body ?? []))
+      .pipe(map((res: HttpResponse<ICharacter[]>) => res.body ?? []))
       .pipe(
-        map((xaracters: IXaracter[]) =>
-          this.xaracterService.addXaracterToCollectionIfMissing(xaracters, this.editForm.get('xaracterId')!.value)
+        map((characters: ICharacter[]) =>
+          this.characterService.addCharacterToCollectionIfMissing(characters, this.editForm.get('character')!.value)
         )
       )
-      .subscribe((xaracters: IXaracter[]) => (this.xaractersSharedCollection = xaracters));
+      .subscribe((characters: ICharacter[]) => (this.charactersSharedCollection = characters));
   }
 
   protected createFromForm(): INote {
@@ -104,7 +107,7 @@ export class NoteUpdateComponent implements OnInit {
       ...new Note(),
       id: this.editForm.get(['id'])!.value,
       description: this.editForm.get(['description'])!.value,
-      xaracterId: this.editForm.get(['xaracterId'])!.value,
+      character: this.editForm.get(['character'])!.value,
     };
   }
 }

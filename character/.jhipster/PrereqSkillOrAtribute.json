@@ -26,9 +26,10 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "name",
       "otherEntityName": "skill",
       "otherEntityRelationshipName": "prereqSkillOrAtribute",
-      "relationshipName": "skillId",
+      "relationshipName": "skill",
       "relationshipType": "many-to-one"
     }
   ],

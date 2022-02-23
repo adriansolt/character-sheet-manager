@@ -20,6 +20,32 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./campaign-user/campaign-user.module').then(m => m.CampaignUserModule),
       },
       {
+        path: 'character',
+        data: { pageTitle: 'gatewayApp.character.home.title' },
+        loadChildren: () => import('./character/character.module').then(m => m.CharacterModule),
+      },
+      {
+        path: 'character-attribute',
+        data: { pageTitle: 'gatewayApp.characterAttribute.home.title' },
+        loadChildren: () => import('./character-attribute/character-attribute.module').then(m => m.CharacterAttributeModule),
+      },
+      {
+        path: 'character-equipped-armor',
+        data: { pageTitle: 'gatewayApp.characterEquippedArmor.home.title' },
+        loadChildren: () => import('./character-equipped-armor/character-equipped-armor.module').then(m => m.CharacterEquippedArmorModule),
+      },
+      {
+        path: 'character-equipped-weapon',
+        data: { pageTitle: 'gatewayApp.characterEquippedWeapon.home.title' },
+        loadChildren: () =>
+          import('./character-equipped-weapon/character-equipped-weapon.module').then(m => m.CharacterEquippedWeaponModule),
+      },
+      {
+        path: 'character-skill',
+        data: { pageTitle: 'gatewayApp.characterSkill.home.title' },
+        loadChildren: () => import('./character-skill/character-skill.module').then(m => m.CharacterSkillModule),
+      },
+      {
         path: 'default-skill-or-atribute',
         data: { pageTitle: 'gatewayApp.defaultSkillOrAtribute.home.title' },
         loadChildren: () =>
@@ -59,31 +85,6 @@ import { RouterModule } from '@angular/router';
         path: 'weapon-maneuver',
         data: { pageTitle: 'gatewayApp.weaponManeuver.home.title' },
         loadChildren: () => import('./weapon-maneuver/weapon-maneuver.module').then(m => m.WeaponManeuverModule),
-      },
-      {
-        path: 'xaracter',
-        data: { pageTitle: 'gatewayApp.xaracter.home.title' },
-        loadChildren: () => import('./xaracter/xaracter.module').then(m => m.XaracterModule),
-      },
-      {
-        path: 'xaracter-attribute',
-        data: { pageTitle: 'gatewayApp.xaracterAttribute.home.title' },
-        loadChildren: () => import('./xaracter-attribute/xaracter-attribute.module').then(m => m.XaracterAttributeModule),
-      },
-      {
-        path: 'xaracter-equipped-armor',
-        data: { pageTitle: 'gatewayApp.xaracterEquippedArmor.home.title' },
-        loadChildren: () => import('./xaracter-equipped-armor/xaracter-equipped-armor.module').then(m => m.XaracterEquippedArmorModule),
-      },
-      {
-        path: 'xaracter-equipped-weapon',
-        data: { pageTitle: 'gatewayApp.xaracterEquippedWeapon.home.title' },
-        loadChildren: () => import('./xaracter-equipped-weapon/xaracter-equipped-weapon.module').then(m => m.XaracterEquippedWeaponModule),
-      },
-      {
-        path: 'xaracter-skill',
-        data: { pageTitle: 'gatewayApp.xaracterSkill.home.title' },
-        loadChildren: () => import('./xaracter-skill/xaracter-skill.module').then(m => m.XaracterSkillModule),
       },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),

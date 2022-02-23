@@ -48,12 +48,12 @@ describe('PrereqSkillOrAtribute Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Skill query and add missing value', () => {
       const prereqSkillOrAtribute: IPrereqSkillOrAtribute = { id: 456 };
-      const skillId: ISkill = { id: 1329 };
-      prereqSkillOrAtribute.skillId = skillId;
+      const skill: ISkill = { id: 1329 };
+      prereqSkillOrAtribute.skill = skill;
 
       const skillCollection: ISkill[] = [{ id: 47274 }];
       jest.spyOn(skillService, 'query').mockReturnValue(of(new HttpResponse({ body: skillCollection })));
-      const additionalSkills = [skillId];
+      const additionalSkills = [skill];
       const expectedCollection: ISkill[] = [...additionalSkills, ...skillCollection];
       jest.spyOn(skillService, 'addSkillToCollectionIfMissing').mockReturnValue(expectedCollection);
 
@@ -67,14 +67,14 @@ describe('PrereqSkillOrAtribute Management Update Component', () => {
 
     it('Should update editForm', () => {
       const prereqSkillOrAtribute: IPrereqSkillOrAtribute = { id: 456 };
-      const skillId: ISkill = { id: 92381 };
-      prereqSkillOrAtribute.skillId = skillId;
+      const skill: ISkill = { id: 92381 };
+      prereqSkillOrAtribute.skill = skill;
 
       activatedRoute.data = of({ prereqSkillOrAtribute });
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(prereqSkillOrAtribute));
-      expect(comp.skillsSharedCollection).toContain(skillId);
+      expect(comp.skillsSharedCollection).toContain(skill);
     });
   });
 

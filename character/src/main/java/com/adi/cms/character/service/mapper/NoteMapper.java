@@ -9,6 +9,6 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { CharacterMapper.class })
 public interface NoteMapper extends EntityMapper<NoteDTO, Note> {
-    @Mapping(target = "characterId", source = "characterId", qualifiedByName = "id")
+    @Mapping(target = "character", source = "character", qualifiedByName = "name")
     NoteDTO toDto(Note s);
 }

@@ -18,11 +18,11 @@ public interface PrereqSkillOrAtributeRepository
     extends ReactiveCrudRepository<PrereqSkillOrAtribute, Long>, PrereqSkillOrAtributeRepositoryInternal {
     Flux<PrereqSkillOrAtribute> findAllBy(Pageable pageable);
 
-    @Query("SELECT * FROM prereq_skill_or_atribute entity WHERE entity.skill_id_id = :id")
-    Flux<PrereqSkillOrAtribute> findBySkillId(Long id);
+    @Query("SELECT * FROM prereq_skill_or_atribute entity WHERE entity.skill_id = :id")
+    Flux<PrereqSkillOrAtribute> findBySkill(Long id);
 
-    @Query("SELECT * FROM prereq_skill_or_atribute entity WHERE entity.skill_id_id IS NULL")
-    Flux<PrereqSkillOrAtribute> findAllWhereSkillIdIsNull();
+    @Query("SELECT * FROM prereq_skill_or_atribute entity WHERE entity.skill_id IS NULL")
+    Flux<PrereqSkillOrAtribute> findAllWhereSkillIsNull();
 
     @Override
     <S extends PrereqSkillOrAtribute> Mono<S> save(S entity);

@@ -32,11 +32,11 @@ public class CharacterSkill implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "notes", "characterAttributes", "characterSkills", "user" }, allowSetters = true)
-    private Character characterId;
+    private Character character;
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "characterSkills", "defaultSkillOrAtributes", "prereqSkillOrAtributes" }, allowSetters = true)
-    private Skill skillId;
+    private Skill skill;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -79,29 +79,29 @@ public class CharacterSkill implements Serializable {
         this.skillModifier = skillModifier;
     }
 
-    public Character getCharacterId() {
-        return this.characterId;
+    public Character getCharacter() {
+        return this.character;
     }
 
-    public void setCharacterId(Character character) {
-        this.characterId = character;
+    public void setCharacter(Character character) {
+        this.character = character;
     }
 
-    public CharacterSkill characterId(Character character) {
-        this.setCharacterId(character);
+    public CharacterSkill character(Character character) {
+        this.setCharacter(character);
         return this;
     }
 
-    public Skill getSkillId() {
-        return this.skillId;
+    public Skill getSkill() {
+        return this.skill;
     }
 
-    public void setSkillId(Skill skill) {
-        this.skillId = skill;
+    public void setSkill(Skill skill) {
+        this.skill = skill;
     }
 
-    public CharacterSkill skillId(Skill skill) {
-        this.setSkillId(skill);
+    public CharacterSkill skill(Skill skill) {
+        this.setSkill(skill);
         return this;
     }
 

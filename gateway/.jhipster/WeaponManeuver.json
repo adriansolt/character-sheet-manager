@@ -1,6 +1,6 @@
 {
   "applications": ["item", "gateway"],
-  "changelogDate": "20220223132323",
+  "changelogDate": "20220223134658",
   "databaseType": "sql",
   "dto": "mapstruct",
   "embedded": false,
@@ -16,14 +16,14 @@
       "otherEntityField": "name",
       "otherEntityName": "weapon",
       "otherEntityRelationshipName": "weaponManeuver",
-      "relationshipName": "weaponId",
+      "relationshipName": "weapon",
       "relationshipType": "many-to-one"
     },
     {
       "otherEntityField": "name",
       "otherEntityName": "maneuver",
       "otherEntityRelationshipName": "weaponManeuver",
-      "relationshipName": "maneuverId",
+      "relationshipName": "maneuver",
       "relationshipType": "many-to-one"
     }
   ],

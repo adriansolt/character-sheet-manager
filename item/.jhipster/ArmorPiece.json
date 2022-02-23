@@ -1,6 +1,6 @@
 {
   "applications": ["item", "gateway"],
-  "changelogDate": "20220223123229",
+  "changelogDate": "20220223133158",
   "clientRootFolder": "item",
   "databaseType": "sql",
   "dto": "mapstruct",
@@ -25,9 +25,9 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "xaracterEquippedArmor",
+      "otherEntityName": "characterEquippedArmor",
       "otherEntityRelationshipName": "armorPiece",
-      "relationshipName": "xaracterEquippedArmor",
+      "relationshipName": "characterEquippedArmor",
       "relationshipType": "one-to-many"
     }
   ],

@@ -34,7 +34,7 @@ public class Maneuver implements Serializable {
     private String description;
 
     @Transient
-    @JsonIgnoreProperties(value = { "weaponId", "maneuverId" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "weapon", "maneuver" }, allowSetters = true)
     private Set<WeaponManeuver> weaponManeuvers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -97,10 +97,10 @@ public class Maneuver implements Serializable {
 
     public void setWeaponManeuvers(Set<WeaponManeuver> weaponManeuvers) {
         if (this.weaponManeuvers != null) {
-            this.weaponManeuvers.forEach(i -> i.setManeuverId(null));
+            this.weaponManeuvers.forEach(i -> i.setManeuver(null));
         }
         if (weaponManeuvers != null) {
-            weaponManeuvers.forEach(i -> i.setManeuverId(this));
+            weaponManeuvers.forEach(i -> i.setManeuver(this));
         }
         this.weaponManeuvers = weaponManeuvers;
     }
@@ -112,13 +112,13 @@ public class Maneuver implements Serializable {
 
     public Maneuver addWeaponManeuver(WeaponManeuver weaponManeuver) {
         this.weaponManeuvers.add(weaponManeuver);
-        weaponManeuver.setManeuverId(this);
+        weaponManeuver.setManeuver(this);
         return this;
     }
 
     public Maneuver removeWeaponManeuver(WeaponManeuver weaponManeuver) {
         this.weaponManeuvers.remove(weaponManeuver);
-        weaponManeuver.setManeuverId(null);
+        weaponManeuver.setManeuver(null);
         return this;
     }
 

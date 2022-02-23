@@ -3,8 +3,8 @@ package com.adi.cms.gateway.repository;
 import static org.springframework.data.relational.core.query.Criteria.where;
 
 import com.adi.cms.gateway.domain.Note;
+import com.adi.cms.gateway.repository.rowmapper.CharacterRowMapper;
 import com.adi.cms.gateway.repository.rowmapper.NoteRowMapper;
-import com.adi.cms.gateway.repository.rowmapper.XaracterRowMapper;
 import io.r2dbc.spi.Row;
 import io.r2dbc.spi.RowMetadata;
 import java.util.ArrayList;
@@ -40,16 +40,16 @@ class NoteRepositoryInternalImpl extends SimpleR2dbcRepository<Note, Long> imple
     private final R2dbcEntityTemplate r2dbcEntityTemplate;
     private final EntityManager entityManager;
 
-    private final XaracterRowMapper xaracterMapper;
+    private final CharacterRowMapper characterMapper;
     private final NoteRowMapper noteMapper;
 
     private static final Table entityTable = Table.aliased("note", EntityManager.ENTITY_ALIAS);
-    private static final Table xaracterIdTable = Table.aliased("xaracter", "xaracterId");
+    private static final Table characterTable = Table.aliased("character", "e_character");
 
     public NoteRepositoryInternalImpl(
         R2dbcEntityTemplate template,
         EntityManager entityManager,
-        XaracterRowMapper xaracterMapper,
+        CharacterRowMapper characterMapper,
         NoteRowMapper noteMapper,
         R2dbcEntityOperations entityOperations,
         R2dbcConverter converter
@@ -62,7 +62,7 @@ class NoteRepositoryInternalImpl extends SimpleR2dbcRepository<Note, Long> imple
         this.db = template.getDatabaseClient();
         this.r2dbcEntityTemplate = template;
         this.entityManager = entityManager;
-        this.xaracterMapper = xaracterMapper;
+        this.characterMapper = characterMapper;
         this.noteMapper = noteMapper;
     }
 
@@ -78,14 +78,14 @@ class NoteRepositoryInternalImpl extends SimpleR2dbcRepository<Note, Long> imple
 
     RowsFetchSpec<Note> createQuery(Pageable pageable, Criteria criteria) {
         List<Expression> columns = NoteSqlHelper.getColumns(entityTable, EntityManager.ENTITY_ALIAS);
-        columns.addAll(XaracterSqlHelper.getColumns(xaracterIdTable, "xaracterId"));
+        columns.addAll(CharacterSqlHelper.getColumns(characterTable, "character"));
         SelectFromAndJoinCondition selectFrom = Select
             .builder()
             .select(columns)
             .from(entityTable)
-            .leftOuterJoin(xaracterIdTable)
-            .on(Column.create("xaracter_id_id", entityTable))
-            .equals(Column.create("id", xaracterIdTable));
+            .leftOuterJoin(characterTable)
+            .on(Column.create("character_id", entityTable))
+            .equals(Column.create("id", characterTable));
 
         String select = entityManager.createSelect(selectFrom, Note.class, pageable, criteria);
         return db.sql(select).map(this::process);
@@ -103,7 +103,7 @@ class NoteRepositoryInternalImpl extends SimpleR2dbcRepository<Note, Long> imple
 
     private Note process(Row row, RowMetadata metadata) {
         Note entity = noteMapper.apply(row, "e");
-        entity.setXaracterId(xaracterMapper.apply(row, "xaracterId"));
+        entity.setCharacter(characterMapper.apply(row, "character"));
         return entity;
     }
 

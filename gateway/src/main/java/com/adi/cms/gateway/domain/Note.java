@@ -23,11 +23,11 @@ public class Note implements Serializable {
     private String description;
 
     @Transient
-    @JsonIgnoreProperties(value = { "notes", "xaracterAttributes", "xaracterSkills", "user" }, allowSetters = true)
-    private Xaracter xaracterId;
+    @JsonIgnoreProperties(value = { "notes", "characterAttributes", "characterSkills", "user" }, allowSetters = true)
+    private Character character;
 
-    @Column("xaracter_id_id")
-    private Long xaracterIdId;
+    @Column("character_id")
+    private Long characterId;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -57,26 +57,26 @@ public class Note implements Serializable {
         this.description = description;
     }
 
-    public Xaracter getXaracterId() {
-        return this.xaracterId;
+    public Character getCharacter() {
+        return this.character;
     }
 
-    public void setXaracterId(Xaracter xaracter) {
-        this.xaracterId = xaracter;
-        this.xaracterIdId = xaracter != null ? xaracter.getId() : null;
+    public void setCharacter(Character character) {
+        this.character = character;
+        this.characterId = character != null ? character.getId() : null;
     }
 
-    public Note xaracterId(Xaracter xaracter) {
-        this.setXaracterId(xaracter);
+    public Note character(Character character) {
+        this.setCharacter(character);
         return this;
     }
 
-    public Long getXaracterIdId() {
-        return this.xaracterIdId;
+    public Long getCharacterId() {
+        return this.characterId;
     }
 
-    public void setXaracterIdId(Long xaracter) {
-        this.xaracterIdId = xaracter;
+    public void setCharacterId(Long character) {
+        this.characterId = character;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

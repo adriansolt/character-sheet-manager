@@ -33,7 +33,7 @@ public class DefaultSkillOrAtribute implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "characterSkills", "defaultSkillOrAtributes", "prereqSkillOrAtributes" }, allowSetters = true)
-    private Skill skillId;
+    private Skill skill;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -76,16 +76,16 @@ public class DefaultSkillOrAtribute implements Serializable {
         this.modifier = modifier;
     }
 
-    public Skill getSkillId() {
-        return this.skillId;
+    public Skill getSkill() {
+        return this.skill;
     }
 
-    public void setSkillId(Skill skill) {
-        this.skillId = skill;
+    public void setSkill(Skill skill) {
+        this.skill = skill;
     }
 
-    public DefaultSkillOrAtribute skillId(Skill skill) {
-        this.setSkillId(skill);
+    public DefaultSkillOrAtribute skill(Skill skill) {
+        this.setSkill(skill);
         return this;
     }
 

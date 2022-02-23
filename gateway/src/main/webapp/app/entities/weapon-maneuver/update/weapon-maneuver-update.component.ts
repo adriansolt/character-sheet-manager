@@ -24,8 +24,8 @@ export class WeaponManeuverUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    weaponId: [],
-    maneuverId: [],
+    weapon: [],
+    maneuver: [],
   });
 
   constructor(
@@ -88,14 +88,14 @@ export class WeaponManeuverUpdateComponent implements OnInit {
   protected updateForm(weaponManeuver: IWeaponManeuver): void {
     this.editForm.patchValue({
       id: weaponManeuver.id,
-      weaponId: weaponManeuver.weaponId,
-      maneuverId: weaponManeuver.maneuverId,
+      weapon: weaponManeuver.weapon,
+      maneuver: weaponManeuver.maneuver,
     });
 
-    this.weaponsSharedCollection = this.weaponService.addWeaponToCollectionIfMissing(this.weaponsSharedCollection, weaponManeuver.weaponId);
+    this.weaponsSharedCollection = this.weaponService.addWeaponToCollectionIfMissing(this.weaponsSharedCollection, weaponManeuver.weapon);
     this.maneuversSharedCollection = this.maneuverService.addManeuverToCollectionIfMissing(
       this.maneuversSharedCollection,
-      weaponManeuver.maneuverId
+      weaponManeuver.maneuver
     );
   }
 
@@ -103,7 +103,7 @@ export class WeaponManeuverUpdateComponent implements OnInit {
     this.weaponService
       .query()
       .pipe(map((res: HttpResponse<IWeapon[]>) => res.body ?? []))
-      .pipe(map((weapons: IWeapon[]) => this.weaponService.addWeaponToCollectionIfMissing(weapons, this.editForm.get('weaponId')!.value)))
+      .pipe(map((weapons: IWeapon[]) => this.weaponService.addWeaponToCollectionIfMissing(weapons, this.editForm.get('weapon')!.value)))
       .subscribe((weapons: IWeapon[]) => (this.weaponsSharedCollection = weapons));
 
     this.maneuverService
@@ -111,7 +111,7 @@ export class WeaponManeuverUpdateComponent implements OnInit {
       .pipe(map((res: HttpResponse<IManeuver[]>) => res.body ?? []))
       .pipe(
         map((maneuvers: IManeuver[]) =>
-          this.maneuverService.addManeuverToCollectionIfMissing(maneuvers, this.editForm.get('maneuverId')!.value)
+          this.maneuverService.addManeuverToCollectionIfMissing(maneuvers, this.editForm.get('maneuver')!.value)
         )
       )
       .subscribe((maneuvers: IManeuver[]) => (this.maneuversSharedCollection = maneuvers));
@@ -121,8 +121,8 @@ export class WeaponManeuverUpdateComponent implements OnInit {
     return {
       ...new WeaponManeuver(),
       id: this.editForm.get(['id'])!.value,
-      weaponId: this.editForm.get(['weaponId'])!.value,
-      maneuverId: this.editForm.get(['maneuverId'])!.value,
+      weapon: this.editForm.get(['weapon'])!.value,
+      maneuver: this.editForm.get(['maneuver'])!.value,
     };
   }
 }

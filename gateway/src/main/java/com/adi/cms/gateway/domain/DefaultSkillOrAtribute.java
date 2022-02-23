@@ -29,11 +29,11 @@ public class DefaultSkillOrAtribute implements Serializable {
     private Integer modifier;
 
     @Transient
-    @JsonIgnoreProperties(value = { "xaracterSkills", "defaultSkillOrAtributes", "prereqSkillOrAtributes" }, allowSetters = true)
-    private Skill skillId;
+    @JsonIgnoreProperties(value = { "characterSkills", "defaultSkillOrAtributes", "prereqSkillOrAtributes" }, allowSetters = true)
+    private Skill skill;
 
-    @Column("skill_id_id")
-    private Long skillIdId;
+    @Column("skill_id")
+    private Long skillId;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -76,26 +76,26 @@ public class DefaultSkillOrAtribute implements Serializable {
         this.modifier = modifier;
     }
 
-    public Skill getSkillId() {
-        return this.skillId;
+    public Skill getSkill() {
+        return this.skill;
     }
 
-    public void setSkillId(Skill skill) {
-        this.skillId = skill;
-        this.skillIdId = skill != null ? skill.getId() : null;
+    public void setSkill(Skill skill) {
+        this.skill = skill;
+        this.skillId = skill != null ? skill.getId() : null;
     }
 
-    public DefaultSkillOrAtribute skillId(Skill skill) {
-        this.setSkillId(skill);
+    public DefaultSkillOrAtribute skill(Skill skill) {
+        this.setSkill(skill);
         return this;
     }
 
-    public Long getSkillIdId() {
-        return this.skillIdId;
+    public Long getSkillId() {
+        return this.skillId;
     }
 
-    public void setSkillIdId(Long skill) {
-        this.skillIdId = skill;
+    public void setSkillId(Long skill) {
+        this.skillId = skill;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

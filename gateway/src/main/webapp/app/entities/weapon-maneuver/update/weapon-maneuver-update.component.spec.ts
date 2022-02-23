@@ -52,12 +52,12 @@ describe('WeaponManeuver Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Weapon query and add missing value', () => {
       const weaponManeuver: IWeaponManeuver = { id: 456 };
-      const weaponId: IWeapon = { id: 25113 };
-      weaponManeuver.weaponId = weaponId;
+      const weapon: IWeapon = { id: 25113 };
+      weaponManeuver.weapon = weapon;
 
       const weaponCollection: IWeapon[] = [{ id: 81835 }];
       jest.spyOn(weaponService, 'query').mockReturnValue(of(new HttpResponse({ body: weaponCollection })));
-      const additionalWeapons = [weaponId];
+      const additionalWeapons = [weapon];
       const expectedCollection: IWeapon[] = [...additionalWeapons, ...weaponCollection];
       jest.spyOn(weaponService, 'addWeaponToCollectionIfMissing').mockReturnValue(expectedCollection);
 
@@ -71,12 +71,12 @@ describe('WeaponManeuver Management Update Component', () => {
 
     it('Should call Maneuver query and add missing value', () => {
       const weaponManeuver: IWeaponManeuver = { id: 456 };
-      const maneuverId: IManeuver = { id: 38278 };
-      weaponManeuver.maneuverId = maneuverId;
+      const maneuver: IManeuver = { id: 38278 };
+      weaponManeuver.maneuver = maneuver;
 
       const maneuverCollection: IManeuver[] = [{ id: 15390 }];
       jest.spyOn(maneuverService, 'query').mockReturnValue(of(new HttpResponse({ body: maneuverCollection })));
-      const additionalManeuvers = [maneuverId];
+      const additionalManeuvers = [maneuver];
       const expectedCollection: IManeuver[] = [...additionalManeuvers, ...maneuverCollection];
       jest.spyOn(maneuverService, 'addManeuverToCollectionIfMissing').mockReturnValue(expectedCollection);
 
@@ -90,17 +90,17 @@ describe('WeaponManeuver Management Update Component', () => {
 
     it('Should update editForm', () => {
       const weaponManeuver: IWeaponManeuver = { id: 456 };
-      const weaponId: IWeapon = { id: 79064 };
-      weaponManeuver.weaponId = weaponId;
-      const maneuverId: IManeuver = { id: 76592 };
-      weaponManeuver.maneuverId = maneuverId;
+      const weapon: IWeapon = { id: 79064 };
+      weaponManeuver.weapon = weapon;
+      const maneuver: IManeuver = { id: 76592 };
+      weaponManeuver.maneuver = maneuver;
 
       activatedRoute.data = of({ weaponManeuver });
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(weaponManeuver));
-      expect(comp.weaponsSharedCollection).toContain(weaponId);
-      expect(comp.maneuversSharedCollection).toContain(maneuverId);
+      expect(comp.weaponsSharedCollection).toContain(weapon);
+      expect(comp.maneuversSharedCollection).toContain(maneuver);
     });
   });
 

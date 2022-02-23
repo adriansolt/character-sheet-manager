@@ -22,13 +22,13 @@ public class CampaignUser implements Serializable {
 
     @Transient
     @JsonIgnoreProperties(value = { "campaignUsers" }, allowSetters = true)
-    private Campaign campaignId;
+    private Campaign campaign;
 
     @Transient
     private User user;
 
-    @Column("campaign_id_id")
-    private Long campaignIdId;
+    @Column("campaign_id")
+    private Long campaignId;
 
     @Column("user_id")
     private String userId;
@@ -48,17 +48,17 @@ public class CampaignUser implements Serializable {
         this.id = id;
     }
 
-    public Campaign getCampaignId() {
-        return this.campaignId;
+    public Campaign getCampaign() {
+        return this.campaign;
     }
 
-    public void setCampaignId(Campaign campaign) {
-        this.campaignId = campaign;
-        this.campaignIdId = campaign != null ? campaign.getId() : null;
+    public void setCampaign(Campaign campaign) {
+        this.campaign = campaign;
+        this.campaignId = campaign != null ? campaign.getId() : null;
     }
 
-    public CampaignUser campaignId(Campaign campaign) {
-        this.setCampaignId(campaign);
+    public CampaignUser campaign(Campaign campaign) {
+        this.setCampaign(campaign);
         return this;
     }
 
@@ -76,12 +76,12 @@ public class CampaignUser implements Serializable {
         return this;
     }
 
-    public Long getCampaignIdId() {
-        return this.campaignIdId;
+    public Long getCampaignId() {
+        return this.campaignId;
     }
 
-    public void setCampaignIdId(Long campaign) {
-        this.campaignIdId = campaign;
+    public void setCampaignId(Long campaign) {
+        this.campaignId = campaign;
     }
 
     public String getUserId() {

@@ -6,7 +6,7 @@ export interface IItem {
   quality?: number;
   pictureContentType?: string | null;
   picture?: string | null;
-  xaracterId?: number | null;
+  characterId?: number | null;
   campaignId?: number | null;
 }
 
@@ -19,7 +19,7 @@ export class Item implements IItem {
     public quality?: number,
     public pictureContentType?: string | null,
     public picture?: string | null,
-    public xaracterId?: number | null,
+    public characterId?: number | null,
     public campaignId?: number | null
   ) {}
 }

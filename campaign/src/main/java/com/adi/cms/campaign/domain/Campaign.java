@@ -40,9 +40,9 @@ public class Campaign implements Serializable {
     @Column(name = "master_id")
     private Long masterId;
 
-    @OneToMany(mappedBy = "campaignId")
+    @OneToMany(mappedBy = "campaign")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "campaignId", "user" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "campaign", "user" }, allowSetters = true)
     private Set<CampaignUser> campaignUsers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -131,10 +131,10 @@ public class Campaign implements Serializable {
 
     public void setCampaignUsers(Set<CampaignUser> campaignUsers) {
         if (this.campaignUsers != null) {
-            this.campaignUsers.forEach(i -> i.setCampaignId(null));
+            this.campaignUsers.forEach(i -> i.setCampaign(null));
         }
         if (campaignUsers != null) {
-            campaignUsers.forEach(i -> i.setCampaignId(this));
+            campaignUsers.forEach(i -> i.setCampaign(this));
         }
         this.campaignUsers = campaignUsers;
     }
@@ -146,13 +146,13 @@ public class Campaign implements Serializable {
 
     public Campaign addCampaignUser(CampaignUser campaignUser) {
         this.campaignUsers.add(campaignUser);
-        campaignUser.setCampaignId(this);
+        campaignUser.setCampaign(this);
         return this;
     }
 
     public Campaign removeCampaignUser(CampaignUser campaignUser) {
         this.campaignUsers.remove(campaignUser);
-        campaignUser.setCampaignId(null);
+        campaignUser.setCampaign(null);
         return this;
     }
 

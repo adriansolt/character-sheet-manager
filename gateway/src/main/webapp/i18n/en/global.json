@@ -10,6 +10,11 @@
         "armorPiece": "Armor Piece",
         "campaign": "Campaign",
         "campaignUser": "Campaign User",
+        "character": "Character",
+        "characterAttribute": "Character Attribute",
+        "characterEquippedArmor": "Character Equipped Armor",
+        "characterEquippedWeapon": "Character Equipped Weapon",
+        "characterSkill": "Character Skill",
         "defaultSkillOrAtribute": "Default Skill Or Atribute",
         "item": "Item",
         "maneuver": "Maneuver",
@@ -18,11 +23,6 @@
         "skill": "Skill",
         "weapon": "Weapon",
         "weaponManeuver": "Weapon Maneuver",
-        "xaracter": "Xaracter",
-        "xaracterAttribute": "Xaracter Attribute",
-        "xaracterEquippedArmor": "Xaracter Equipped Armor",
-        "xaracterEquippedWeapon": "Xaracter Equipped Weapon",
-        "xaracterSkill": "Xaracter Skill",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

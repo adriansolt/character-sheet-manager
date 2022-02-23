@@ -18,10 +18,10 @@
         <dd>
           <span>{{ note.description }}</span>
         </dd>
-        <dt><span jhiTranslate="gatewayApp.note.xaracterId">Xaracter Id</span></dt>
+        <dt><span jhiTranslate="gatewayApp.note.character">Character</span></dt>
         <dd>
-          <div *ngIf="note.xaracterId">
-            <a [routerLink]="['/xaracter', note.xaracterId?.id, 'view']">{{ note.xaracterId?.id }}</a>
+          <div *ngIf="note.character">
+            <a [routerLink]="['/character', note.character?.id, 'view']">{{ note.character?.name }}</a>
           </div>
         </dd>
       </dl>

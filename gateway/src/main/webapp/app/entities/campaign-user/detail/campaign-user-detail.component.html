@@ -14,10 +14,10 @@
         <dd>
           <span>{{ campaignUser.id }}</span>
         </dd>
-        <dt><span jhiTranslate="gatewayApp.campaignUser.campaignId">Campaign Id</span></dt>
+        <dt><span jhiTranslate="gatewayApp.campaignUser.campaign">Campaign</span></dt>
         <dd>
-          <div *ngIf="campaignUser.campaignId">
-            <a [routerLink]="['/campaign', campaignUser.campaignId?.id, 'view']">{{ campaignUser.campaignId?.id }}</a>
+          <div *ngIf="campaignUser.campaign">
+            <a [routerLink]="['/campaign', campaignUser.campaign?.id, 'view']">{{ campaignUser.campaign?.name }}</a>
           </div>
         </dd>
         <dt><span jhiTranslate="gatewayApp.campaignUser.user">User</span></dt>

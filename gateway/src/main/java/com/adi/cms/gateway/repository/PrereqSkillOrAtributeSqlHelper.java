@@ -14,7 +14,7 @@ public class PrereqSkillOrAtributeSqlHelper {
         columns.add(Column.aliased("name", table, columnPrefix + "_name"));
         columns.add(Column.aliased("level", table, columnPrefix + "_level"));
 
-        columns.add(Column.aliased("skill_id_id", table, columnPrefix + "_skill_id_id"));
+        columns.add(Column.aliased("skill_id", table, columnPrefix + "_skill_id"));
         return columns;
     }
 }

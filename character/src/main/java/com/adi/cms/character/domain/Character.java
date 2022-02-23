@@ -59,19 +59,19 @@ public class Character implements Serializable {
     @Column(name = "active")
     private Boolean active;
 
-    @OneToMany(mappedBy = "characterId")
+    @OneToMany(mappedBy = "character")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "characterId" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "character" }, allowSetters = true)
     private Set<Note> notes = new HashSet<>();
 
-    @OneToMany(mappedBy = "characterId")
+    @OneToMany(mappedBy = "character")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "characterId" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "character" }, allowSetters = true)
     private Set<CharacterAttribute> characterAttributes = new HashSet<>();
 
-    @OneToMany(mappedBy = "characterId")
+    @OneToMany(mappedBy = "character")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "characterId", "skillId" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "character", "skill" }, allowSetters = true)
     private Set<CharacterSkill> characterSkills = new HashSet<>();
 
     @ManyToOne(optional = false)
@@ -216,10 +216,10 @@ public class Character implements Serializable {
 
     public void setNotes(Set<Note> notes) {
         if (this.notes != null) {
-            this.notes.forEach(i -> i.setCharacterId(null));
+            this.notes.forEach(i -> i.setCharacter(null));
         }
         if (notes != null) {
-            notes.forEach(i -> i.setCharacterId(this));
+            notes.forEach(i -> i.setCharacter(this));
         }
         this.notes = notes;
     }
@@ -231,13 +231,13 @@ public class Character implements Serializable {
 
     public Character addNote(Note note) {
         this.notes.add(note);
-        note.setCharacterId(this);
+        note.setCharacter(this);
         return this;
     }
 
     public Character removeNote(Note note) {
         this.notes.remove(note);
-        note.setCharacterId(null);
+        note.setCharacter(null);
         return this;
     }
 
@@ -247,10 +247,10 @@ public class Character implements Serializable {
 
     public void setCharacterAttributes(Set<CharacterAttribute> characterAttributes) {
         if (this.characterAttributes != null) {
-            this.characterAttributes.forEach(i -> i.setCharacterId(null));
+            this.characterAttributes.forEach(i -> i.setCharacter(null));
         }
         if (characterAttributes != null) {
-            characterAttributes.forEach(i -> i.setCharacterId(this));
+            characterAttributes.forEach(i -> i.setCharacter(this));
         }
         this.characterAttributes = characterAttributes;
     }
@@ -262,13 +262,13 @@ public class Character implements Serializable {
 
     public Character addCharacterAttribute(CharacterAttribute characterAttribute) {
         this.characterAttributes.add(characterAttribute);
-        characterAttribute.setCharacterId(this);
+        characterAttribute.setCharacter(this);
         return this;
     }
 
     public Character removeCharacterAttribute(CharacterAttribute characterAttribute) {
         this.characterAttributes.remove(characterAttribute);
-        characterAttribute.setCharacterId(null);
+        characterAttribute.setCharacter(null);
         return this;
     }
 
@@ -278,10 +278,10 @@ public class Character implements Serializable {
 
     public void setCharacterSkills(Set<CharacterSkill> characterSkills) {
         if (this.characterSkills != null) {
-            this.characterSkills.forEach(i -> i.setCharacterId(null));
+            this.characterSkills.forEach(i -> i.setCharacter(null));
         }
         if (characterSkills != null) {
-            characterSkills.forEach(i -> i.setCharacterId(this));
+            characterSkills.forEach(i -> i.setCharacter(this));
         }
         this.characterSkills = characterSkills;
     }
@@ -293,13 +293,13 @@ public class Character implements Serializable {
 
     public Character addCharacterSkill(CharacterSkill characterSkill) {
         this.characterSkills.add(characterSkill);
-        characterSkill.setCharacterId(this);
+        characterSkill.setCharacter(this);
         return this;
     }
 
     public Character removeCharacterSkill(CharacterSkill characterSkill) {
         this.characterSkills.remove(characterSkill);
-        characterSkill.setCharacterId(null);
+        characterSkill.setCharacter(null);
         return this;
     }
 

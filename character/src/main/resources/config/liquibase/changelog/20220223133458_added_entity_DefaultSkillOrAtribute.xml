@@ -20,7 +20,7 @@
             <column name="modifier" type="integer">
                 <constraints nullable="false" />
             </column>
-            <column name="skill_id_id" type="bigint">
+            <column name="skill_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->

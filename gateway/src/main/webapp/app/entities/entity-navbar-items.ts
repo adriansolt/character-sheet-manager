@@ -15,6 +15,31 @@ export const EntityNavbarItems = [
     translationKey: 'global.menu.entities.campaignUser',
   },
   {
+    name: 'Character',
+    route: 'character',
+    translationKey: 'global.menu.entities.character',
+  },
+  {
+    name: 'CharacterAttribute',
+    route: 'character-attribute',
+    translationKey: 'global.menu.entities.characterAttribute',
+  },
+  {
+    name: 'CharacterEquippedArmor',
+    route: 'character-equipped-armor',
+    translationKey: 'global.menu.entities.characterEquippedArmor',
+  },
+  {
+    name: 'CharacterEquippedWeapon',
+    route: 'character-equipped-weapon',
+    translationKey: 'global.menu.entities.characterEquippedWeapon',
+  },
+  {
+    name: 'CharacterSkill',
+    route: 'character-skill',
+    translationKey: 'global.menu.entities.characterSkill',
+  },
+  {
     name: 'DefaultSkillOrAtribute',
     route: 'default-skill-or-atribute',
     translationKey: 'global.menu.entities.defaultSkillOrAtribute',
@@ -53,30 +78,5 @@ export const EntityNavbarItems = [
     name: 'WeaponManeuver',
     route: 'weapon-maneuver',
     translationKey: 'global.menu.entities.weaponManeuver',
-  },
-  {
-    name: 'Xaracter',
-    route: 'xaracter',
-    translationKey: 'global.menu.entities.xaracter',
-  },
-  {
-    name: 'XaracterAttribute',
-    route: 'xaracter-attribute',
-    translationKey: 'global.menu.entities.xaracterAttribute',
-  },
-  {
-    name: 'XaracterEquippedArmor',
-    route: 'xaracter-equipped-armor',
-    translationKey: 'global.menu.entities.xaracterEquippedArmor',
-  },
-  {
-    name: 'XaracterEquippedWeapon',
-    route: 'xaracter-equipped-weapon',
-    translationKey: 'global.menu.entities.xaracterEquippedWeapon',
-  },
-  {
-    name: 'XaracterSkill',
-    route: 'xaracter-skill',
-    translationKey: 'global.menu.entities.xaracterSkill',
   },
 ];

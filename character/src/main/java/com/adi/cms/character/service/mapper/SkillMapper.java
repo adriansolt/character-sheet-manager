@@ -9,8 +9,9 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = {})
 public interface SkillMapper extends EntityMapper<SkillDTO, Skill> {
-    @Named("id")
+    @Named("name")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    SkillDTO toDtoId(Skill skill);
+    @Mapping(target = "name", source = "name")
+    SkillDTO toDtoName(Skill skill);
 }

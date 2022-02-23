@@ -30,7 +30,7 @@ public class ArmorPiece implements Serializable {
 
     @Transient
     @JsonIgnoreProperties(value = { "armorPiece" }, allowSetters = true)
-    private Set<XaracterEquippedArmor> xaracterEquippedArmors = new HashSet<>();
+    private Set<CharacterEquippedArmor> characterEquippedArmors = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -73,34 +73,34 @@ public class ArmorPiece implements Serializable {
         this.defenseModifier = defenseModifier;
     }
 
-    public Set<XaracterEquippedArmor> getXaracterEquippedArmors() {
-        return this.xaracterEquippedArmors;
+    public Set<CharacterEquippedArmor> getCharacterEquippedArmors() {
+        return this.characterEquippedArmors;
     }
 
-    public void setXaracterEquippedArmors(Set<XaracterEquippedArmor> xaracterEquippedArmors) {
-        if (this.xaracterEquippedArmors != null) {
-            this.xaracterEquippedArmors.forEach(i -> i.setArmorPiece(null));
+    public void setCharacterEquippedArmors(Set<CharacterEquippedArmor> characterEquippedArmors) {
+        if (this.characterEquippedArmors != null) {
+            this.characterEquippedArmors.forEach(i -> i.setArmorPiece(null));
         }
-        if (xaracterEquippedArmors != null) {
-            xaracterEquippedArmors.forEach(i -> i.setArmorPiece(this));
+        if (characterEquippedArmors != null) {
+            characterEquippedArmors.forEach(i -> i.setArmorPiece(this));
         }
-        this.xaracterEquippedArmors = xaracterEquippedArmors;
+        this.characterEquippedArmors = characterEquippedArmors;
     }
 
-    public ArmorPiece xaracterEquippedArmors(Set<XaracterEquippedArmor> xaracterEquippedArmors) {
-        this.setXaracterEquippedArmors(xaracterEquippedArmors);
+    public ArmorPiece characterEquippedArmors(Set<CharacterEquippedArmor> characterEquippedArmors) {
+        this.setCharacterEquippedArmors(characterEquippedArmors);
         return this;
     }
 
-    public ArmorPiece addXaracterEquippedArmor(XaracterEquippedArmor xaracterEquippedArmor) {
-        this.xaracterEquippedArmors.add(xaracterEquippedArmor);
-        xaracterEquippedArmor.setArmorPiece(this);
+    public ArmorPiece addCharacterEquippedArmor(CharacterEquippedArmor characterEquippedArmor) {
+        this.characterEquippedArmors.add(characterEquippedArmor);
+        characterEquippedArmor.setArmorPiece(this);
         return this;
     }
 
-    public ArmorPiece removeXaracterEquippedArmor(XaracterEquippedArmor xaracterEquippedArmor) {
-        this.xaracterEquippedArmors.remove(xaracterEquippedArmor);
-        xaracterEquippedArmor.setArmorPiece(null);
+    public ArmorPiece removeCharacterEquippedArmor(CharacterEquippedArmor characterEquippedArmor) {
+        this.characterEquippedArmors.remove(characterEquippedArmor);
+        characterEquippedArmor.setArmorPiece(null);
         return this;
     }
 

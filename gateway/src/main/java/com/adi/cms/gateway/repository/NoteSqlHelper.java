@@ -13,7 +13,7 @@ public class NoteSqlHelper {
         columns.add(Column.aliased("id", table, columnPrefix + "_id"));
         columns.add(Column.aliased("description", table, columnPrefix + "_description"));
 
-        columns.add(Column.aliased("xaracter_id_id", table, columnPrefix + "_xaracter_id_id"));
+        columns.add(Column.aliased("character_id", table, columnPrefix + "_character_id"));
         return columns;
     }
 }
