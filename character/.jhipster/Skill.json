@@ -1,0 +1,50 @@
+{
+  "applications": ["character", "gateway"],
+  "changelogDate": "20220223133758",
+  "clientRootFolder": "character",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "skill",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "SkillName",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "COOKING,FARMING,FISHING,GEOGRAPHY,ETC"
+    },
+    {
+      "fieldName": "difficulty",
+      "fieldType": "Difficulty",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "EASY,AVERAGE,HARD,VERY_HARD"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "character",
+  "name": "Skill",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "characterSkill",
+      "otherEntityRelationshipName": "skillId",
+      "relationshipName": "characterSkill",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "defaultSkillOrAtribute",
+      "otherEntityRelationshipName": "skillId",
+      "relationshipName": "defaultSkillOrAtribute",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "prereqSkillOrAtribute",
+      "otherEntityRelationshipName": "skillId",
+      "relationshipName": "prereqSkillOrAtribute",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

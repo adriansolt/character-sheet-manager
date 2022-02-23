@@ -1,0 +1,84 @@
+{
+  "applications": ["character", "gateway"],
+  "changelogDate": "20220223133158",
+  "clientRootFolder": "character",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "character",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "weight",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "height",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "points",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "picture",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "handedness",
+      "fieldType": "Handedness",
+      "fieldValues": "RIGHT,LEFT,BOTH"
+    },
+    {
+      "fieldName": "campaignId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "active",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "character",
+  "name": "Character",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "note",
+      "otherEntityRelationshipName": "characterId",
+      "relationshipName": "note",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "characterAttribute",
+      "otherEntityRelationshipName": "characterId",
+      "relationshipName": "characterAttribute",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "characterSkill",
+      "otherEntityRelationshipName": "characterId",
+      "relationshipName": "characterSkill",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "character",
+      "relationshipName": "user",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceClass"
+}

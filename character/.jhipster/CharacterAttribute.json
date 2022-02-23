@@ -1,0 +1,41 @@
+{
+  "applications": ["character", "gateway"],
+  "changelogDate": "20220223133258",
+  "clientRootFolder": "character",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "character_attribute",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "AttributeName",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ST,DX,IQ,HT"
+    },
+    {
+      "fieldName": "points",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "attributeModifier",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "character",
+  "name": "CharacterAttribute",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "character",
+      "otherEntityRelationshipName": "characterAttribute",
+      "relationshipName": "characterId",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}
