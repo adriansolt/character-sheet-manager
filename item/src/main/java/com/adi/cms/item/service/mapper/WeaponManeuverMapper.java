@@ -9,7 +9,7 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { WeaponMapper.class, ManeuverMapper.class })
 public interface WeaponManeuverMapper extends EntityMapper<WeaponManeuverDTO, WeaponManeuver> {
-    @Mapping(target = "weapon", source = "weapon", qualifiedByName = "id")
-    @Mapping(target = "maneuver", source = "maneuver", qualifiedByName = "id")
+    @Mapping(target = "weapon", source = "weapon", qualifiedByName = "name")
+    @Mapping(target = "maneuver", source = "maneuver", qualifiedByName = "name")
     WeaponManeuverDTO toDto(WeaponManeuver s);
 }

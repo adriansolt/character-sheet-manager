@@ -1,11 +1,11 @@
-id;location;defense_modifier
-1;LEFT_HAND;75470
-2;RIGHT_SHOULDER;16274
-3;RIGHT_ARM;769
-4;LEFT_ARM;99667
-5;LEFT_LEG;18528
-6;LEFT_FOOT;94141
-7;HEAD;63958
-8;BACK;86402
-9;RIGHT_SHOULDER;43401
-10;RIGHT_SHOULDER;35676
+id;name;description;weight;quality;picture;picture_content_type;character_id;campaign_id;location;defense_modifier
+1;hack ability;digital Brand invoice;43401;13971;../fake-data/blob/hipster.png;image/png;35676;60380;LEFT_LEG;7750
+2;invoice back-end;invoice deposit Future-proofed;6665;97945;../fake-data/blob/hipster.png;image/png;85478;34133;LEFT_LEG;31526
+3;index;Dynamic Stravenue;48499;70482;../fake-data/blob/hipster.png;image/png;67485;45433;BACK;98575
+4;Books;Optimized Pants Table;42447;2549;../fake-data/blob/hipster.png;image/png;15149;39449;RIGHT_LEG;38204
+5;seize Croatian proactive;Re-contextualized definition synthesize;24008;81103;../fake-data/blob/hipster.png;image/png;26954;34258;LEFT_FOOT;68929
+6;Specialist;driver invoice Account;96893;22180;../fake-data/blob/hipster.png;image/png;48062;16146;RIGHT_HAND;52506
+7;Colorado;Chair protocol Branding;31009;74922;../fake-data/blob/hipster.png;image/png;85902;84159;LEFT_SHOULDER;90775
+8;withdrawal SQL Kansas;Metal Keyboard;14823;51797;../fake-data/blob/hipster.png;image/png;97338;95073;CHEST;71066
+9;Borders Ireland RAM;wireless;71868;66939;../fake-data/blob/hipster.png;image/png;2306;50639;RIGHT_LEG;76549
+10;Arkansas Account partnerships;Licensed Marketing;89006;78873;../fake-data/blob/hipster.png;image/png;41242;57782;BACK;51671

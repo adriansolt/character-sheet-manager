@@ -21,6 +21,14 @@ describe('Weapon Service', () => {
 
     elemDefault = {
       id: 0,
+      name: 'AAAAAAA',
+      description: 'AAAAAAA',
+      weight: 0,
+      quality: 0,
+      pictureContentType: 'image/png',
+      picture: 'AAAAAAA',
+      characterId: 0,
+      campaignId: 0,
       reach: 0,
       baseDamage: 0,
       requiredST: 0,
@@ -60,6 +68,13 @@ describe('Weapon Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 1,
+          name: 'BBBBBB',
+          description: 'BBBBBB',
+          weight: 1,
+          quality: 1,
+          picture: 'BBBBBB',
+          characterId: 1,
+          campaignId: 1,
           reach: 1,
           baseDamage: 1,
           requiredST: 1,
@@ -80,8 +95,12 @@ describe('Weapon Service', () => {
     it('should partial update a Weapon', () => {
       const patchObject = Object.assign(
         {
+          name: 'BBBBBB',
+          quality: 1,
+          picture: 'BBBBBB',
+          characterId: 1,
           reach: 1,
-          damageModifier: 1,
+          requiredST: 1,
         },
         new Weapon()
       );
@@ -101,6 +120,13 @@ describe('Weapon Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 1,
+          name: 'BBBBBB',
+          description: 'BBBBBB',
+          weight: 1,
+          quality: 1,
+          picture: 'BBBBBB',
+          characterId: 1,
+          campaignId: 1,
           reach: 1,
           baseDamage: 1,
           requiredST: 1,
@@ -156,7 +182,7 @@ describe('Weapon Service', () => {
       });
 
       it('should add only unique Weapon to an array', () => {
-        const weaponArray: IWeapon[] = [{ id: 123 }, { id: 456 }, { id: 52399 }];
+        const weaponArray: IWeapon[] = [{ id: 123 }, { id: 456 }, { id: 29716 }];
         const weaponCollection: IWeapon[] = [{ id: 123 }];
         expectedResult = service.addWeaponToCollectionIfMissing(weaponCollection, ...weaponArray);
         expect(expectedResult).toHaveLength(3);

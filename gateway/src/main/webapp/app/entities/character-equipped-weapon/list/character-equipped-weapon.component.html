@@ -39,7 +39,7 @@
           <th scope="col" jhiSortBy="hand">
             <span jhiTranslate="gatewayApp.characterEquippedWeapon.hand">Hand</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="weapon.id">
+          <th scope="col" jhiSortBy="weapon.name">
             <span jhiTranslate="gatewayApp.characterEquippedWeapon.weapon">Weapon</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
@@ -54,7 +54,7 @@
           <td jhiTranslate="{{ 'gatewayApp.Handedness.' + characterEquippedWeapon.hand }}">{{ characterEquippedWeapon.hand }}</td>
           <td>
             <div *ngIf="characterEquippedWeapon.weapon">
-              <a [routerLink]="['/weapon', characterEquippedWeapon.weapon?.id, 'view']">{{ characterEquippedWeapon.weapon?.id }}</a>
+              <a [routerLink]="['/weapon', characterEquippedWeapon.weapon?.id, 'view']">{{ characterEquippedWeapon.weapon?.name }}</a>
             </div>
           </td>
           <td class="text-right">

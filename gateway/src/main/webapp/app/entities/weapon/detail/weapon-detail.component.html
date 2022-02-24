@@ -14,6 +14,39 @@
         <dd>
           <span>{{ weapon.id }}</span>
         </dd>
+        <dt><span jhiTranslate="gatewayApp.weapon.name">Name</span></dt>
+        <dd>
+          <span>{{ weapon.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.weapon.description">Description</span></dt>
+        <dd>
+          <span>{{ weapon.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.weapon.weight">Weight</span></dt>
+        <dd>
+          <span>{{ weapon.weight }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.weapon.quality">Quality</span></dt>
+        <dd>
+          <span>{{ weapon.quality }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.weapon.picture">Picture</span></dt>
+        <dd>
+          <div *ngIf="weapon.picture">
+            <a (click)="openFile(weapon.picture, weapon.pictureContentType)">
+              <img [src]="'data:' + weapon.pictureContentType + ';base64,' + weapon.picture" style="max-width: 100%" alt="weapon image" />
+            </a>
+            {{ weapon.pictureContentType }}, {{ byteSize(weapon.picture) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.weapon.characterId">Character Id</span></dt>
+        <dd>
+          <span>{{ weapon.characterId }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.weapon.campaignId">Campaign Id</span></dt>
+        <dd>
+          <span>{{ weapon.campaignId }}</span>
+        </dd>
         <dt><span jhiTranslate="gatewayApp.weapon.reach">Reach</span></dt>
         <dd>
           <span>{{ weapon.reach }}</span>

@@ -17,13 +17,13 @@
         <dt><span jhiTranslate="gatewayApp.weaponManeuver.weapon">Weapon</span></dt>
         <dd>
           <div *ngIf="weaponManeuver.weapon">
-            <a [routerLink]="['/weapon', weaponManeuver.weapon?.id, 'view']">{{ weaponManeuver.weapon?.id }}</a>
+            <a [routerLink]="['/weapon', weaponManeuver.weapon?.id, 'view']">{{ weaponManeuver.weapon?.name }}</a>
           </div>
         </dd>
         <dt><span jhiTranslate="gatewayApp.weaponManeuver.maneuver">Maneuver</span></dt>
         <dd>
           <div *ngIf="weaponManeuver.maneuver">
-            <a [routerLink]="['/maneuver', weaponManeuver.maneuver?.id, 'view']">{{ weaponManeuver.maneuver?.id }}</a>
+            <a [routerLink]="['/maneuver', weaponManeuver.maneuver?.id, 'view']">{{ weaponManeuver.maneuver?.name }}</a>
           </div>
         </dd>
       </dl>

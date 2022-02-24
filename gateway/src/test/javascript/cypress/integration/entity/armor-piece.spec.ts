@@ -16,7 +16,7 @@ describe('ArmorPiece e2e test', () => {
   const armorPiecePageUrlPattern = new RegExp('/armor-piece(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const armorPieceSample = { location: 'RIGHT_LEG' };
+  const armorPieceSample = { name: 'Jewelery transmit', weight: 21772, quality: 41122 };
 
   let armorPiece: any;
 
@@ -151,10 +151,26 @@ describe('ArmorPiece e2e test', () => {
     });
 
     it('should create an instance of ArmorPiece', () => {
-      cy.get(`[data-cy="location"]`).select('BACK');
+      cy.get(`[data-cy="name"]`).type('Assurance Monaco').should('have.value', 'Assurance Monaco');
 
-      cy.get(`[data-cy="defenseModifier"]`).type('92702').should('have.value', '92702');
+      cy.get(`[data-cy="description"]`).type('Branding port Designer').should('have.value', 'Branding port Designer');
 
+      cy.get(`[data-cy="weight"]`).type('21558').should('have.value', '21558');
+
+      cy.get(`[data-cy="quality"]`).type('94197').should('have.value', '94197');
+
+      cy.setFieldImageAsBytesOfEntity('picture', 'integration-test.png', 'image/png');
+
+      cy.get(`[data-cy="characterId"]`).type('37523').should('have.value', '37523');
+
+      cy.get(`[data-cy="campaignId"]`).type('97084').should('have.value', '97084');
+
+      cy.get(`[data-cy="location"]`).select('LEFT_FOOT');
+
+      cy.get(`[data-cy="defenseModifier"]`).type('83691').should('have.value', '83691');
+
+      // since cypress clicks submit too fast before the blob fields are validated
+      cy.wait(200); // eslint-disable-line cypress/no-unnecessary-waiting
       cy.get(entityCreateSaveButtonSelector).click();
 
       cy.wait('@postEntityRequest').then(({ response }) => {

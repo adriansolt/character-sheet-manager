@@ -54,6 +54,13 @@ public class ArmorPieceDTO extends ItemDTO {
     public String toString() {
         return "ArmorPieceDTO{" +
             "id=" + getId() +
+            ", name='" + getName() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", weight=" + getWeight() +
+            ", quality=" + getQuality() +
+            ", picture='" + getPicture() + "'" +
+            ", characterId=" + getCharacterId() +
+            ", campaignId=" + getCampaignId() +
             ", location='" + getLocation() + "'" +
             ", defenseModifier=" + getDefenseModifier() +
             "}";

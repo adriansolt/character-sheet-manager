@@ -116,6 +116,14 @@ public class ArmorPiece extends Item {
     public String toString() {
         return "ArmorPiece{" +
             "id=" + getId() +
+            ", name='" + getName() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", weight=" + getWeight() +
+            ", quality=" + getQuality() +
+            ", picture='" + getPicture() + "'" +
+            ", pictureContentType='" + getPictureContentType() + "'" +
+            ", characterId=" + getCharacterId() +
+            ", campaignId=" + getCampaignId() +
             ", location='" + getLocation() + "'" +
             ", defenseModifier=" + getDefenseModifier() +
             "}";

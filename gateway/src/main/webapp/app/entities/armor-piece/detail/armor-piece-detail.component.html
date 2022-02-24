@@ -14,6 +14,43 @@
         <dd>
           <span>{{ armorPiece.id }}</span>
         </dd>
+        <dt><span jhiTranslate="gatewayApp.armorPiece.name">Name</span></dt>
+        <dd>
+          <span>{{ armorPiece.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.armorPiece.description">Description</span></dt>
+        <dd>
+          <span>{{ armorPiece.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.armorPiece.weight">Weight</span></dt>
+        <dd>
+          <span>{{ armorPiece.weight }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.armorPiece.quality">Quality</span></dt>
+        <dd>
+          <span>{{ armorPiece.quality }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.armorPiece.picture">Picture</span></dt>
+        <dd>
+          <div *ngIf="armorPiece.picture">
+            <a (click)="openFile(armorPiece.picture, armorPiece.pictureContentType)">
+              <img
+                [src]="'data:' + armorPiece.pictureContentType + ';base64,' + armorPiece.picture"
+                style="max-width: 100%"
+                alt="armorPiece image"
+              />
+            </a>
+            {{ armorPiece.pictureContentType }}, {{ byteSize(armorPiece.picture) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.armorPiece.characterId">Character Id</span></dt>
+        <dd>
+          <span>{{ armorPiece.characterId }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.armorPiece.campaignId">Campaign Id</span></dt>
+        <dd>
+          <span>{{ armorPiece.campaignId }}</span>
+        </dd>
         <dt><span jhiTranslate="gatewayApp.armorPiece.location">Location</span></dt>
         <dd>
           <span jhiTranslate="{{ 'gatewayApp.ArmorLocation.' + armorPiece.location }}">{{ armorPiece.location }}</span>

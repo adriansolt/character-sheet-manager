@@ -16,7 +16,7 @@ describe('Weapon e2e test', () => {
   const weaponPageUrlPattern = new RegExp('/weapon(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const weaponSample = { reach: 5633, baseDamage: 43339, requiredST: 58857 };
+  const weaponSample = { name: 'Pine efficient', weight: 22252, quality: 69294, reach: 75593, baseDamage: 35952, requiredST: 58325 };
 
   let weapon: any;
 
@@ -151,14 +151,30 @@ describe('Weapon e2e test', () => {
     });
 
     it('should create an instance of Weapon', () => {
-      cy.get(`[data-cy="reach"]`).type('78115').should('have.value', '78115');
+      cy.get(`[data-cy="name"]`).type('Cotton Bike SAS').should('have.value', 'Cotton Bike SAS');
 
-      cy.get(`[data-cy="baseDamage"]`).type('13172').should('have.value', '13172');
+      cy.get(`[data-cy="description"]`).type('Greece Handmade Administrator').should('have.value', 'Greece Handmade Administrator');
 
-      cy.get(`[data-cy="requiredST"]`).type('37256').should('have.value', '37256');
+      cy.get(`[data-cy="weight"]`).type('67525').should('have.value', '67525');
 
-      cy.get(`[data-cy="damageModifier"]`).type('32838').should('have.value', '32838');
+      cy.get(`[data-cy="quality"]`).type('89300').should('have.value', '89300');
 
+      cy.setFieldImageAsBytesOfEntity('picture', 'integration-test.png', 'image/png');
+
+      cy.get(`[data-cy="characterId"]`).type('45647').should('have.value', '45647');
+
+      cy.get(`[data-cy="campaignId"]`).type('18567').should('have.value', '18567');
+
+      cy.get(`[data-cy="reach"]`).type('46962').should('have.value', '46962');
+
+      cy.get(`[data-cy="baseDamage"]`).type('43536').should('have.value', '43536');
+
+      cy.get(`[data-cy="requiredST"]`).type('33062').should('have.value', '33062');
+
+      cy.get(`[data-cy="damageModifier"]`).type('84293').should('have.value', '84293');
+
+      // since cypress clicks submit too fast before the blob fields are validated
+      cy.wait(200); // eslint-disable-line cypress/no-unnecessary-waiting
       cy.get(entityCreateSaveButtonSelector).click();
 
       cy.wait('@postEntityRequest').then(({ response }) => {

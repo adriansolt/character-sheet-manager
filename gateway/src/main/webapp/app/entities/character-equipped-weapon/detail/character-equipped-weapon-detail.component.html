@@ -27,7 +27,7 @@
         <dt><span jhiTranslate="gatewayApp.characterEquippedWeapon.weapon">Weapon</span></dt>
         <dd>
           <div *ngIf="characterEquippedWeapon.weapon">
-            <a [routerLink]="['/weapon', characterEquippedWeapon.weapon?.id, 'view']">{{ characterEquippedWeapon.weapon?.id }}</a>
+            <a [routerLink]="['/weapon', characterEquippedWeapon.weapon?.id, 'view']">{{ characterEquippedWeapon.weapon?.name }}</a>
           </div>
         </dd>
       </dl>

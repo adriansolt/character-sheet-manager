@@ -24,7 +24,7 @@
         <dd>
           <div *ngIf="characterEquippedArmor.armorPiece">
             <a [routerLink]="['/armor-piece', characterEquippedArmor.armorPiece?.id, 'view']">{{
-              characterEquippedArmor.armorPiece?.id
+              characterEquippedArmor.armorPiece?.name
             }}</a>
           </div>
         </dd>

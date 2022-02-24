@@ -79,6 +79,13 @@ public class WeaponDTO extends ItemDTO {
     public String toString() {
         return "WeaponDTO{" +
             "id=" + getId() +
+            ", name='" + getName() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", weight=" + getWeight() +
+            ", quality=" + getQuality() +
+            ", picture='" + getPicture() + "'" +
+            ", characterId=" + getCharacterId() +
+            ", campaignId=" + getCampaignId() +
             ", reach=" + getReach() +
             ", baseDamage=" + getBaseDamage() +
             ", requiredST=" + getRequiredST() +

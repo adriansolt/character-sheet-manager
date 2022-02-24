@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -61,7 +63,7 @@ public class ArmorPieceResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/armor-pieces")
-    public Mono<ResponseEntity<ArmorPieceDTO>> createArmorPiece(@RequestBody ArmorPieceDTO armorPieceDTO) throws URISyntaxException {
+    public Mono<ResponseEntity<ArmorPieceDTO>> createArmorPiece(@Valid @RequestBody ArmorPieceDTO armorPieceDTO) throws URISyntaxException {
         log.debug("REST request to save ArmorPiece : {}", armorPieceDTO);
         if (armorPieceDTO.getId() != null) {
             throw new BadRequestAlertException("A new armorPiece cannot already have an ID", ENTITY_NAME, "idexists");
@@ -93,7 +95,7 @@ public class ArmorPieceResource {
     @PutMapping("/armor-pieces/{id}")
     public Mono<ResponseEntity<ArmorPieceDTO>> updateArmorPiece(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody ArmorPieceDTO armorPieceDTO
+        @Valid @RequestBody ArmorPieceDTO armorPieceDTO
     ) throws URISyntaxException {
         log.debug("REST request to update ArmorPiece : {}, {}", id, armorPieceDTO);
         if (armorPieceDTO.getId() == null) {
@@ -136,7 +138,7 @@ public class ArmorPieceResource {
     @PatchMapping(value = "/armor-pieces/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public Mono<ResponseEntity<ArmorPieceDTO>> partialUpdateArmorPiece(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody ArmorPieceDTO armorPieceDTO
+        @NotNull @RequestBody ArmorPieceDTO armorPieceDTO
     ) throws URISyntaxException {
         log.debug("REST request to partial update ArmorPiece partially : {}, {}", id, armorPieceDTO);
         if (armorPieceDTO.getId() == null) {

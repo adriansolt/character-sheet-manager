@@ -22,6 +22,14 @@ describe('ArmorPiece Service', () => {
 
     elemDefault = {
       id: 0,
+      name: 'AAAAAAA',
+      description: 'AAAAAAA',
+      weight: 0,
+      quality: 0,
+      pictureContentType: 'image/png',
+      picture: 'AAAAAAA',
+      characterId: 0,
+      campaignId: 0,
       location: ArmorLocation.HEAD,
       defenseModifier: 0,
     };
@@ -59,6 +67,13 @@ describe('ArmorPiece Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 1,
+          name: 'BBBBBB',
+          description: 'BBBBBB',
+          weight: 1,
+          quality: 1,
+          picture: 'BBBBBB',
+          characterId: 1,
+          campaignId: 1,
           location: 'BBBBBB',
           defenseModifier: 1,
         },
@@ -77,7 +92,12 @@ describe('ArmorPiece Service', () => {
     it('should partial update a ArmorPiece', () => {
       const patchObject = Object.assign(
         {
-          location: 'BBBBBB',
+          name: 'BBBBBB',
+          description: 'BBBBBB',
+          weight: 1,
+          quality: 1,
+          picture: 'BBBBBB',
+          characterId: 1,
           defenseModifier: 1,
         },
         new ArmorPiece()
@@ -98,6 +118,13 @@ describe('ArmorPiece Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 1,
+          name: 'BBBBBB',
+          description: 'BBBBBB',
+          weight: 1,
+          quality: 1,
+          picture: 'BBBBBB',
+          characterId: 1,
+          campaignId: 1,
           location: 'BBBBBB',
           defenseModifier: 1,
         },
@@ -151,7 +178,7 @@ describe('ArmorPiece Service', () => {
       });
 
       it('should add only unique ArmorPiece to an array', () => {
-        const armorPieceArray: IArmorPiece[] = [{ id: 123 }, { id: 456 }, { id: 99244 }];
+        const armorPieceArray: IArmorPiece[] = [{ id: 123 }, { id: 456 }, { id: 31983 }];
         const armorPieceCollection: IArmorPiece[] = [{ id: 123 }];
         expectedResult = service.addArmorPieceToCollectionIfMissing(armorPieceCollection, ...armorPieceArray);
         expect(expectedResult).toHaveLength(3);
