@@ -103,3 +103,12 @@ services:
       - 127.0.0.1:9080:9080
       - 127.0.0.1:9443:9443
       - 127.0.0.1:10990:10990
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    # If you want to expose these ports outside your dev PC,
+    # remove the "127.0.0.1:" prefix
+    ports:
+      - 127.0.0.1:80:80
