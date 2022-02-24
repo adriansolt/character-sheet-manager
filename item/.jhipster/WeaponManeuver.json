@@ -15,14 +15,12 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityField": "name",
       "otherEntityName": "weapon",
       "otherEntityRelationshipName": "weaponManeuver",
       "relationshipName": "weapon",
       "relationshipType": "many-to-one"
     },
     {
-      "otherEntityField": "name",
       "otherEntityName": "maneuver",
       "otherEntityRelationshipName": "weaponManeuver",
       "relationshipName": "maneuver",
