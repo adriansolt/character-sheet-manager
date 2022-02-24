@@ -189,10 +189,10 @@ enum ArmorLocation {
 }
 
 relationship OneToMany {
-  ArmorPiece to CharacterEquippedArmor{ArmorPiece(name)}
-  Weapon to CharacterEquippedWeapon{weapon(name)}
-  Weapon to WeaponManeuver{weapon(name)}
-  Maneuver to WeaponManeuver{maneuver(name)}
+  ArmorPiece to CharacterEquippedArmor
+  Weapon to CharacterEquippedWeapon
+  Weapon to WeaponManeuver
+  Maneuver to WeaponManeuver
 }
 
 application {

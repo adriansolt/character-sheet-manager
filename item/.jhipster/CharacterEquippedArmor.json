@@ -20,7 +20,6 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityField": "name",
       "otherEntityName": "armorPiece",
       "otherEntityRelationshipName": "characterEquippedArmor",
       "relationshipName": "armorPiece",

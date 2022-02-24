@@ -25,7 +25,6 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityField": "name",
       "otherEntityName": "weapon",
       "otherEntityRelationshipName": "characterEquippedWeapon",
       "relationshipName": "weapon",

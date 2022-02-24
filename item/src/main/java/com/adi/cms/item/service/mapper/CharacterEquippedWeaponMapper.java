@@ -9,6 +9,6 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { WeaponMapper.class })
 public interface CharacterEquippedWeaponMapper extends EntityMapper<CharacterEquippedWeaponDTO, CharacterEquippedWeapon> {
-    @Mapping(target = "weapon", source = "weapon", qualifiedByName = "name")
+    @Mapping(target = "weapon", source = "weapon", qualifiedByName = "id")
     CharacterEquippedWeaponDTO toDto(CharacterEquippedWeapon s);
 }
