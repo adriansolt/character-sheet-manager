@@ -49,7 +49,7 @@
               [ngValue]="weaponOption.id === editForm.get('weapon')!.value?.id ? editForm.get('weapon')!.value : weaponOption"
               *ngFor="let weaponOption of weaponsSharedCollection; trackBy: trackWeaponById"
             >
-              {{ weaponOption.id }}
+              {{ weaponOption.name }}
             </option>
           </select>
         </div>

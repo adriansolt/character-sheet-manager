@@ -9,6 +9,7 @@ import { IArmorPiece } from '../armor-piece.model';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { ArmorPieceService } from '../service/armor-piece.service';
 import { ArmorPieceDeleteDialogComponent } from '../delete/armor-piece-delete-dialog.component';
+import { DataUtils } from 'app/core/util/data-util.service';
 
 @Component({
   selector: 'jhi-armor-piece',
@@ -27,6 +28,7 @@ export class ArmorPieceComponent implements OnInit {
   constructor(
     protected armorPieceService: ArmorPieceService,
     protected activatedRoute: ActivatedRoute,
+    protected dataUtils: DataUtils,
     protected router: Router,
     protected modalService: NgbModal
   ) {}
@@ -59,6 +61,14 @@ export class ArmorPieceComponent implements OnInit {
 
   trackId(index: number, item: IArmorPiece): number {
     return item.id!;
+  }
+
+  byteSize(base64String: string): string {
+    return this.dataUtils.byteSize(base64String);
+  }
+
+  openFile(base64String: string, contentType: string | null | undefined): void {
+    return this.dataUtils.openFile(base64String, contentType);
   }
 
   delete(armorPiece: IArmorPiece): void {

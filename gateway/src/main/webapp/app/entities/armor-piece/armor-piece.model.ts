@@ -3,6 +3,14 @@ import { ArmorLocation } from 'app/entities/enumerations/armor-location.model';
 
 export interface IArmorPiece {
   id?: number;
+  name?: string;
+  description?: string | null;
+  weight?: number;
+  quality?: number;
+  pictureContentType?: string | null;
+  picture?: string | null;
+  characterId?: number | null;
+  campaignId?: number | null;
   location?: ArmorLocation | null;
   defenseModifier?: number | null;
   characterEquippedArmors?: ICharacterEquippedArmor[] | null;
@@ -11,6 +19,14 @@ export interface IArmorPiece {
 export class ArmorPiece implements IArmorPiece {
   constructor(
     public id?: number,
+    public name?: string,
+    public description?: string | null,
+    public weight?: number,
+    public quality?: number,
+    public pictureContentType?: string | null,
+    public picture?: string | null,
+    public characterId?: number | null,
+    public campaignId?: number | null,
     public location?: ArmorLocation | null,
     public defenseModifier?: number | null,
     public characterEquippedArmors?: ICharacterEquippedArmor[] | null

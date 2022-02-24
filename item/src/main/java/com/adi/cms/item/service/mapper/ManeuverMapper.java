@@ -9,8 +9,9 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = {})
 public interface ManeuverMapper extends EntityMapper<ManeuverDTO, Maneuver> {
-    @Named("id")
+    @Named("name")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    ManeuverDTO toDtoId(Maneuver maneuver);
+    @Mapping(target = "name", source = "name")
+    ManeuverDTO toDtoName(Maneuver maneuver);
 }

@@ -9,8 +9,9 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = {})
 public interface ArmorPieceMapper extends EntityMapper<ArmorPieceDTO, ArmorPiece> {
-    @Named("id")
+    @Named("name")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    ArmorPieceDTO toDtoId(ArmorPiece armorPiece);
+    @Mapping(target = "name", source = "name")
+    ArmorPieceDTO toDtoName(ArmorPiece armorPiece);
 }

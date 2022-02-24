@@ -7,6 +7,38 @@
   "entityTableName": "weapon",
   "fields": [
     {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "weight",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "quality",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "picture",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "characterId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "campaignId",
+      "fieldType": "Long"
+    },
+    {
       "fieldName": "reach",
       "fieldType": "Integer",
       "fieldValidateRules": ["required"]

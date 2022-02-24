@@ -14,6 +14,30 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="weight" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="quality" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="picture" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="picture_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="character_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="campaign_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <column name="location" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -41,6 +65,14 @@
                   tableName="armor_piece"
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+            <column name="description" type="string"/>
+            <column name="weight" type="numeric"/>
+            <column name="quality" type="numeric"/>
+            <column name="picture" type="blob"/>
+            <column name="picture_content_type" type="string"/>
+            <column name="character_id" type="numeric"/>
+            <column name="campaign_id" type="numeric"/>
             <column name="location" type="string"/>
             <column name="defense_modifier" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->

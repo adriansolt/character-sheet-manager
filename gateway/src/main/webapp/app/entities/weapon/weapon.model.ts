@@ -3,6 +3,14 @@ import { IWeaponManeuver } from 'app/entities/weapon-maneuver/weapon-maneuver.mo
 
 export interface IWeapon {
   id?: number;
+  name?: string;
+  description?: string | null;
+  weight?: number;
+  quality?: number;
+  pictureContentType?: string | null;
+  picture?: string | null;
+  characterId?: number | null;
+  campaignId?: number | null;
   reach?: number;
   baseDamage?: number;
   requiredST?: number;
@@ -14,6 +22,14 @@ export interface IWeapon {
 export class Weapon implements IWeapon {
   constructor(
     public id?: number,
+    public name?: string,
+    public description?: string | null,
+    public weight?: number,
+    public quality?: number,
+    public pictureContentType?: string | null,
+    public picture?: string | null,
+    public characterId?: number | null,
+    public campaignId?: number | null,
     public reach?: number,
     public baseDamage?: number,
     public requiredST?: number,

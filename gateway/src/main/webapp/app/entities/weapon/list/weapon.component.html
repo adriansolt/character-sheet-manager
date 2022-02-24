@@ -33,6 +33,25 @@
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="name"><span jhiTranslate="gatewayApp.weapon.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="description">
+            <span jhiTranslate="gatewayApp.weapon.description">Description</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="weight">
+            <span jhiTranslate="gatewayApp.weapon.weight">Weight</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="quality">
+            <span jhiTranslate="gatewayApp.weapon.quality">Quality</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="picture">
+            <span jhiTranslate="gatewayApp.weapon.picture">Picture</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="characterId">
+            <span jhiTranslate="gatewayApp.weapon.characterId">Character Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="campaignId">
+            <span jhiTranslate="gatewayApp.weapon.campaignId">Campaign Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="reach"><span jhiTranslate="gatewayApp.weapon.reach">Reach</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="baseDamage">
             <span jhiTranslate="gatewayApp.weapon.baseDamage">Base Damage</span> <fa-icon icon="sort"></fa-icon>
@@ -51,6 +70,18 @@
           <td>
             <a [routerLink]="['/weapon', weapon.id, 'view']">{{ weapon.id }}</a>
           </td>
+          <td>{{ weapon.name }}</td>
+          <td>{{ weapon.description }}</td>
+          <td>{{ weapon.weight }}</td>
+          <td>{{ weapon.quality }}</td>
+          <td>
+            <a *ngIf="weapon.picture" (click)="openFile(weapon.picture, weapon.pictureContentType)">
+              <img [src]="'data:' + weapon.pictureContentType + ';base64,' + weapon.picture" style="max-height: 30px" alt="weapon image" />
+            </a>
+            <span *ngIf="weapon.picture">{{ weapon.pictureContentType }}, {{ byteSize(weapon.picture) }}</span>
+          </td>
+          <td>{{ weapon.characterId }}</td>
+          <td>{{ weapon.campaignId }}</td>
           <td>{{ weapon.reach }}</td>
           <td>{{ weapon.baseDamage }}</td>
           <td>{{ weapon.requiredST }}</td>
