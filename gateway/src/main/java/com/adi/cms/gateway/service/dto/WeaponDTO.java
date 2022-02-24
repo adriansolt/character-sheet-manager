@@ -1,15 +1,12 @@
 package com.adi.cms.gateway.service.dto;
 
-import java.io.Serializable;
 import java.util.Objects;
 import javax.validation.constraints.*;
 
 /**
  * A DTO for the {@link com.adi.cms.gateway.domain.Weapon} entity.
  */
-public class WeaponDTO implements Serializable {
-
-    private Long id;
+public class WeaponDTO extends ItemDTO {
 
     @NotNull(message = "must not be null")
     private Integer reach;
@@ -23,14 +20,6 @@ public class WeaponDTO implements Serializable {
     private Integer requiredST;
 
     private Integer damageModifier;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Integer getReach() {
         return reach;

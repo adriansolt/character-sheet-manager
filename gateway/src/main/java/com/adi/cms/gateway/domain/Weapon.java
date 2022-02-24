@@ -1,11 +1,11 @@
 package com.adi.cms.gateway.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.*;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -14,13 +14,8 @@ import org.springframework.data.relational.core.mapping.Table;
  * A Weapon.
  */
 @Table("weapon")
-public class Weapon implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @Column("id")
-    private Long id;
+@PrimaryKeyJoinColumn(name="id")
+public class Weapon extends Item {
 
     @NotNull(message = "must not be null")
     @Column("reach")
@@ -49,17 +44,9 @@ public class Weapon implements Serializable {
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
-    public Long getId() {
-        return this.id;
-    }
-
     public Weapon id(Long id) {
         this.setId(id);
         return this;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Integer getReach() {

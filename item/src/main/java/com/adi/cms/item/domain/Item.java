@@ -12,6 +12,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "item")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,7 +21,7 @@ public class Item implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     @Column(name = "id")
-    private Long id;
+    protected Long id;
 
     @NotNull
     @Column(name = "name", nullable = false)

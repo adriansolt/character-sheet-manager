@@ -2,7 +2,6 @@ package com.adi.cms.item.domain;
 
 import com.adi.cms.item.domain.enumeration.ArmorLocation;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -15,15 +14,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "armor_piece")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class ArmorPiece implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
-    @Column(name = "id")
-    private Long id;
+@PrimaryKeyJoinColumn(name="id")
+public class ArmorPiece extends Item {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "location")
@@ -39,17 +31,9 @@ public class ArmorPiece implements Serializable {
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
-    public Long getId() {
-        return this.id;
-    }
-
     public ArmorPiece id(Long id) {
         this.setId(id);
         return this;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public ArmorLocation getLocation() {

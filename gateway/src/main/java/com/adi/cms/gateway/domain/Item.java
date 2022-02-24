@@ -1,9 +1,11 @@
 package com.adi.cms.gateway.domain;
 
 import java.io.Serializable;
+
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -11,13 +13,14 @@ import org.springframework.data.relational.core.mapping.Table;
  * A Item.
  */
 @Table("item")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @Column("id")
-    private Long id;
+    protected Long id;
 
     @NotNull(message = "must not be null")
     @Column("name")

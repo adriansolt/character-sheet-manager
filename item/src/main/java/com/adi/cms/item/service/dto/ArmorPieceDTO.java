@@ -1,27 +1,16 @@
 package com.adi.cms.item.service.dto;
 
 import com.adi.cms.item.domain.enumeration.ArmorLocation;
-import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * A DTO for the {@link com.adi.cms.item.domain.ArmorPiece} entity.
  */
-public class ArmorPieceDTO implements Serializable {
-
-    private Long id;
+public class ArmorPieceDTO extends ItemDTO {
 
     private ArmorLocation location;
 
     private Integer defenseModifier;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public ArmorLocation getLocation() {
         return location;

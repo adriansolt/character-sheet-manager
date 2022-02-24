@@ -1,7 +1,6 @@
 package com.adi.cms.item.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -15,15 +14,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "weapon")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Weapon implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
-    @Column(name = "id")
-    private Long id;
+@PrimaryKeyJoinColumn(name="id")
+public class Weapon extends Item {
 
     @NotNull
     @Column(name = "reach", nullable = false)

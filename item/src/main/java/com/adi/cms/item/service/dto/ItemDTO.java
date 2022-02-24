@@ -10,7 +10,7 @@ import javax.validation.constraints.*;
  */
 public class ItemDTO implements Serializable {
 
-    private Long id;
+    protected Long id;
 
     @NotNull
     private String name;
