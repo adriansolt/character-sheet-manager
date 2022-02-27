@@ -33,9 +33,6 @@
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="characterId">
-            <span jhiTranslate="gatewayApp.characterEquippedWeapon.characterId">Character Id</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col" jhiSortBy="hand">
             <span jhiTranslate="gatewayApp.characterEquippedWeapon.hand">Hand</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -50,7 +47,6 @@
           <td>
             <a [routerLink]="['/character-equipped-weapon', characterEquippedWeapon.id, 'view']">{{ characterEquippedWeapon.id }}</a>
           </td>
-          <td>{{ characterEquippedWeapon.characterId }}</td>
           <td jhiTranslate="{{ 'gatewayApp.Handedness.' + characterEquippedWeapon.hand }}">{{ characterEquippedWeapon.hand }}</td>
           <td>
             <div *ngIf="characterEquippedWeapon.weapon">

@@ -1,4 +1,5 @@
 import { ICampaignUser } from 'app/entities/campaign-user/campaign-user.model';
+import { ICharacter } from 'app/entities/character/character.model';
 
 export interface ICampaign {
   id?: number;
@@ -8,6 +9,7 @@ export interface ICampaign {
   map?: string | null;
   masterId?: number | null;
   campaignUsers?: ICampaignUser[] | null;
+  characters?: ICharacter[] | null;
 }
 
 export class Campaign implements ICampaign {
@@ -18,7 +20,8 @@ export class Campaign implements ICampaign {
     public mapContentType?: string | null,
     public map?: string | null,
     public masterId?: number | null,
-    public campaignUsers?: ICampaignUser[] | null
+    public campaignUsers?: ICampaignUser[] | null,
+    public characters?: ICharacter[] | null
   ) {}
 }
 

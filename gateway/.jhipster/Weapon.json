@@ -1,5 +1,5 @@
 {
-  "applications": ["item", "gateway"],
+  "applications": ["gateway"],
   "changelogDate": "20220223134558",
   "databaseType": "sql",
   "dto": "mapstruct",
@@ -29,14 +29,6 @@
       "fieldName": "picture",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "image"
-    },
-    {
-      "fieldName": "characterId",
-      "fieldType": "Long"
-    },
-    {
-      "fieldName": "campaignId",
-      "fieldType": "Long"
     },
     {
       "fieldName": "reach",
@@ -77,6 +69,13 @@
       "otherEntityRelationshipName": "weapon",
       "relationshipName": "weaponManeuver",
       "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "character",
+      "otherEntityRelationshipName": "weapon",
+      "relationshipName": "character",
+      "relationshipType": "many-to-one"
     }
   ],
   "service": "serviceClass"

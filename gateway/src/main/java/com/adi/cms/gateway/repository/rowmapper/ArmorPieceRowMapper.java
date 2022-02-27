@@ -32,10 +32,9 @@ public class ArmorPieceRowMapper implements BiFunction<Row, String, ArmorPiece> 
         entity.setQuality(converter.fromRow(row, prefix + "_quality", Integer.class));
         entity.setPictureContentType(converter.fromRow(row, prefix + "_picture_content_type", String.class));
         entity.setPicture(converter.fromRow(row, prefix + "_picture", byte[].class));
-        entity.setCharacterId(converter.fromRow(row, prefix + "_character_id", Long.class));
-        entity.setCampaignId(converter.fromRow(row, prefix + "_campaign_id", Long.class));
         entity.setLocation(converter.fromRow(row, prefix + "_location", ArmorLocation.class));
         entity.setDefenseModifier(converter.fromRow(row, prefix + "_defense_modifier", Integer.class));
+        entity.setCharacterId(converter.fromRow(row, prefix + "_character_id", Long.class));
         return entity;
     }
 }

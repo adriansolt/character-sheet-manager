@@ -27,8 +27,6 @@ describe('Item Service', () => {
       quality: 0,
       pictureContentType: 'image/png',
       picture: 'AAAAAAA',
-      characterId: 0,
-      campaignId: 0,
     };
   });
 
@@ -69,8 +67,6 @@ describe('Item Service', () => {
           weight: 1,
           quality: 1,
           picture: 'BBBBBB',
-          characterId: 1,
-          campaignId: 1,
         },
         elemDefault
       );
@@ -89,7 +85,6 @@ describe('Item Service', () => {
         {
           name: 'BBBBBB',
           picture: 'BBBBBB',
-          characterId: 1,
         },
         new Item()
       );
@@ -114,8 +109,6 @@ describe('Item Service', () => {
           weight: 1,
           quality: 1,
           picture: 'BBBBBB',
-          characterId: 1,
-          campaignId: 1,
         },
         elemDefault
       );
@@ -167,7 +160,7 @@ describe('Item Service', () => {
       });
 
       it('should add only unique Item to an array', () => {
-        const itemArray: IItem[] = [{ id: 123 }, { id: 456 }, { id: 98375 }];
+        const itemArray: IItem[] = [{ id: 123 }, { id: 456 }, { id: 81038 }];
         const itemCollection: IItem[] = [{ id: 123 }];
         expectedResult = service.addItemToCollectionIfMissing(itemCollection, ...itemArray);
         expect(expectedResult).toHaveLength(3);

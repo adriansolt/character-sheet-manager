@@ -54,12 +54,6 @@ class ArmorPieceResourceIT {
     private static final String DEFAULT_PICTURE_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_PICTURE_CONTENT_TYPE = "image/png";
 
-    private static final Long DEFAULT_CHARACTER_ID = 1L;
-    private static final Long UPDATED_CHARACTER_ID = 2L;
-
-    private static final Long DEFAULT_CAMPAIGN_ID = 1L;
-    private static final Long UPDATED_CAMPAIGN_ID = 2L;
-
     private static final ArmorLocation DEFAULT_LOCATION = ArmorLocation.HEAD;
     private static final ArmorLocation UPDATED_LOCATION = ArmorLocation.RIGHT_SHOULDER;
 
@@ -100,8 +94,6 @@ class ArmorPieceResourceIT {
             .quality(DEFAULT_QUALITY)
             .picture(DEFAULT_PICTURE)
             .pictureContentType(DEFAULT_PICTURE_CONTENT_TYPE)
-            .characterId(DEFAULT_CHARACTER_ID)
-            .campaignId(DEFAULT_CAMPAIGN_ID)
             .location(DEFAULT_LOCATION)
             .defenseModifier(DEFAULT_DEFENSE_MODIFIER);
         return armorPiece;
@@ -121,8 +113,6 @@ class ArmorPieceResourceIT {
             .quality(UPDATED_QUALITY)
             .picture(UPDATED_PICTURE)
             .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
-            .characterId(UPDATED_CHARACTER_ID)
-            .campaignId(UPDATED_CAMPAIGN_ID)
             .location(UPDATED_LOCATION)
             .defenseModifier(UPDATED_DEFENSE_MODIFIER);
         return armorPiece;
@@ -176,8 +166,6 @@ class ArmorPieceResourceIT {
         assertThat(testArmorPiece.getQuality()).isEqualTo(DEFAULT_QUALITY);
         assertThat(testArmorPiece.getPicture()).isEqualTo(DEFAULT_PICTURE);
         assertThat(testArmorPiece.getPictureContentType()).isEqualTo(DEFAULT_PICTURE_CONTENT_TYPE);
-        assertThat(testArmorPiece.getCharacterId()).isEqualTo(DEFAULT_CHARACTER_ID);
-        assertThat(testArmorPiece.getCampaignId()).isEqualTo(DEFAULT_CAMPAIGN_ID);
         assertThat(testArmorPiece.getLocation()).isEqualTo(DEFAULT_LOCATION);
         assertThat(testArmorPiece.getDefenseModifier()).isEqualTo(DEFAULT_DEFENSE_MODIFIER);
     }
@@ -301,10 +289,6 @@ class ArmorPieceResourceIT {
             .value(hasItem(DEFAULT_PICTURE_CONTENT_TYPE))
             .jsonPath("$.[*].picture")
             .value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURE)))
-            .jsonPath("$.[*].characterId")
-            .value(hasItem(DEFAULT_CHARACTER_ID.intValue()))
-            .jsonPath("$.[*].campaignId")
-            .value(hasItem(DEFAULT_CAMPAIGN_ID.intValue()))
             .jsonPath("$.[*].location")
             .value(hasItem(DEFAULT_LOCATION.toString()))
             .jsonPath("$.[*].defenseModifier")
@@ -341,10 +325,6 @@ class ArmorPieceResourceIT {
             .value(is(DEFAULT_PICTURE_CONTENT_TYPE))
             .jsonPath("$.picture")
             .value(is(Base64Utils.encodeToString(DEFAULT_PICTURE)))
-            .jsonPath("$.characterId")
-            .value(is(DEFAULT_CHARACTER_ID.intValue()))
-            .jsonPath("$.campaignId")
-            .value(is(DEFAULT_CAMPAIGN_ID.intValue()))
             .jsonPath("$.location")
             .value(is(DEFAULT_LOCATION.toString()))
             .jsonPath("$.defenseModifier")
@@ -379,8 +359,6 @@ class ArmorPieceResourceIT {
             .quality(UPDATED_QUALITY)
             .picture(UPDATED_PICTURE)
             .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
-            .characterId(UPDATED_CHARACTER_ID)
-            .campaignId(UPDATED_CAMPAIGN_ID)
             .location(UPDATED_LOCATION)
             .defenseModifier(UPDATED_DEFENSE_MODIFIER);
         ArmorPieceDTO armorPieceDTO = armorPieceMapper.toDto(updatedArmorPiece);
@@ -404,8 +382,6 @@ class ArmorPieceResourceIT {
         assertThat(testArmorPiece.getQuality()).isEqualTo(UPDATED_QUALITY);
         assertThat(testArmorPiece.getPicture()).isEqualTo(UPDATED_PICTURE);
         assertThat(testArmorPiece.getPictureContentType()).isEqualTo(UPDATED_PICTURE_CONTENT_TYPE);
-        assertThat(testArmorPiece.getCharacterId()).isEqualTo(UPDATED_CHARACTER_ID);
-        assertThat(testArmorPiece.getCampaignId()).isEqualTo(UPDATED_CAMPAIGN_ID);
         assertThat(testArmorPiece.getLocation()).isEqualTo(UPDATED_LOCATION);
         assertThat(testArmorPiece.getDefenseModifier()).isEqualTo(UPDATED_DEFENSE_MODIFIER);
     }
@@ -490,11 +466,7 @@ class ArmorPieceResourceIT {
         ArmorPiece partialUpdatedArmorPiece = new ArmorPiece();
         partialUpdatedArmorPiece.setId(armorPiece.getId());
 
-        partialUpdatedArmorPiece
-            .description(UPDATED_DESCRIPTION)
-            .weight(UPDATED_WEIGHT)
-            .location(UPDATED_LOCATION)
-            .defenseModifier(UPDATED_DEFENSE_MODIFIER);
+        partialUpdatedArmorPiece.description(UPDATED_DESCRIPTION).weight(UPDATED_WEIGHT);
 
         webTestClient
             .patch()
@@ -515,10 +487,8 @@ class ArmorPieceResourceIT {
         assertThat(testArmorPiece.getQuality()).isEqualTo(DEFAULT_QUALITY);
         assertThat(testArmorPiece.getPicture()).isEqualTo(DEFAULT_PICTURE);
         assertThat(testArmorPiece.getPictureContentType()).isEqualTo(DEFAULT_PICTURE_CONTENT_TYPE);
-        assertThat(testArmorPiece.getCharacterId()).isEqualTo(DEFAULT_CHARACTER_ID);
-        assertThat(testArmorPiece.getCampaignId()).isEqualTo(DEFAULT_CAMPAIGN_ID);
-        assertThat(testArmorPiece.getLocation()).isEqualTo(UPDATED_LOCATION);
-        assertThat(testArmorPiece.getDefenseModifier()).isEqualTo(UPDATED_DEFENSE_MODIFIER);
+        assertThat(testArmorPiece.getLocation()).isEqualTo(DEFAULT_LOCATION);
+        assertThat(testArmorPiece.getDefenseModifier()).isEqualTo(DEFAULT_DEFENSE_MODIFIER);
     }
 
     @Test
@@ -539,8 +509,6 @@ class ArmorPieceResourceIT {
             .quality(UPDATED_QUALITY)
             .picture(UPDATED_PICTURE)
             .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
-            .characterId(UPDATED_CHARACTER_ID)
-            .campaignId(UPDATED_CAMPAIGN_ID)
             .location(UPDATED_LOCATION)
             .defenseModifier(UPDATED_DEFENSE_MODIFIER);
 
@@ -563,8 +531,6 @@ class ArmorPieceResourceIT {
         assertThat(testArmorPiece.getQuality()).isEqualTo(UPDATED_QUALITY);
         assertThat(testArmorPiece.getPicture()).isEqualTo(UPDATED_PICTURE);
         assertThat(testArmorPiece.getPictureContentType()).isEqualTo(UPDATED_PICTURE_CONTENT_TYPE);
-        assertThat(testArmorPiece.getCharacterId()).isEqualTo(UPDATED_CHARACTER_ID);
-        assertThat(testArmorPiece.getCampaignId()).isEqualTo(UPDATED_CAMPAIGN_ID);
         assertThat(testArmorPiece.getLocation()).isEqualTo(UPDATED_LOCATION);
         assertThat(testArmorPiece.getDefenseModifier()).isEqualTo(UPDATED_DEFENSE_MODIFIER);
     }

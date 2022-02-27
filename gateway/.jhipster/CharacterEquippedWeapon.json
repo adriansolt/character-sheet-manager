@@ -7,10 +7,6 @@
   "entityTableName": "character_equipped_weapon",
   "fields": [
     {
-      "fieldName": "characterId",
-      "fieldType": "Long"
-    },
-    {
       "fieldName": "hand",
       "fieldType": "Handedness",
       "fieldValues": "RIGHT,LEFT,BOTH"

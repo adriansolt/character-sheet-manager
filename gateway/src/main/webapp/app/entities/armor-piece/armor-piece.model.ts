@@ -1,4 +1,5 @@
 import { ICharacterEquippedArmor } from 'app/entities/character-equipped-armor/character-equipped-armor.model';
+import { ICharacter } from 'app/entities/character/character.model';
 import { ArmorLocation } from 'app/entities/enumerations/armor-location.model';
 
 export interface IArmorPiece {
@@ -9,11 +10,10 @@ export interface IArmorPiece {
   quality?: number;
   pictureContentType?: string | null;
   picture?: string | null;
-  characterId?: number | null;
-  campaignId?: number | null;
   location?: ArmorLocation | null;
   defenseModifier?: number | null;
   characterEquippedArmors?: ICharacterEquippedArmor[] | null;
+  character?: ICharacter | null;
 }
 
 export class ArmorPiece implements IArmorPiece {
@@ -25,11 +25,10 @@ export class ArmorPiece implements IArmorPiece {
     public quality?: number,
     public pictureContentType?: string | null,
     public picture?: string | null,
-    public characterId?: number | null,
-    public campaignId?: number | null,
     public location?: ArmorLocation | null,
     public defenseModifier?: number | null,
-    public characterEquippedArmors?: ICharacterEquippedArmor[] | null
+    public characterEquippedArmors?: ICharacterEquippedArmor[] | null,
+    public character?: ICharacter | null
   ) {}
 }
 

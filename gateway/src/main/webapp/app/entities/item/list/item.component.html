@@ -44,11 +44,8 @@
           <th scope="col" jhiSortBy="picture">
             <span jhiTranslate="gatewayApp.item.picture">Picture</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="characterId">
-            <span jhiTranslate="gatewayApp.item.characterId">Character Id</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="campaignId">
-            <span jhiTranslate="gatewayApp.item.campaignId">Campaign Id</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="character.name">
+            <span jhiTranslate="gatewayApp.item.character">Character</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -68,8 +65,11 @@
             </a>
             <span *ngIf="item.picture">{{ item.pictureContentType }}, {{ byteSize(item.picture) }}</span>
           </td>
-          <td>{{ item.characterId }}</td>
-          <td>{{ item.campaignId }}</td>
+          <td>
+            <div *ngIf="item.character">
+              <a [routerLink]="['/character', item.character?.id, 'view']">{{ item.character?.name }}</a>
+            </div>
+          </td>
           <td class="text-right">
             <div class="btn-group">
               <button type="submit" [routerLink]="['/item', item.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">

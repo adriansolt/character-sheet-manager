@@ -31,11 +31,11 @@ public class CharacterDTO implements Serializable {
     private String pictureContentType;
     private Handedness handedness;
 
-    private Long campaignId;
-
     private Boolean active;
 
     private UserDTO user;
+
+    private CampaignDTO campaign;
 
     public Long getId() {
         return id;
@@ -101,14 +101,6 @@ public class CharacterDTO implements Serializable {
         this.handedness = handedness;
     }
 
-    public Long getCampaignId() {
-        return campaignId;
-    }
-
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
-    }
-
     public Boolean getActive() {
         return active;
     }
@@ -123,6 +115,14 @@ public class CharacterDTO implements Serializable {
 
     public void setUser(UserDTO user) {
         this.user = user;
+    }
+
+    public CampaignDTO getCampaign() {
+        return campaign;
+    }
+
+    public void setCampaign(CampaignDTO campaign) {
+        this.campaign = campaign;
     }
 
     @Override
@@ -157,9 +157,9 @@ public class CharacterDTO implements Serializable {
             ", points=" + getPoints() +
             ", picture='" + getPicture() + "'" +
             ", handedness='" + getHandedness() + "'" +
-            ", campaignId=" + getCampaignId() +
             ", active='" + getActive() + "'" +
             ", user=" + getUser() +
+            ", campaign=" + getCampaign() +
             "}";
     }
 }

@@ -21,7 +21,6 @@ describe('CharacterEquippedArmor Service', () => {
 
     elemDefault = {
       id: 0,
-      characterId: 0,
     };
   });
 
@@ -57,7 +56,6 @@ describe('CharacterEquippedArmor Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 1,
-          characterId: 1,
         },
         elemDefault
       );
@@ -89,7 +87,6 @@ describe('CharacterEquippedArmor Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 1,
-          characterId: 1,
         },
         elemDefault
       );
@@ -141,7 +138,7 @@ describe('CharacterEquippedArmor Service', () => {
       });
 
       it('should add only unique CharacterEquippedArmor to an array', () => {
-        const characterEquippedArmorArray: ICharacterEquippedArmor[] = [{ id: 123 }, { id: 456 }, { id: 3444 }];
+        const characterEquippedArmorArray: ICharacterEquippedArmor[] = [{ id: 123 }, { id: 456 }, { id: 40805 }];
         const characterEquippedArmorCollection: ICharacterEquippedArmor[] = [{ id: 123 }];
         expectedResult = service.addCharacterEquippedArmorToCollectionIfMissing(
           characterEquippedArmorCollection,

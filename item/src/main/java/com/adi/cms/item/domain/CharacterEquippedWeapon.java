@@ -23,9 +23,6 @@ public class CharacterEquippedWeapon implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "character_id")
-    private Long characterId;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "hand")
     private Handedness hand;
@@ -47,19 +44,6 @@ public class CharacterEquippedWeapon implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getCharacterId() {
-        return this.characterId;
-    }
-
-    public CharacterEquippedWeapon characterId(Long characterId) {
-        this.setCharacterId(characterId);
-        return this;
-    }
-
-    public void setCharacterId(Long characterId) {
-        this.characterId = characterId;
     }
 
     public Handedness getHand() {
@@ -112,7 +96,6 @@ public class CharacterEquippedWeapon implements Serializable {
     public String toString() {
         return "CharacterEquippedWeapon{" +
             "id=" + getId() +
-            ", characterId=" + getCharacterId() +
             ", hand='" + getHand() + "'" +
             "}";
     }

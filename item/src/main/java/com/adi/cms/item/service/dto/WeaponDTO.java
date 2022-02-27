@@ -27,9 +27,6 @@ public class WeaponDTO implements Serializable {
     private byte[] picture;
 
     private String pictureContentType;
-    private Long characterId;
-
-    private Long campaignId;
 
     @NotNull
     private Integer reach;
@@ -100,22 +97,6 @@ public class WeaponDTO implements Serializable {
         this.pictureContentType = pictureContentType;
     }
 
-    public Long getCharacterId() {
-        return characterId;
-    }
-
-    public void setCharacterId(Long characterId) {
-        this.characterId = characterId;
-    }
-
-    public Long getCampaignId() {
-        return campaignId;
-    }
-
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
-    }
-
     public Integer getReach() {
         return reach;
     }
@@ -179,8 +160,6 @@ public class WeaponDTO implements Serializable {
             ", weight=" + getWeight() +
             ", quality=" + getQuality() +
             ", picture='" + getPicture() + "'" +
-            ", characterId=" + getCharacterId() +
-            ", campaignId=" + getCampaignId() +
             ", reach=" + getReach() +
             ", baseDamage=" + getBaseDamage() +
             ", requiredST=" + getRequiredST() +

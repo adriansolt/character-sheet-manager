@@ -3,6 +3,7 @@ package com.adi.cms.gateway.repository;
 import static org.springframework.data.relational.core.query.Criteria.where;
 
 import com.adi.cms.gateway.domain.Weapon;
+import com.adi.cms.gateway.repository.rowmapper.CharacterRowMapper;
 import com.adi.cms.gateway.repository.rowmapper.WeaponRowMapper;
 import io.r2dbc.spi.Row;
 import io.r2dbc.spi.RowMetadata;
@@ -21,7 +22,7 @@ import org.springframework.data.relational.core.query.Criteria;
 import org.springframework.data.relational.core.sql.Column;
 import org.springframework.data.relational.core.sql.Expression;
 import org.springframework.data.relational.core.sql.Select;
-import org.springframework.data.relational.core.sql.SelectBuilder.SelectFromAndJoin;
+import org.springframework.data.relational.core.sql.SelectBuilder.SelectFromAndJoinCondition;
 import org.springframework.data.relational.core.sql.Table;
 import org.springframework.data.relational.repository.support.MappingRelationalEntityInformation;
 import org.springframework.r2dbc.core.DatabaseClient;
@@ -39,13 +40,16 @@ class WeaponRepositoryInternalImpl extends SimpleR2dbcRepository<Weapon, Long> i
     private final R2dbcEntityTemplate r2dbcEntityTemplate;
     private final EntityManager entityManager;
 
+    private final CharacterRowMapper characterMapper;
     private final WeaponRowMapper weaponMapper;
 
     private static final Table entityTable = Table.aliased("weapon", EntityManager.ENTITY_ALIAS);
+    private static final Table characterTable = Table.aliased("character", "e_character");
 
     public WeaponRepositoryInternalImpl(
         R2dbcEntityTemplate template,
         EntityManager entityManager,
+        CharacterRowMapper characterMapper,
         WeaponRowMapper weaponMapper,
         R2dbcEntityOperations entityOperations,
         R2dbcConverter converter
@@ -58,6 +62,7 @@ class WeaponRepositoryInternalImpl extends SimpleR2dbcRepository<Weapon, Long> i
         this.db = template.getDatabaseClient();
         this.r2dbcEntityTemplate = template;
         this.entityManager = entityManager;
+        this.characterMapper = characterMapper;
         this.weaponMapper = weaponMapper;
     }
 
@@ -73,7 +78,14 @@ class WeaponRepositoryInternalImpl extends SimpleR2dbcRepository<Weapon, Long> i
 
     RowsFetchSpec<Weapon> createQuery(Pageable pageable, Criteria criteria) {
         List<Expression> columns = WeaponSqlHelper.getColumns(entityTable, EntityManager.ENTITY_ALIAS);
-        SelectFromAndJoin selectFrom = Select.builder().select(columns).from(entityTable);
+        columns.addAll(CharacterSqlHelper.getColumns(characterTable, "character"));
+        SelectFromAndJoinCondition selectFrom = Select
+            .builder()
+            .select(columns)
+            .from(entityTable)
+            .leftOuterJoin(characterTable)
+            .on(Column.create("character_id", entityTable))
+            .equals(Column.create("id", characterTable));
 
         String select = entityManager.createSelect(selectFrom, Weapon.class, pageable, criteria);
         return db.sql(select).map(this::process);
@@ -91,6 +103,7 @@ class WeaponRepositoryInternalImpl extends SimpleR2dbcRepository<Weapon, Long> i
 
     private Weapon process(Row row, RowMetadata metadata) {
         Weapon entity = weaponMapper.apply(row, "e");
+        entity.setCharacter(characterMapper.apply(row, "character"));
         return entity;
     }
 

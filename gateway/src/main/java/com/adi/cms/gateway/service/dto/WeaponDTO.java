@@ -27,9 +27,6 @@ public class WeaponDTO implements Serializable {
     private byte[] picture;
 
     private String pictureContentType;
-    private Long characterId;
-
-    private Long campaignId;
 
     @NotNull(message = "must not be null")
     private Integer reach;
@@ -43,6 +40,8 @@ public class WeaponDTO implements Serializable {
     private Integer requiredST;
 
     private Integer damageModifier;
+
+    private CharacterDTO character;
 
     public Long getId() {
         return id;
@@ -100,22 +99,6 @@ public class WeaponDTO implements Serializable {
         this.pictureContentType = pictureContentType;
     }
 
-    public Long getCharacterId() {
-        return characterId;
-    }
-
-    public void setCharacterId(Long characterId) {
-        this.characterId = characterId;
-    }
-
-    public Long getCampaignId() {
-        return campaignId;
-    }
-
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
-    }
-
     public Integer getReach() {
         return reach;
     }
@@ -146,6 +129,14 @@ public class WeaponDTO implements Serializable {
 
     public void setDamageModifier(Integer damageModifier) {
         this.damageModifier = damageModifier;
+    }
+
+    public CharacterDTO getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(CharacterDTO character) {
+        this.character = character;
     }
 
     @Override
@@ -179,12 +170,11 @@ public class WeaponDTO implements Serializable {
             ", weight=" + getWeight() +
             ", quality=" + getQuality() +
             ", picture='" + getPicture() + "'" +
-            ", characterId=" + getCharacterId() +
-            ", campaignId=" + getCampaignId() +
             ", reach=" + getReach() +
             ", baseDamage=" + getBaseDamage() +
             ", requiredST=" + getRequiredST() +
             ", damageModifier=" + getDamageModifier() +
+            ", character=" + getCharacter() +
             "}";
     }
 }

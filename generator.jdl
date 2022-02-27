@@ -53,7 +53,6 @@ entity Character {
    points Integer required
    picture ImageBlob
    handedness Handedness
-   campaignId Long
    active Boolean
 }
 
@@ -139,8 +138,6 @@ entity Item {
   weight Integer required
   quality Integer required
   picture ImageBlob
-  characterId Long
-  campaignId Long
 }
 
 entity Weapon {
@@ -149,8 +146,6 @@ entity Weapon {
    weight Integer required
    quality Integer required
    picture ImageBlob
-   characterId Long
-   campaignId Long
    reach Integer required
    baseDamage Integer required min(0)
    requiredST Integer required min(1)
@@ -164,7 +159,6 @@ entity Maneuver {
 }
 
 entity CharacterEquippedWeapon {
-   characterId Long
    hand Handedness
 }
 
@@ -174,14 +168,11 @@ entity ArmorPiece {
    weight Integer required
    quality Integer required
    picture ImageBlob
-   characterId Long
-   campaignId Long
    location ArmorLocation
    defenseModifier Integer
 }
 
 entity CharacterEquippedArmor {
-   characterId Long
 }
 
 entity WeaponManeuver {}

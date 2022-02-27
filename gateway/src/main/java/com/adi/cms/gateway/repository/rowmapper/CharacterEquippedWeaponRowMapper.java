@@ -26,7 +26,6 @@ public class CharacterEquippedWeaponRowMapper implements BiFunction<Row, String,
     public CharacterEquippedWeapon apply(Row row, String prefix) {
         CharacterEquippedWeapon entity = new CharacterEquippedWeapon();
         entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
-        entity.setCharacterId(converter.fromRow(row, prefix + "_character_id", Long.class));
         entity.setHand(converter.fromRow(row, prefix + "_hand", Handedness.class));
         entity.setWeaponId(converter.fromRow(row, prefix + "_weapon_id", Long.class));
         return entity;

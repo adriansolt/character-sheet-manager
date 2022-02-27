@@ -47,12 +47,6 @@ public class Weapon implements Serializable {
     @Column(name = "picture_content_type")
     private String pictureContentType;
 
-    @Column(name = "character_id")
-    private Long characterId;
-
-    @Column(name = "campaign_id")
-    private Long campaignId;
-
     @NotNull
     @Column(name = "reach", nullable = false)
     private Integer reach;
@@ -171,32 +165,6 @@ public class Weapon implements Serializable {
 
     public void setPictureContentType(String pictureContentType) {
         this.pictureContentType = pictureContentType;
-    }
-
-    public Long getCharacterId() {
-        return this.characterId;
-    }
-
-    public Weapon characterId(Long characterId) {
-        this.setCharacterId(characterId);
-        return this;
-    }
-
-    public void setCharacterId(Long characterId) {
-        this.characterId = characterId;
-    }
-
-    public Long getCampaignId() {
-        return this.campaignId;
-    }
-
-    public Weapon campaignId(Long campaignId) {
-        this.setCampaignId(campaignId);
-        return this;
-    }
-
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
     }
 
     public Integer getReach() {
@@ -343,8 +311,6 @@ public class Weapon implements Serializable {
             ", quality=" + getQuality() +
             ", picture='" + getPicture() + "'" +
             ", pictureContentType='" + getPictureContentType() + "'" +
-            ", characterId=" + getCharacterId() +
-            ", campaignId=" + getCampaignId() +
             ", reach=" + getReach() +
             ", baseDamage=" + getBaseDamage() +
             ", requiredST=" + getRequiredST() +

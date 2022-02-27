@@ -3,13 +3,15 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 
 import { IItem, Item } from '../item.model';
 import { ItemService } from '../service/item.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
 import { EventManager, EventWithContent } from 'app/core/util/event-manager.service';
 import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
+import { ICharacter } from 'app/entities/character/character.model';
+import { CharacterService } from 'app/entities/character/service/character.service';
 
 @Component({
   selector: 'jhi-item-update',
@@ -17,6 +19,8 @@ import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
 })
 export class ItemUpdateComponent implements OnInit {
   isSaving = false;
+
+  charactersSharedCollection: ICharacter[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -26,14 +30,14 @@ export class ItemUpdateComponent implements OnInit {
     quality: [null, [Validators.required]],
     picture: [],
     pictureContentType: [],
-    characterId: [],
-    campaignId: [],
+    character: [],
   });
 
   constructor(
     protected dataUtils: DataUtils,
     protected eventManager: EventManager,
     protected itemService: ItemService,
+    protected characterService: CharacterService,
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
@@ -42,6 +46,8 @@ export class ItemUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ item }) => {
       this.updateForm(item);
+
+      this.loadRelationshipsOptions();
     });
   }
 
@@ -84,6 +90,10 @@ export class ItemUpdateComponent implements OnInit {
     }
   }
 
+  trackCharacterById(index: number, item: ICharacter): number {
+    return item.id!;
+  }
+
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IItem>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
@@ -112,9 +122,25 @@ export class ItemUpdateComponent implements OnInit {
       quality: item.quality,
       picture: item.picture,
       pictureContentType: item.pictureContentType,
-      characterId: item.characterId,
-      campaignId: item.campaignId,
+      character: item.character,
     });
+
+    this.charactersSharedCollection = this.characterService.addCharacterToCollectionIfMissing(
+      this.charactersSharedCollection,
+      item.character
+    );
+  }
+
+  protected loadRelationshipsOptions(): void {
+    this.characterService
+      .query()
+      .pipe(map((res: HttpResponse<ICharacter[]>) => res.body ?? []))
+      .pipe(
+        map((characters: ICharacter[]) =>
+          this.characterService.addCharacterToCollectionIfMissing(characters, this.editForm.get('character')!.value)
+        )
+      )
+      .subscribe((characters: ICharacter[]) => (this.charactersSharedCollection = characters));
   }
 
   protected createFromForm(): IItem {
@@ -127,8 +153,7 @@ export class ItemUpdateComponent implements OnInit {
       quality: this.editForm.get(['quality'])!.value,
       pictureContentType: this.editForm.get(['pictureContentType'])!.value,
       picture: this.editForm.get(['picture'])!.value,
-      characterId: this.editForm.get(['characterId'])!.value,
-      campaignId: this.editForm.get(['campaignId'])!.value,
+      character: this.editForm.get(['character'])!.value,
     };
   }
 }

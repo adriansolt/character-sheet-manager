@@ -108,30 +108,6 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="gatewayApp.armorPiece.characterId" for="field_characterId">Character Id</label>
-          <input
-            type="number"
-            class="form-control"
-            name="characterId"
-            id="field_characterId"
-            data-cy="characterId"
-            formControlName="characterId"
-          />
-        </div>
-
-        <div class="form-group">
-          <label class="form-control-label" jhiTranslate="gatewayApp.armorPiece.campaignId" for="field_campaignId">Campaign Id</label>
-          <input
-            type="number"
-            class="form-control"
-            name="campaignId"
-            id="field_campaignId"
-            data-cy="campaignId"
-            formControlName="campaignId"
-          />
-        </div>
-
-        <div class="form-group">
           <label class="form-control-label" jhiTranslate="gatewayApp.armorPiece.location" for="field_location">Location</label>
           <select class="form-control" name="location" formControlName="location" id="field_location" data-cy="location">
             <option [ngValue]="null">{{ 'gatewayApp.ArmorLocation.null' | translate }}</option>
@@ -153,6 +129,19 @@
             data-cy="defenseModifier"
             formControlName="defenseModifier"
           />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gatewayApp.armorPiece.character" for="field_character">Character</label>
+          <select class="form-control" id="field_character" data-cy="character" name="character" formControlName="character">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="characterOption.id === editForm.get('character')!.value?.id ? editForm.get('character')!.value : characterOption"
+              *ngFor="let characterOption of charactersSharedCollection; trackBy: trackCharacterById"
+            >
+              {{ characterOption.name }}
+            </option>
+          </select>
         </div>
       </div>
 

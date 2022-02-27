@@ -17,6 +17,12 @@ import reactor.core.publisher.Mono;
 public interface WeaponRepository extends ReactiveCrudRepository<Weapon, Long>, WeaponRepositoryInternal {
     Flux<Weapon> findAllBy(Pageable pageable);
 
+    @Query("SELECT * FROM weapon entity WHERE entity.character_id = :id")
+    Flux<Weapon> findByCharacter(Long id);
+
+    @Query("SELECT * FROM weapon entity WHERE entity.character_id IS NULL")
+    Flux<Weapon> findAllWhereCharacterIsNull();
+
     @Override
     <S extends Weapon> Mono<S> save(S entity);
 

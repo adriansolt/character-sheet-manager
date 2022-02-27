@@ -23,7 +23,10 @@ public class Note implements Serializable {
     private String description;
 
     @Transient
-    @JsonIgnoreProperties(value = { "notes", "characterAttributes", "characterSkills", "user" }, allowSetters = true)
+    @JsonIgnoreProperties(
+        value = { "notes", "characterAttributes", "characterSkills", "items", "weapons", "armorPieces", "user", "campaign" },
+        allowSetters = true
+    )
     private Character character;
 
     @Column("character_id")

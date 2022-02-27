@@ -10,8 +10,6 @@ public class CharacterEquippedArmorDTO implements Serializable {
 
     private Long id;
 
-    private Long characterId;
-
     private ArmorPieceDTO armorPiece;
 
     public Long getId() {
@@ -20,14 +18,6 @@ public class CharacterEquippedArmorDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getCharacterId() {
-        return characterId;
-    }
-
-    public void setCharacterId(Long characterId) {
-        this.characterId = characterId;
     }
 
     public ArmorPieceDTO getArmorPiece() {
@@ -64,7 +54,6 @@ public class CharacterEquippedArmorDTO implements Serializable {
     public String toString() {
         return "CharacterEquippedArmorDTO{" +
             "id=" + getId() +
-            ", characterId=" + getCharacterId() +
             ", armorPiece=" + getArmorPiece() +
             "}";
     }

@@ -53,12 +53,6 @@ class WeaponResourceIT {
     private static final String DEFAULT_PICTURE_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_PICTURE_CONTENT_TYPE = "image/png";
 
-    private static final Long DEFAULT_CHARACTER_ID = 1L;
-    private static final Long UPDATED_CHARACTER_ID = 2L;
-
-    private static final Long DEFAULT_CAMPAIGN_ID = 1L;
-    private static final Long UPDATED_CAMPAIGN_ID = 2L;
-
     private static final Integer DEFAULT_REACH = 1;
     private static final Integer UPDATED_REACH = 2;
 
@@ -105,8 +99,6 @@ class WeaponResourceIT {
             .quality(DEFAULT_QUALITY)
             .picture(DEFAULT_PICTURE)
             .pictureContentType(DEFAULT_PICTURE_CONTENT_TYPE)
-            .characterId(DEFAULT_CHARACTER_ID)
-            .campaignId(DEFAULT_CAMPAIGN_ID)
             .reach(DEFAULT_REACH)
             .baseDamage(DEFAULT_BASE_DAMAGE)
             .requiredST(DEFAULT_REQUIRED_ST)
@@ -128,8 +120,6 @@ class WeaponResourceIT {
             .quality(UPDATED_QUALITY)
             .picture(UPDATED_PICTURE)
             .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
-            .characterId(UPDATED_CHARACTER_ID)
-            .campaignId(UPDATED_CAMPAIGN_ID)
             .reach(UPDATED_REACH)
             .baseDamage(UPDATED_BASE_DAMAGE)
             .requiredST(UPDATED_REQUIRED_ST)
@@ -185,8 +175,6 @@ class WeaponResourceIT {
         assertThat(testWeapon.getQuality()).isEqualTo(DEFAULT_QUALITY);
         assertThat(testWeapon.getPicture()).isEqualTo(DEFAULT_PICTURE);
         assertThat(testWeapon.getPictureContentType()).isEqualTo(DEFAULT_PICTURE_CONTENT_TYPE);
-        assertThat(testWeapon.getCharacterId()).isEqualTo(DEFAULT_CHARACTER_ID);
-        assertThat(testWeapon.getCampaignId()).isEqualTo(DEFAULT_CAMPAIGN_ID);
         assertThat(testWeapon.getReach()).isEqualTo(DEFAULT_REACH);
         assertThat(testWeapon.getBaseDamage()).isEqualTo(DEFAULT_BASE_DAMAGE);
         assertThat(testWeapon.getRequiredST()).isEqualTo(DEFAULT_REQUIRED_ST);
@@ -378,10 +366,6 @@ class WeaponResourceIT {
             .value(hasItem(DEFAULT_PICTURE_CONTENT_TYPE))
             .jsonPath("$.[*].picture")
             .value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURE)))
-            .jsonPath("$.[*].characterId")
-            .value(hasItem(DEFAULT_CHARACTER_ID.intValue()))
-            .jsonPath("$.[*].campaignId")
-            .value(hasItem(DEFAULT_CAMPAIGN_ID.intValue()))
             .jsonPath("$.[*].reach")
             .value(hasItem(DEFAULT_REACH))
             .jsonPath("$.[*].baseDamage")
@@ -422,10 +406,6 @@ class WeaponResourceIT {
             .value(is(DEFAULT_PICTURE_CONTENT_TYPE))
             .jsonPath("$.picture")
             .value(is(Base64Utils.encodeToString(DEFAULT_PICTURE)))
-            .jsonPath("$.characterId")
-            .value(is(DEFAULT_CHARACTER_ID.intValue()))
-            .jsonPath("$.campaignId")
-            .value(is(DEFAULT_CAMPAIGN_ID.intValue()))
             .jsonPath("$.reach")
             .value(is(DEFAULT_REACH))
             .jsonPath("$.baseDamage")
@@ -464,8 +444,6 @@ class WeaponResourceIT {
             .quality(UPDATED_QUALITY)
             .picture(UPDATED_PICTURE)
             .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
-            .characterId(UPDATED_CHARACTER_ID)
-            .campaignId(UPDATED_CAMPAIGN_ID)
             .reach(UPDATED_REACH)
             .baseDamage(UPDATED_BASE_DAMAGE)
             .requiredST(UPDATED_REQUIRED_ST)
@@ -491,8 +469,6 @@ class WeaponResourceIT {
         assertThat(testWeapon.getQuality()).isEqualTo(UPDATED_QUALITY);
         assertThat(testWeapon.getPicture()).isEqualTo(UPDATED_PICTURE);
         assertThat(testWeapon.getPictureContentType()).isEqualTo(UPDATED_PICTURE_CONTENT_TYPE);
-        assertThat(testWeapon.getCharacterId()).isEqualTo(UPDATED_CHARACTER_ID);
-        assertThat(testWeapon.getCampaignId()).isEqualTo(UPDATED_CAMPAIGN_ID);
         assertThat(testWeapon.getReach()).isEqualTo(UPDATED_REACH);
         assertThat(testWeapon.getBaseDamage()).isEqualTo(UPDATED_BASE_DAMAGE);
         assertThat(testWeapon.getRequiredST()).isEqualTo(UPDATED_REQUIRED_ST);
@@ -584,10 +560,9 @@ class WeaponResourceIT {
             .weight(UPDATED_WEIGHT)
             .picture(UPDATED_PICTURE)
             .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
-            .campaignId(UPDATED_CAMPAIGN_ID)
-            .reach(UPDATED_REACH)
             .baseDamage(UPDATED_BASE_DAMAGE)
-            .requiredST(UPDATED_REQUIRED_ST);
+            .requiredST(UPDATED_REQUIRED_ST)
+            .damageModifier(UPDATED_DAMAGE_MODIFIER);
 
         webTestClient
             .patch()
@@ -608,12 +583,10 @@ class WeaponResourceIT {
         assertThat(testWeapon.getQuality()).isEqualTo(DEFAULT_QUALITY);
         assertThat(testWeapon.getPicture()).isEqualTo(UPDATED_PICTURE);
         assertThat(testWeapon.getPictureContentType()).isEqualTo(UPDATED_PICTURE_CONTENT_TYPE);
-        assertThat(testWeapon.getCharacterId()).isEqualTo(DEFAULT_CHARACTER_ID);
-        assertThat(testWeapon.getCampaignId()).isEqualTo(UPDATED_CAMPAIGN_ID);
-        assertThat(testWeapon.getReach()).isEqualTo(UPDATED_REACH);
+        assertThat(testWeapon.getReach()).isEqualTo(DEFAULT_REACH);
         assertThat(testWeapon.getBaseDamage()).isEqualTo(UPDATED_BASE_DAMAGE);
         assertThat(testWeapon.getRequiredST()).isEqualTo(UPDATED_REQUIRED_ST);
-        assertThat(testWeapon.getDamageModifier()).isEqualTo(DEFAULT_DAMAGE_MODIFIER);
+        assertThat(testWeapon.getDamageModifier()).isEqualTo(UPDATED_DAMAGE_MODIFIER);
     }
 
     @Test
@@ -634,8 +607,6 @@ class WeaponResourceIT {
             .quality(UPDATED_QUALITY)
             .picture(UPDATED_PICTURE)
             .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
-            .characterId(UPDATED_CHARACTER_ID)
-            .campaignId(UPDATED_CAMPAIGN_ID)
             .reach(UPDATED_REACH)
             .baseDamage(UPDATED_BASE_DAMAGE)
             .requiredST(UPDATED_REQUIRED_ST)
@@ -660,8 +631,6 @@ class WeaponResourceIT {
         assertThat(testWeapon.getQuality()).isEqualTo(UPDATED_QUALITY);
         assertThat(testWeapon.getPicture()).isEqualTo(UPDATED_PICTURE);
         assertThat(testWeapon.getPictureContentType()).isEqualTo(UPDATED_PICTURE_CONTENT_TYPE);
-        assertThat(testWeapon.getCharacterId()).isEqualTo(UPDATED_CHARACTER_ID);
-        assertThat(testWeapon.getCampaignId()).isEqualTo(UPDATED_CAMPAIGN_ID);
         assertThat(testWeapon.getReach()).isEqualTo(UPDATED_REACH);
         assertThat(testWeapon.getBaseDamage()).isEqualTo(UPDATED_BASE_DAMAGE);
         assertThat(testWeapon.getRequiredST()).isEqualTo(UPDATED_REQUIRED_ST);

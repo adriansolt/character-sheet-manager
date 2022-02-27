@@ -50,12 +50,6 @@ class ItemResourceIT {
     private static final String DEFAULT_PICTURE_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_PICTURE_CONTENT_TYPE = "image/png";
 
-    private static final Long DEFAULT_CHARACTER_ID = 1L;
-    private static final Long UPDATED_CHARACTER_ID = 2L;
-
-    private static final Long DEFAULT_CAMPAIGN_ID = 1L;
-    private static final Long UPDATED_CAMPAIGN_ID = 2L;
-
     private static final String ENTITY_API_URL = "/api/items";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -89,9 +83,7 @@ class ItemResourceIT {
             .weight(DEFAULT_WEIGHT)
             .quality(DEFAULT_QUALITY)
             .picture(DEFAULT_PICTURE)
-            .pictureContentType(DEFAULT_PICTURE_CONTENT_TYPE)
-            .characterId(DEFAULT_CHARACTER_ID)
-            .campaignId(DEFAULT_CAMPAIGN_ID);
+            .pictureContentType(DEFAULT_PICTURE_CONTENT_TYPE);
         return item;
     }
 
@@ -108,9 +100,7 @@ class ItemResourceIT {
             .weight(UPDATED_WEIGHT)
             .quality(UPDATED_QUALITY)
             .picture(UPDATED_PICTURE)
-            .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
-            .characterId(UPDATED_CHARACTER_ID)
-            .campaignId(UPDATED_CAMPAIGN_ID);
+            .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE);
         return item;
     }
 
@@ -144,8 +134,6 @@ class ItemResourceIT {
         assertThat(testItem.getQuality()).isEqualTo(DEFAULT_QUALITY);
         assertThat(testItem.getPicture()).isEqualTo(DEFAULT_PICTURE);
         assertThat(testItem.getPictureContentType()).isEqualTo(DEFAULT_PICTURE_CONTENT_TYPE);
-        assertThat(testItem.getCharacterId()).isEqualTo(DEFAULT_CHARACTER_ID);
-        assertThat(testItem.getCampaignId()).isEqualTo(DEFAULT_CAMPAIGN_ID);
     }
 
     @Test
@@ -258,9 +246,7 @@ class ItemResourceIT {
             .andExpect(jsonPath("$.[*].weight").value(hasItem(DEFAULT_WEIGHT)))
             .andExpect(jsonPath("$.[*].quality").value(hasItem(DEFAULT_QUALITY)))
             .andExpect(jsonPath("$.[*].pictureContentType").value(hasItem(DEFAULT_PICTURE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].picture").value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURE))))
-            .andExpect(jsonPath("$.[*].characterId").value(hasItem(DEFAULT_CHARACTER_ID.intValue())))
-            .andExpect(jsonPath("$.[*].campaignId").value(hasItem(DEFAULT_CAMPAIGN_ID.intValue())));
+            .andExpect(jsonPath("$.[*].picture").value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURE))));
     }
 
     @Test
@@ -280,9 +266,7 @@ class ItemResourceIT {
             .andExpect(jsonPath("$.weight").value(DEFAULT_WEIGHT))
             .andExpect(jsonPath("$.quality").value(DEFAULT_QUALITY))
             .andExpect(jsonPath("$.pictureContentType").value(DEFAULT_PICTURE_CONTENT_TYPE))
-            .andExpect(jsonPath("$.picture").value(Base64Utils.encodeToString(DEFAULT_PICTURE)))
-            .andExpect(jsonPath("$.characterId").value(DEFAULT_CHARACTER_ID.intValue()))
-            .andExpect(jsonPath("$.campaignId").value(DEFAULT_CAMPAIGN_ID.intValue()));
+            .andExpect(jsonPath("$.picture").value(Base64Utils.encodeToString(DEFAULT_PICTURE)));
     }
 
     @Test
@@ -310,9 +294,7 @@ class ItemResourceIT {
             .weight(UPDATED_WEIGHT)
             .quality(UPDATED_QUALITY)
             .picture(UPDATED_PICTURE)
-            .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
-            .characterId(UPDATED_CHARACTER_ID)
-            .campaignId(UPDATED_CAMPAIGN_ID);
+            .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE);
         ItemDTO itemDTO = itemMapper.toDto(updatedItem);
 
         restItemMockMvc
@@ -334,8 +316,6 @@ class ItemResourceIT {
         assertThat(testItem.getQuality()).isEqualTo(UPDATED_QUALITY);
         assertThat(testItem.getPicture()).isEqualTo(UPDATED_PICTURE);
         assertThat(testItem.getPictureContentType()).isEqualTo(UPDATED_PICTURE_CONTENT_TYPE);
-        assertThat(testItem.getCharacterId()).isEqualTo(UPDATED_CHARACTER_ID);
-        assertThat(testItem.getCampaignId()).isEqualTo(UPDATED_CAMPAIGN_ID);
     }
 
     @Test
@@ -440,8 +420,6 @@ class ItemResourceIT {
         assertThat(testItem.getQuality()).isEqualTo(UPDATED_QUALITY);
         assertThat(testItem.getPicture()).isEqualTo(DEFAULT_PICTURE);
         assertThat(testItem.getPictureContentType()).isEqualTo(DEFAULT_PICTURE_CONTENT_TYPE);
-        assertThat(testItem.getCharacterId()).isEqualTo(DEFAULT_CHARACTER_ID);
-        assertThat(testItem.getCampaignId()).isEqualTo(DEFAULT_CAMPAIGN_ID);
     }
 
     @Test
@@ -462,9 +440,7 @@ class ItemResourceIT {
             .weight(UPDATED_WEIGHT)
             .quality(UPDATED_QUALITY)
             .picture(UPDATED_PICTURE)
-            .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
-            .characterId(UPDATED_CHARACTER_ID)
-            .campaignId(UPDATED_CAMPAIGN_ID);
+            .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE);
 
         restItemMockMvc
             .perform(
@@ -485,8 +461,6 @@ class ItemResourceIT {
         assertThat(testItem.getQuality()).isEqualTo(UPDATED_QUALITY);
         assertThat(testItem.getPicture()).isEqualTo(UPDATED_PICTURE);
         assertThat(testItem.getPictureContentType()).isEqualTo(UPDATED_PICTURE_CONTENT_TYPE);
-        assertThat(testItem.getCharacterId()).isEqualTo(UPDATED_CHARACTER_ID);
-        assertThat(testItem.getCampaignId()).isEqualTo(UPDATED_CAMPAIGN_ID);
     }
 
     @Test

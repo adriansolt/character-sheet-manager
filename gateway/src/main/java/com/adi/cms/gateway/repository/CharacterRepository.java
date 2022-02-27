@@ -23,6 +23,12 @@ public interface CharacterRepository extends ReactiveCrudRepository<Character, L
     @Query("SELECT * FROM character entity WHERE entity.user_id IS NULL")
     Flux<Character> findAllWhereUserIsNull();
 
+    @Query("SELECT * FROM character entity WHERE entity.campaign_id = :id")
+    Flux<Character> findByCampaign(Long id);
+
+    @Query("SELECT * FROM character entity WHERE entity.campaign_id IS NULL")
+    Flux<Character> findAllWhereCampaignIsNull();
+
     @Override
     <S extends Character> Mono<S> save(S entity);
 

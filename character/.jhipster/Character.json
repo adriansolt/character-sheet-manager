@@ -38,10 +38,6 @@
       "fieldValues": "RIGHT,LEFT,BOTH"
     },
     {
-      "fieldName": "campaignId",
-      "fieldType": "Long"
-    },
-    {
       "fieldName": "active",
       "fieldType": "Boolean"
     }

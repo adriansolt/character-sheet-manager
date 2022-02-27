@@ -6,12 +6,7 @@
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "character_equipped_armor",
-  "fields": [
-    {
-      "fieldName": "characterId",
-      "fieldType": "Long"
-    }
-  ],
+  "fields": [],
   "fluentMethods": true,
   "jpaMetamodelFiltering": false,
   "microserviceName": "item",

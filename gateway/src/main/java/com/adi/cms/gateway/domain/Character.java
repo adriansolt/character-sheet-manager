@@ -48,9 +48,6 @@ public class Character implements Serializable {
     @Column("handedness")
     private Handedness handedness;
 
-    @Column("campaign_id")
-    private Long campaignId;
-
     @Column("active")
     private Boolean active;
 
@@ -67,10 +64,29 @@ public class Character implements Serializable {
     private Set<CharacterSkill> characterSkills = new HashSet<>();
 
     @Transient
+    @JsonIgnoreProperties(value = { "character" }, allowSetters = true)
+    private Set<Item> items = new HashSet<>();
+
+    @Transient
+    @JsonIgnoreProperties(value = { "characterEquippedWeapons", "weaponManeuvers", "character" }, allowSetters = true)
+    private Set<Weapon> weapons = new HashSet<>();
+
+    @Transient
+    @JsonIgnoreProperties(value = { "characterEquippedArmors", "character" }, allowSetters = true)
+    private Set<ArmorPiece> armorPieces = new HashSet<>();
+
+    @Transient
     private User user;
+
+    @Transient
+    @JsonIgnoreProperties(value = { "campaignUsers", "characters" }, allowSetters = true)
+    private Campaign campaign;
 
     @Column("user_id")
     private String userId;
+
+    @Column("campaign_id")
+    private Long campaignId;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -176,19 +192,6 @@ public class Character implements Serializable {
 
     public void setHandedness(Handedness handedness) {
         this.handedness = handedness;
-    }
-
-    public Long getCampaignId() {
-        return this.campaignId;
-    }
-
-    public Character campaignId(Long campaignId) {
-        this.setCampaignId(campaignId);
-        return this;
-    }
-
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
     }
 
     public Boolean getActive() {
@@ -297,6 +300,99 @@ public class Character implements Serializable {
         return this;
     }
 
+    public Set<Item> getItems() {
+        return this.items;
+    }
+
+    public void setItems(Set<Item> items) {
+        if (this.items != null) {
+            this.items.forEach(i -> i.setCharacter(null));
+        }
+        if (items != null) {
+            items.forEach(i -> i.setCharacter(this));
+        }
+        this.items = items;
+    }
+
+    public Character items(Set<Item> items) {
+        this.setItems(items);
+        return this;
+    }
+
+    public Character addItem(Item item) {
+        this.items.add(item);
+        item.setCharacter(this);
+        return this;
+    }
+
+    public Character removeItem(Item item) {
+        this.items.remove(item);
+        item.setCharacter(null);
+        return this;
+    }
+
+    public Set<Weapon> getWeapons() {
+        return this.weapons;
+    }
+
+    public void setWeapons(Set<Weapon> weapons) {
+        if (this.weapons != null) {
+            this.weapons.forEach(i -> i.setCharacter(null));
+        }
+        if (weapons != null) {
+            weapons.forEach(i -> i.setCharacter(this));
+        }
+        this.weapons = weapons;
+    }
+
+    public Character weapons(Set<Weapon> weapons) {
+        this.setWeapons(weapons);
+        return this;
+    }
+
+    public Character addWeapon(Weapon weapon) {
+        this.weapons.add(weapon);
+        weapon.setCharacter(this);
+        return this;
+    }
+
+    public Character removeWeapon(Weapon weapon) {
+        this.weapons.remove(weapon);
+        weapon.setCharacter(null);
+        return this;
+    }
+
+    public Set<ArmorPiece> getArmorPieces() {
+        return this.armorPieces;
+    }
+
+    public void setArmorPieces(Set<ArmorPiece> armorPieces) {
+        if (this.armorPieces != null) {
+            this.armorPieces.forEach(i -> i.setCharacter(null));
+        }
+        if (armorPieces != null) {
+            armorPieces.forEach(i -> i.setCharacter(this));
+        }
+        this.armorPieces = armorPieces;
+    }
+
+    public Character armorPieces(Set<ArmorPiece> armorPieces) {
+        this.setArmorPieces(armorPieces);
+        return this;
+    }
+
+    public Character addArmorPiece(ArmorPiece armorPiece) {
+        this.armorPieces.add(armorPiece);
+        armorPiece.setCharacter(this);
+        return this;
+    }
+
+    public Character removeArmorPiece(ArmorPiece armorPiece) {
+        this.armorPieces.remove(armorPiece);
+        armorPiece.setCharacter(null);
+        return this;
+    }
+
     public User getUser() {
         return this.user;
     }
@@ -311,12 +407,34 @@ public class Character implements Serializable {
         return this;
     }
 
+    public Campaign getCampaign() {
+        return this.campaign;
+    }
+
+    public void setCampaign(Campaign campaign) {
+        this.campaign = campaign;
+        this.campaignId = campaign != null ? campaign.getId() : null;
+    }
+
+    public Character campaign(Campaign campaign) {
+        this.setCampaign(campaign);
+        return this;
+    }
+
     public String getUserId() {
         return this.userId;
     }
 
     public void setUserId(String user) {
         this.userId = user;
+    }
+
+    public Long getCampaignId() {
+        return this.campaignId;
+    }
+
+    public void setCampaignId(Long campaign) {
+        this.campaignId = campaign;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
@@ -350,7 +468,6 @@ public class Character implements Serializable {
             ", picture='" + getPicture() + "'" +
             ", pictureContentType='" + getPictureContentType() + "'" +
             ", handedness='" + getHandedness() + "'" +
-            ", campaignId=" + getCampaignId() +
             ", active='" + getActive() + "'" +
             "}";
     }

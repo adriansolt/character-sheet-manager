@@ -16,7 +16,7 @@ describe('Character e2e test', () => {
   const characterPageUrlPattern = new RegExp('/character(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const characterSample = { name: 'open-source', weight: 22892, height: 55951, points: 95916 };
+  const characterSample = { name: 'indigo', weight: 47228, height: 22892, points: 55951 };
 
   let character: any;
   //let user: any;
@@ -62,9 +62,29 @@ describe('Character e2e test', () => {
       body: [],
     });
 
+    cy.intercept('GET', '/api/items', {
+      statusCode: 200,
+      body: [],
+    });
+
+    cy.intercept('GET', '/api/weapons', {
+      statusCode: 200,
+      body: [],
+    });
+
+    cy.intercept('GET', '/api/armor-pieces', {
+      statusCode: 200,
+      body: [],
+    });
+
     cy.intercept('GET', '/api/users', {
       statusCode: 200,
       body: [user],
+    });
+
+    cy.intercept('GET', '/api/campaigns', {
+      statusCode: 200,
+      body: [],
     });
 
   });
@@ -230,8 +250,6 @@ describe('Character e2e test', () => {
       cy.setFieldImageAsBytesOfEntity('picture', 'integration-test.png', 'image/png');
 
       cy.get(`[data-cy="handedness"]`).select('BOTH');
-
-      cy.get(`[data-cy="campaignId"]`).type('16943').should('have.value', '16943');
 
       cy.get(`[data-cy="active"]`).should('not.be.checked');
       cy.get(`[data-cy="active"]`).click().should('be.checked');

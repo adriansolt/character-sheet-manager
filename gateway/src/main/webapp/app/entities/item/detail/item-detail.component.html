@@ -39,13 +39,11 @@
             {{ item.pictureContentType }}, {{ byteSize(item.picture) }}
           </div>
         </dd>
-        <dt><span jhiTranslate="gatewayApp.item.characterId">Character Id</span></dt>
+        <dt><span jhiTranslate="gatewayApp.item.character">Character</span></dt>
         <dd>
-          <span>{{ item.characterId }}</span>
-        </dd>
-        <dt><span jhiTranslate="gatewayApp.item.campaignId">Campaign Id</span></dt>
-        <dd>
-          <span>{{ item.campaignId }}</span>
+          <div *ngIf="item.character">
+            <a [routerLink]="['/character', item.character?.id, 'view']">{{ item.character?.name }}</a>
+          </div>
         </dd>
       </dl>
 

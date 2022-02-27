@@ -48,12 +48,6 @@ public class ArmorPiece implements Serializable {
     @Column(name = "picture_content_type")
     private String pictureContentType;
 
-    @Column(name = "character_id")
-    private Long characterId;
-
-    @Column(name = "campaign_id")
-    private Long campaignId;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "location")
     private ArmorLocation location;
@@ -159,32 +153,6 @@ public class ArmorPiece implements Serializable {
         this.pictureContentType = pictureContentType;
     }
 
-    public Long getCharacterId() {
-        return this.characterId;
-    }
-
-    public ArmorPiece characterId(Long characterId) {
-        this.setCharacterId(characterId);
-        return this;
-    }
-
-    public void setCharacterId(Long characterId) {
-        this.characterId = characterId;
-    }
-
-    public Long getCampaignId() {
-        return this.campaignId;
-    }
-
-    public ArmorPiece campaignId(Long campaignId) {
-        this.setCampaignId(campaignId);
-        return this;
-    }
-
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
-    }
-
     public ArmorLocation getLocation() {
         return this.location;
     }
@@ -272,8 +240,6 @@ public class ArmorPiece implements Serializable {
             ", quality=" + getQuality() +
             ", picture='" + getPicture() + "'" +
             ", pictureContentType='" + getPictureContentType() + "'" +
-            ", characterId=" + getCharacterId() +
-            ", campaignId=" + getCampaignId() +
             ", location='" + getLocation() + "'" +
             ", defenseModifier=" + getDefenseModifier() +
             "}";

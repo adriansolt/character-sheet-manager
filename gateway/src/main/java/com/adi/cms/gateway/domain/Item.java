@@ -1,5 +1,6 @@
 package com.adi.cms.gateway.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
@@ -40,11 +41,15 @@ public class Item implements Serializable {
     @Column("picture_content_type")
     private String pictureContentType;
 
+    @Transient
+    @JsonIgnoreProperties(
+        value = { "notes", "characterAttributes", "characterSkills", "items", "weapons", "armorPieces", "user", "campaign" },
+        allowSetters = true
+    )
+    private Character character;
+
     @Column("character_id")
     private Long characterId;
-
-    @Column("campaign_id")
-    private Long campaignId;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -139,30 +144,26 @@ public class Item implements Serializable {
         this.pictureContentType = pictureContentType;
     }
 
+    public Character getCharacter() {
+        return this.character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
+        this.characterId = character != null ? character.getId() : null;
+    }
+
+    public Item character(Character character) {
+        this.setCharacter(character);
+        return this;
+    }
+
     public Long getCharacterId() {
         return this.characterId;
     }
 
-    public Item characterId(Long characterId) {
-        this.setCharacterId(characterId);
-        return this;
-    }
-
-    public void setCharacterId(Long characterId) {
-        this.characterId = characterId;
-    }
-
-    public Long getCampaignId() {
-        return this.campaignId;
-    }
-
-    public Item campaignId(Long campaignId) {
-        this.setCampaignId(campaignId);
-        return this;
-    }
-
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
+    public void setCharacterId(Long character) {
+        this.characterId = character;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
@@ -195,8 +196,6 @@ public class Item implements Serializable {
             ", quality=" + getQuality() +
             ", picture='" + getPicture() + "'" +
             ", pictureContentType='" + getPictureContentType() + "'" +
-            ", characterId=" + getCharacterId() +
-            ", campaignId=" + getCampaignId() +
             "}";
     }
 }

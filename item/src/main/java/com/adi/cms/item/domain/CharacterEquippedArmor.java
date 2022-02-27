@@ -22,9 +22,6 @@ public class CharacterEquippedArmor implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "character_id")
-    private Long characterId;
-
     @ManyToOne
     @JsonIgnoreProperties(value = { "characterEquippedArmors" }, allowSetters = true)
     private ArmorPiece armorPiece;
@@ -42,19 +39,6 @@ public class CharacterEquippedArmor implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getCharacterId() {
-        return this.characterId;
-    }
-
-    public CharacterEquippedArmor characterId(Long characterId) {
-        this.setCharacterId(characterId);
-        return this;
-    }
-
-    public void setCharacterId(Long characterId) {
-        this.characterId = characterId;
     }
 
     public ArmorPiece getArmorPiece() {
@@ -94,7 +78,6 @@ public class CharacterEquippedArmor implements Serializable {
     public String toString() {
         return "CharacterEquippedArmor{" +
             "id=" + getId() +
-            ", characterId=" + getCharacterId() +
             "}";
     }
 }

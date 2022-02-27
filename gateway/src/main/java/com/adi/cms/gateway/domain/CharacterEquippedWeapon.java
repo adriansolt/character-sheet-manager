@@ -20,14 +20,11 @@ public class CharacterEquippedWeapon implements Serializable {
     @Column("id")
     private Long id;
 
-    @Column("character_id")
-    private Long characterId;
-
     @Column("hand")
     private Handedness hand;
 
     @Transient
-    @JsonIgnoreProperties(value = { "characterEquippedWeapons", "weaponManeuvers" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "characterEquippedWeapons", "weaponManeuvers", "character" }, allowSetters = true)
     private Weapon weapon;
 
     @Column("weapon_id")
@@ -46,19 +43,6 @@ public class CharacterEquippedWeapon implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getCharacterId() {
-        return this.characterId;
-    }
-
-    public CharacterEquippedWeapon characterId(Long characterId) {
-        this.setCharacterId(characterId);
-        return this;
-    }
-
-    public void setCharacterId(Long characterId) {
-        this.characterId = characterId;
     }
 
     public Handedness getHand() {
@@ -120,7 +104,6 @@ public class CharacterEquippedWeapon implements Serializable {
     public String toString() {
         return "CharacterEquippedWeapon{" +
             "id=" + getId() +
-            ", characterId=" + getCharacterId() +
             ", hand='" + getHand() + "'" +
             "}";
     }

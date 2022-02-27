@@ -11,6 +11,8 @@ import { ICharacter, Character } from '../character.model';
 
 import { IUser } from 'app/entities/user/user.model';
 import { UserService } from 'app/entities/user/user.service';
+import { ICampaign } from 'app/entities/campaign/campaign.model';
+import { CampaignService } from 'app/entities/campaign/service/campaign.service';
 
 import { CharacterUpdateComponent } from './character-update.component';
 
@@ -20,6 +22,7 @@ describe('Character Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let characterService: CharacterService;
   let userService: UserService;
+  let campaignService: CampaignService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -42,6 +45,7 @@ describe('Character Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     characterService = TestBed.inject(CharacterService);
     userService = TestBed.inject(UserService);
+    campaignService = TestBed.inject(CampaignService);
 
     comp = fixture.componentInstance;
   });
@@ -66,16 +70,38 @@ describe('Character Management Update Component', () => {
       expect(comp.usersSharedCollection).toEqual(expectedCollection);
     });
 
+    it('Should call Campaign query and add missing value', () => {
+      const character: ICharacter = { id: 456 };
+      const campaign: ICampaign = { id: 86950 };
+      character.campaign = campaign;
+
+      const campaignCollection: ICampaign[] = [{ id: 96703 }];
+      jest.spyOn(campaignService, 'query').mockReturnValue(of(new HttpResponse({ body: campaignCollection })));
+      const additionalCampaigns = [campaign];
+      const expectedCollection: ICampaign[] = [...additionalCampaigns, ...campaignCollection];
+      jest.spyOn(campaignService, 'addCampaignToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ character });
+      comp.ngOnInit();
+
+      expect(campaignService.query).toHaveBeenCalled();
+      expect(campaignService.addCampaignToCollectionIfMissing).toHaveBeenCalledWith(campaignCollection, ...additionalCampaigns);
+      expect(comp.campaignsSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const character: ICharacter = { id: 456 };
       const user: IUser = { id: '735bfe0e-a0cc-41be-b2f6-69e6c4840a59' };
       character.user = user;
+      const campaign: ICampaign = { id: 22635 };
+      character.campaign = campaign;
 
       activatedRoute.data = of({ character });
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(character));
       expect(comp.usersSharedCollection).toContain(user);
+      expect(comp.campaignsSharedCollection).toContain(campaign);
     });
   });
 
@@ -148,6 +174,14 @@ describe('Character Management Update Component', () => {
       it('Should return tracked User primary key', () => {
         const entity = { id: 'ABC' };
         const trackResult = comp.trackUserById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
+    describe('trackCampaignById', () => {
+      it('Should return tracked Campaign primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackCampaignById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

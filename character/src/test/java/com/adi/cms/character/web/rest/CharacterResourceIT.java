@@ -55,9 +55,6 @@ class CharacterResourceIT {
     private static final Handedness DEFAULT_HANDEDNESS = Handedness.RIGHT;
     private static final Handedness UPDATED_HANDEDNESS = Handedness.LEFT;
 
-    private static final Long DEFAULT_CAMPAIGN_ID = 1L;
-    private static final Long UPDATED_CAMPAIGN_ID = 2L;
-
     private static final Boolean DEFAULT_ACTIVE = false;
     private static final Boolean UPDATED_ACTIVE = true;
 
@@ -96,7 +93,6 @@ class CharacterResourceIT {
             .picture(DEFAULT_PICTURE)
             .pictureContentType(DEFAULT_PICTURE_CONTENT_TYPE)
             .handedness(DEFAULT_HANDEDNESS)
-            .campaignId(DEFAULT_CAMPAIGN_ID)
             .active(DEFAULT_ACTIVE);
         // Add required entity
         User user = UserResourceIT.createEntity(em);
@@ -121,7 +117,6 @@ class CharacterResourceIT {
             .picture(UPDATED_PICTURE)
             .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
             .handedness(UPDATED_HANDEDNESS)
-            .campaignId(UPDATED_CAMPAIGN_ID)
             .active(UPDATED_ACTIVE);
         // Add required entity
         User user = UserResourceIT.createEntity(em);
@@ -162,7 +157,6 @@ class CharacterResourceIT {
         assertThat(testCharacter.getPicture()).isEqualTo(DEFAULT_PICTURE);
         assertThat(testCharacter.getPictureContentType()).isEqualTo(DEFAULT_PICTURE_CONTENT_TYPE);
         assertThat(testCharacter.getHandedness()).isEqualTo(DEFAULT_HANDEDNESS);
-        assertThat(testCharacter.getCampaignId()).isEqualTo(DEFAULT_CAMPAIGN_ID);
         assertThat(testCharacter.getActive()).isEqualTo(DEFAULT_ACTIVE);
     }
 
@@ -301,7 +295,6 @@ class CharacterResourceIT {
             .andExpect(jsonPath("$.[*].pictureContentType").value(hasItem(DEFAULT_PICTURE_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].picture").value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURE))))
             .andExpect(jsonPath("$.[*].handedness").value(hasItem(DEFAULT_HANDEDNESS.toString())))
-            .andExpect(jsonPath("$.[*].campaignId").value(hasItem(DEFAULT_CAMPAIGN_ID.intValue())))
             .andExpect(jsonPath("$.[*].active").value(hasItem(DEFAULT_ACTIVE.booleanValue())));
     }
 
@@ -324,7 +317,6 @@ class CharacterResourceIT {
             .andExpect(jsonPath("$.pictureContentType").value(DEFAULT_PICTURE_CONTENT_TYPE))
             .andExpect(jsonPath("$.picture").value(Base64Utils.encodeToString(DEFAULT_PICTURE)))
             .andExpect(jsonPath("$.handedness").value(DEFAULT_HANDEDNESS.toString()))
-            .andExpect(jsonPath("$.campaignId").value(DEFAULT_CAMPAIGN_ID.intValue()))
             .andExpect(jsonPath("$.active").value(DEFAULT_ACTIVE.booleanValue()));
     }
 
@@ -355,7 +347,6 @@ class CharacterResourceIT {
             .picture(UPDATED_PICTURE)
             .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
             .handedness(UPDATED_HANDEDNESS)
-            .campaignId(UPDATED_CAMPAIGN_ID)
             .active(UPDATED_ACTIVE);
         CharacterDTO characterDTO = characterMapper.toDto(updatedCharacter);
 
@@ -379,7 +370,6 @@ class CharacterResourceIT {
         assertThat(testCharacter.getPicture()).isEqualTo(UPDATED_PICTURE);
         assertThat(testCharacter.getPictureContentType()).isEqualTo(UPDATED_PICTURE_CONTENT_TYPE);
         assertThat(testCharacter.getHandedness()).isEqualTo(UPDATED_HANDEDNESS);
-        assertThat(testCharacter.getCampaignId()).isEqualTo(UPDATED_CAMPAIGN_ID);
         assertThat(testCharacter.getActive()).isEqualTo(UPDATED_ACTIVE);
     }
 
@@ -467,7 +457,7 @@ class CharacterResourceIT {
         Character partialUpdatedCharacter = new Character();
         partialUpdatedCharacter.setId(character.getId());
 
-        partialUpdatedCharacter.handedness(UPDATED_HANDEDNESS).campaignId(UPDATED_CAMPAIGN_ID);
+        partialUpdatedCharacter.handedness(UPDATED_HANDEDNESS).active(UPDATED_ACTIVE);
 
         restCharacterMockMvc
             .perform(
@@ -489,8 +479,7 @@ class CharacterResourceIT {
         assertThat(testCharacter.getPicture()).isEqualTo(DEFAULT_PICTURE);
         assertThat(testCharacter.getPictureContentType()).isEqualTo(DEFAULT_PICTURE_CONTENT_TYPE);
         assertThat(testCharacter.getHandedness()).isEqualTo(UPDATED_HANDEDNESS);
-        assertThat(testCharacter.getCampaignId()).isEqualTo(UPDATED_CAMPAIGN_ID);
-        assertThat(testCharacter.getActive()).isEqualTo(DEFAULT_ACTIVE);
+        assertThat(testCharacter.getActive()).isEqualTo(UPDATED_ACTIVE);
     }
 
     @Test
@@ -513,7 +502,6 @@ class CharacterResourceIT {
             .picture(UPDATED_PICTURE)
             .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
             .handedness(UPDATED_HANDEDNESS)
-            .campaignId(UPDATED_CAMPAIGN_ID)
             .active(UPDATED_ACTIVE);
 
         restCharacterMockMvc
@@ -536,7 +524,6 @@ class CharacterResourceIT {
         assertThat(testCharacter.getPicture()).isEqualTo(UPDATED_PICTURE);
         assertThat(testCharacter.getPictureContentType()).isEqualTo(UPDATED_PICTURE_CONTENT_TYPE);
         assertThat(testCharacter.getHandedness()).isEqualTo(UPDATED_HANDEDNESS);
-        assertThat(testCharacter.getCampaignId()).isEqualTo(UPDATED_CAMPAIGN_ID);
         assertThat(testCharacter.getActive()).isEqualTo(UPDATED_ACTIVE);
     }
 

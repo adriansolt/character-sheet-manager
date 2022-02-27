@@ -1,5 +1,5 @@
 {
-  "applications": ["campaign", "gateway"],
+  "applications": ["gateway"],
   "changelogDate": "20220223133258",
   "databaseType": "sql",
   "dto": "mapstruct",
@@ -34,6 +34,12 @@
       "otherEntityName": "campaignUser",
       "otherEntityRelationshipName": "campaign",
       "relationshipName": "campaignUser",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "character",
+      "otherEntityRelationshipName": "campaign",
+      "relationshipName": "character",
       "relationshipType": "one-to-many"
     }
   ],

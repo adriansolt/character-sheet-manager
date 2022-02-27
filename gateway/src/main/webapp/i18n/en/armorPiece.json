@@ -23,11 +23,10 @@
       "weight": "Weight",
       "quality": "Quality",
       "picture": "Picture",
-      "characterId": "Character Id",
-      "campaignId": "Campaign Id",
       "location": "Location",
       "defenseModifier": "Defense Modifier",
-      "characterEquippedArmor": "Character Equipped Armor"
+      "characterEquippedArmor": "Character Equipped Armor",
+      "character": "Character"
     }
   }
 }

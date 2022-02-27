@@ -19,11 +19,8 @@ public class CharacterEquippedArmor implements Serializable {
     @Column("id")
     private Long id;
 
-    @Column("character_id")
-    private Long characterId;
-
     @Transient
-    @JsonIgnoreProperties(value = { "characterEquippedArmors" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "characterEquippedArmors", "character" }, allowSetters = true)
     private ArmorPiece armorPiece;
 
     @Column("armor_piece_id")
@@ -42,19 +39,6 @@ public class CharacterEquippedArmor implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getCharacterId() {
-        return this.characterId;
-    }
-
-    public CharacterEquippedArmor characterId(Long characterId) {
-        this.setCharacterId(characterId);
-        return this;
-    }
-
-    public void setCharacterId(Long characterId) {
-        this.characterId = characterId;
     }
 
     public ArmorPiece getArmorPiece() {
@@ -103,7 +87,6 @@ public class CharacterEquippedArmor implements Serializable {
     public String toString() {
         return "CharacterEquippedArmor{" +
             "id=" + getId() +
-            ", characterId=" + getCharacterId() +
             "}";
     }
 }

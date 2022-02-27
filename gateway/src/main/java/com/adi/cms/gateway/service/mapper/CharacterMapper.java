@@ -7,9 +7,10 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Character} and its DTO {@link CharacterDTO}.
  */
-@Mapper(componentModel = "spring", uses = { UserMapper.class })
+@Mapper(componentModel = "spring", uses = { UserMapper.class, CampaignMapper.class })
 public interface CharacterMapper extends EntityMapper<CharacterDTO, Character> {
     @Mapping(target = "user", source = "user", qualifiedByName = "login")
+    @Mapping(target = "campaign", source = "campaign", qualifiedByName = "name")
     CharacterDTO toDto(Character s);
 
     @Named("name")

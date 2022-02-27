@@ -11,7 +11,6 @@ public class CharacterEquippedArmorSqlHelper {
     public static List<Expression> getColumns(Table table, String columnPrefix) {
         List<Expression> columns = new ArrayList<>();
         columns.add(Column.aliased("id", table, columnPrefix + "_id"));
-        columns.add(Column.aliased("character_id", table, columnPrefix + "_character_id"));
 
         columns.add(Column.aliased("armor_piece_id", table, columnPrefix + "_armor_piece_id"));
         return columns;

@@ -53,9 +53,6 @@ public class Character implements Serializable {
     @Column(name = "handedness")
     private Handedness handedness;
 
-    @Column(name = "campaign_id")
-    private Long campaignId;
-
     @Column(name = "active")
     private Boolean active;
 
@@ -182,19 +179,6 @@ public class Character implements Serializable {
 
     public void setHandedness(Handedness handedness) {
         this.handedness = handedness;
-    }
-
-    public Long getCampaignId() {
-        return this.campaignId;
-    }
-
-    public Character campaignId(Long campaignId) {
-        this.setCampaignId(campaignId);
-        return this;
-    }
-
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
     }
 
     public Boolean getActive() {
@@ -347,7 +331,6 @@ public class Character implements Serializable {
             ", picture='" + getPicture() + "'" +
             ", pictureContentType='" + getPictureContentType() + "'" +
             ", handedness='" + getHandedness() + "'" +
-            ", campaignId=" + getCampaignId() +
             ", active='" + getActive() + "'" +
             "}";
     }

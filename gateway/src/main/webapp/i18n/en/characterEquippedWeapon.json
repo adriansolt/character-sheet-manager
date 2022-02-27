@@ -18,7 +18,6 @@
         "title": "Character Equipped Weapon"
       },
       "id": "ID",
-      "characterId": "Character Id",
       "hand": "Hand",
       "weapon": "Weapon"
     }

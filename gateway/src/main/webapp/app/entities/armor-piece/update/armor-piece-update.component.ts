@@ -3,13 +3,15 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 
 import { IArmorPiece, ArmorPiece } from '../armor-piece.model';
 import { ArmorPieceService } from '../service/armor-piece.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
 import { EventManager, EventWithContent } from 'app/core/util/event-manager.service';
 import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
+import { ICharacter } from 'app/entities/character/character.model';
+import { CharacterService } from 'app/entities/character/service/character.service';
 import { ArmorLocation } from 'app/entities/enumerations/armor-location.model';
 
 @Component({
@@ -20,6 +22,8 @@ export class ArmorPieceUpdateComponent implements OnInit {
   isSaving = false;
   armorLocationValues = Object.keys(ArmorLocation);
 
+  charactersSharedCollection: ICharacter[] = [];
+
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
@@ -28,16 +32,16 @@ export class ArmorPieceUpdateComponent implements OnInit {
     quality: [null, [Validators.required]],
     picture: [],
     pictureContentType: [],
-    characterId: [],
-    campaignId: [],
     location: [],
     defenseModifier: [],
+    character: [],
   });
 
   constructor(
     protected dataUtils: DataUtils,
     protected eventManager: EventManager,
     protected armorPieceService: ArmorPieceService,
+    protected characterService: CharacterService,
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
@@ -46,6 +50,8 @@ export class ArmorPieceUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ armorPiece }) => {
       this.updateForm(armorPiece);
+
+      this.loadRelationshipsOptions();
     });
   }
 
@@ -88,6 +94,10 @@ export class ArmorPieceUpdateComponent implements OnInit {
     }
   }
 
+  trackCharacterById(index: number, item: ICharacter): number {
+    return item.id!;
+  }
+
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IArmorPiece>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
@@ -116,11 +126,27 @@ export class ArmorPieceUpdateComponent implements OnInit {
       quality: armorPiece.quality,
       picture: armorPiece.picture,
       pictureContentType: armorPiece.pictureContentType,
-      characterId: armorPiece.characterId,
-      campaignId: armorPiece.campaignId,
       location: armorPiece.location,
       defenseModifier: armorPiece.defenseModifier,
+      character: armorPiece.character,
     });
+
+    this.charactersSharedCollection = this.characterService.addCharacterToCollectionIfMissing(
+      this.charactersSharedCollection,
+      armorPiece.character
+    );
+  }
+
+  protected loadRelationshipsOptions(): void {
+    this.characterService
+      .query()
+      .pipe(map((res: HttpResponse<ICharacter[]>) => res.body ?? []))
+      .pipe(
+        map((characters: ICharacter[]) =>
+          this.characterService.addCharacterToCollectionIfMissing(characters, this.editForm.get('character')!.value)
+        )
+      )
+      .subscribe((characters: ICharacter[]) => (this.charactersSharedCollection = characters));
   }
 
   protected createFromForm(): IArmorPiece {
@@ -133,10 +159,9 @@ export class ArmorPieceUpdateComponent implements OnInit {
       quality: this.editForm.get(['quality'])!.value,
       pictureContentType: this.editForm.get(['pictureContentType'])!.value,
       picture: this.editForm.get(['picture'])!.value,
-      characterId: this.editForm.get(['characterId'])!.value,
-      campaignId: this.editForm.get(['campaignId'])!.value,
       location: this.editForm.get(['location'])!.value,
       defenseModifier: this.editForm.get(['defenseModifier'])!.value,
+      character: this.editForm.get(['character'])!.value,
     };
   }
 }

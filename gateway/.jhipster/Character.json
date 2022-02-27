@@ -1,5 +1,5 @@
 {
-  "applications": ["character", "gateway"],
+  "applications": ["gateway"],
   "changelogDate": "20220223133458",
   "databaseType": "sql",
   "dto": "mapstruct",
@@ -37,10 +37,6 @@
       "fieldValues": "RIGHT,LEFT,BOTH"
     },
     {
-      "fieldName": "campaignId",
-      "fieldType": "Long"
-    },
-    {
       "fieldName": "active",
       "fieldType": "Boolean"
     }
@@ -70,12 +66,37 @@
       "relationshipType": "one-to-many"
     },
     {
+      "otherEntityName": "item",
+      "otherEntityRelationshipName": "character",
+      "relationshipName": "item",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "weapon",
+      "otherEntityRelationshipName": "character",
+      "relationshipName": "weapon",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "armorPiece",
+      "otherEntityRelationshipName": "character",
+      "relationshipName": "armorPiece",
+      "relationshipType": "one-to-many"
+    },
+    {
       "otherEntityField": "login",
       "otherEntityName": "user",
       "otherEntityRelationshipName": "character",
       "relationshipName": "user",
       "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "campaign",
+      "otherEntityRelationshipName": "character",
+      "relationshipName": "campaign",
+      "relationshipType": "many-to-one"
     }
   ],
   "service": "serviceClass"

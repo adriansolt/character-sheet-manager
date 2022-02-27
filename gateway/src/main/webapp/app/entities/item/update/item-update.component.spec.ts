@@ -8,6 +8,8 @@ import { of, Subject, from } from 'rxjs';
 
 import { ItemService } from '../service/item.service';
 import { IItem, Item } from '../item.model';
+import { ICharacter } from 'app/entities/character/character.model';
+import { CharacterService } from 'app/entities/character/service/character.service';
 
 import { ItemUpdateComponent } from './item-update.component';
 
@@ -16,6 +18,7 @@ describe('Item Management Update Component', () => {
   let fixture: ComponentFixture<ItemUpdateComponent>;
   let activatedRoute: ActivatedRoute;
   let itemService: ItemService;
+  let characterService: CharacterService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -37,18 +40,41 @@ describe('Item Management Update Component', () => {
     fixture = TestBed.createComponent(ItemUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
     itemService = TestBed.inject(ItemService);
+    characterService = TestBed.inject(CharacterService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
+    it('Should call Character query and add missing value', () => {
+      const item: IItem = { id: 456 };
+      const character: ICharacter = { id: 47647 };
+      item.character = character;
+
+      const characterCollection: ICharacter[] = [{ id: 21506 }];
+      jest.spyOn(characterService, 'query').mockReturnValue(of(new HttpResponse({ body: characterCollection })));
+      const additionalCharacters = [character];
+      const expectedCollection: ICharacter[] = [...additionalCharacters, ...characterCollection];
+      jest.spyOn(characterService, 'addCharacterToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ item });
+      comp.ngOnInit();
+
+      expect(characterService.query).toHaveBeenCalled();
+      expect(characterService.addCharacterToCollectionIfMissing).toHaveBeenCalledWith(characterCollection, ...additionalCharacters);
+      expect(comp.charactersSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const item: IItem = { id: 456 };
+      const character: ICharacter = { id: 5129 };
+      item.character = character;
 
       activatedRoute.data = of({ item });
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(item));
+      expect(comp.charactersSharedCollection).toContain(character);
     });
   });
 
@@ -113,6 +139,16 @@ describe('Item Management Update Component', () => {
       expect(itemService.update).toHaveBeenCalledWith(item);
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Tracking relationships identifiers', () => {
+    describe('trackCharacterById', () => {
+      it('Should return tracked Character primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackCharacterById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
     });
   });
 });

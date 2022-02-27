@@ -29,7 +29,6 @@ describe('Character Service', () => {
       pictureContentType: 'image/png',
       picture: 'AAAAAAA',
       handedness: Handedness.RIGHT,
-      campaignId: 0,
       active: false,
     };
   });
@@ -72,7 +71,6 @@ describe('Character Service', () => {
           points: 1,
           picture: 'BBBBBB',
           handedness: 'BBBBBB',
-          campaignId: 1,
           active: true,
         },
         elemDefault
@@ -92,7 +90,7 @@ describe('Character Service', () => {
         {
           name: 'BBBBBB',
           points: 1,
-          campaignId: 1,
+          active: true,
         },
         new Character()
       );
@@ -118,7 +116,6 @@ describe('Character Service', () => {
           points: 1,
           picture: 'BBBBBB',
           handedness: 'BBBBBB',
-          campaignId: 1,
           active: true,
         },
         elemDefault
@@ -171,7 +168,7 @@ describe('Character Service', () => {
       });
 
       it('should add only unique Character to an array', () => {
-        const characterArray: ICharacter[] = [{ id: 123 }, { id: 456 }, { id: 9941 }];
+        const characterArray: ICharacter[] = [{ id: 123 }, { id: 456 }, { id: 47953 }];
         const characterCollection: ICharacter[] = [{ id: 123 }];
         expectedResult = service.addCharacterToCollectionIfMissing(characterCollection, ...characterArray);
         expect(expectedResult).toHaveLength(3);

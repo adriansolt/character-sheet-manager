@@ -20,7 +20,7 @@
     "entitySuffix": "",
     "gradleEnterpriseHost": "",
     "jhiPrefix": "jhi",
-    "jhipsterVersion": "7.6.0",
+    "jhipsterVersion": "7.7.0",
     "jwtSecretKey": "M2ZhMWFmMjg1ZWMwNWQ0MWI1YmYyNzQwYzM3M2YzNDliM2UyNjdlM2RlOTZiMmI2OTdlODBlN2YxMmE5NTU5MzYzYWI2MGFkMjdkNzQ4MDVjMDk4MDExMDNjYjM5NWMzOWZiZGRkMjliYzc1ZWIwY2FkZmQ1MTQzZTJlNjgwZGM=",
     "languages": ["en", "es"],
     "lastLiquibaseTimestamp": 1645623178000,
