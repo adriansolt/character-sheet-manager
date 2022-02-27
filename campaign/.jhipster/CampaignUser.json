@@ -19,7 +19,8 @@
       "otherEntityName": "campaign",
       "otherEntityRelationshipName": "campaignUser",
       "relationshipName": "campaign",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     },
     {
       "otherEntityField": "login",

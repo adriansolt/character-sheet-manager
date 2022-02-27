@@ -76,6 +76,15 @@ public class CharacterSkillService {
     }
 
     /**
+     * Get all the characterSkills with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<CharacterSkillDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return characterSkillRepository.findAllWithEagerRelationships(pageable).map(characterSkillMapper::toDto);
+    }
+
+    /**
      * Get one characterSkill by id.
      *
      * @param id the id of the entity.
@@ -84,7 +93,7 @@ public class CharacterSkillService {
     @Transactional(readOnly = true)
     public Optional<CharacterSkillDTO> findOne(Long id) {
         log.debug("Request to get CharacterSkill : {}", id);
-        return characterSkillRepository.findById(id).map(characterSkillMapper::toDto);
+        return characterSkillRepository.findOneWithEagerRelationships(id).map(characterSkillMapper::toDto);
     }
 
     /**

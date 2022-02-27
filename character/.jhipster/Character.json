@@ -35,11 +35,13 @@
     {
       "fieldName": "handedness",
       "fieldType": "Handedness",
+      "fieldValidateRules": ["required"],
       "fieldValues": "RIGHT,LEFT,BOTH"
     },
     {
       "fieldName": "active",
-      "fieldType": "Boolean"
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
     }
   ],
   "fluentMethods": true,

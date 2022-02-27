@@ -29,8 +29,11 @@ public class CharacterDTO implements Serializable {
     private byte[] picture;
 
     private String pictureContentType;
+
+    @NotNull
     private Handedness handedness;
 
+    @NotNull
     private Boolean active;
 
     private UserDTO user;

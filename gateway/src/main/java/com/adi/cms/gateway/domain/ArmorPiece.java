@@ -55,12 +55,12 @@ public class ArmorPiece implements Serializable {
     private Set<CharacterEquippedArmor> characterEquippedArmors = new HashSet<>();
 
     @Transient
-    @JsonIgnoreProperties(value = { "campaignUsers", "characters", "items", "weapons", "armorPieces" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "characters", "items", "weapons", "armorPieces", "campaignUsers" }, allowSetters = true)
     private Campaign campaign;
 
     @Transient
     @JsonIgnoreProperties(
-        value = { "notes", "characterAttributes", "characterSkills", "items", "weapons", "armorPieces", "user", "campaign" },
+        value = { "items", "weapons", "armorPieces", "notes", "characterAttributes", "characterSkills", "user", "campaign" },
         allowSetters = true
     )
     private Character character;

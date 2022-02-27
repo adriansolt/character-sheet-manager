@@ -143,12 +143,21 @@ public class CharacterSkillResource {
      * {@code GET  /character-skills} : get all the characterSkills.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of characterSkills in body.
      */
     @GetMapping("/character-skills")
-    public ResponseEntity<List<CharacterSkillDTO>> getAllCharacterSkills(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
+    public ResponseEntity<List<CharacterSkillDTO>> getAllCharacterSkills(
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false, defaultValue = "true") boolean eagerload
+    ) {
         log.debug("REST request to get a page of CharacterSkills");
-        Page<CharacterSkillDTO> page = characterSkillService.findAll(pageable);
+        Page<CharacterSkillDTO> page;
+        if (eagerload) {
+            page = characterSkillService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = characterSkillService.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

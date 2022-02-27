@@ -49,11 +49,13 @@ public class Character implements Serializable {
     @Column(name = "picture_content_type")
     private String pictureContentType;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "handedness")
+    @Column(name = "handedness", nullable = false)
     private Handedness handedness;
 
-    @Column(name = "active")
+    @NotNull
+    @Column(name = "active", nullable = false)
     private Boolean active;
 
     @OneToMany(mappedBy = "character")

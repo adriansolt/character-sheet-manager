@@ -79,6 +79,15 @@ public class PrereqSkillOrAtributeService {
     }
 
     /**
+     * Get all the prereqSkillOrAtributes with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<PrereqSkillOrAtributeDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return prereqSkillOrAtributeRepository.findAllWithEagerRelationships(pageable).map(prereqSkillOrAtributeMapper::toDto);
+    }
+
+    /**
      * Get one prereqSkillOrAtribute by id.
      *
      * @param id the id of the entity.
@@ -87,7 +96,7 @@ public class PrereqSkillOrAtributeService {
     @Transactional(readOnly = true)
     public Optional<PrereqSkillOrAtributeDTO> findOne(Long id) {
         log.debug("Request to get PrereqSkillOrAtribute : {}", id);
-        return prereqSkillOrAtributeRepository.findById(id).map(prereqSkillOrAtributeMapper::toDto);
+        return prereqSkillOrAtributeRepository.findOneWithEagerRelationships(id).map(prereqSkillOrAtributeMapper::toDto);
     }
 
     /**

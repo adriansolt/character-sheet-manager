@@ -45,23 +45,13 @@ public class Character implements Serializable {
     @Column("picture_content_type")
     private String pictureContentType;
 
+    @NotNull(message = "must not be null")
     @Column("handedness")
     private Handedness handedness;
 
+    @NotNull(message = "must not be null")
     @Column("active")
     private Boolean active;
-
-    @Transient
-    @JsonIgnoreProperties(value = { "character" }, allowSetters = true)
-    private Set<Note> notes = new HashSet<>();
-
-    @Transient
-    @JsonIgnoreProperties(value = { "character" }, allowSetters = true)
-    private Set<CharacterAttribute> characterAttributes = new HashSet<>();
-
-    @Transient
-    @JsonIgnoreProperties(value = { "character", "skill" }, allowSetters = true)
-    private Set<CharacterSkill> characterSkills = new HashSet<>();
 
     @Transient
     @JsonIgnoreProperties(value = { "campaign", "character" }, allowSetters = true)
@@ -76,10 +66,22 @@ public class Character implements Serializable {
     private Set<ArmorPiece> armorPieces = new HashSet<>();
 
     @Transient
+    @JsonIgnoreProperties(value = { "character" }, allowSetters = true)
+    private Set<Note> notes = new HashSet<>();
+
+    @Transient
+    @JsonIgnoreProperties(value = { "character" }, allowSetters = true)
+    private Set<CharacterAttribute> characterAttributes = new HashSet<>();
+
+    @Transient
+    @JsonIgnoreProperties(value = { "character", "skill" }, allowSetters = true)
+    private Set<CharacterSkill> characterSkills = new HashSet<>();
+
+    @Transient
     private User user;
 
     @Transient
-    @JsonIgnoreProperties(value = { "campaignUsers", "characters", "items", "weapons", "armorPieces" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "characters", "items", "weapons", "armorPieces", "campaignUsers" }, allowSetters = true)
     private Campaign campaign;
 
     @Column("user_id")
@@ -207,99 +209,6 @@ public class Character implements Serializable {
         this.active = active;
     }
 
-    public Set<Note> getNotes() {
-        return this.notes;
-    }
-
-    public void setNotes(Set<Note> notes) {
-        if (this.notes != null) {
-            this.notes.forEach(i -> i.setCharacter(null));
-        }
-        if (notes != null) {
-            notes.forEach(i -> i.setCharacter(this));
-        }
-        this.notes = notes;
-    }
-
-    public Character notes(Set<Note> notes) {
-        this.setNotes(notes);
-        return this;
-    }
-
-    public Character addNote(Note note) {
-        this.notes.add(note);
-        note.setCharacter(this);
-        return this;
-    }
-
-    public Character removeNote(Note note) {
-        this.notes.remove(note);
-        note.setCharacter(null);
-        return this;
-    }
-
-    public Set<CharacterAttribute> getCharacterAttributes() {
-        return this.characterAttributes;
-    }
-
-    public void setCharacterAttributes(Set<CharacterAttribute> characterAttributes) {
-        if (this.characterAttributes != null) {
-            this.characterAttributes.forEach(i -> i.setCharacter(null));
-        }
-        if (characterAttributes != null) {
-            characterAttributes.forEach(i -> i.setCharacter(this));
-        }
-        this.characterAttributes = characterAttributes;
-    }
-
-    public Character characterAttributes(Set<CharacterAttribute> characterAttributes) {
-        this.setCharacterAttributes(characterAttributes);
-        return this;
-    }
-
-    public Character addCharacterAttribute(CharacterAttribute characterAttribute) {
-        this.characterAttributes.add(characterAttribute);
-        characterAttribute.setCharacter(this);
-        return this;
-    }
-
-    public Character removeCharacterAttribute(CharacterAttribute characterAttribute) {
-        this.characterAttributes.remove(characterAttribute);
-        characterAttribute.setCharacter(null);
-        return this;
-    }
-
-    public Set<CharacterSkill> getCharacterSkills() {
-        return this.characterSkills;
-    }
-
-    public void setCharacterSkills(Set<CharacterSkill> characterSkills) {
-        if (this.characterSkills != null) {
-            this.characterSkills.forEach(i -> i.setCharacter(null));
-        }
-        if (characterSkills != null) {
-            characterSkills.forEach(i -> i.setCharacter(this));
-        }
-        this.characterSkills = characterSkills;
-    }
-
-    public Character characterSkills(Set<CharacterSkill> characterSkills) {
-        this.setCharacterSkills(characterSkills);
-        return this;
-    }
-
-    public Character addCharacterSkill(CharacterSkill characterSkill) {
-        this.characterSkills.add(characterSkill);
-        characterSkill.setCharacter(this);
-        return this;
-    }
-
-    public Character removeCharacterSkill(CharacterSkill characterSkill) {
-        this.characterSkills.remove(characterSkill);
-        characterSkill.setCharacter(null);
-        return this;
-    }
-
     public Set<Item> getItems() {
         return this.items;
     }
@@ -390,6 +299,99 @@ public class Character implements Serializable {
     public Character removeArmorPiece(ArmorPiece armorPiece) {
         this.armorPieces.remove(armorPiece);
         armorPiece.setCharacter(null);
+        return this;
+    }
+
+    public Set<Note> getNotes() {
+        return this.notes;
+    }
+
+    public void setNotes(Set<Note> notes) {
+        if (this.notes != null) {
+            this.notes.forEach(i -> i.setCharacter(null));
+        }
+        if (notes != null) {
+            notes.forEach(i -> i.setCharacter(this));
+        }
+        this.notes = notes;
+    }
+
+    public Character notes(Set<Note> notes) {
+        this.setNotes(notes);
+        return this;
+    }
+
+    public Character addNote(Note note) {
+        this.notes.add(note);
+        note.setCharacter(this);
+        return this;
+    }
+
+    public Character removeNote(Note note) {
+        this.notes.remove(note);
+        note.setCharacter(null);
+        return this;
+    }
+
+    public Set<CharacterAttribute> getCharacterAttributes() {
+        return this.characterAttributes;
+    }
+
+    public void setCharacterAttributes(Set<CharacterAttribute> characterAttributes) {
+        if (this.characterAttributes != null) {
+            this.characterAttributes.forEach(i -> i.setCharacter(null));
+        }
+        if (characterAttributes != null) {
+            characterAttributes.forEach(i -> i.setCharacter(this));
+        }
+        this.characterAttributes = characterAttributes;
+    }
+
+    public Character characterAttributes(Set<CharacterAttribute> characterAttributes) {
+        this.setCharacterAttributes(characterAttributes);
+        return this;
+    }
+
+    public Character addCharacterAttribute(CharacterAttribute characterAttribute) {
+        this.characterAttributes.add(characterAttribute);
+        characterAttribute.setCharacter(this);
+        return this;
+    }
+
+    public Character removeCharacterAttribute(CharacterAttribute characterAttribute) {
+        this.characterAttributes.remove(characterAttribute);
+        characterAttribute.setCharacter(null);
+        return this;
+    }
+
+    public Set<CharacterSkill> getCharacterSkills() {
+        return this.characterSkills;
+    }
+
+    public void setCharacterSkills(Set<CharacterSkill> characterSkills) {
+        if (this.characterSkills != null) {
+            this.characterSkills.forEach(i -> i.setCharacter(null));
+        }
+        if (characterSkills != null) {
+            characterSkills.forEach(i -> i.setCharacter(this));
+        }
+        this.characterSkills = characterSkills;
+    }
+
+    public Character characterSkills(Set<CharacterSkill> characterSkills) {
+        this.setCharacterSkills(characterSkills);
+        return this;
+    }
+
+    public Character addCharacterSkill(CharacterSkill characterSkill) {
+        this.characterSkills.add(characterSkill);
+        characterSkill.setCharacter(this);
+        return this;
+    }
+
+    public Character removeCharacterSkill(CharacterSkill characterSkill) {
+        this.characterSkills.remove(characterSkill);
+        characterSkill.setCharacter(null);
         return this;
     }
 

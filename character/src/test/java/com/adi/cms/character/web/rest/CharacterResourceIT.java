@@ -278,6 +278,52 @@ class CharacterResourceIT {
 
     @Test
     @Transactional
+    void checkHandednessIsRequired() throws Exception {
+        int databaseSizeBeforeTest = characterRepository.findAll().size();
+        // set the field null
+        character.setHandedness(null);
+
+        // Create the Character, which fails.
+        CharacterDTO characterDTO = characterMapper.toDto(character);
+
+        restCharacterMockMvc
+            .perform(
+                post(ENTITY_API_URL)
+                    .with(csrf())
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(TestUtil.convertObjectToJsonBytes(characterDTO))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<Character> characterList = characterRepository.findAll();
+        assertThat(characterList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkActiveIsRequired() throws Exception {
+        int databaseSizeBeforeTest = characterRepository.findAll().size();
+        // set the field null
+        character.setActive(null);
+
+        // Create the Character, which fails.
+        CharacterDTO characterDTO = characterMapper.toDto(character);
+
+        restCharacterMockMvc
+            .perform(
+                post(ENTITY_API_URL)
+                    .with(csrf())
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(TestUtil.convertObjectToJsonBytes(characterDTO))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<Character> characterList = characterRepository.findAll();
+        assertThat(characterList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllCharacters() throws Exception {
         // Initialize the database
         characterRepository.saveAndFlush(character);

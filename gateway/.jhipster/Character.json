@@ -34,11 +34,13 @@
     {
       "fieldName": "handedness",
       "fieldType": "Handedness",
+      "fieldValidateRules": ["required"],
       "fieldValues": "RIGHT,LEFT,BOTH"
     },
     {
       "fieldName": "active",
-      "fieldType": "Boolean"
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
     }
   ],
   "fluentMethods": true,
@@ -47,24 +49,6 @@
   "pagination": "pagination",
   "readOnly": false,
   "relationships": [
-    {
-      "otherEntityName": "note",
-      "otherEntityRelationshipName": "character",
-      "relationshipName": "note",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityName": "characterAttribute",
-      "otherEntityRelationshipName": "character",
-      "relationshipName": "characterAttribute",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityName": "characterSkill",
-      "otherEntityRelationshipName": "character",
-      "relationshipName": "characterSkill",
-      "relationshipType": "one-to-many"
-    },
     {
       "otherEntityName": "item",
       "otherEntityRelationshipName": "character",
@@ -81,6 +65,24 @@
       "otherEntityName": "armorPiece",
       "otherEntityRelationshipName": "character",
       "relationshipName": "armorPiece",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "note",
+      "otherEntityRelationshipName": "character",
+      "relationshipName": "note",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "characterAttribute",
+      "otherEntityRelationshipName": "character",
+      "relationshipName": "characterAttribute",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "characterSkill",
+      "otherEntityRelationshipName": "character",
+      "relationshipName": "characterSkill",
       "relationshipType": "one-to-many"
     },
     {

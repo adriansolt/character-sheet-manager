@@ -290,6 +290,50 @@ class CharacterResourceIT {
     }
 
     @Test
+    void checkHandednessIsRequired() throws Exception {
+        int databaseSizeBeforeTest = characterRepository.findAll().collectList().block().size();
+        // set the field null
+        character.setHandedness(null);
+
+        // Create the Character, which fails.
+        CharacterDTO characterDTO = characterMapper.toDto(character);
+
+        webTestClient
+            .post()
+            .uri(ENTITY_API_URL)
+            .contentType(MediaType.APPLICATION_JSON)
+            .bodyValue(TestUtil.convertObjectToJsonBytes(characterDTO))
+            .exchange()
+            .expectStatus()
+            .isBadRequest();
+
+        List<Character> characterList = characterRepository.findAll().collectList().block();
+        assertThat(characterList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    void checkActiveIsRequired() throws Exception {
+        int databaseSizeBeforeTest = characterRepository.findAll().collectList().block().size();
+        // set the field null
+        character.setActive(null);
+
+        // Create the Character, which fails.
+        CharacterDTO characterDTO = characterMapper.toDto(character);
+
+        webTestClient
+            .post()
+            .uri(ENTITY_API_URL)
+            .contentType(MediaType.APPLICATION_JSON)
+            .bodyValue(TestUtil.convertObjectToJsonBytes(characterDTO))
+            .exchange()
+            .expectStatus()
+            .isBadRequest();
+
+        List<Character> characterList = characterRepository.findAll().collectList().block();
+        assertThat(characterList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     void getAllCharacters() {
         // Initialize the database
         characterRepository.save(character).block();

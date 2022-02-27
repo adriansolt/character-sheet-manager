@@ -3,12 +3,12 @@ import { IUser } from 'app/entities/user/user.model';
 
 export interface ICampaignUser {
   id?: number;
-  campaign?: ICampaign | null;
+  campaign?: ICampaign;
   user?: IUser;
 }
 
 export class CampaignUser implements ICampaignUser {
-  constructor(public id?: number, public campaign?: ICampaign | null, public user?: IUser) {}
+  constructor(public id?: number, public campaign?: ICampaign, public user?: IUser) {}
 }
 
 export function getCampaignUserIdentifier(campaignUser: ICampaignUser): number | undefined {

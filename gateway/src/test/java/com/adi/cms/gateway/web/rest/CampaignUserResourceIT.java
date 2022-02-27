@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.security.test.web.reactive.server.SecurityMockServerConfigurers.csrf;
 
 import com.adi.cms.gateway.IntegrationTest;
+import com.adi.cms.gateway.domain.Campaign;
 import com.adi.cms.gateway.domain.CampaignUser;
 import com.adi.cms.gateway.domain.User;
 import com.adi.cms.gateway.repository.CampaignUserRepository;
@@ -65,6 +66,10 @@ class CampaignUserResourceIT {
     public static CampaignUser createEntity(EntityManager em) {
         CampaignUser campaignUser = new CampaignUser();
         // Add required entity
+        Campaign campaign;
+        campaign = em.insert(CampaignResourceIT.createEntity(em)).block();
+        campaignUser.setCampaign(campaign);
+        // Add required entity
         User user = em.insert(UserResourceIT.createEntity(em)).block();
         campaignUser.setUser(user);
         return campaignUser;
@@ -79,6 +84,10 @@ class CampaignUserResourceIT {
     public static CampaignUser createUpdatedEntity(EntityManager em) {
         CampaignUser campaignUser = new CampaignUser();
         // Add required entity
+        Campaign campaign;
+        campaign = em.insert(CampaignResourceIT.createUpdatedEntity(em)).block();
+        campaignUser.setCampaign(campaign);
+        // Add required entity
         User user = em.insert(UserResourceIT.createEntity(em)).block();
         campaignUser.setUser(user);
         return campaignUser;
@@ -90,6 +99,7 @@ class CampaignUserResourceIT {
         } catch (Exception e) {
             // It can fail, if other entities are still referring this - it will be removed later.
         }
+        CampaignResourceIT.deleteEntities(em);
         UserResourceIT.deleteEntities(em);
     }
 

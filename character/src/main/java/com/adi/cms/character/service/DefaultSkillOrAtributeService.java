@@ -79,6 +79,15 @@ public class DefaultSkillOrAtributeService {
     }
 
     /**
+     * Get all the defaultSkillOrAtributes with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<DefaultSkillOrAtributeDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return defaultSkillOrAtributeRepository.findAllWithEagerRelationships(pageable).map(defaultSkillOrAtributeMapper::toDto);
+    }
+
+    /**
      * Get one defaultSkillOrAtribute by id.
      *
      * @param id the id of the entity.
@@ -87,7 +96,7 @@ public class DefaultSkillOrAtributeService {
     @Transactional(readOnly = true)
     public Optional<DefaultSkillOrAtributeDTO> findOne(Long id) {
         log.debug("Request to get DefaultSkillOrAtribute : {}", id);
-        return defaultSkillOrAtributeRepository.findById(id).map(defaultSkillOrAtributeMapper::toDto);
+        return defaultSkillOrAtributeRepository.findOneWithEagerRelationships(id).map(defaultSkillOrAtributeMapper::toDto);
     }
 
     /**

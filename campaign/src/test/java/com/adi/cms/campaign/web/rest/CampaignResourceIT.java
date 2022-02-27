@@ -156,6 +156,52 @@ class CampaignResourceIT {
 
     @Test
     @Transactional
+    void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = campaignRepository.findAll().size();
+        // set the field null
+        campaign.setName(null);
+
+        // Create the Campaign, which fails.
+        CampaignDTO campaignDTO = campaignMapper.toDto(campaign);
+
+        restCampaignMockMvc
+            .perform(
+                post(ENTITY_API_URL)
+                    .with(csrf())
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(TestUtil.convertObjectToJsonBytes(campaignDTO))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<Campaign> campaignList = campaignRepository.findAll();
+        assertThat(campaignList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkMasterIdIsRequired() throws Exception {
+        int databaseSizeBeforeTest = campaignRepository.findAll().size();
+        // set the field null
+        campaign.setMasterId(null);
+
+        // Create the Campaign, which fails.
+        CampaignDTO campaignDTO = campaignMapper.toDto(campaign);
+
+        restCampaignMockMvc
+            .perform(
+                post(ENTITY_API_URL)
+                    .with(csrf())
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(TestUtil.convertObjectToJsonBytes(campaignDTO))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<Campaign> campaignList = campaignRepository.findAll();
+        assertThat(campaignList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllCampaigns() throws Exception {
         // Initialize the database
         campaignRepository.saveAndFlush(campaign);

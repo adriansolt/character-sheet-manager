@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.adi.cms.campaign.IntegrationTest;
+import com.adi.cms.campaign.domain.Campaign;
 import com.adi.cms.campaign.domain.CampaignUser;
 import com.adi.cms.campaign.domain.User;
 import com.adi.cms.campaign.repository.CampaignUserRepository;
@@ -62,6 +63,16 @@ class CampaignUserResourceIT {
     public static CampaignUser createEntity(EntityManager em) {
         CampaignUser campaignUser = new CampaignUser();
         // Add required entity
+        Campaign campaign;
+        if (TestUtil.findAll(em, Campaign.class).isEmpty()) {
+            campaign = CampaignResourceIT.createEntity(em);
+            em.persist(campaign);
+            em.flush();
+        } else {
+            campaign = TestUtil.findAll(em, Campaign.class).get(0);
+        }
+        campaignUser.setCampaign(campaign);
+        // Add required entity
         User user = UserResourceIT.createEntity(em);
         em.persist(user);
         em.flush();
@@ -77,6 +88,16 @@ class CampaignUserResourceIT {
      */
     public static CampaignUser createUpdatedEntity(EntityManager em) {
         CampaignUser campaignUser = new CampaignUser();
+        // Add required entity
+        Campaign campaign;
+        if (TestUtil.findAll(em, Campaign.class).isEmpty()) {
+            campaign = CampaignResourceIT.createUpdatedEntity(em);
+            em.persist(campaign);
+            em.flush();
+        } else {
+            campaign = TestUtil.findAll(em, Campaign.class).get(0);
+        }
+        campaignUser.setCampaign(campaign);
         // Add required entity
         User user = UserResourceIT.createEntity(em);
         em.persist(user);

@@ -27,7 +27,8 @@ public class CharacterSkill implements Serializable {
     @Column(name = "points", nullable = false)
     private Integer points;
 
-    @Column(name = "skill_modifier")
+    @NotNull
+    @Column(name = "skill_modifier", nullable = false)
     private Integer skillModifier;
 
     @ManyToOne

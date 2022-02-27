@@ -175,6 +175,28 @@ class CharacterSkillResourceIT {
     }
 
     @Test
+    void checkSkillModifierIsRequired() throws Exception {
+        int databaseSizeBeforeTest = characterSkillRepository.findAll().collectList().block().size();
+        // set the field null
+        characterSkill.setSkillModifier(null);
+
+        // Create the CharacterSkill, which fails.
+        CharacterSkillDTO characterSkillDTO = characterSkillMapper.toDto(characterSkill);
+
+        webTestClient
+            .post()
+            .uri(ENTITY_API_URL)
+            .contentType(MediaType.APPLICATION_JSON)
+            .bodyValue(TestUtil.convertObjectToJsonBytes(characterSkillDTO))
+            .exchange()
+            .expectStatus()
+            .isBadRequest();
+
+        List<CharacterSkill> characterSkillList = characterSkillRepository.findAll().collectList().block();
+        assertThat(characterSkillList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     void getAllCharacterSkills() {
         // Initialize the database
         characterSkillRepository.save(characterSkill).block();

@@ -24,7 +24,7 @@ export class CampaignUserUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    campaign: [],
+    campaign: [null, Validators.required],
     user: [null, Validators.required],
   });
 

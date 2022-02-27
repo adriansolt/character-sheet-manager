@@ -22,11 +22,11 @@
       "description": "Description",
       "map": "Map",
       "masterId": "Master Id",
-      "campaignUser": "Campaign User",
       "character": "Character",
       "item": "Item",
       "weapon": "Weapon",
-      "armorPiece": "Armor Piece"
+      "armorPiece": "Armor Piece",
+      "campaignUser": "Campaign User"
     }
   }
 }

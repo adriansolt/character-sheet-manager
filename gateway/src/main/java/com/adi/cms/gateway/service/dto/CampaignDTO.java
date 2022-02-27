@@ -3,6 +3,7 @@ package com.adi.cms.gateway.service.dto;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Lob;
+import javax.validation.constraints.*;
 
 /**
  * A DTO for the {@link com.adi.cms.gateway.domain.Campaign} entity.
@@ -11,6 +12,7 @@ public class CampaignDTO implements Serializable {
 
     private Long id;
 
+    @NotNull(message = "must not be null")
     private String name;
 
     private String description;
@@ -19,6 +21,8 @@ public class CampaignDTO implements Serializable {
     private byte[] map;
 
     private String mapContentType;
+
+    @NotNull(message = "must not be null")
     private Long masterId;
 
     public Long getId() {

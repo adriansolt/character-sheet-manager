@@ -19,6 +19,7 @@ describe('CampaignUser e2e test', () => {
   const campaignUserSample = {};
 
   let campaignUser: any;
+  //let campaign: any;
   //let user: any;
 
   beforeEach(() => {
@@ -27,6 +28,14 @@ describe('CampaignUser e2e test', () => {
 
   /* Disabled due to incompatibility
   beforeEach(() => {
+    // create an instance at the required relationship entity:
+    cy.authenticatedRequest({
+      method: 'POST',
+      url: '/api/campaigns',
+      body: {"name":"New online","description":"SAS implementation","map":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci5wbmc=","mapContentType":"unknown","masterId":43284},
+    }).then(({ body }) => {
+      campaign = body;
+    });
     // create an instance at the required relationship entity:
     cy.authenticatedRequest({
       method: 'POST',
@@ -49,7 +58,7 @@ describe('CampaignUser e2e test', () => {
     // Simulate relationships api for better performance and reproducibility.
     cy.intercept('GET', '/api/campaigns', {
       statusCode: 200,
-      body: [],
+      body: [campaign],
     });
 
     cy.intercept('GET', '/api/users', {
@@ -73,6 +82,14 @@ describe('CampaignUser e2e test', () => {
 
   /* Disabled due to incompatibility
   afterEach(() => {
+    if (campaign) {
+      cy.authenticatedRequest({
+        method: 'DELETE',
+        url: `/api/campaigns/${campaign.id}`,
+      }).then(() => {
+        campaign = undefined;
+      });
+    }
     if (user) {
       cy.authenticatedRequest({
         method: 'DELETE',
@@ -126,6 +143,7 @@ describe('CampaignUser e2e test', () => {
           url: '/api/campaign-users',
           body: {
             ...campaignUserSample,
+            campaign: campaign,
             user: user,
           },
         }).then(({ body }) => {
@@ -209,6 +227,7 @@ describe('CampaignUser e2e test', () => {
     });
 
     it.skip('should create an instance of CampaignUser', () => {
+      cy.get(`[data-cy="campaign"]`).select(1);
       cy.get(`[data-cy="user"]`).select(1);
 
       cy.get(entityCreateSaveButtonSelector).click();

@@ -175,6 +175,50 @@ class CampaignResourceIT {
     }
 
     @Test
+    void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = campaignRepository.findAll().collectList().block().size();
+        // set the field null
+        campaign.setName(null);
+
+        // Create the Campaign, which fails.
+        CampaignDTO campaignDTO = campaignMapper.toDto(campaign);
+
+        webTestClient
+            .post()
+            .uri(ENTITY_API_URL)
+            .contentType(MediaType.APPLICATION_JSON)
+            .bodyValue(TestUtil.convertObjectToJsonBytes(campaignDTO))
+            .exchange()
+            .expectStatus()
+            .isBadRequest();
+
+        List<Campaign> campaignList = campaignRepository.findAll().collectList().block();
+        assertThat(campaignList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    void checkMasterIdIsRequired() throws Exception {
+        int databaseSizeBeforeTest = campaignRepository.findAll().collectList().block().size();
+        // set the field null
+        campaign.setMasterId(null);
+
+        // Create the Campaign, which fails.
+        CampaignDTO campaignDTO = campaignMapper.toDto(campaign);
+
+        webTestClient
+            .post()
+            .uri(ENTITY_API_URL)
+            .contentType(MediaType.APPLICATION_JSON)
+            .bodyValue(TestUtil.convertObjectToJsonBytes(campaignDTO))
+            .exchange()
+            .expectStatus()
+            .isBadRequest();
+
+        List<Campaign> campaignList = campaignRepository.findAll().collectList().block();
+        assertThat(campaignList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     void getAllCampaigns() {
         // Initialize the database
         campaignRepository.save(campaign).block();

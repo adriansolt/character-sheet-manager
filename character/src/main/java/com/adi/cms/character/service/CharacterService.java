@@ -76,6 +76,15 @@ public class CharacterService {
     }
 
     /**
+     * Get all the characters with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<CharacterDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return characterRepository.findAllWithEagerRelationships(pageable).map(characterMapper::toDto);
+    }
+
+    /**
      * Get one character by id.
      *
      * @param id the id of the entity.
@@ -84,7 +93,7 @@ public class CharacterService {
     @Transactional(readOnly = true)
     public Optional<CharacterDTO> findOne(Long id) {
         log.debug("Request to get Character : {}", id);
-        return characterRepository.findById(id).map(characterMapper::toDto);
+        return characterRepository.findOneWithEagerRelationships(id).map(characterMapper::toDto);
     }
 
     /**

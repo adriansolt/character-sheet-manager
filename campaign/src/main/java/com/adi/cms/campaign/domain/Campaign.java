@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -24,20 +25,23 @@ public class Campaign implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @NotNull
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "description")
     private String description;
 
     @Lob
-    @Column(name = "map")
+    @Column(name = "map", nullable = false)
     private byte[] map;
 
-    @Column(name = "map_content_type")
+    @NotNull
+    @Column(name = "map_content_type", nullable = false)
     private String mapContentType;
 
-    @Column(name = "master_id")
+    @NotNull
+    @Column(name = "master_id", nullable = false)
     private Long masterId;
 
     @OneToMany(mappedBy = "campaign")
