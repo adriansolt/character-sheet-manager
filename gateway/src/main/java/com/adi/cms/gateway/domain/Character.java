@@ -64,22 +64,22 @@ public class Character implements Serializable {
     private Set<CharacterSkill> characterSkills = new HashSet<>();
 
     @Transient
-    @JsonIgnoreProperties(value = { "character" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "campaign", "character" }, allowSetters = true)
     private Set<Item> items = new HashSet<>();
 
     @Transient
-    @JsonIgnoreProperties(value = { "characterEquippedWeapons", "weaponManeuvers", "character" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "characterEquippedWeapons", "weaponManeuvers", "campaign", "character" }, allowSetters = true)
     private Set<Weapon> weapons = new HashSet<>();
 
     @Transient
-    @JsonIgnoreProperties(value = { "characterEquippedArmors", "character" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "characterEquippedArmors", "campaign", "character" }, allowSetters = true)
     private Set<ArmorPiece> armorPieces = new HashSet<>();
 
     @Transient
     private User user;
 
     @Transient
-    @JsonIgnoreProperties(value = { "campaignUsers", "characters" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "campaignUsers", "characters", "items", "weapons", "armorPieces" }, allowSetters = true)
     private Campaign campaign;
 
     @Column("user_id")

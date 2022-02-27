@@ -51,6 +51,12 @@
         <dd>
           <span>{{ armorPiece.defenseModifier }}</span>
         </dd>
+        <dt><span jhiTranslate="gatewayApp.armorPiece.campaign">Campaign</span></dt>
+        <dd>
+          <div *ngIf="armorPiece.campaign">
+            <a [routerLink]="['/campaign', armorPiece.campaign?.id, 'view']">{{ armorPiece.campaign?.name }}</a>
+          </div>
+        </dd>
         <dt><span jhiTranslate="gatewayApp.armorPiece.character">Character</span></dt>
         <dd>
           <div *ngIf="armorPiece.character">

@@ -23,6 +23,7 @@
       "weight": "Weight",
       "quality": "Quality",
       "picture": "Picture",
+      "campaign": "Campaign",
       "character": "Character"
     }
   }

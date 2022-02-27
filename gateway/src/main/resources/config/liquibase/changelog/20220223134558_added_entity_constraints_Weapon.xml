@@ -8,6 +8,12 @@
     -->
     <changeSet id="20220223134558-2" author="jhipster">
 
+        <addForeignKeyConstraint baseColumnNames="campaign_id"
+                                 baseTableName="weapon"
+                                 constraintName="fk_weapon__campaign_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="campaign"/>
+
         <addForeignKeyConstraint baseColumnNames="character_id"
                                  baseTableName="weapon"
                                  constraintName="fk_weapon__character_id"

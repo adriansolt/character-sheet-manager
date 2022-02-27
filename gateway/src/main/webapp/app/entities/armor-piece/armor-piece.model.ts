@@ -1,4 +1,5 @@
 import { ICharacterEquippedArmor } from 'app/entities/character-equipped-armor/character-equipped-armor.model';
+import { ICampaign } from 'app/entities/campaign/campaign.model';
 import { ICharacter } from 'app/entities/character/character.model';
 import { ArmorLocation } from 'app/entities/enumerations/armor-location.model';
 
@@ -13,6 +14,7 @@ export interface IArmorPiece {
   location?: ArmorLocation | null;
   defenseModifier?: number | null;
   characterEquippedArmors?: ICharacterEquippedArmor[] | null;
+  campaign?: ICampaign | null;
   character?: ICharacter | null;
 }
 
@@ -28,6 +30,7 @@ export class ArmorPiece implements IArmorPiece {
     public location?: ArmorLocation | null,
     public defenseModifier?: number | null,
     public characterEquippedArmors?: ICharacterEquippedArmor[] | null,
+    public campaign?: ICampaign | null,
     public character?: ICharacter | null
   ) {}
 }

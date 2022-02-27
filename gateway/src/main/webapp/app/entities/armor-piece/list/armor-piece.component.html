@@ -52,6 +52,9 @@
           <th scope="col" jhiSortBy="defenseModifier">
             <span jhiTranslate="gatewayApp.armorPiece.defenseModifier">Defense Modifier</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="campaign.name">
+            <span jhiTranslate="gatewayApp.armorPiece.campaign">Campaign</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="character.name">
             <span jhiTranslate="gatewayApp.armorPiece.character">Character</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -79,6 +82,11 @@
           </td>
           <td jhiTranslate="{{ 'gatewayApp.ArmorLocation.' + armorPiece.location }}">{{ armorPiece.location }}</td>
           <td>{{ armorPiece.defenseModifier }}</td>
+          <td>
+            <div *ngIf="armorPiece.campaign">
+              <a [routerLink]="['/campaign', armorPiece.campaign?.id, 'view']">{{ armorPiece.campaign?.name }}</a>
+            </div>
+          </td>
           <td>
             <div *ngIf="armorPiece.character">
               <a [routerLink]="['/character', armorPiece.character?.id, 'view']">{{ armorPiece.character?.name }}</a>

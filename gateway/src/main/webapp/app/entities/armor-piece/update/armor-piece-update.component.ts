@@ -10,6 +10,8 @@ import { ArmorPieceService } from '../service/armor-piece.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
 import { EventManager, EventWithContent } from 'app/core/util/event-manager.service';
 import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
+import { ICampaign } from 'app/entities/campaign/campaign.model';
+import { CampaignService } from 'app/entities/campaign/service/campaign.service';
 import { ICharacter } from 'app/entities/character/character.model';
 import { CharacterService } from 'app/entities/character/service/character.service';
 import { ArmorLocation } from 'app/entities/enumerations/armor-location.model';
@@ -22,6 +24,7 @@ export class ArmorPieceUpdateComponent implements OnInit {
   isSaving = false;
   armorLocationValues = Object.keys(ArmorLocation);
 
+  campaignsSharedCollection: ICampaign[] = [];
   charactersSharedCollection: ICharacter[] = [];
 
   editForm = this.fb.group({
@@ -34,6 +37,7 @@ export class ArmorPieceUpdateComponent implements OnInit {
     pictureContentType: [],
     location: [],
     defenseModifier: [],
+    campaign: [],
     character: [],
   });
 
@@ -41,6 +45,7 @@ export class ArmorPieceUpdateComponent implements OnInit {
     protected dataUtils: DataUtils,
     protected eventManager: EventManager,
     protected armorPieceService: ArmorPieceService,
+    protected campaignService: CampaignService,
     protected characterService: CharacterService,
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
@@ -94,6 +99,10 @@ export class ArmorPieceUpdateComponent implements OnInit {
     }
   }
 
+  trackCampaignById(index: number, item: ICampaign): number {
+    return item.id!;
+  }
+
   trackCharacterById(index: number, item: ICharacter): number {
     return item.id!;
   }
@@ -128,9 +137,14 @@ export class ArmorPieceUpdateComponent implements OnInit {
       pictureContentType: armorPiece.pictureContentType,
       location: armorPiece.location,
       defenseModifier: armorPiece.defenseModifier,
+      campaign: armorPiece.campaign,
       character: armorPiece.character,
     });
 
+    this.campaignsSharedCollection = this.campaignService.addCampaignToCollectionIfMissing(
+      this.campaignsSharedCollection,
+      armorPiece.campaign
+    );
     this.charactersSharedCollection = this.characterService.addCharacterToCollectionIfMissing(
       this.charactersSharedCollection,
       armorPiece.character
@@ -138,6 +152,16 @@ export class ArmorPieceUpdateComponent implements OnInit {
   }
 
   protected loadRelationshipsOptions(): void {
+    this.campaignService
+      .query()
+      .pipe(map((res: HttpResponse<ICampaign[]>) => res.body ?? []))
+      .pipe(
+        map((campaigns: ICampaign[]) =>
+          this.campaignService.addCampaignToCollectionIfMissing(campaigns, this.editForm.get('campaign')!.value)
+        )
+      )
+      .subscribe((campaigns: ICampaign[]) => (this.campaignsSharedCollection = campaigns));
+
     this.characterService
       .query()
       .pipe(map((res: HttpResponse<ICharacter[]>) => res.body ?? []))
@@ -161,6 +185,7 @@ export class ArmorPieceUpdateComponent implements OnInit {
       picture: this.editForm.get(['picture'])!.value,
       location: this.editForm.get(['location'])!.value,
       defenseModifier: this.editForm.get(['defenseModifier'])!.value,
+      campaign: this.editForm.get(['campaign'])!.value,
       character: this.editForm.get(['character'])!.value,
     };
   }

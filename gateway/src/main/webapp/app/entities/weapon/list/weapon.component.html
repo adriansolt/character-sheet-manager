@@ -56,6 +56,9 @@
           <th scope="col" jhiSortBy="damageModifier">
             <span jhiTranslate="gatewayApp.weapon.damageModifier">Damage Modifier</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="campaign.name">
+            <span jhiTranslate="gatewayApp.weapon.campaign">Campaign</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="character.name">
             <span jhiTranslate="gatewayApp.weapon.character">Character</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -81,6 +84,11 @@
           <td>{{ weapon.baseDamage }}</td>
           <td>{{ weapon.requiredST }}</td>
           <td>{{ weapon.damageModifier }}</td>
+          <td>
+            <div *ngIf="weapon.campaign">
+              <a [routerLink]="['/campaign', weapon.campaign?.id, 'view']">{{ weapon.campaign?.name }}</a>
+            </div>
+          </td>
           <td>
             <div *ngIf="weapon.character">
               <a [routerLink]="['/character', weapon.character?.id, 'view']">{{ weapon.character?.name }}</a>

@@ -47,6 +47,18 @@ public class Campaign implements Serializable {
     )
     private Set<Character> characters = new HashSet<>();
 
+    @Transient
+    @JsonIgnoreProperties(value = { "campaign", "character" }, allowSetters = true)
+    private Set<Item> items = new HashSet<>();
+
+    @Transient
+    @JsonIgnoreProperties(value = { "characterEquippedWeapons", "weaponManeuvers", "campaign", "character" }, allowSetters = true)
+    private Set<Weapon> weapons = new HashSet<>();
+
+    @Transient
+    @JsonIgnoreProperties(value = { "characterEquippedArmors", "campaign", "character" }, allowSetters = true)
+    private Set<ArmorPiece> armorPieces = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -186,6 +198,99 @@ public class Campaign implements Serializable {
     public Campaign removeCharacter(Character character) {
         this.characters.remove(character);
         character.setCampaign(null);
+        return this;
+    }
+
+    public Set<Item> getItems() {
+        return this.items;
+    }
+
+    public void setItems(Set<Item> items) {
+        if (this.items != null) {
+            this.items.forEach(i -> i.setCampaign(null));
+        }
+        if (items != null) {
+            items.forEach(i -> i.setCampaign(this));
+        }
+        this.items = items;
+    }
+
+    public Campaign items(Set<Item> items) {
+        this.setItems(items);
+        return this;
+    }
+
+    public Campaign addItem(Item item) {
+        this.items.add(item);
+        item.setCampaign(this);
+        return this;
+    }
+
+    public Campaign removeItem(Item item) {
+        this.items.remove(item);
+        item.setCampaign(null);
+        return this;
+    }
+
+    public Set<Weapon> getWeapons() {
+        return this.weapons;
+    }
+
+    public void setWeapons(Set<Weapon> weapons) {
+        if (this.weapons != null) {
+            this.weapons.forEach(i -> i.setCampaign(null));
+        }
+        if (weapons != null) {
+            weapons.forEach(i -> i.setCampaign(this));
+        }
+        this.weapons = weapons;
+    }
+
+    public Campaign weapons(Set<Weapon> weapons) {
+        this.setWeapons(weapons);
+        return this;
+    }
+
+    public Campaign addWeapon(Weapon weapon) {
+        this.weapons.add(weapon);
+        weapon.setCampaign(this);
+        return this;
+    }
+
+    public Campaign removeWeapon(Weapon weapon) {
+        this.weapons.remove(weapon);
+        weapon.setCampaign(null);
+        return this;
+    }
+
+    public Set<ArmorPiece> getArmorPieces() {
+        return this.armorPieces;
+    }
+
+    public void setArmorPieces(Set<ArmorPiece> armorPieces) {
+        if (this.armorPieces != null) {
+            this.armorPieces.forEach(i -> i.setCampaign(null));
+        }
+        if (armorPieces != null) {
+            armorPieces.forEach(i -> i.setCampaign(this));
+        }
+        this.armorPieces = armorPieces;
+    }
+
+    public Campaign armorPieces(Set<ArmorPiece> armorPieces) {
+        this.setArmorPieces(armorPieces);
+        return this;
+    }
+
+    public Campaign addArmorPiece(ArmorPiece armorPiece) {
+        this.armorPieces.add(armorPiece);
+        armorPiece.setCampaign(this);
+        return this;
+    }
+
+    public Campaign removeArmorPiece(ArmorPiece armorPiece) {
+        this.armorPieces.remove(armorPiece);
+        armorPiece.setCampaign(null);
         return this;
     }
 

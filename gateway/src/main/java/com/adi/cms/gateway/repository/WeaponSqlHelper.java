@@ -22,6 +22,7 @@ public class WeaponSqlHelper {
         columns.add(Column.aliased("required_st", table, columnPrefix + "_required_st"));
         columns.add(Column.aliased("damage_modifier", table, columnPrefix + "_damage_modifier"));
 
+        columns.add(Column.aliased("campaign_id", table, columnPrefix + "_campaign_id"));
         columns.add(Column.aliased("character_id", table, columnPrefix + "_character_id"));
         return columns;
     }

@@ -29,6 +29,7 @@
       "damageModifier": "Damage Modifier",
       "characterEquippedWeapon": "Character Equipped Weapon",
       "weaponManeuver": "Weapon Maneuver",
+      "campaign": "Campaign",
       "character": "Character"
     }
   }

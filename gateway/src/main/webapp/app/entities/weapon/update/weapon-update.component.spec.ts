@@ -8,6 +8,8 @@ import { of, Subject, from } from 'rxjs';
 
 import { WeaponService } from '../service/weapon.service';
 import { IWeapon, Weapon } from '../weapon.model';
+import { ICampaign } from 'app/entities/campaign/campaign.model';
+import { CampaignService } from 'app/entities/campaign/service/campaign.service';
 import { ICharacter } from 'app/entities/character/character.model';
 import { CharacterService } from 'app/entities/character/service/character.service';
 
@@ -18,6 +20,7 @@ describe('Weapon Management Update Component', () => {
   let fixture: ComponentFixture<WeaponUpdateComponent>;
   let activatedRoute: ActivatedRoute;
   let weaponService: WeaponService;
+  let campaignService: CampaignService;
   let characterService: CharacterService;
 
   beforeEach(() => {
@@ -40,12 +43,32 @@ describe('Weapon Management Update Component', () => {
     fixture = TestBed.createComponent(WeaponUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
     weaponService = TestBed.inject(WeaponService);
+    campaignService = TestBed.inject(CampaignService);
     characterService = TestBed.inject(CharacterService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
+    it('Should call Campaign query and add missing value', () => {
+      const weapon: IWeapon = { id: 456 };
+      const campaign: ICampaign = { id: 60847 };
+      weapon.campaign = campaign;
+
+      const campaignCollection: ICampaign[] = [{ id: 18343 }];
+      jest.spyOn(campaignService, 'query').mockReturnValue(of(new HttpResponse({ body: campaignCollection })));
+      const additionalCampaigns = [campaign];
+      const expectedCollection: ICampaign[] = [...additionalCampaigns, ...campaignCollection];
+      jest.spyOn(campaignService, 'addCampaignToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ weapon });
+      comp.ngOnInit();
+
+      expect(campaignService.query).toHaveBeenCalled();
+      expect(campaignService.addCampaignToCollectionIfMissing).toHaveBeenCalledWith(campaignCollection, ...additionalCampaigns);
+      expect(comp.campaignsSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should call Character query and add missing value', () => {
       const weapon: IWeapon = { id: 456 };
       const character: ICharacter = { id: 99646 };
@@ -67,6 +90,8 @@ describe('Weapon Management Update Component', () => {
 
     it('Should update editForm', () => {
       const weapon: IWeapon = { id: 456 };
+      const campaign: ICampaign = { id: 9961 };
+      weapon.campaign = campaign;
       const character: ICharacter = { id: 66994 };
       weapon.character = character;
 
@@ -74,6 +99,7 @@ describe('Weapon Management Update Component', () => {
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(weapon));
+      expect(comp.campaignsSharedCollection).toContain(campaign);
       expect(comp.charactersSharedCollection).toContain(character);
     });
   });
@@ -143,6 +169,14 @@ describe('Weapon Management Update Component', () => {
   });
 
   describe('Tracking relationships identifiers', () => {
+    describe('trackCampaignById', () => {
+      it('Should return tracked Campaign primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackCampaignById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
     describe('trackCharacterById', () => {
       it('Should return tracked Character primary key', () => {
         const entity = { id: 123 };

@@ -55,6 +55,12 @@
         <dd>
           <span>{{ weapon.damageModifier }}</span>
         </dd>
+        <dt><span jhiTranslate="gatewayApp.weapon.campaign">Campaign</span></dt>
+        <dd>
+          <div *ngIf="weapon.campaign">
+            <a [routerLink]="['/campaign', weapon.campaign?.id, 'view']">{{ weapon.campaign?.name }}</a>
+          </div>
+        </dd>
         <dt><span jhiTranslate="gatewayApp.weapon.character">Character</span></dt>
         <dd>
           <div *ngIf="weapon.character">

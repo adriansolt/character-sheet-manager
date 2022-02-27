@@ -32,6 +32,8 @@ public class ArmorPieceDTO implements Serializable {
 
     private Integer defenseModifier;
 
+    private CampaignDTO campaign;
+
     private CharacterDTO character;
 
     public Long getId() {
@@ -106,6 +108,14 @@ public class ArmorPieceDTO implements Serializable {
         this.defenseModifier = defenseModifier;
     }
 
+    public CampaignDTO getCampaign() {
+        return campaign;
+    }
+
+    public void setCampaign(CampaignDTO campaign) {
+        this.campaign = campaign;
+    }
+
     public CharacterDTO getCharacter() {
         return character;
     }
@@ -147,6 +157,7 @@ public class ArmorPieceDTO implements Serializable {
             ", picture='" + getPicture() + "'" +
             ", location='" + getLocation() + "'" +
             ", defenseModifier=" + getDefenseModifier() +
+            ", campaign=" + getCampaign() +
             ", character=" + getCharacter() +
             "}";
     }

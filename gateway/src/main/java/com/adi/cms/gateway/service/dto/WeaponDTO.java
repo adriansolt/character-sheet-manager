@@ -41,6 +41,8 @@ public class WeaponDTO implements Serializable {
 
     private Integer damageModifier;
 
+    private CampaignDTO campaign;
+
     private CharacterDTO character;
 
     public Long getId() {
@@ -131,6 +133,14 @@ public class WeaponDTO implements Serializable {
         this.damageModifier = damageModifier;
     }
 
+    public CampaignDTO getCampaign() {
+        return campaign;
+    }
+
+    public void setCampaign(CampaignDTO campaign) {
+        this.campaign = campaign;
+    }
+
     public CharacterDTO getCharacter() {
         return character;
     }
@@ -174,6 +184,7 @@ public class WeaponDTO implements Serializable {
             ", baseDamage=" + getBaseDamage() +
             ", requiredST=" + getRequiredST() +
             ", damageModifier=" + getDamageModifier() +
+            ", campaign=" + getCampaign() +
             ", character=" + getCharacter() +
             "}";
     }

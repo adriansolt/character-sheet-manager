@@ -39,6 +39,13 @@
   "relationships": [
     {
       "otherEntityField": "name",
+      "otherEntityName": "campaign",
+      "otherEntityRelationshipName": "item",
+      "relationshipName": "campaign",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
       "otherEntityName": "character",
       "otherEntityRelationshipName": "item",
       "relationshipName": "character",

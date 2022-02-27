@@ -17,6 +17,12 @@ import reactor.core.publisher.Mono;
 public interface ItemRepository extends ReactiveCrudRepository<Item, Long>, ItemRepositoryInternal {
     Flux<Item> findAllBy(Pageable pageable);
 
+    @Query("SELECT * FROM item entity WHERE entity.campaign_id = :id")
+    Flux<Item> findByCampaign(Long id);
+
+    @Query("SELECT * FROM item entity WHERE entity.campaign_id IS NULL")
+    Flux<Item> findAllWhereCampaignIsNull();
+
     @Query("SELECT * FROM item entity WHERE entity.character_id = :id")
     Flux<Item> findByCharacter(Long id);
 

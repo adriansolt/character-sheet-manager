@@ -69,11 +69,18 @@ public class Weapon implements Serializable {
     private Set<WeaponManeuver> weaponManeuvers = new HashSet<>();
 
     @Transient
+    @JsonIgnoreProperties(value = { "campaignUsers", "characters", "items", "weapons", "armorPieces" }, allowSetters = true)
+    private Campaign campaign;
+
+    @Transient
     @JsonIgnoreProperties(
         value = { "notes", "characterAttributes", "characterSkills", "items", "weapons", "armorPieces", "user", "campaign" },
         allowSetters = true
     )
     private Character character;
+
+    @Column("campaign_id")
+    private Long campaignId;
 
     @Column("character_id")
     private Long characterId;
@@ -285,6 +292,20 @@ public class Weapon implements Serializable {
         return this;
     }
 
+    public Campaign getCampaign() {
+        return this.campaign;
+    }
+
+    public void setCampaign(Campaign campaign) {
+        this.campaign = campaign;
+        this.campaignId = campaign != null ? campaign.getId() : null;
+    }
+
+    public Weapon campaign(Campaign campaign) {
+        this.setCampaign(campaign);
+        return this;
+    }
+
     public Character getCharacter() {
         return this.character;
     }
@@ -297,6 +318,14 @@ public class Weapon implements Serializable {
     public Weapon character(Character character) {
         this.setCharacter(character);
         return this;
+    }
+
+    public Long getCampaignId() {
+        return this.campaignId;
+    }
+
+    public void setCampaignId(Long campaign) {
+        this.campaignId = campaign;
     }
 
     public Long getCharacterId() {

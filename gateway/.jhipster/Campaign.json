@@ -41,6 +41,24 @@
       "otherEntityRelationshipName": "campaign",
       "relationshipName": "character",
       "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "item",
+      "otherEntityRelationshipName": "campaign",
+      "relationshipName": "item",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "weapon",
+      "otherEntityRelationshipName": "campaign",
+      "relationshipName": "weapon",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "armorPiece",
+      "otherEntityRelationshipName": "campaign",
+      "relationshipName": "armorPiece",
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceClass"

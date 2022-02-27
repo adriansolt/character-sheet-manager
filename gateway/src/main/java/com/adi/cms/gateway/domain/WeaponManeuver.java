@@ -20,7 +20,7 @@ public class WeaponManeuver implements Serializable {
     private Long id;
 
     @Transient
-    @JsonIgnoreProperties(value = { "characterEquippedWeapons", "weaponManeuvers", "character" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "characterEquippedWeapons", "weaponManeuvers", "campaign", "character" }, allowSetters = true)
     private Weapon weapon;
 
     @Transient
