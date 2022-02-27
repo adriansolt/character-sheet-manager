@@ -34,7 +34,7 @@ public class CharacterAttribute implements Serializable {
 
     @Transient
     @JsonIgnoreProperties(
-        value = { "notes", "characterAttributes", "characterSkills", "items", "weapons", "armorPieces", "user", "campaign" },
+        value = { "items", "weapons", "armorPieces", "notes", "characterAttributes", "characterSkills", "user", "campaign" },
         allowSetters = true
     )
     private Character character;

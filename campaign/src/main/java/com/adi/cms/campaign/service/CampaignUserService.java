@@ -76,6 +76,15 @@ public class CampaignUserService {
     }
 
     /**
+     * Get all the campaignUsers with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<CampaignUserDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return campaignUserRepository.findAllWithEagerRelationships(pageable).map(campaignUserMapper::toDto);
+    }
+
+    /**
      * Get one campaignUser by id.
      *
      * @param id the id of the entity.
@@ -84,7 +93,7 @@ public class CampaignUserService {
     @Transactional(readOnly = true)
     public Optional<CampaignUserDTO> findOne(Long id) {
         log.debug("Request to get CampaignUser : {}", id);
-        return campaignUserRepository.findById(id).map(campaignUserMapper::toDto);
+        return campaignUserRepository.findOneWithEagerRelationships(id).map(campaignUserMapper::toDto);
     }
 
     /**

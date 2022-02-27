@@ -138,12 +138,21 @@ public class NoteResource {
      * {@code GET  /notes} : get all the notes.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of notes in body.
      */
     @GetMapping("/notes")
-    public ResponseEntity<List<NoteDTO>> getAllNotes(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
+    public ResponseEntity<List<NoteDTO>> getAllNotes(
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false, defaultValue = "true") boolean eagerload
+    ) {
         log.debug("REST request to get a page of Notes");
-        Page<NoteDTO> page = noteService.findAll(pageable);
+        Page<NoteDTO> page;
+        if (eagerload) {
+            page = noteService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = noteService.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

@@ -29,8 +29,11 @@ public class CharacterDTO implements Serializable {
     private byte[] picture;
 
     private String pictureContentType;
+
+    @NotNull(message = "must not be null")
     private Handedness handedness;
 
+    @NotNull(message = "must not be null")
     private Boolean active;
 
     private UserDTO user;

@@ -24,12 +24,13 @@ public class CharacterSkill implements Serializable {
     @Column("points")
     private Integer points;
 
+    @NotNull(message = "must not be null")
     @Column("skill_modifier")
     private Integer skillModifier;
 
     @Transient
     @JsonIgnoreProperties(
-        value = { "notes", "characterAttributes", "characterSkills", "items", "weapons", "armorPieces", "user", "campaign" },
+        value = { "items", "weapons", "armorPieces", "notes", "characterAttributes", "characterSkills", "user", "campaign" },
         allowSetters = true
     )
     private Character character;

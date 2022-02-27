@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -61,7 +63,7 @@ public class CampaignResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/campaigns")
-    public Mono<ResponseEntity<CampaignDTO>> createCampaign(@RequestBody CampaignDTO campaignDTO) throws URISyntaxException {
+    public Mono<ResponseEntity<CampaignDTO>> createCampaign(@Valid @RequestBody CampaignDTO campaignDTO) throws URISyntaxException {
         log.debug("REST request to save Campaign : {}", campaignDTO);
         if (campaignDTO.getId() != null) {
             throw new BadRequestAlertException("A new campaign cannot already have an ID", ENTITY_NAME, "idexists");
@@ -93,7 +95,7 @@ public class CampaignResource {
     @PutMapping("/campaigns/{id}")
     public Mono<ResponseEntity<CampaignDTO>> updateCampaign(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody CampaignDTO campaignDTO
+        @Valid @RequestBody CampaignDTO campaignDTO
     ) throws URISyntaxException {
         log.debug("REST request to update Campaign : {}, {}", id, campaignDTO);
         if (campaignDTO.getId() == null) {
@@ -136,7 +138,7 @@ public class CampaignResource {
     @PatchMapping(value = "/campaigns/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public Mono<ResponseEntity<CampaignDTO>> partialUpdateCampaign(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody CampaignDTO campaignDTO
+        @NotNull @RequestBody CampaignDTO campaignDTO
     ) throws URISyntaxException {
         log.debug("REST request to partial update Campaign partially : {}, {}", id, campaignDTO);
         if (campaignDTO.getId() == null) {

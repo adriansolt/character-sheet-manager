@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
@@ -21,6 +22,7 @@ public class Campaign implements Serializable {
     @Column("id")
     private Long id;
 
+    @NotNull(message = "must not be null")
     @Column("name")
     private String name;
 
@@ -30,19 +32,17 @@ public class Campaign implements Serializable {
     @Column("map")
     private byte[] map;
 
+    @NotNull
     @Column("map_content_type")
     private String mapContentType;
 
+    @NotNull(message = "must not be null")
     @Column("master_id")
     private Long masterId;
 
     @Transient
-    @JsonIgnoreProperties(value = { "campaign", "user" }, allowSetters = true)
-    private Set<CampaignUser> campaignUsers = new HashSet<>();
-
-    @Transient
     @JsonIgnoreProperties(
-        value = { "notes", "characterAttributes", "characterSkills", "items", "weapons", "armorPieces", "user", "campaign" },
+        value = { "items", "weapons", "armorPieces", "notes", "characterAttributes", "characterSkills", "user", "campaign" },
         allowSetters = true
     )
     private Set<Character> characters = new HashSet<>();
@@ -58,6 +58,10 @@ public class Campaign implements Serializable {
     @Transient
     @JsonIgnoreProperties(value = { "characterEquippedArmors", "campaign", "character" }, allowSetters = true)
     private Set<ArmorPiece> armorPieces = new HashSet<>();
+
+    @Transient
+    @JsonIgnoreProperties(value = { "campaign", "user" }, allowSetters = true)
+    private Set<CampaignUser> campaignUsers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -137,37 +141,6 @@ public class Campaign implements Serializable {
 
     public void setMasterId(Long masterId) {
         this.masterId = masterId;
-    }
-
-    public Set<CampaignUser> getCampaignUsers() {
-        return this.campaignUsers;
-    }
-
-    public void setCampaignUsers(Set<CampaignUser> campaignUsers) {
-        if (this.campaignUsers != null) {
-            this.campaignUsers.forEach(i -> i.setCampaign(null));
-        }
-        if (campaignUsers != null) {
-            campaignUsers.forEach(i -> i.setCampaign(this));
-        }
-        this.campaignUsers = campaignUsers;
-    }
-
-    public Campaign campaignUsers(Set<CampaignUser> campaignUsers) {
-        this.setCampaignUsers(campaignUsers);
-        return this;
-    }
-
-    public Campaign addCampaignUser(CampaignUser campaignUser) {
-        this.campaignUsers.add(campaignUser);
-        campaignUser.setCampaign(this);
-        return this;
-    }
-
-    public Campaign removeCampaignUser(CampaignUser campaignUser) {
-        this.campaignUsers.remove(campaignUser);
-        campaignUser.setCampaign(null);
-        return this;
     }
 
     public Set<Character> getCharacters() {
@@ -291,6 +264,37 @@ public class Campaign implements Serializable {
     public Campaign removeArmorPiece(ArmorPiece armorPiece) {
         this.armorPieces.remove(armorPiece);
         armorPiece.setCampaign(null);
+        return this;
+    }
+
+    public Set<CampaignUser> getCampaignUsers() {
+        return this.campaignUsers;
+    }
+
+    public void setCampaignUsers(Set<CampaignUser> campaignUsers) {
+        if (this.campaignUsers != null) {
+            this.campaignUsers.forEach(i -> i.setCampaign(null));
+        }
+        if (campaignUsers != null) {
+            campaignUsers.forEach(i -> i.setCampaign(this));
+        }
+        this.campaignUsers = campaignUsers;
+    }
+
+    public Campaign campaignUsers(Set<CampaignUser> campaignUsers) {
+        this.setCampaignUsers(campaignUsers);
+        return this;
+    }
+
+    public Campaign addCampaignUser(CampaignUser campaignUser) {
+        this.campaignUsers.add(campaignUser);
+        campaignUser.setCampaign(this);
+        return this;
+    }
+
+    public Campaign removeCampaignUser(CampaignUser campaignUser) {
+        this.campaignUsers.remove(campaignUser);
+        campaignUser.setCampaign(null);
         return this;
     }
 

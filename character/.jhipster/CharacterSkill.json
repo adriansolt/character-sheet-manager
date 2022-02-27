@@ -14,7 +14,8 @@
     },
     {
       "fieldName": "skillModifier",
-      "fieldType": "Integer"
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
     }
   ],
   "fluentMethods": true,

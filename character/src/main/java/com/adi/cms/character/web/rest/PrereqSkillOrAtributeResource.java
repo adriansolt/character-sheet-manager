@@ -147,14 +147,21 @@ public class PrereqSkillOrAtributeResource {
      * {@code GET  /prereq-skill-or-atributes} : get all the prereqSkillOrAtributes.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of prereqSkillOrAtributes in body.
      */
     @GetMapping("/prereq-skill-or-atributes")
     public ResponseEntity<List<PrereqSkillOrAtributeDTO>> getAllPrereqSkillOrAtributes(
-        @org.springdoc.api.annotations.ParameterObject Pageable pageable
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false, defaultValue = "true") boolean eagerload
     ) {
         log.debug("REST request to get a page of PrereqSkillOrAtributes");
-        Page<PrereqSkillOrAtributeDTO> page = prereqSkillOrAtributeService.findAll(pageable);
+        Page<PrereqSkillOrAtributeDTO> page;
+        if (eagerload) {
+            page = prereqSkillOrAtributeService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = prereqSkillOrAtributeService.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

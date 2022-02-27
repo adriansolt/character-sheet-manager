@@ -142,12 +142,21 @@ public class CharacterResource {
      * {@code GET  /characters} : get all the characters.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of characters in body.
      */
     @GetMapping("/characters")
-    public ResponseEntity<List<CharacterDTO>> getAllCharacters(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
+    public ResponseEntity<List<CharacterDTO>> getAllCharacters(
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false, defaultValue = "true") boolean eagerload
+    ) {
         log.debug("REST request to get a page of Characters");
-        Page<CharacterDTO> page = characterService.findAll(pageable);
+        Page<CharacterDTO> page;
+        if (eagerload) {
+            page = characterService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = characterService.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

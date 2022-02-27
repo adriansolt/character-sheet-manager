@@ -76,6 +76,15 @@ public class NoteService {
     }
 
     /**
+     * Get all the notes with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<NoteDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return noteRepository.findAllWithEagerRelationships(pageable).map(noteMapper::toDto);
+    }
+
+    /**
      * Get one note by id.
      *
      * @param id the id of the entity.
@@ -84,7 +93,7 @@ public class NoteService {
     @Transactional(readOnly = true)
     public Optional<NoteDTO> findOne(Long id) {
         log.debug("Request to get Note : {}", id);
-        return noteRepository.findById(id).map(noteMapper::toDto);
+        return noteRepository.findOneWithEagerRelationships(id).map(noteMapper::toDto);
     }
 
     /**

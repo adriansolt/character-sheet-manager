@@ -108,11 +108,25 @@
               {{ 'gatewayApp.Handedness.' + handedness | translate }}
             </option>
           </select>
+          <div *ngIf="editForm.get('handedness')!.invalid && (editForm.get('handedness')!.dirty || editForm.get('handedness')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('handedness')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
         </div>
 
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="gatewayApp.character.active" for="field_active">Active</label>
           <input type="checkbox" class="form-check" name="active" id="field_active" data-cy="active" formControlName="active" />
+          <div *ngIf="editForm.get('active')!.invalid && (editForm.get('active')!.dirty || editForm.get('active')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('active')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
         </div>
 
         <div class="form-group">

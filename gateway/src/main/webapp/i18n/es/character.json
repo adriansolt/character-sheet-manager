@@ -25,12 +25,12 @@
       "picture": "Picture",
       "handedness": "Handedness",
       "active": "Active",
-      "note": "Note",
-      "characterAttribute": "Character Attribute",
-      "characterSkill": "Character Skill",
       "item": "Item",
       "weapon": "Weapon",
       "armorPiece": "Armor Piece",
+      "note": "Note",
+      "characterAttribute": "Character Attribute",
+      "characterSkill": "Character Skill",
       "user": "User",
       "campaign": "Campaign"
     }

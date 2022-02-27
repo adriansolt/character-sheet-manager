@@ -14,6 +14,7 @@ public class CharacterSkillDTO implements Serializable {
     @NotNull
     private Integer points;
 
+    @NotNull
     private Integer skillModifier;
 
     private CharacterDTO character;

@@ -14,52 +14,18 @@ relationship OneToMany {
 
 //
 
-application {
-  config {
-    baseName campaign
-    packageName com.adi.cms.campaign
-    applicationType microservice
-    serverPort 8083
-    prodDatabaseType postgresql
-    authenticationType oauth2
-    languages [en, es]
-    nativeLanguage en
-    serviceDiscoveryType eureka
-    testFrameworks [cypress]
-    messageBroker kafka
-  }
-  entities Campaign, CampaignUser
-}
-
 entity Campaign {
-   name String
+   name String required
    description String
-   map ImageBlob
-   masterId Long
+   map ImageBlob required
+   masterId Long required
 }
 
 entity CampaignUser {}
 
 relationship OneToMany {
-   Campaign to CampaignUser{campaign(name)}
+   Campaign to CampaignUser{campaign(name) required}
    User to CampaignUser{user(login) required}
-}
-
-application {
-  config {
-    baseName character
-    packageName com.adi.cms.character
-    applicationType microservice
-    serverPort 8083
-    prodDatabaseType postgresql
-    authenticationType oauth2
-    languages [en, es]
-    nativeLanguage en
-    serviceDiscoveryType eureka
-    testFrameworks [cypress]
-    messageBroker kafka
-  }
-  entities Character, Note, CharacterAttribute, CharacterSkill, Skill, DefaultSkillOrAtribute, PrereqSkillOrAtribute
 }
 
 entity Character {
@@ -68,8 +34,8 @@ entity Character {
    height Integer required
    points Integer required
    picture ImageBlob
-   handedness Handedness
-   active Boolean
+   handedness Handedness required
+   active Boolean required
 }
 
 entity Note {
@@ -84,7 +50,7 @@ entity CharacterAttribute {
 
 entity CharacterSkill {
    points Integer required
-   skillModifier Integer
+   skillModifier Integer required
 }
 
 entity Skill {
@@ -129,23 +95,6 @@ relationship OneToMany {
   Skill to CharacterSkill{skill(name)}
   Skill to DefaultSkillOrAtribute{skill(name)}
   Skill to PrereqSkillOrAtribute{skill(name)}
-}
-
-application {
-  config {
-    baseName item
-    packageName com.adi.cms.item
-    applicationType microservice
-    serverPort 8083
-    prodDatabaseType postgresql
-    authenticationType oauth2
-    languages [en, es]
-    nativeLanguage en
-    serviceDiscoveryType eureka
-    testFrameworks [cypress]
-    messageBroker kafka
-  }
-  entities Item, ArmorPiece, Weapon, Maneuver, CharacterEquippedArmor, CharacterEquippedWeapon, WeaponManeuver
 }
 
 entity Item {

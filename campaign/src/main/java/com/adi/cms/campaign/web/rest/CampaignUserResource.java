@@ -143,12 +143,21 @@ public class CampaignUserResource {
      * {@code GET  /campaign-users} : get all the campaignUsers.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of campaignUsers in body.
      */
     @GetMapping("/campaign-users")
-    public ResponseEntity<List<CampaignUserDTO>> getAllCampaignUsers(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
+    public ResponseEntity<List<CampaignUserDTO>> getAllCampaignUsers(
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false, defaultValue = "true") boolean eagerload
+    ) {
         log.debug("REST request to get a page of CampaignUsers");
-        Page<CampaignUserDTO> page = campaignUserService.findAll(pageable);
+        Page<CampaignUserDTO> page;
+        if (eagerload) {
+            page = campaignUserService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = campaignUserService.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

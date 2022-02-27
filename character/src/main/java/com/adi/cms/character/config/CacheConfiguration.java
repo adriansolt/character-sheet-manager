@@ -52,6 +52,19 @@ public class CacheConfiguration {
             createCache(cm, com.adi.cms.character.domain.User.class.getName());
             createCache(cm, com.adi.cms.character.domain.Authority.class.getName());
             createCache(cm, com.adi.cms.character.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.adi.cms.character.domain.Character.class.getName());
+            createCache(cm, com.adi.cms.character.domain.Character.class.getName() + ".notes");
+            createCache(cm, com.adi.cms.character.domain.Character.class.getName() + ".characterAttributes");
+            createCache(cm, com.adi.cms.character.domain.Character.class.getName() + ".characterSkills");
+            createCache(cm, com.adi.cms.character.domain.CharacterAttribute.class.getName());
+            createCache(cm, com.adi.cms.character.domain.CharacterSkill.class.getName());
+            createCache(cm, com.adi.cms.character.domain.DefaultSkillOrAtribute.class.getName());
+            createCache(cm, com.adi.cms.character.domain.Note.class.getName());
+            createCache(cm, com.adi.cms.character.domain.PrereqSkillOrAtribute.class.getName());
+            createCache(cm, com.adi.cms.character.domain.Skill.class.getName());
+            createCache(cm, com.adi.cms.character.domain.Skill.class.getName() + ".characterSkills");
+            createCache(cm, com.adi.cms.character.domain.Skill.class.getName() + ".defaultSkillOrAtributes");
+            createCache(cm, com.adi.cms.character.domain.Skill.class.getName() + ".prereqSkillOrAtributes");
             // jhipster-needle-ehcache-add-entry
         };
     }

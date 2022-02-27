@@ -52,6 +52,9 @@ public class CacheConfiguration {
             createCache(cm, com.adi.cms.campaign.domain.User.class.getName());
             createCache(cm, com.adi.cms.campaign.domain.Authority.class.getName());
             createCache(cm, com.adi.cms.campaign.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.adi.cms.campaign.domain.Campaign.class.getName());
+            createCache(cm, com.adi.cms.campaign.domain.Campaign.class.getName() + ".campaignUsers");
+            createCache(cm, com.adi.cms.campaign.domain.CampaignUser.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

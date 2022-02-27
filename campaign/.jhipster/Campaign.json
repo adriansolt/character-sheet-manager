@@ -9,7 +9,8 @@
   "fields": [
     {
       "fieldName": "name",
-      "fieldType": "String"
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "description",
@@ -18,11 +19,13 @@
     {
       "fieldName": "map",
       "fieldType": "byte[]",
-      "fieldTypeBlobContent": "image"
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "masterId",
-      "fieldType": "Long"
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
     }
   ],
   "fluentMethods": true,

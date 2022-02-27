@@ -8,7 +8,8 @@
   "fields": [
     {
       "fieldName": "name",
-      "fieldType": "String"
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "description",
@@ -17,11 +18,13 @@
     {
       "fieldName": "map",
       "fieldType": "byte[]",
-      "fieldTypeBlobContent": "image"
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "masterId",
-      "fieldType": "Long"
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
     }
   ],
   "fluentMethods": true,
@@ -30,12 +33,6 @@
   "pagination": "pagination",
   "readOnly": false,
   "relationships": [
-    {
-      "otherEntityName": "campaignUser",
-      "otherEntityRelationshipName": "campaign",
-      "relationshipName": "campaignUser",
-      "relationshipType": "one-to-many"
-    },
     {
       "otherEntityName": "character",
       "otherEntityRelationshipName": "campaign",
@@ -58,6 +55,12 @@
       "otherEntityName": "armorPiece",
       "otherEntityRelationshipName": "campaign",
       "relationshipName": "armorPiece",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "campaignUser",
+      "otherEntityRelationshipName": "campaign",
+      "relationshipName": "campaignUser",
       "relationshipType": "one-to-many"
     }
   ],

@@ -147,14 +147,21 @@ public class DefaultSkillOrAtributeResource {
      * {@code GET  /default-skill-or-atributes} : get all the defaultSkillOrAtributes.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of defaultSkillOrAtributes in body.
      */
     @GetMapping("/default-skill-or-atributes")
     public ResponseEntity<List<DefaultSkillOrAtributeDTO>> getAllDefaultSkillOrAtributes(
-        @org.springdoc.api.annotations.ParameterObject Pageable pageable
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false, defaultValue = "true") boolean eagerload
     ) {
         log.debug("REST request to get a page of DefaultSkillOrAtributes");
-        Page<DefaultSkillOrAtributeDTO> page = defaultSkillOrAtributeService.findAll(pageable);
+        Page<DefaultSkillOrAtributeDTO> page;
+        if (eagerload) {
+            page = defaultSkillOrAtributeService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = defaultSkillOrAtributeService.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

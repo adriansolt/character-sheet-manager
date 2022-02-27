@@ -14,6 +14,7 @@ public class CharacterSkillDTO implements Serializable {
     @NotNull(message = "must not be null")
     private Integer points;
 
+    @NotNull(message = "must not be null")
     private Integer skillModifier;
 
     private CharacterDTO character;

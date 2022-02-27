@@ -35,8 +35,8 @@ export class CharacterUpdateComponent implements OnInit {
     points: [null, [Validators.required]],
     picture: [],
     pictureContentType: [],
-    handedness: [],
-    active: [],
+    handedness: [null, [Validators.required]],
+    active: [null, [Validators.required]],
     user: [null, Validators.required],
     campaign: [],
   });

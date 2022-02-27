@@ -21,7 +21,7 @@ public class CampaignUser implements Serializable {
     private Long id;
 
     @Transient
-    @JsonIgnoreProperties(value = { "campaignUsers", "characters", "items", "weapons", "armorPieces" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "characters", "items", "weapons", "armorPieces", "campaignUsers" }, allowSetters = true)
     private Campaign campaign;
 
     @Transient

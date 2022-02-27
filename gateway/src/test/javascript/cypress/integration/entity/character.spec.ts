@@ -16,7 +16,7 @@ describe('Character e2e test', () => {
   const characterPageUrlPattern = new RegExp('/character(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const characterSample = { name: 'indigo', weight: 47228, height: 22892, points: 55951 };
+  const characterSample = { name: 'indigo', weight: 47228, height: 22892, points: 55951, handedness: 'BOTH', active: true };
 
   let character: any;
   //let user: any;
@@ -47,21 +47,6 @@ describe('Character e2e test', () => {
   /* Disabled due to incompatibility
   beforeEach(() => {
     // Simulate relationships api for better performance and reproducibility.
-    cy.intercept('GET', '/api/notes', {
-      statusCode: 200,
-      body: [],
-    });
-
-    cy.intercept('GET', '/api/character-attributes', {
-      statusCode: 200,
-      body: [],
-    });
-
-    cy.intercept('GET', '/api/character-skills', {
-      statusCode: 200,
-      body: [],
-    });
-
     cy.intercept('GET', '/api/items', {
       statusCode: 200,
       body: [],
@@ -73,6 +58,21 @@ describe('Character e2e test', () => {
     });
 
     cy.intercept('GET', '/api/armor-pieces', {
+      statusCode: 200,
+      body: [],
+    });
+
+    cy.intercept('GET', '/api/notes', {
+      statusCode: 200,
+      body: [],
+    });
+
+    cy.intercept('GET', '/api/character-attributes', {
+      statusCode: 200,
+      body: [],
+    });
+
+    cy.intercept('GET', '/api/character-skills', {
       statusCode: 200,
       body: [],
     });

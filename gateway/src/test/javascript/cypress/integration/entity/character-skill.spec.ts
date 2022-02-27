@@ -16,7 +16,7 @@ describe('CharacterSkill e2e test', () => {
   const characterSkillPageUrlPattern = new RegExp('/character-skill(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const characterSkillSample = { points: 58542 };
+  const characterSkillSample = { points: 58542, skillModifier: 81915 };
 
   let characterSkill: any;
 

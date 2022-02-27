@@ -23,7 +23,8 @@ public class CampaignUser implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties(value = { "campaignUsers" }, allowSetters = true)
     private Campaign campaign;
 

@@ -25,7 +25,7 @@ export class CharacterSkillUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     points: [null, [Validators.required]],
-    skillModifier: [],
+    skillModifier: [null, [Validators.required]],
     character: [],
     skill: [],
   });

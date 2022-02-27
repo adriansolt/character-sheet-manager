@@ -16,7 +16,7 @@ describe('Campaign e2e test', () => {
   const campaignPageUrlPattern = new RegExp('/campaign(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const campaignSample = { name: 'Lilangeni' };
+  const campaignSample = { name: 'Lilangeni', map: 'Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci5wbmc=', mapContentType: 'unknown', masterId: 64556 };
 
   let campaign: any;
 
