@@ -16,7 +16,7 @@ describe('CharacterEquippedWeapon e2e test', () => {
   const characterEquippedWeaponPageUrlPattern = new RegExp('/character-equipped-weapon(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const characterEquippedWeaponSample = { characterId: 766 };
+  const characterEquippedWeaponSample = { hand: 'LEFT' };
 
   let characterEquippedWeapon: any;
 
@@ -151,9 +151,7 @@ describe('CharacterEquippedWeapon e2e test', () => {
     });
 
     it('should create an instance of CharacterEquippedWeapon', () => {
-      cy.get(`[data-cy="characterId"]`).type('76915').should('have.value', '76915');
-
-      cy.get(`[data-cy="hand"]`).select('LEFT');
+      cy.get(`[data-cy="hand"]`).select('BOTH');
 
       cy.get(entityCreateSaveButtonSelector).click();
 

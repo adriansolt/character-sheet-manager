@@ -23,7 +23,6 @@ export class CharacterEquippedWeaponUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    characterId: [],
     hand: [],
     weapon: [],
   });
@@ -83,7 +82,6 @@ export class CharacterEquippedWeaponUpdateComponent implements OnInit {
   protected updateForm(characterEquippedWeapon: ICharacterEquippedWeapon): void {
     this.editForm.patchValue({
       id: characterEquippedWeapon.id,
-      characterId: characterEquippedWeapon.characterId,
       hand: characterEquippedWeapon.hand,
       weapon: characterEquippedWeapon.weapon,
     });
@@ -106,7 +104,6 @@ export class CharacterEquippedWeaponUpdateComponent implements OnInit {
     return {
       ...new CharacterEquippedWeapon(),
       id: this.editForm.get(['id'])!.value,
-      characterId: this.editForm.get(['characterId'])!.value,
       hand: this.editForm.get(['hand'])!.value,
       weapon: this.editForm.get(['weapon'])!.value,
     };

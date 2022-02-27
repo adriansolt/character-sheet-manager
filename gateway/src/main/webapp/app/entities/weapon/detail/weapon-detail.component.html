@@ -39,14 +39,6 @@
             {{ weapon.pictureContentType }}, {{ byteSize(weapon.picture) }}
           </div>
         </dd>
-        <dt><span jhiTranslate="gatewayApp.weapon.characterId">Character Id</span></dt>
-        <dd>
-          <span>{{ weapon.characterId }}</span>
-        </dd>
-        <dt><span jhiTranslate="gatewayApp.weapon.campaignId">Campaign Id</span></dt>
-        <dd>
-          <span>{{ weapon.campaignId }}</span>
-        </dd>
         <dt><span jhiTranslate="gatewayApp.weapon.reach">Reach</span></dt>
         <dd>
           <span>{{ weapon.reach }}</span>
@@ -62,6 +54,12 @@
         <dt><span jhiTranslate="gatewayApp.weapon.damageModifier">Damage Modifier</span></dt>
         <dd>
           <span>{{ weapon.damageModifier }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.weapon.character">Character</span></dt>
+        <dd>
+          <div *ngIf="weapon.character">
+            <a [routerLink]="['/character', weapon.character?.id, 'view']">{{ weapon.character?.name }}</a>
+          </div>
         </dd>
       </dl>
 

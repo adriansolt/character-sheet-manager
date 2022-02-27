@@ -45,12 +45,6 @@ public class Item implements Serializable {
     @Column(name = "picture_content_type")
     private String pictureContentType;
 
-    @Column(name = "character_id")
-    private Long characterId;
-
-    @Column(name = "campaign_id")
-    private Long campaignId;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -144,32 +138,6 @@ public class Item implements Serializable {
         this.pictureContentType = pictureContentType;
     }
 
-    public Long getCharacterId() {
-        return this.characterId;
-    }
-
-    public Item characterId(Long characterId) {
-        this.setCharacterId(characterId);
-        return this;
-    }
-
-    public void setCharacterId(Long characterId) {
-        this.characterId = characterId;
-    }
-
-    public Long getCampaignId() {
-        return this.campaignId;
-    }
-
-    public Item campaignId(Long campaignId) {
-        this.setCampaignId(campaignId);
-        return this;
-    }
-
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
-    }
-
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -200,8 +168,6 @@ public class Item implements Serializable {
             ", quality=" + getQuality() +
             ", picture='" + getPicture() + "'" +
             ", pictureContentType='" + getPictureContentType() + "'" +
-            ", characterId=" + getCharacterId() +
-            ", campaignId=" + getCampaignId() +
             "}";
     }
 }

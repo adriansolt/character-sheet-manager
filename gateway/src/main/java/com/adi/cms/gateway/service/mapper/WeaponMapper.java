@@ -7,8 +7,11 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Weapon} and its DTO {@link WeaponDTO}.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = { CharacterMapper.class })
 public interface WeaponMapper extends EntityMapper<WeaponDTO, Weapon> {
+    @Mapping(target = "character", source = "character", qualifiedByName = "name")
+    WeaponDTO toDto(Weapon s);
+
     @Named("name")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")

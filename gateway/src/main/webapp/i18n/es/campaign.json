@@ -22,7 +22,8 @@
       "description": "Description",
       "map": "Map",
       "masterId": "Master Id",
-      "campaignUser": "Campaign User"
+      "campaignUser": "Campaign User",
+      "character": "Character"
     }
   }
 }

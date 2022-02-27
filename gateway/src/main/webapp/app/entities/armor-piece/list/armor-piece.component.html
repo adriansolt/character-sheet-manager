@@ -46,17 +46,14 @@
           <th scope="col" jhiSortBy="picture">
             <span jhiTranslate="gatewayApp.armorPiece.picture">Picture</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="characterId">
-            <span jhiTranslate="gatewayApp.armorPiece.characterId">Character Id</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="campaignId">
-            <span jhiTranslate="gatewayApp.armorPiece.campaignId">Campaign Id</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col" jhiSortBy="location">
             <span jhiTranslate="gatewayApp.armorPiece.location">Location</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="defenseModifier">
             <span jhiTranslate="gatewayApp.armorPiece.defenseModifier">Defense Modifier</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="character.name">
+            <span jhiTranslate="gatewayApp.armorPiece.character">Character</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -80,10 +77,13 @@
             </a>
             <span *ngIf="armorPiece.picture">{{ armorPiece.pictureContentType }}, {{ byteSize(armorPiece.picture) }}</span>
           </td>
-          <td>{{ armorPiece.characterId }}</td>
-          <td>{{ armorPiece.campaignId }}</td>
           <td jhiTranslate="{{ 'gatewayApp.ArmorLocation.' + armorPiece.location }}">{{ armorPiece.location }}</td>
           <td>{{ armorPiece.defenseModifier }}</td>
+          <td>
+            <div *ngIf="armorPiece.character">
+              <a [routerLink]="['/character', armorPiece.character?.id, 'view']">{{ armorPiece.character?.name }}</a>
+            </div>
+          </td>
           <td class="text-right">
             <div class="btn-group">
               <button

@@ -23,14 +23,13 @@
       "weight": "Weight",
       "quality": "Quality",
       "picture": "Picture",
-      "characterId": "Character Id",
-      "campaignId": "Campaign Id",
       "reach": "Reach",
       "baseDamage": "Base Damage",
       "requiredST": "Required ST",
       "damageModifier": "Damage Modifier",
       "characterEquippedWeapon": "Character Equipped Weapon",
-      "weaponManeuver": "Weapon Maneuver"
+      "weaponManeuver": "Weapon Maneuver",
+      "character": "Character"
     }
   }
 }

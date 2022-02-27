@@ -32,9 +32,6 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class CharacterEquippedArmorResourceIT {
 
-    private static final Long DEFAULT_CHARACTER_ID = 1L;
-    private static final Long UPDATED_CHARACTER_ID = 2L;
-
     private static final String ENTITY_API_URL = "/api/character-equipped-armors";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -62,7 +59,7 @@ class CharacterEquippedArmorResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static CharacterEquippedArmor createEntity(EntityManager em) {
-        CharacterEquippedArmor characterEquippedArmor = new CharacterEquippedArmor().characterId(DEFAULT_CHARACTER_ID);
+        CharacterEquippedArmor characterEquippedArmor = new CharacterEquippedArmor();
         return characterEquippedArmor;
     }
 
@@ -73,7 +70,7 @@ class CharacterEquippedArmorResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static CharacterEquippedArmor createUpdatedEntity(EntityManager em) {
-        CharacterEquippedArmor characterEquippedArmor = new CharacterEquippedArmor().characterId(UPDATED_CHARACTER_ID);
+        CharacterEquippedArmor characterEquippedArmor = new CharacterEquippedArmor();
         return characterEquippedArmor;
     }
 
@@ -101,7 +98,6 @@ class CharacterEquippedArmorResourceIT {
         List<CharacterEquippedArmor> characterEquippedArmorList = characterEquippedArmorRepository.findAll();
         assertThat(characterEquippedArmorList).hasSize(databaseSizeBeforeCreate + 1);
         CharacterEquippedArmor testCharacterEquippedArmor = characterEquippedArmorList.get(characterEquippedArmorList.size() - 1);
-        assertThat(testCharacterEquippedArmor.getCharacterId()).isEqualTo(DEFAULT_CHARACTER_ID);
     }
 
     @Test
@@ -139,8 +135,7 @@ class CharacterEquippedArmorResourceIT {
             .perform(get(ENTITY_API_URL + "?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(characterEquippedArmor.getId().intValue())))
-            .andExpect(jsonPath("$.[*].characterId").value(hasItem(DEFAULT_CHARACTER_ID.intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(characterEquippedArmor.getId().intValue())));
     }
 
     @Test
@@ -154,8 +149,7 @@ class CharacterEquippedArmorResourceIT {
             .perform(get(ENTITY_API_URL_ID, characterEquippedArmor.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(characterEquippedArmor.getId().intValue()))
-            .andExpect(jsonPath("$.characterId").value(DEFAULT_CHARACTER_ID.intValue()));
+            .andExpect(jsonPath("$.id").value(characterEquippedArmor.getId().intValue()));
     }
 
     @Test
@@ -179,7 +173,6 @@ class CharacterEquippedArmorResourceIT {
             .get();
         // Disconnect from session so that the updates on updatedCharacterEquippedArmor are not directly saved in db
         em.detach(updatedCharacterEquippedArmor);
-        updatedCharacterEquippedArmor.characterId(UPDATED_CHARACTER_ID);
         CharacterEquippedArmorDTO characterEquippedArmorDTO = characterEquippedArmorMapper.toDto(updatedCharacterEquippedArmor);
 
         restCharacterEquippedArmorMockMvc
@@ -195,7 +188,6 @@ class CharacterEquippedArmorResourceIT {
         List<CharacterEquippedArmor> characterEquippedArmorList = characterEquippedArmorRepository.findAll();
         assertThat(characterEquippedArmorList).hasSize(databaseSizeBeforeUpdate);
         CharacterEquippedArmor testCharacterEquippedArmor = characterEquippedArmorList.get(characterEquippedArmorList.size() - 1);
-        assertThat(testCharacterEquippedArmor.getCharacterId()).isEqualTo(UPDATED_CHARACTER_ID);
     }
 
     @Test
@@ -282,8 +274,6 @@ class CharacterEquippedArmorResourceIT {
         CharacterEquippedArmor partialUpdatedCharacterEquippedArmor = new CharacterEquippedArmor();
         partialUpdatedCharacterEquippedArmor.setId(characterEquippedArmor.getId());
 
-        partialUpdatedCharacterEquippedArmor.characterId(UPDATED_CHARACTER_ID);
-
         restCharacterEquippedArmorMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedCharacterEquippedArmor.getId())
@@ -297,7 +287,6 @@ class CharacterEquippedArmorResourceIT {
         List<CharacterEquippedArmor> characterEquippedArmorList = characterEquippedArmorRepository.findAll();
         assertThat(characterEquippedArmorList).hasSize(databaseSizeBeforeUpdate);
         CharacterEquippedArmor testCharacterEquippedArmor = characterEquippedArmorList.get(characterEquippedArmorList.size() - 1);
-        assertThat(testCharacterEquippedArmor.getCharacterId()).isEqualTo(UPDATED_CHARACTER_ID);
     }
 
     @Test
@@ -312,8 +301,6 @@ class CharacterEquippedArmorResourceIT {
         CharacterEquippedArmor partialUpdatedCharacterEquippedArmor = new CharacterEquippedArmor();
         partialUpdatedCharacterEquippedArmor.setId(characterEquippedArmor.getId());
 
-        partialUpdatedCharacterEquippedArmor.characterId(UPDATED_CHARACTER_ID);
-
         restCharacterEquippedArmorMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedCharacterEquippedArmor.getId())
@@ -327,7 +314,6 @@ class CharacterEquippedArmorResourceIT {
         List<CharacterEquippedArmor> characterEquippedArmorList = characterEquippedArmorRepository.findAll();
         assertThat(characterEquippedArmorList).hasSize(databaseSizeBeforeUpdate);
         CharacterEquippedArmor testCharacterEquippedArmor = characterEquippedArmorList.get(characterEquippedArmorList.size() - 1);
-        assertThat(testCharacterEquippedArmor.getCharacterId()).isEqualTo(UPDATED_CHARACTER_ID);
     }
 
     @Test

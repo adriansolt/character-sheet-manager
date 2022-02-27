@@ -8,6 +8,8 @@ import { of, Subject, from } from 'rxjs';
 
 import { WeaponService } from '../service/weapon.service';
 import { IWeapon, Weapon } from '../weapon.model';
+import { ICharacter } from 'app/entities/character/character.model';
+import { CharacterService } from 'app/entities/character/service/character.service';
 
 import { WeaponUpdateComponent } from './weapon-update.component';
 
@@ -16,6 +18,7 @@ describe('Weapon Management Update Component', () => {
   let fixture: ComponentFixture<WeaponUpdateComponent>;
   let activatedRoute: ActivatedRoute;
   let weaponService: WeaponService;
+  let characterService: CharacterService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -37,18 +40,41 @@ describe('Weapon Management Update Component', () => {
     fixture = TestBed.createComponent(WeaponUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
     weaponService = TestBed.inject(WeaponService);
+    characterService = TestBed.inject(CharacterService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
+    it('Should call Character query and add missing value', () => {
+      const weapon: IWeapon = { id: 456 };
+      const character: ICharacter = { id: 99646 };
+      weapon.character = character;
+
+      const characterCollection: ICharacter[] = [{ id: 38116 }];
+      jest.spyOn(characterService, 'query').mockReturnValue(of(new HttpResponse({ body: characterCollection })));
+      const additionalCharacters = [character];
+      const expectedCollection: ICharacter[] = [...additionalCharacters, ...characterCollection];
+      jest.spyOn(characterService, 'addCharacterToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ weapon });
+      comp.ngOnInit();
+
+      expect(characterService.query).toHaveBeenCalled();
+      expect(characterService.addCharacterToCollectionIfMissing).toHaveBeenCalledWith(characterCollection, ...additionalCharacters);
+      expect(comp.charactersSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const weapon: IWeapon = { id: 456 };
+      const character: ICharacter = { id: 66994 };
+      weapon.character = character;
 
       activatedRoute.data = of({ weapon });
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(weapon));
+      expect(comp.charactersSharedCollection).toContain(character);
     });
   });
 
@@ -113,6 +139,16 @@ describe('Weapon Management Update Component', () => {
       expect(weaponService.update).toHaveBeenCalledWith(weapon);
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Tracking relationships identifiers', () => {
+    describe('trackCharacterById', () => {
+      it('Should return tracked Character primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackCharacterById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
     });
   });
 });

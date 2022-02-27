@@ -33,9 +33,9 @@ public class CharacterRowMapper implements BiFunction<Row, String, Character> {
         entity.setPictureContentType(converter.fromRow(row, prefix + "_picture_content_type", String.class));
         entity.setPicture(converter.fromRow(row, prefix + "_picture", byte[].class));
         entity.setHandedness(converter.fromRow(row, prefix + "_handedness", Handedness.class));
-        entity.setCampaignId(converter.fromRow(row, prefix + "_campaign_id", Long.class));
         entity.setActive(converter.fromRow(row, prefix + "_active", Boolean.class));
         entity.setUserId(converter.fromRow(row, prefix + "_user_id", String.class));
+        entity.setCampaignId(converter.fromRow(row, prefix + "_campaign_id", Long.class));
         return entity;
     }
 }

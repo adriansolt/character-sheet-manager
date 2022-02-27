@@ -3,13 +3,15 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 
 import { IWeapon, Weapon } from '../weapon.model';
 import { WeaponService } from '../service/weapon.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
 import { EventManager, EventWithContent } from 'app/core/util/event-manager.service';
 import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
+import { ICharacter } from 'app/entities/character/character.model';
+import { CharacterService } from 'app/entities/character/service/character.service';
 
 @Component({
   selector: 'jhi-weapon-update',
@@ -17,6 +19,8 @@ import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
 })
 export class WeaponUpdateComponent implements OnInit {
   isSaving = false;
+
+  charactersSharedCollection: ICharacter[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -26,18 +30,18 @@ export class WeaponUpdateComponent implements OnInit {
     quality: [null, [Validators.required]],
     picture: [],
     pictureContentType: [],
-    characterId: [],
-    campaignId: [],
     reach: [null, [Validators.required]],
     baseDamage: [null, [Validators.required, Validators.min(0)]],
     requiredST: [null, [Validators.required, Validators.min(1)]],
     damageModifier: [],
+    character: [],
   });
 
   constructor(
     protected dataUtils: DataUtils,
     protected eventManager: EventManager,
     protected weaponService: WeaponService,
+    protected characterService: CharacterService,
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
@@ -46,6 +50,8 @@ export class WeaponUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ weapon }) => {
       this.updateForm(weapon);
+
+      this.loadRelationshipsOptions();
     });
   }
 
@@ -88,6 +94,10 @@ export class WeaponUpdateComponent implements OnInit {
     }
   }
 
+  trackCharacterById(index: number, item: ICharacter): number {
+    return item.id!;
+  }
+
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IWeapon>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
@@ -116,13 +126,29 @@ export class WeaponUpdateComponent implements OnInit {
       quality: weapon.quality,
       picture: weapon.picture,
       pictureContentType: weapon.pictureContentType,
-      characterId: weapon.characterId,
-      campaignId: weapon.campaignId,
       reach: weapon.reach,
       baseDamage: weapon.baseDamage,
       requiredST: weapon.requiredST,
       damageModifier: weapon.damageModifier,
+      character: weapon.character,
     });
+
+    this.charactersSharedCollection = this.characterService.addCharacterToCollectionIfMissing(
+      this.charactersSharedCollection,
+      weapon.character
+    );
+  }
+
+  protected loadRelationshipsOptions(): void {
+    this.characterService
+      .query()
+      .pipe(map((res: HttpResponse<ICharacter[]>) => res.body ?? []))
+      .pipe(
+        map((characters: ICharacter[]) =>
+          this.characterService.addCharacterToCollectionIfMissing(characters, this.editForm.get('character')!.value)
+        )
+      )
+      .subscribe((characters: ICharacter[]) => (this.charactersSharedCollection = characters));
   }
 
   protected createFromForm(): IWeapon {
@@ -135,12 +161,11 @@ export class WeaponUpdateComponent implements OnInit {
       quality: this.editForm.get(['quality'])!.value,
       pictureContentType: this.editForm.get(['pictureContentType'])!.value,
       picture: this.editForm.get(['picture'])!.value,
-      characterId: this.editForm.get(['characterId'])!.value,
-      campaignId: this.editForm.get(['campaignId'])!.value,
       reach: this.editForm.get(['reach'])!.value,
       baseDamage: this.editForm.get(['baseDamage'])!.value,
       requiredST: this.editForm.get(['requiredST'])!.value,
       damageModifier: this.editForm.get(['damageModifier'])!.value,
+      character: this.editForm.get(['character'])!.value,
     };
   }
 }

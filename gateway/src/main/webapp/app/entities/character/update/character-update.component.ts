@@ -12,6 +12,8 @@ import { EventManager, EventWithContent } from 'app/core/util/event-manager.serv
 import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
 import { IUser } from 'app/entities/user/user.model';
 import { UserService } from 'app/entities/user/user.service';
+import { ICampaign } from 'app/entities/campaign/campaign.model';
+import { CampaignService } from 'app/entities/campaign/service/campaign.service';
 import { Handedness } from 'app/entities/enumerations/handedness.model';
 
 @Component({
@@ -23,6 +25,7 @@ export class CharacterUpdateComponent implements OnInit {
   handednessValues = Object.keys(Handedness);
 
   usersSharedCollection: IUser[] = [];
+  campaignsSharedCollection: ICampaign[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -33,9 +36,9 @@ export class CharacterUpdateComponent implements OnInit {
     picture: [],
     pictureContentType: [],
     handedness: [],
-    campaignId: [],
     active: [],
     user: [null, Validators.required],
+    campaign: [],
   });
 
   constructor(
@@ -43,6 +46,7 @@ export class CharacterUpdateComponent implements OnInit {
     protected eventManager: EventManager,
     protected characterService: CharacterService,
     protected userService: UserService,
+    protected campaignService: CampaignService,
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
@@ -99,6 +103,10 @@ export class CharacterUpdateComponent implements OnInit {
     return item.id!;
   }
 
+  trackCampaignById(index: number, item: ICampaign): number {
+    return item.id!;
+  }
+
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICharacter>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
@@ -128,12 +136,16 @@ export class CharacterUpdateComponent implements OnInit {
       picture: character.picture,
       pictureContentType: character.pictureContentType,
       handedness: character.handedness,
-      campaignId: character.campaignId,
       active: character.active,
       user: character.user,
+      campaign: character.campaign,
     });
 
     this.usersSharedCollection = this.userService.addUserToCollectionIfMissing(this.usersSharedCollection, character.user);
+    this.campaignsSharedCollection = this.campaignService.addCampaignToCollectionIfMissing(
+      this.campaignsSharedCollection,
+      character.campaign
+    );
   }
 
   protected loadRelationshipsOptions(): void {
@@ -142,6 +154,16 @@ export class CharacterUpdateComponent implements OnInit {
       .pipe(map((res: HttpResponse<IUser[]>) => res.body ?? []))
       .pipe(map((users: IUser[]) => this.userService.addUserToCollectionIfMissing(users, this.editForm.get('user')!.value)))
       .subscribe((users: IUser[]) => (this.usersSharedCollection = users));
+
+    this.campaignService
+      .query()
+      .pipe(map((res: HttpResponse<ICampaign[]>) => res.body ?? []))
+      .pipe(
+        map((campaigns: ICampaign[]) =>
+          this.campaignService.addCampaignToCollectionIfMissing(campaigns, this.editForm.get('campaign')!.value)
+        )
+      )
+      .subscribe((campaigns: ICampaign[]) => (this.campaignsSharedCollection = campaigns));
   }
 
   protected createFromForm(): ICharacter {
@@ -155,9 +177,9 @@ export class CharacterUpdateComponent implements OnInit {
       pictureContentType: this.editForm.get(['pictureContentType'])!.value,
       picture: this.editForm.get(['picture'])!.value,
       handedness: this.editForm.get(['handedness'])!.value,
-      campaignId: this.editForm.get(['campaignId'])!.value,
       active: this.editForm.get(['active'])!.value,
       user: this.editForm.get(['user'])!.value,
+      campaign: this.editForm.get(['campaign'])!.value,
     };
   }
 }

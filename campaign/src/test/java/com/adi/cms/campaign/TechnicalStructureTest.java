@@ -18,18 +18,23 @@ class TechnicalStructureTest {
         .layer("Config").definedBy("..config..")
         .layer("Client").definedBy("..client..")
         .layer("Web").definedBy("..web..")
-        .layer("Service").definedBy("..service..")
+        .optionalLayer("Service").definedBy("..service..")
         .layer("Security").definedBy("..security..")
         .layer("Persistence").definedBy("..repository..")
         .layer("Domain").definedBy("..domain..")
 
-        .whereLayer("Config").mayOnlyBeAccessedByLayers("Web")
+        .whereLayer("Config").mayNotBeAccessedByAnyLayer()
         .whereLayer("Client").mayNotBeAccessedByAnyLayer()
         .whereLayer("Web").mayOnlyBeAccessedByLayers("Config")
         .whereLayer("Service").mayOnlyBeAccessedByLayers("Web", "Config")
-        .whereLayer("Security").mayOnlyBeAccessedByLayers("Client", "Web", "Service", "Config")
+        .whereLayer("Security").mayOnlyBeAccessedByLayers("Config", "Client", "Service", "Web")
         .whereLayer("Persistence").mayOnlyBeAccessedByLayers("Service", "Security", "Web", "Config")
         .whereLayer("Domain").mayOnlyBeAccessedByLayers("Persistence", "Service", "Security", "Web", "Config")
 
-        .ignoreDependency(belongToAnyOf(CampaignApp.class), alwaysTrue());
+        .ignoreDependency(belongToAnyOf(CampaignApp.class), alwaysTrue())
+        .ignoreDependency(alwaysTrue(), belongToAnyOf(
+            com.adi.cms.campaign.config.Constants.class,
+            com.adi.cms.campaign.config.KafkaProperties.class,
+            com.adi.cms.campaign.config.ApplicationProperties.class
+        ));
 }

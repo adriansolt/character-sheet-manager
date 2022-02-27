@@ -24,12 +24,15 @@
       "points": "Points",
       "picture": "Picture",
       "handedness": "Handedness",
-      "campaignId": "Campaign Id",
       "active": "Active",
       "note": "Note",
       "characterAttribute": "Character Attribute",
       "characterSkill": "Character Skill",
-      "user": "User"
+      "item": "Item",
+      "weapon": "Weapon",
+      "armorPiece": "Armor Piece",
+      "user": "User",
+      "campaign": "Campaign"
     }
   }
 }

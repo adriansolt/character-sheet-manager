@@ -23,8 +23,7 @@
       "weight": "Weight",
       "quality": "Quality",
       "picture": "Picture",
-      "characterId": "Character Id",
-      "campaignId": "Campaign Id"
+      "character": "Character"
     }
   }
 }

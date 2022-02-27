@@ -1,5 +1,5 @@
 {
-  "applications": ["item", "gateway"],
+  "applications": ["gateway"],
   "changelogDate": "20220223134058",
   "databaseType": "sql",
   "dto": "mapstruct",
@@ -29,14 +29,6 @@
       "fieldName": "picture",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "image"
-    },
-    {
-      "fieldName": "characterId",
-      "fieldType": "Long"
-    },
-    {
-      "fieldName": "campaignId",
-      "fieldType": "Long"
     }
   ],
   "fluentMethods": true,
@@ -44,6 +36,14 @@
   "name": "Item",
   "pagination": "pagination",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "character",
+      "otherEntityRelationshipName": "item",
+      "relationshipName": "character",
+      "relationshipType": "many-to-one"
+    }
+  ],
   "service": "serviceClass"
 }

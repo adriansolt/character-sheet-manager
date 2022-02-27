@@ -59,8 +59,6 @@ public class ArmorPieceDTO extends ItemDTO {
             ", weight=" + getWeight() +
             ", quality=" + getQuality() +
             ", picture='" + getPicture() + "'" +
-            ", characterId=" + getCharacterId() +
-            ", campaignId=" + getCampaignId() +
             ", location='" + getLocation() + "'" +
             ", defenseModifier=" + getDefenseModifier() +
             "}";

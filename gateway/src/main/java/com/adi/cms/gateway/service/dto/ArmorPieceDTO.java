@@ -28,6 +28,14 @@ public class ArmorPieceDTO extends ItemDTO {
         this.defenseModifier = defenseModifier;
     }
 
+    public CharacterDTO getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(CharacterDTO character) {
+        this.character = character;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -59,10 +67,9 @@ public class ArmorPieceDTO extends ItemDTO {
             ", weight=" + getWeight() +
             ", quality=" + getQuality() +
             ", picture='" + getPicture() + "'" +
-            ", characterId=" + getCharacterId() +
-            ", campaignId=" + getCampaignId() +
             ", location='" + getLocation() + "'" +
             ", defenseModifier=" + getDefenseModifier() +
+            ", character=" + getCharacter() +
             "}";
     }
 }

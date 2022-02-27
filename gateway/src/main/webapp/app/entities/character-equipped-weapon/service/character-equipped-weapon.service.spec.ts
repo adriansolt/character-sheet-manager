@@ -22,7 +22,6 @@ describe('CharacterEquippedWeapon Service', () => {
 
     elemDefault = {
       id: 0,
-      characterId: 0,
       hand: Handedness.RIGHT,
     };
   });
@@ -59,7 +58,6 @@ describe('CharacterEquippedWeapon Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 1,
-          characterId: 1,
           hand: 'BBBBBB',
         },
         elemDefault
@@ -77,7 +75,6 @@ describe('CharacterEquippedWeapon Service', () => {
     it('should partial update a CharacterEquippedWeapon', () => {
       const patchObject = Object.assign(
         {
-          characterId: 1,
           hand: 'BBBBBB',
         },
         new CharacterEquippedWeapon()
@@ -98,7 +95,6 @@ describe('CharacterEquippedWeapon Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 1,
-          characterId: 1,
           hand: 'BBBBBB',
         },
         elemDefault
@@ -157,7 +153,7 @@ describe('CharacterEquippedWeapon Service', () => {
       });
 
       it('should add only unique CharacterEquippedWeapon to an array', () => {
-        const characterEquippedWeaponArray: ICharacterEquippedWeapon[] = [{ id: 123 }, { id: 456 }, { id: 86095 }];
+        const characterEquippedWeaponArray: ICharacterEquippedWeapon[] = [{ id: 123 }, { id: 456 }, { id: 86856 }];
         const characterEquippedWeaponCollection: ICharacterEquippedWeapon[] = [{ id: 123 }];
         expectedResult = service.addCharacterEquippedWeaponToCollectionIfMissing(
           characterEquippedWeaponCollection,

@@ -30,14 +30,6 @@
       "fieldName": "picture",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "image"
-    },
-    {
-      "fieldName": "characterId",
-      "fieldType": "Long"
-    },
-    {
-      "fieldName": "campaignId",
-      "fieldType": "Long"
     }
   ],
   "fluentMethods": true,

@@ -1,3 +1,5 @@
+import { ICharacter } from 'app/entities/character/character.model';
+
 export interface IItem {
   id?: number;
   name?: string;
@@ -6,8 +8,7 @@ export interface IItem {
   quality?: number;
   pictureContentType?: string | null;
   picture?: string | null;
-  characterId?: number | null;
-  campaignId?: number | null;
+  character?: ICharacter | null;
 }
 
 export class Item implements IItem {
@@ -19,8 +20,7 @@ export class Item implements IItem {
     public quality?: number,
     public pictureContentType?: string | null,
     public picture?: string | null,
-    public characterId?: number | null,
-    public campaignId?: number | null
+    public character?: ICharacter | null
   ) {}
 }
 

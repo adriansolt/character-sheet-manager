@@ -111,18 +111,6 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="gatewayApp.character.campaignId" for="field_campaignId">Campaign Id</label>
-          <input
-            type="number"
-            class="form-control"
-            name="campaignId"
-            id="field_campaignId"
-            data-cy="campaignId"
-            formControlName="campaignId"
-          />
-        </div>
-
-        <div class="form-group">
           <label class="form-control-label" jhiTranslate="gatewayApp.character.active" for="field_active">Active</label>
           <input type="checkbox" class="form-check" name="active" id="field_active" data-cy="active" formControlName="active" />
         </div>
@@ -143,6 +131,19 @@
           <small class="form-text text-danger" *ngIf="editForm.get(['user'])?.errors?.required" jhiTranslate="entity.validation.required">
             This field is required.
           </small>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gatewayApp.character.campaign" for="field_campaign">Campaign</label>
+          <select class="form-control" id="field_campaign" data-cy="campaign" name="campaign" formControlName="campaign">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="campaignOption.id === editForm.get('campaign')!.value?.id ? editForm.get('campaign')!.value : campaignOption"
+              *ngFor="let campaignOption of campaignsSharedCollection; trackBy: trackCampaignById"
+            >
+              {{ campaignOption.name }}
+            </option>
+          </select>
         </div>
       </div>
 

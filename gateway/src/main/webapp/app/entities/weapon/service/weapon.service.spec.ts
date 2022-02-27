@@ -27,8 +27,6 @@ describe('Weapon Service', () => {
       quality: 0,
       pictureContentType: 'image/png',
       picture: 'AAAAAAA',
-      characterId: 0,
-      campaignId: 0,
       reach: 0,
       baseDamage: 0,
       requiredST: 0,
@@ -73,8 +71,6 @@ describe('Weapon Service', () => {
           weight: 1,
           quality: 1,
           picture: 'BBBBBB',
-          characterId: 1,
-          campaignId: 1,
           reach: 1,
           baseDamage: 1,
           requiredST: 1,
@@ -98,7 +94,6 @@ describe('Weapon Service', () => {
           name: 'BBBBBB',
           quality: 1,
           picture: 'BBBBBB',
-          characterId: 1,
           reach: 1,
           requiredST: 1,
         },
@@ -125,8 +120,6 @@ describe('Weapon Service', () => {
           weight: 1,
           quality: 1,
           picture: 'BBBBBB',
-          characterId: 1,
-          campaignId: 1,
           reach: 1,
           baseDamage: 1,
           requiredST: 1,
@@ -182,7 +175,7 @@ describe('Weapon Service', () => {
       });
 
       it('should add only unique Weapon to an array', () => {
-        const weaponArray: IWeapon[] = [{ id: 123 }, { id: 456 }, { id: 29716 }];
+        const weaponArray: IWeapon[] = [{ id: 123 }, { id: 456 }, { id: 99145 }];
         const weaponCollection: IWeapon[] = [{ id: 123 }];
         expectedResult = service.addWeaponToCollectionIfMissing(weaponCollection, ...weaponArray);
         expect(expectedResult).toHaveLength(3);

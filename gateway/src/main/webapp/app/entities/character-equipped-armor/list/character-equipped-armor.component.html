@@ -33,9 +33,6 @@
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="characterId">
-            <span jhiTranslate="gatewayApp.characterEquippedArmor.characterId">Character Id</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col" jhiSortBy="armorPiece.name">
             <span jhiTranslate="gatewayApp.characterEquippedArmor.armorPiece">Armor Piece</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -47,7 +44,6 @@
           <td>
             <a [routerLink]="['/character-equipped-armor', characterEquippedArmor.id, 'view']">{{ characterEquippedArmor.id }}</a>
           </td>
-          <td>{{ characterEquippedArmor.characterId }}</td>
           <td>
             <div *ngIf="characterEquippedArmor.armorPiece">
               <a [routerLink]="['/armor-piece', characterEquippedArmor.armorPiece?.id, 'view']">{{

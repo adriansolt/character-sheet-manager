@@ -1,6 +1,6 @@
 {
   "generator-jhipster": {
-    "applicationIndex": 3,
+    "applicationIndex": 0,
     "applicationType": "gateway",
     "authenticationType": "oauth2",
     "baseName": "gateway",
@@ -14,7 +14,7 @@
     "creationTimestamp": 1645623058432,
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
-    "devServerPort": 4203,
+    "devServerPort": 4200,
     "dtoSuffix": "DTO",
     "enableGradleEnterprise": false,
     "enableHibernateCache": false,

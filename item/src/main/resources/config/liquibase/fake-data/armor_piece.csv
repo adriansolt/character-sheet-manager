@@ -1,11 +1,11 @@
-id;name;description;weight;quality;picture;picture_content_type;character_id;campaign_id;location;defense_modifier
-1;hack ability;digital Brand invoice;43401;13971;../fake-data/blob/hipster.png;image/png;35676;60380;LEFT_LEG;7750
-2;invoice back-end;invoice deposit Future-proofed;6665;97945;../fake-data/blob/hipster.png;image/png;85478;34133;LEFT_LEG;31526
-3;index;Dynamic Stravenue;48499;70482;../fake-data/blob/hipster.png;image/png;67485;45433;BACK;98575
-4;Books;Optimized Pants Table;42447;2549;../fake-data/blob/hipster.png;image/png;15149;39449;RIGHT_LEG;38204
-5;seize Croatian proactive;Re-contextualized definition synthesize;24008;81103;../fake-data/blob/hipster.png;image/png;26954;34258;LEFT_FOOT;68929
-6;Specialist;driver invoice Account;96893;22180;../fake-data/blob/hipster.png;image/png;48062;16146;RIGHT_HAND;52506
-7;Colorado;Chair protocol Branding;31009;74922;../fake-data/blob/hipster.png;image/png;85902;84159;LEFT_SHOULDER;90775
-8;withdrawal SQL Kansas;Metal Keyboard;14823;51797;../fake-data/blob/hipster.png;image/png;97338;95073;CHEST;71066
-9;Borders Ireland RAM;wireless;71868;66939;../fake-data/blob/hipster.png;image/png;2306;50639;RIGHT_LEG;76549
-10;Arkansas Account partnerships;Licensed Marketing;89006;78873;../fake-data/blob/hipster.png;image/png;41242;57782;BACK;51671
+id;name;description;weight;quality;picture;picture_content_type;location;defense_modifier
+1;hack ability;digital Brand invoice;43401;13971;../fake-data/blob/hipster.png;image/png;LEFT_ARM;60380
+2;Fantastic Legacy Plastic;auxiliary Secured;34995;71994;../fake-data/blob/hipster.png;image/png;HEAD;97945
+3;next-generation portal Generic;transmitting feed;65345;98575;../fake-data/blob/hipster.png;image/png;RIGHT_SHOULDER;2517
+4;Sports;capacity Directives;82769;42447;../fake-data/blob/hipster.png;image/png;HEAD;15149
+5;navigate seize;extranet Bike Money;54366;38132;../fake-data/blob/hipster.png;image/png;LEFT_HAND;16534
+6;open-source;Renminbi groupware driver;63348;92313;../fake-data/blob/hipster.png;image/png;CHEST;59311
+7;Strategist;Shirt Towels;31422;82558;../fake-data/blob/hipster.png;image/png;LEFT_SHOULDER;1647
+8;protocol;withdrawal program Salad;66244;38004;../fake-data/blob/hipster.png;image/png;LEFT_ARM;85631
+9;pixel;Checking Zloty;18063;15679;../fake-data/blob/hipster.png;image/png;RIGHT_ARM;14823
+10;Representative matrix;Customer program;35341;11142;../fake-data/blob/hipster.png;image/png;LEFT_LEG;69905

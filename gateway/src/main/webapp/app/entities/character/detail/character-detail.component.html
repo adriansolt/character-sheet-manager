@@ -47,10 +47,6 @@
         <dd>
           <span jhiTranslate="{{ 'gatewayApp.Handedness.' + character.handedness }}">{{ character.handedness }}</span>
         </dd>
-        <dt><span jhiTranslate="gatewayApp.character.campaignId">Campaign Id</span></dt>
-        <dd>
-          <span>{{ character.campaignId }}</span>
-        </dd>
         <dt><span jhiTranslate="gatewayApp.character.active">Active</span></dt>
         <dd>
           <span>{{ character.active }}</span>
@@ -58,6 +54,12 @@
         <dt><span jhiTranslate="gatewayApp.character.user">User</span></dt>
         <dd>
           <span>{{ character.user?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.character.campaign">Campaign</span></dt>
+        <dd>
+          <div *ngIf="character.campaign">
+            <a [routerLink]="['/campaign', character.campaign?.id, 'view']">{{ character.campaign?.name }}</a>
+          </div>
         </dd>
       </dl>
 

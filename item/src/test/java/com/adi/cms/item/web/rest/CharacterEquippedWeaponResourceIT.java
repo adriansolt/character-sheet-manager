@@ -33,9 +33,6 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class CharacterEquippedWeaponResourceIT {
 
-    private static final Long DEFAULT_CHARACTER_ID = 1L;
-    private static final Long UPDATED_CHARACTER_ID = 2L;
-
     private static final Handedness DEFAULT_HAND = Handedness.RIGHT;
     private static final Handedness UPDATED_HAND = Handedness.LEFT;
 
@@ -66,9 +63,7 @@ class CharacterEquippedWeaponResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static CharacterEquippedWeapon createEntity(EntityManager em) {
-        CharacterEquippedWeapon characterEquippedWeapon = new CharacterEquippedWeapon()
-            .characterId(DEFAULT_CHARACTER_ID)
-            .hand(DEFAULT_HAND);
+        CharacterEquippedWeapon characterEquippedWeapon = new CharacterEquippedWeapon().hand(DEFAULT_HAND);
         return characterEquippedWeapon;
     }
 
@@ -79,9 +74,7 @@ class CharacterEquippedWeaponResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static CharacterEquippedWeapon createUpdatedEntity(EntityManager em) {
-        CharacterEquippedWeapon characterEquippedWeapon = new CharacterEquippedWeapon()
-            .characterId(UPDATED_CHARACTER_ID)
-            .hand(UPDATED_HAND);
+        CharacterEquippedWeapon characterEquippedWeapon = new CharacterEquippedWeapon().hand(UPDATED_HAND);
         return characterEquippedWeapon;
     }
 
@@ -109,7 +102,6 @@ class CharacterEquippedWeaponResourceIT {
         List<CharacterEquippedWeapon> characterEquippedWeaponList = characterEquippedWeaponRepository.findAll();
         assertThat(characterEquippedWeaponList).hasSize(databaseSizeBeforeCreate + 1);
         CharacterEquippedWeapon testCharacterEquippedWeapon = characterEquippedWeaponList.get(characterEquippedWeaponList.size() - 1);
-        assertThat(testCharacterEquippedWeapon.getCharacterId()).isEqualTo(DEFAULT_CHARACTER_ID);
         assertThat(testCharacterEquippedWeapon.getHand()).isEqualTo(DEFAULT_HAND);
     }
 
@@ -149,7 +141,6 @@ class CharacterEquippedWeaponResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(characterEquippedWeapon.getId().intValue())))
-            .andExpect(jsonPath("$.[*].characterId").value(hasItem(DEFAULT_CHARACTER_ID.intValue())))
             .andExpect(jsonPath("$.[*].hand").value(hasItem(DEFAULT_HAND.toString())));
     }
 
@@ -165,7 +156,6 @@ class CharacterEquippedWeaponResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(characterEquippedWeapon.getId().intValue()))
-            .andExpect(jsonPath("$.characterId").value(DEFAULT_CHARACTER_ID.intValue()))
             .andExpect(jsonPath("$.hand").value(DEFAULT_HAND.toString()));
     }
 
@@ -190,7 +180,7 @@ class CharacterEquippedWeaponResourceIT {
             .get();
         // Disconnect from session so that the updates on updatedCharacterEquippedWeapon are not directly saved in db
         em.detach(updatedCharacterEquippedWeapon);
-        updatedCharacterEquippedWeapon.characterId(UPDATED_CHARACTER_ID).hand(UPDATED_HAND);
+        updatedCharacterEquippedWeapon.hand(UPDATED_HAND);
         CharacterEquippedWeaponDTO characterEquippedWeaponDTO = characterEquippedWeaponMapper.toDto(updatedCharacterEquippedWeapon);
 
         restCharacterEquippedWeaponMockMvc
@@ -206,7 +196,6 @@ class CharacterEquippedWeaponResourceIT {
         List<CharacterEquippedWeapon> characterEquippedWeaponList = characterEquippedWeaponRepository.findAll();
         assertThat(characterEquippedWeaponList).hasSize(databaseSizeBeforeUpdate);
         CharacterEquippedWeapon testCharacterEquippedWeapon = characterEquippedWeaponList.get(characterEquippedWeaponList.size() - 1);
-        assertThat(testCharacterEquippedWeapon.getCharacterId()).isEqualTo(UPDATED_CHARACTER_ID);
         assertThat(testCharacterEquippedWeapon.getHand()).isEqualTo(UPDATED_HAND);
     }
 
@@ -294,7 +283,7 @@ class CharacterEquippedWeaponResourceIT {
         CharacterEquippedWeapon partialUpdatedCharacterEquippedWeapon = new CharacterEquippedWeapon();
         partialUpdatedCharacterEquippedWeapon.setId(characterEquippedWeapon.getId());
 
-        partialUpdatedCharacterEquippedWeapon.characterId(UPDATED_CHARACTER_ID).hand(UPDATED_HAND);
+        partialUpdatedCharacterEquippedWeapon.hand(UPDATED_HAND);
 
         restCharacterEquippedWeaponMockMvc
             .perform(
@@ -309,7 +298,6 @@ class CharacterEquippedWeaponResourceIT {
         List<CharacterEquippedWeapon> characterEquippedWeaponList = characterEquippedWeaponRepository.findAll();
         assertThat(characterEquippedWeaponList).hasSize(databaseSizeBeforeUpdate);
         CharacterEquippedWeapon testCharacterEquippedWeapon = characterEquippedWeaponList.get(characterEquippedWeaponList.size() - 1);
-        assertThat(testCharacterEquippedWeapon.getCharacterId()).isEqualTo(UPDATED_CHARACTER_ID);
         assertThat(testCharacterEquippedWeapon.getHand()).isEqualTo(UPDATED_HAND);
     }
 
@@ -325,7 +313,7 @@ class CharacterEquippedWeaponResourceIT {
         CharacterEquippedWeapon partialUpdatedCharacterEquippedWeapon = new CharacterEquippedWeapon();
         partialUpdatedCharacterEquippedWeapon.setId(characterEquippedWeapon.getId());
 
-        partialUpdatedCharacterEquippedWeapon.characterId(UPDATED_CHARACTER_ID).hand(UPDATED_HAND);
+        partialUpdatedCharacterEquippedWeapon.hand(UPDATED_HAND);
 
         restCharacterEquippedWeaponMockMvc
             .perform(
@@ -340,7 +328,6 @@ class CharacterEquippedWeaponResourceIT {
         List<CharacterEquippedWeapon> characterEquippedWeaponList = characterEquippedWeaponRepository.findAll();
         assertThat(characterEquippedWeaponList).hasSize(databaseSizeBeforeUpdate);
         CharacterEquippedWeapon testCharacterEquippedWeapon = characterEquippedWeaponList.get(characterEquippedWeaponList.size() - 1);
-        assertThat(testCharacterEquippedWeapon.getCharacterId()).isEqualTo(UPDATED_CHARACTER_ID);
         assertThat(testCharacterEquippedWeapon.getHand()).isEqualTo(UPDATED_HAND);
     }
 

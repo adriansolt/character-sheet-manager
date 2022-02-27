@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity ArmorPiece.
+    -->
+    <changeSet id="20220223133158-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="character_id"
+                                 baseTableName="armor_piece"
+                                 constraintName="fk_armor_piece__character_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="character"/>
+    </changeSet>
+</databaseChangeLog>

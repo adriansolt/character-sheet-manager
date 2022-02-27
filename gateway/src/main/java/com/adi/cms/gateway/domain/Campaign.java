@@ -40,6 +40,13 @@ public class Campaign implements Serializable {
     @JsonIgnoreProperties(value = { "campaign", "user" }, allowSetters = true)
     private Set<CampaignUser> campaignUsers = new HashSet<>();
 
+    @Transient
+    @JsonIgnoreProperties(
+        value = { "notes", "characterAttributes", "characterSkills", "items", "weapons", "armorPieces", "user", "campaign" },
+        allowSetters = true
+    )
+    private Set<Character> characters = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -148,6 +155,37 @@ public class Campaign implements Serializable {
     public Campaign removeCampaignUser(CampaignUser campaignUser) {
         this.campaignUsers.remove(campaignUser);
         campaignUser.setCampaign(null);
+        return this;
+    }
+
+    public Set<Character> getCharacters() {
+        return this.characters;
+    }
+
+    public void setCharacters(Set<Character> characters) {
+        if (this.characters != null) {
+            this.characters.forEach(i -> i.setCampaign(null));
+        }
+        if (characters != null) {
+            characters.forEach(i -> i.setCampaign(this));
+        }
+        this.characters = characters;
+    }
+
+    public Campaign characters(Set<Character> characters) {
+        this.setCharacters(characters);
+        return this;
+    }
+
+    public Campaign addCharacter(Character character) {
+        this.characters.add(character);
+        character.setCampaign(this);
+        return this;
+    }
+
+    public Campaign removeCharacter(Character character) {
+        this.characters.remove(character);
+        character.setCampaign(null);
         return this;
     }
 

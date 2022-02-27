@@ -32,14 +32,6 @@
       "fieldTypeBlobContent": "image"
     },
     {
-      "fieldName": "characterId",
-      "fieldType": "Long"
-    },
-    {
-      "fieldName": "campaignId",
-      "fieldType": "Long"
-    },
-    {
       "fieldName": "location",
       "fieldType": "ArmorLocation",
       "fieldValues": "HEAD,RIGHT_SHOULDER,LEFT_SHOULDER,RIGHT_ARM,LEFT_ARM,RIGHT_HAND,LEFT_HAND,CHEST,BACK,RIGHT_LEG,LEFT_LEG,RIGHT_FOOT,LEFT_FOOT"

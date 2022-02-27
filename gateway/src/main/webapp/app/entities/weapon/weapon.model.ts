@@ -1,5 +1,6 @@
 import { ICharacterEquippedWeapon } from 'app/entities/character-equipped-weapon/character-equipped-weapon.model';
 import { IWeaponManeuver } from 'app/entities/weapon-maneuver/weapon-maneuver.model';
+import { ICharacter } from '../character/character.model';
 import { IItem } from '../item/item.model';
 
 export interface IWeapon extends IItem {
@@ -9,6 +10,7 @@ export interface IWeapon extends IItem {
   damageModifier?: number | null;
   characterEquippedWeapons?: ICharacterEquippedWeapon[] | null;
   weaponManeuvers?: IWeaponManeuver[] | null;
+  character?: ICharacter | null;
 }
 
 export class Weapon implements IWeapon {
@@ -20,14 +22,13 @@ export class Weapon implements IWeapon {
     public quality?: number,
     public pictureContentType?: string | null,
     public picture?: string | null,
-    public characterId?: number | null,
-    public campaignId?: number | null,
     public reach?: number,
     public baseDamage?: number,
     public requiredST?: number,
     public damageModifier?: number | null,
     public characterEquippedWeapons?: ICharacterEquippedWeapon[] | null,
-    public weaponManeuvers?: IWeaponManeuver[] | null
+    public weaponManeuvers?: IWeaponManeuver[] | null,
+    public character?: ICharacter | null
   ) {}
 }
 

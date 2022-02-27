@@ -32,7 +32,6 @@ public class ItemRowMapper implements BiFunction<Row, String, Item> {
         entity.setPictureContentType(converter.fromRow(row, prefix + "_picture_content_type", String.class));
         entity.setPicture(converter.fromRow(row, prefix + "_picture", byte[].class));
         entity.setCharacterId(converter.fromRow(row, prefix + "_character_id", Long.class));
-        entity.setCampaignId(converter.fromRow(row, prefix + "_campaign_id", Long.class));
         return entity;
     }
 }

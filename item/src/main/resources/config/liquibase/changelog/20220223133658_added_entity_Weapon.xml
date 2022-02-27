@@ -32,12 +32,6 @@
             <column name="picture_content_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="character_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="campaign_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <column name="reach" type="integer">
                 <constraints nullable="false" />
             </column>
@@ -77,8 +71,6 @@
             <column name="quality" type="numeric"/>
             <column name="picture" type="blob"/>
             <column name="picture_content_type" type="string"/>
-            <column name="character_id" type="numeric"/>
-            <column name="campaign_id" type="numeric"/>
             <column name="reach" type="numeric"/>
             <column name="base_damage" type="numeric"/>
             <column name="required_st" type="numeric"/>

@@ -32,14 +32,6 @@
       "fieldTypeBlobContent": "image"
     },
     {
-      "fieldName": "characterId",
-      "fieldType": "Long"
-    },
-    {
-      "fieldName": "campaignId",
-      "fieldType": "Long"
-    },
-    {
       "fieldName": "reach",
       "fieldType": "Integer",
       "fieldValidateRules": ["required"]

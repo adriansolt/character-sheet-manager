@@ -1,5 +1,5 @@
 {
-  "applications": ["item", "gateway"],
+  "applications": ["gateway"],
   "changelogDate": "20220223133158",
   "databaseType": "sql",
   "dto": "mapstruct",
@@ -31,14 +31,6 @@
       "fieldTypeBlobContent": "image"
     },
     {
-      "fieldName": "characterId",
-      "fieldType": "Long"
-    },
-    {
-      "fieldName": "campaignId",
-      "fieldType": "Long"
-    },
-    {
       "fieldName": "location",
       "fieldType": "ArmorLocation",
       "fieldValues": "HEAD,RIGHT_SHOULDER,LEFT_SHOULDER,RIGHT_ARM,LEFT_ARM,RIGHT_HAND,LEFT_HAND,CHEST,BACK,RIGHT_LEG,LEFT_LEG,RIGHT_FOOT,LEFT_FOOT"
@@ -59,6 +51,13 @@
       "otherEntityRelationshipName": "armorPiece",
       "relationshipName": "characterEquippedArmor",
       "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "character",
+      "otherEntityRelationshipName": "armorPiece",
+      "relationshipName": "character",
+      "relationshipType": "many-to-one"
     }
   ],
   "service": "serviceClass"

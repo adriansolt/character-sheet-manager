@@ -17,7 +17,7 @@ services:
       - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
       - KAFKA_BOOTSTRAPSERVERS=kafka:9092
   campaign-postgresql:
-    image: postgres:14.1
+    image: postgres:14.2
     # volumes:
     #   - ~/volumes/jhipster/campaign/postgresql/:/var/lib/postgresql/data/
     environment:
@@ -48,7 +48,7 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
   jhipster-registry:
-    image: jhipster/jhipster-registry:v7.2.0
+    image: jhipster/jhipster-registry:v7.3.0
     volumes:
       - ./central-server-config:/central-config
     # When run with the "dev" Spring profile, the JHipster Registry will

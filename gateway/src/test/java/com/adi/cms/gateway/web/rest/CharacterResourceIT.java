@@ -58,9 +58,6 @@ class CharacterResourceIT {
     private static final Handedness DEFAULT_HANDEDNESS = Handedness.RIGHT;
     private static final Handedness UPDATED_HANDEDNESS = Handedness.LEFT;
 
-    private static final Long DEFAULT_CAMPAIGN_ID = 1L;
-    private static final Long UPDATED_CAMPAIGN_ID = 2L;
-
     private static final Boolean DEFAULT_ACTIVE = false;
     private static final Boolean UPDATED_ACTIVE = true;
 
@@ -99,7 +96,6 @@ class CharacterResourceIT {
             .picture(DEFAULT_PICTURE)
             .pictureContentType(DEFAULT_PICTURE_CONTENT_TYPE)
             .handedness(DEFAULT_HANDEDNESS)
-            .campaignId(DEFAULT_CAMPAIGN_ID)
             .active(DEFAULT_ACTIVE);
         // Add required entity
         User user = em.insert(UserResourceIT.createEntity(em)).block();
@@ -122,7 +118,6 @@ class CharacterResourceIT {
             .picture(UPDATED_PICTURE)
             .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
             .handedness(UPDATED_HANDEDNESS)
-            .campaignId(UPDATED_CAMPAIGN_ID)
             .active(UPDATED_ACTIVE);
         // Add required entity
         User user = em.insert(UserResourceIT.createEntity(em)).block();
@@ -180,7 +175,6 @@ class CharacterResourceIT {
         assertThat(testCharacter.getPicture()).isEqualTo(DEFAULT_PICTURE);
         assertThat(testCharacter.getPictureContentType()).isEqualTo(DEFAULT_PICTURE_CONTENT_TYPE);
         assertThat(testCharacter.getHandedness()).isEqualTo(DEFAULT_HANDEDNESS);
-        assertThat(testCharacter.getCampaignId()).isEqualTo(DEFAULT_CAMPAIGN_ID);
         assertThat(testCharacter.getActive()).isEqualTo(DEFAULT_ACTIVE);
     }
 
@@ -327,8 +321,6 @@ class CharacterResourceIT {
             .value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURE)))
             .jsonPath("$.[*].handedness")
             .value(hasItem(DEFAULT_HANDEDNESS.toString()))
-            .jsonPath("$.[*].campaignId")
-            .value(hasItem(DEFAULT_CAMPAIGN_ID.intValue()))
             .jsonPath("$.[*].active")
             .value(hasItem(DEFAULT_ACTIVE.booleanValue()));
     }
@@ -365,8 +357,6 @@ class CharacterResourceIT {
             .value(is(Base64Utils.encodeToString(DEFAULT_PICTURE)))
             .jsonPath("$.handedness")
             .value(is(DEFAULT_HANDEDNESS.toString()))
-            .jsonPath("$.campaignId")
-            .value(is(DEFAULT_CAMPAIGN_ID.intValue()))
             .jsonPath("$.active")
             .value(is(DEFAULT_ACTIVE.booleanValue()));
     }
@@ -400,7 +390,6 @@ class CharacterResourceIT {
             .picture(UPDATED_PICTURE)
             .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
             .handedness(UPDATED_HANDEDNESS)
-            .campaignId(UPDATED_CAMPAIGN_ID)
             .active(UPDATED_ACTIVE);
         CharacterDTO characterDTO = characterMapper.toDto(updatedCharacter);
 
@@ -424,7 +413,6 @@ class CharacterResourceIT {
         assertThat(testCharacter.getPicture()).isEqualTo(UPDATED_PICTURE);
         assertThat(testCharacter.getPictureContentType()).isEqualTo(UPDATED_PICTURE_CONTENT_TYPE);
         assertThat(testCharacter.getHandedness()).isEqualTo(UPDATED_HANDEDNESS);
-        assertThat(testCharacter.getCampaignId()).isEqualTo(UPDATED_CAMPAIGN_ID);
         assertThat(testCharacter.getActive()).isEqualTo(UPDATED_ACTIVE);
     }
 
@@ -508,7 +496,7 @@ class CharacterResourceIT {
         Character partialUpdatedCharacter = new Character();
         partialUpdatedCharacter.setId(character.getId());
 
-        partialUpdatedCharacter.handedness(UPDATED_HANDEDNESS).campaignId(UPDATED_CAMPAIGN_ID);
+        partialUpdatedCharacter.handedness(UPDATED_HANDEDNESS).active(UPDATED_ACTIVE);
 
         webTestClient
             .patch()
@@ -530,8 +518,7 @@ class CharacterResourceIT {
         assertThat(testCharacter.getPicture()).isEqualTo(DEFAULT_PICTURE);
         assertThat(testCharacter.getPictureContentType()).isEqualTo(DEFAULT_PICTURE_CONTENT_TYPE);
         assertThat(testCharacter.getHandedness()).isEqualTo(UPDATED_HANDEDNESS);
-        assertThat(testCharacter.getCampaignId()).isEqualTo(UPDATED_CAMPAIGN_ID);
-        assertThat(testCharacter.getActive()).isEqualTo(DEFAULT_ACTIVE);
+        assertThat(testCharacter.getActive()).isEqualTo(UPDATED_ACTIVE);
     }
 
     @Test
@@ -553,7 +540,6 @@ class CharacterResourceIT {
             .picture(UPDATED_PICTURE)
             .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
             .handedness(UPDATED_HANDEDNESS)
-            .campaignId(UPDATED_CAMPAIGN_ID)
             .active(UPDATED_ACTIVE);
 
         webTestClient
@@ -576,7 +562,6 @@ class CharacterResourceIT {
         assertThat(testCharacter.getPicture()).isEqualTo(UPDATED_PICTURE);
         assertThat(testCharacter.getPictureContentType()).isEqualTo(UPDATED_PICTURE_CONTENT_TYPE);
         assertThat(testCharacter.getHandedness()).isEqualTo(UPDATED_HANDEDNESS);
-        assertThat(testCharacter.getCampaignId()).isEqualTo(UPDATED_CAMPAIGN_ID);
         assertThat(testCharacter.getActive()).isEqualTo(UPDATED_ACTIVE);
     }
 

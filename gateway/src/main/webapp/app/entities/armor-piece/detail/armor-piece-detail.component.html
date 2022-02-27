@@ -43,14 +43,6 @@
             {{ armorPiece.pictureContentType }}, {{ byteSize(armorPiece.picture) }}
           </div>
         </dd>
-        <dt><span jhiTranslate="gatewayApp.armorPiece.characterId">Character Id</span></dt>
-        <dd>
-          <span>{{ armorPiece.characterId }}</span>
-        </dd>
-        <dt><span jhiTranslate="gatewayApp.armorPiece.campaignId">Campaign Id</span></dt>
-        <dd>
-          <span>{{ armorPiece.campaignId }}</span>
-        </dd>
         <dt><span jhiTranslate="gatewayApp.armorPiece.location">Location</span></dt>
         <dd>
           <span jhiTranslate="{{ 'gatewayApp.ArmorLocation.' + armorPiece.location }}">{{ armorPiece.location }}</span>
@@ -58,6 +50,12 @@
         <dt><span jhiTranslate="gatewayApp.armorPiece.defenseModifier">Defense Modifier</span></dt>
         <dd>
           <span>{{ armorPiece.defenseModifier }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.armorPiece.character">Character</span></dt>
+        <dd>
+          <div *ngIf="armorPiece.character">
+            <a [routerLink]="['/character', armorPiece.character?.id, 'view']">{{ armorPiece.character?.name }}</a>
+          </div>
         </dd>
       </dl>
 

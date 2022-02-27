@@ -16,7 +16,7 @@ describe('ArmorPiece e2e test', () => {
   const armorPiecePageUrlPattern = new RegExp('/armor-piece(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const armorPieceSample = { name: 'Jewelery transmit', weight: 21772, quality: 41122 };
+  const armorPieceSample = { name: 'connecting generating neural', weight: 41122, quality: 33610 };
 
   let armorPiece: any;
 
@@ -161,13 +161,9 @@ describe('ArmorPiece e2e test', () => {
 
       cy.setFieldImageAsBytesOfEntity('picture', 'integration-test.png', 'image/png');
 
-      cy.get(`[data-cy="characterId"]`).type('37523').should('have.value', '37523');
+      cy.get(`[data-cy="location"]`).select('LEFT_ARM');
 
-      cy.get(`[data-cy="campaignId"]`).type('97084').should('have.value', '97084');
-
-      cy.get(`[data-cy="location"]`).select('LEFT_FOOT');
-
-      cy.get(`[data-cy="defenseModifier"]`).type('83691').should('have.value', '83691');
+      cy.get(`[data-cy="defenseModifier"]`).type('97084').should('have.value', '97084');
 
       // since cypress clicks submit too fast before the blob fields are validated
       cy.wait(200); // eslint-disable-line cypress/no-unnecessary-waiting

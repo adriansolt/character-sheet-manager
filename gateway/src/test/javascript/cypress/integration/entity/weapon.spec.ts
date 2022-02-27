@@ -16,7 +16,7 @@ describe('Weapon e2e test', () => {
   const weaponPageUrlPattern = new RegExp('/weapon(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const weaponSample = { name: 'Pine efficient', weight: 22252, quality: 69294, reach: 75593, baseDamage: 35952, requiredST: 58325 };
+  const weaponSample = { name: 'generating', weight: 59964, quality: 72922, reach: 34668, baseDamage: 55863, requiredST: 10812 };
 
   let weapon: any;
 
@@ -161,17 +161,13 @@ describe('Weapon e2e test', () => {
 
       cy.setFieldImageAsBytesOfEntity('picture', 'integration-test.png', 'image/png');
 
-      cy.get(`[data-cy="characterId"]`).type('45647').should('have.value', '45647');
+      cy.get(`[data-cy="reach"]`).type('45647').should('have.value', '45647');
 
-      cy.get(`[data-cy="campaignId"]`).type('18567').should('have.value', '18567');
+      cy.get(`[data-cy="baseDamage"]`).type('18567').should('have.value', '18567');
 
-      cy.get(`[data-cy="reach"]`).type('46962').should('have.value', '46962');
+      cy.get(`[data-cy="requiredST"]`).type('46963').should('have.value', '46963');
 
-      cy.get(`[data-cy="baseDamage"]`).type('43536').should('have.value', '43536');
-
-      cy.get(`[data-cy="requiredST"]`).type('33062').should('have.value', '33062');
-
-      cy.get(`[data-cy="damageModifier"]`).type('84293').should('have.value', '84293');
+      cy.get(`[data-cy="damageModifier"]`).type('43536').should('have.value', '43536');
 
       // since cypress clicks submit too fast before the blob fields are validated
       cy.wait(200); // eslint-disable-line cypress/no-unnecessary-waiting

@@ -31,12 +31,11 @@ public class WeaponRowMapper implements BiFunction<Row, String, Weapon> {
         entity.setQuality(converter.fromRow(row, prefix + "_quality", Integer.class));
         entity.setPictureContentType(converter.fromRow(row, prefix + "_picture_content_type", String.class));
         entity.setPicture(converter.fromRow(row, prefix + "_picture", byte[].class));
-        entity.setCharacterId(converter.fromRow(row, prefix + "_character_id", Long.class));
-        entity.setCampaignId(converter.fromRow(row, prefix + "_campaign_id", Long.class));
         entity.setReach(converter.fromRow(row, prefix + "_reach", Integer.class));
         entity.setBaseDamage(converter.fromRow(row, prefix + "_base_damage", Integer.class));
         entity.setRequiredST(converter.fromRow(row, prefix + "_required_st", Integer.class));
         entity.setDamageModifier(converter.fromRow(row, prefix + "_damage_modifier", Integer.class));
+        entity.setCharacterId(converter.fromRow(row, prefix + "_character_id", Long.class));
         return entity;
     }
 }

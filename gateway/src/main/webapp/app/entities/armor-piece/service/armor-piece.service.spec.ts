@@ -28,8 +28,6 @@ describe('ArmorPiece Service', () => {
       quality: 0,
       pictureContentType: 'image/png',
       picture: 'AAAAAAA',
-      characterId: 0,
-      campaignId: 0,
       location: ArmorLocation.HEAD,
       defenseModifier: 0,
     };
@@ -72,8 +70,6 @@ describe('ArmorPiece Service', () => {
           weight: 1,
           quality: 1,
           picture: 'BBBBBB',
-          characterId: 1,
-          campaignId: 1,
           location: 'BBBBBB',
           defenseModifier: 1,
         },
@@ -97,8 +93,7 @@ describe('ArmorPiece Service', () => {
           weight: 1,
           quality: 1,
           picture: 'BBBBBB',
-          characterId: 1,
-          defenseModifier: 1,
+          location: 'BBBBBB',
         },
         new ArmorPiece()
       );
@@ -123,8 +118,6 @@ describe('ArmorPiece Service', () => {
           weight: 1,
           quality: 1,
           picture: 'BBBBBB',
-          characterId: 1,
-          campaignId: 1,
           location: 'BBBBBB',
           defenseModifier: 1,
         },
@@ -178,7 +171,7 @@ describe('ArmorPiece Service', () => {
       });
 
       it('should add only unique ArmorPiece to an array', () => {
-        const armorPieceArray: IArmorPiece[] = [{ id: 123 }, { id: 456 }, { id: 31983 }];
+        const armorPieceArray: IArmorPiece[] = [{ id: 123 }, { id: 456 }, { id: 37863 }];
         const armorPieceCollection: IArmorPiece[] = [{ id: 123 }];
         expectedResult = service.addArmorPieceToCollectionIfMissing(armorPieceCollection, ...armorPieceArray);
         expect(expectedResult).toHaveLength(3);

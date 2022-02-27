@@ -28,6 +28,16 @@ public class ArmorPiece extends Item {
     @JsonIgnoreProperties(value = { "armorPiece" }, allowSetters = true)
     private Set<CharacterEquippedArmor> characterEquippedArmors = new HashSet<>();
 
+    @Transient
+    @JsonIgnoreProperties(
+        value = { "notes", "characterAttributes", "characterSkills", "items", "weapons", "armorPieces", "user", "campaign" },
+        allowSetters = true
+    )
+    private Character character;
+
+    @Column("character_id")
+    private Long characterId;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public ArmorPiece id(Long id) {
@@ -67,11 +77,6 @@ public class ArmorPiece extends Item {
 
     public ArmorPiece characterId(Long characterId) {
         this.setCharacterId(characterId);
-        return this;
-    }
-
-    public ArmorPiece campaignId(Long campaignId) {
-        this.setCampaignId(campaignId);
         return this;
     }
 
@@ -132,6 +137,28 @@ public class ArmorPiece extends Item {
         return this;
     }
 
+    public Character getCharacter() {
+        return this.character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
+        this.characterId = character != null ? character.getId() : null;
+    }
+
+    public ArmorPiece character(Character character) {
+        this.setCharacter(character);
+        return this;
+    }
+
+    public Long getCharacterId() {
+        return this.characterId;
+    }
+
+    public void setCharacterId(Long character) {
+        this.characterId = character;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -162,8 +189,6 @@ public class ArmorPiece extends Item {
             ", quality=" + getQuality() +
             ", picture='" + getPicture() + "'" +
             ", pictureContentType='" + getPictureContentType() + "'" +
-            ", characterId=" + getCharacterId() +
-            ", campaignId=" + getCampaignId() +
             ", location='" + getLocation() + "'" +
             ", defenseModifier=" + getDefenseModifier() +
             "}";

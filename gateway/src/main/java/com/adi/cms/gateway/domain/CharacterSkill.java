@@ -28,7 +28,10 @@ public class CharacterSkill implements Serializable {
     private Integer skillModifier;
 
     @Transient
-    @JsonIgnoreProperties(value = { "notes", "characterAttributes", "characterSkills", "user" }, allowSetters = true)
+    @JsonIgnoreProperties(
+        value = { "notes", "characterAttributes", "characterSkills", "items", "weapons", "armorPieces", "user", "campaign" },
+        allowSetters = true
+    )
     private Character character;
 
     @Transient

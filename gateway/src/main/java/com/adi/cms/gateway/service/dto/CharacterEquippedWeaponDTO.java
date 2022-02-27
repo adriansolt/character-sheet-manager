@@ -11,8 +11,6 @@ public class CharacterEquippedWeaponDTO implements Serializable {
 
     private Long id;
 
-    private Long characterId;
-
     private Handedness hand;
 
     private WeaponDTO weapon;
@@ -23,14 +21,6 @@ public class CharacterEquippedWeaponDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getCharacterId() {
-        return characterId;
-    }
-
-    public void setCharacterId(Long characterId) {
-        this.characterId = characterId;
     }
 
     public Handedness getHand() {
@@ -75,7 +65,6 @@ public class CharacterEquippedWeaponDTO implements Serializable {
     public String toString() {
         return "CharacterEquippedWeaponDTO{" +
             "id=" + getId() +
-            ", characterId=" + getCharacterId() +
             ", hand='" + getHand() + "'" +
             ", weapon=" + getWeapon() +
             "}";

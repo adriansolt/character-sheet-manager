@@ -4,6 +4,7 @@ import static org.springframework.data.relational.core.query.Criteria.where;
 
 import com.adi.cms.gateway.domain.Character;
 import com.adi.cms.gateway.domain.enumeration.Handedness;
+import com.adi.cms.gateway.repository.rowmapper.CampaignRowMapper;
 import com.adi.cms.gateway.repository.rowmapper.CharacterRowMapper;
 import com.adi.cms.gateway.repository.rowmapper.UserRowMapper;
 import io.r2dbc.spi.Row;
@@ -42,15 +43,18 @@ class CharacterRepositoryInternalImpl extends SimpleR2dbcRepository<Character, L
     private final EntityManager entityManager;
 
     private final UserRowMapper userMapper;
+    private final CampaignRowMapper campaignMapper;
     private final CharacterRowMapper characterMapper;
 
     private static final Table entityTable = Table.aliased("character", EntityManager.ENTITY_ALIAS);
     private static final Table userTable = Table.aliased("jhi_user", "e_user");
+    private static final Table campaignTable = Table.aliased("campaign", "campaign");
 
     public CharacterRepositoryInternalImpl(
         R2dbcEntityTemplate template,
         EntityManager entityManager,
         UserRowMapper userMapper,
+        CampaignRowMapper campaignMapper,
         CharacterRowMapper characterMapper,
         R2dbcEntityOperations entityOperations,
         R2dbcConverter converter
@@ -64,6 +68,7 @@ class CharacterRepositoryInternalImpl extends SimpleR2dbcRepository<Character, L
         this.r2dbcEntityTemplate = template;
         this.entityManager = entityManager;
         this.userMapper = userMapper;
+        this.campaignMapper = campaignMapper;
         this.characterMapper = characterMapper;
     }
 
@@ -80,13 +85,17 @@ class CharacterRepositoryInternalImpl extends SimpleR2dbcRepository<Character, L
     RowsFetchSpec<Character> createQuery(Pageable pageable, Criteria criteria) {
         List<Expression> columns = CharacterSqlHelper.getColumns(entityTable, EntityManager.ENTITY_ALIAS);
         columns.addAll(UserSqlHelper.getColumns(userTable, "user"));
+        columns.addAll(CampaignSqlHelper.getColumns(campaignTable, "campaign"));
         SelectFromAndJoinCondition selectFrom = Select
             .builder()
             .select(columns)
             .from(entityTable)
             .leftOuterJoin(userTable)
             .on(Column.create("user_id", entityTable))
-            .equals(Column.create("id", userTable));
+            .equals(Column.create("id", userTable))
+            .leftOuterJoin(campaignTable)
+            .on(Column.create("campaign_id", entityTable))
+            .equals(Column.create("id", campaignTable));
 
         String select = entityManager.createSelect(selectFrom, Character.class, pageable, criteria);
         return db.sql(select).map(this::process);
@@ -105,6 +114,7 @@ class CharacterRepositoryInternalImpl extends SimpleR2dbcRepository<Character, L
     private Character process(Row row, RowMetadata metadata) {
         Character entity = characterMapper.apply(row, "e");
         entity.setUser(userMapper.apply(row, "user"));
+        entity.setCampaign(campaignMapper.apply(row, "campaign"));
         return entity;
     }
 
