@@ -44,6 +44,9 @@
             <column name="damage_modifier" type="integer">
                 <constraints nullable="true" />
             </column>
+            <column name="campaign_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <column name="character_id" type="bigint">
                 <constraints nullable="true" />
             </column>

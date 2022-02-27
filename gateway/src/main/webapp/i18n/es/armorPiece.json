@@ -26,6 +26,7 @@
       "location": "Location",
       "defenseModifier": "Defense Modifier",
       "characterEquippedArmor": "Character Equipped Armor",
+      "campaign": "Campaign",
       "character": "Character"
     }
   }

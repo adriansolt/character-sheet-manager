@@ -23,7 +23,10 @@
       "map": "Map",
       "masterId": "Master Id",
       "campaignUser": "Campaign User",
-      "character": "Character"
+      "character": "Character",
+      "item": "Item",
+      "weapon": "Weapon",
+      "armorPiece": "Armor Piece"
     }
   }
 }

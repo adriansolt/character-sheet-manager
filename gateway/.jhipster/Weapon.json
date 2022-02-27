@@ -72,6 +72,13 @@
     },
     {
       "otherEntityField": "name",
+      "otherEntityName": "campaign",
+      "otherEntityRelationshipName": "weapon",
+      "relationshipName": "campaign",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
       "otherEntityName": "character",
       "otherEntityRelationshipName": "weapon",
       "relationshipName": "character",

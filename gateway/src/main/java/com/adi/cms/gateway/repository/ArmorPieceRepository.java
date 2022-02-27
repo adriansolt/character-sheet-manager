@@ -17,6 +17,12 @@ import reactor.core.publisher.Mono;
 public interface ArmorPieceRepository extends ReactiveCrudRepository<ArmorPiece, Long>, ArmorPieceRepositoryInternal {
     Flux<ArmorPiece> findAllBy(Pageable pageable);
 
+    @Query("SELECT * FROM armor_piece entity WHERE entity.campaign_id = :id")
+    Flux<ArmorPiece> findByCampaign(Long id);
+
+    @Query("SELECT * FROM armor_piece entity WHERE entity.campaign_id IS NULL")
+    Flux<ArmorPiece> findAllWhereCampaignIsNull();
+
     @Query("SELECT * FROM armor_piece entity WHERE entity.character_id = :id")
     Flux<ArmorPiece> findByCharacter(Long id);
 

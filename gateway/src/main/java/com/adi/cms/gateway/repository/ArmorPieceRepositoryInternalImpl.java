@@ -5,6 +5,7 @@ import static org.springframework.data.relational.core.query.Criteria.where;
 import com.adi.cms.gateway.domain.ArmorPiece;
 import com.adi.cms.gateway.domain.enumeration.ArmorLocation;
 import com.adi.cms.gateway.repository.rowmapper.ArmorPieceRowMapper;
+import com.adi.cms.gateway.repository.rowmapper.CampaignRowMapper;
 import com.adi.cms.gateway.repository.rowmapper.CharacterRowMapper;
 import io.r2dbc.spi.Row;
 import io.r2dbc.spi.RowMetadata;
@@ -41,15 +42,18 @@ class ArmorPieceRepositoryInternalImpl extends SimpleR2dbcRepository<ArmorPiece,
     private final R2dbcEntityTemplate r2dbcEntityTemplate;
     private final EntityManager entityManager;
 
+    private final CampaignRowMapper campaignMapper;
     private final CharacterRowMapper characterMapper;
     private final ArmorPieceRowMapper armorpieceMapper;
 
     private static final Table entityTable = Table.aliased("armor_piece", EntityManager.ENTITY_ALIAS);
+    private static final Table campaignTable = Table.aliased("campaign", "campaign");
     private static final Table characterTable = Table.aliased("character", "e_character");
 
     public ArmorPieceRepositoryInternalImpl(
         R2dbcEntityTemplate template,
         EntityManager entityManager,
+        CampaignRowMapper campaignMapper,
         CharacterRowMapper characterMapper,
         ArmorPieceRowMapper armorpieceMapper,
         R2dbcEntityOperations entityOperations,
@@ -63,6 +67,7 @@ class ArmorPieceRepositoryInternalImpl extends SimpleR2dbcRepository<ArmorPiece,
         this.db = template.getDatabaseClient();
         this.r2dbcEntityTemplate = template;
         this.entityManager = entityManager;
+        this.campaignMapper = campaignMapper;
         this.characterMapper = characterMapper;
         this.armorpieceMapper = armorpieceMapper;
     }
@@ -79,11 +84,15 @@ class ArmorPieceRepositoryInternalImpl extends SimpleR2dbcRepository<ArmorPiece,
 
     RowsFetchSpec<ArmorPiece> createQuery(Pageable pageable, Criteria criteria) {
         List<Expression> columns = ArmorPieceSqlHelper.getColumns(entityTable, EntityManager.ENTITY_ALIAS);
+        columns.addAll(CampaignSqlHelper.getColumns(campaignTable, "campaign"));
         columns.addAll(CharacterSqlHelper.getColumns(characterTable, "character"));
         SelectFromAndJoinCondition selectFrom = Select
             .builder()
             .select(columns)
             .from(entityTable)
+            .leftOuterJoin(campaignTable)
+            .on(Column.create("campaign_id", entityTable))
+            .equals(Column.create("id", campaignTable))
             .leftOuterJoin(characterTable)
             .on(Column.create("character_id", entityTable))
             .equals(Column.create("id", characterTable));
@@ -104,6 +113,7 @@ class ArmorPieceRepositoryInternalImpl extends SimpleR2dbcRepository<ArmorPiece,
 
     private ArmorPiece process(Row row, RowMetadata metadata) {
         ArmorPiece entity = armorpieceMapper.apply(row, "e");
+        entity.setCampaign(campaignMapper.apply(row, "campaign"));
         entity.setCharacter(characterMapper.apply(row, "character"));
         return entity;
     }

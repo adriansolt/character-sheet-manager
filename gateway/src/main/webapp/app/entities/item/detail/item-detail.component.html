@@ -39,6 +39,12 @@
             {{ item.pictureContentType }}, {{ byteSize(item.picture) }}
           </div>
         </dd>
+        <dt><span jhiTranslate="gatewayApp.item.campaign">Campaign</span></dt>
+        <dd>
+          <div *ngIf="item.campaign">
+            <a [routerLink]="['/campaign', item.campaign?.id, 'view']">{{ item.campaign?.name }}</a>
+          </div>
+        </dd>
         <dt><span jhiTranslate="gatewayApp.item.character">Character</span></dt>
         <dd>
           <div *ngIf="item.character">

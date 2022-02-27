@@ -53,6 +53,14 @@ public class WeaponDTO extends ItemDTO {
         this.damageModifier = damageModifier;
     }
 
+    public CampaignDTO getCampaign() {
+        return campaign;
+    }
+
+    public void setCampaign(CampaignDTO campaign) {
+        this.campaign = campaign;
+    }
+
     public CharacterDTO getCharacter() {
         return character;
     }
@@ -96,6 +104,7 @@ public class WeaponDTO extends ItemDTO {
             ", baseDamage=" + getBaseDamage() +
             ", requiredST=" + getRequiredST() +
             ", damageModifier=" + getDamageModifier() +
+            ", campaign=" + getCampaign() +
             ", character=" + getCharacter() +
             "}";
     }

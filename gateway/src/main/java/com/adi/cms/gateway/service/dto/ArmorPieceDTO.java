@@ -28,6 +28,14 @@ public class ArmorPieceDTO extends ItemDTO {
         this.defenseModifier = defenseModifier;
     }
 
+    public CampaignDTO getCampaign() {
+        return campaign;
+    }
+
+    public void setCampaign(CampaignDTO campaign) {
+        this.campaign = campaign;
+    }
+
     public CharacterDTO getCharacter() {
         return character;
     }
@@ -69,6 +77,7 @@ public class ArmorPieceDTO extends ItemDTO {
             ", picture='" + getPicture() + "'" +
             ", location='" + getLocation() + "'" +
             ", defenseModifier=" + getDefenseModifier() +
+            ", campaign=" + getCampaign() +
             ", character=" + getCharacter() +
             "}";
     }

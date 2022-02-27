@@ -20,7 +20,7 @@ public class CharacterEquippedArmor implements Serializable {
     private Long id;
 
     @Transient
-    @JsonIgnoreProperties(value = { "characterEquippedArmors", "character" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "characterEquippedArmors", "campaign", "character" }, allowSetters = true)
     private ArmorPiece armorPiece;
 
     @Column("armor_piece_id")

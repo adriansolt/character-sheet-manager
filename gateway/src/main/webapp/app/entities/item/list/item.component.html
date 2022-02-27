@@ -44,6 +44,9 @@
           <th scope="col" jhiSortBy="picture">
             <span jhiTranslate="gatewayApp.item.picture">Picture</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="campaign.name">
+            <span jhiTranslate="gatewayApp.item.campaign">Campaign</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="character.name">
             <span jhiTranslate="gatewayApp.item.character">Character</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -64,6 +67,11 @@
               <img [src]="'data:' + item.pictureContentType + ';base64,' + item.picture" style="max-height: 30px" alt="item image" />
             </a>
             <span *ngIf="item.picture">{{ item.pictureContentType }}, {{ byteSize(item.picture) }}</span>
+          </td>
+          <td>
+            <div *ngIf="item.campaign">
+              <a [routerLink]="['/campaign', item.campaign?.id, 'view']">{{ item.campaign?.name }}</a>
+            </div>
           </td>
           <td>
             <div *ngIf="item.character">

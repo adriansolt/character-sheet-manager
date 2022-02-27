@@ -20,6 +20,7 @@ public class ArmorPieceSqlHelper {
         columns.add(Column.aliased("location", table, columnPrefix + "_location"));
         columns.add(Column.aliased("defense_modifier", table, columnPrefix + "_defense_modifier"));
 
+        columns.add(Column.aliased("campaign_id", table, columnPrefix + "_campaign_id"));
         columns.add(Column.aliased("character_id", table, columnPrefix + "_character_id"));
         return columns;
     }

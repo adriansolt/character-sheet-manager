@@ -54,6 +54,13 @@
     },
     {
       "otherEntityField": "name",
+      "otherEntityName": "campaign",
+      "otherEntityRelationshipName": "armorPiece",
+      "relationshipName": "campaign",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
       "otherEntityName": "character",
       "otherEntityRelationshipName": "armorPiece",
       "relationshipName": "character",

@@ -24,7 +24,7 @@ public class CharacterEquippedWeapon implements Serializable {
     private Handedness hand;
 
     @Transient
-    @JsonIgnoreProperties(value = { "characterEquippedWeapons", "weaponManeuvers", "character" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "characterEquippedWeapons", "weaponManeuvers", "campaign", "character" }, allowSetters = true)
     private Weapon weapon;
 
     @Column("weapon_id")

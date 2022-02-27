@@ -3,6 +3,7 @@ package com.adi.cms.gateway.repository;
 import static org.springframework.data.relational.core.query.Criteria.where;
 
 import com.adi.cms.gateway.domain.Weapon;
+import com.adi.cms.gateway.repository.rowmapper.CampaignRowMapper;
 import com.adi.cms.gateway.repository.rowmapper.CharacterRowMapper;
 import com.adi.cms.gateway.repository.rowmapper.WeaponRowMapper;
 import io.r2dbc.spi.Row;
@@ -40,15 +41,18 @@ class WeaponRepositoryInternalImpl extends SimpleR2dbcRepository<Weapon, Long> i
     private final R2dbcEntityTemplate r2dbcEntityTemplate;
     private final EntityManager entityManager;
 
+    private final CampaignRowMapper campaignMapper;
     private final CharacterRowMapper characterMapper;
     private final WeaponRowMapper weaponMapper;
 
     private static final Table entityTable = Table.aliased("weapon", EntityManager.ENTITY_ALIAS);
+    private static final Table campaignTable = Table.aliased("campaign", "campaign");
     private static final Table characterTable = Table.aliased("character", "e_character");
 
     public WeaponRepositoryInternalImpl(
         R2dbcEntityTemplate template,
         EntityManager entityManager,
+        CampaignRowMapper campaignMapper,
         CharacterRowMapper characterMapper,
         WeaponRowMapper weaponMapper,
         R2dbcEntityOperations entityOperations,
@@ -62,6 +66,7 @@ class WeaponRepositoryInternalImpl extends SimpleR2dbcRepository<Weapon, Long> i
         this.db = template.getDatabaseClient();
         this.r2dbcEntityTemplate = template;
         this.entityManager = entityManager;
+        this.campaignMapper = campaignMapper;
         this.characterMapper = characterMapper;
         this.weaponMapper = weaponMapper;
     }
@@ -78,11 +83,15 @@ class WeaponRepositoryInternalImpl extends SimpleR2dbcRepository<Weapon, Long> i
 
     RowsFetchSpec<Weapon> createQuery(Pageable pageable, Criteria criteria) {
         List<Expression> columns = WeaponSqlHelper.getColumns(entityTable, EntityManager.ENTITY_ALIAS);
+        columns.addAll(CampaignSqlHelper.getColumns(campaignTable, "campaign"));
         columns.addAll(CharacterSqlHelper.getColumns(characterTable, "character"));
         SelectFromAndJoinCondition selectFrom = Select
             .builder()
             .select(columns)
             .from(entityTable)
+            .leftOuterJoin(campaignTable)
+            .on(Column.create("campaign_id", entityTable))
+            .equals(Column.create("id", campaignTable))
             .leftOuterJoin(characterTable)
             .on(Column.create("character_id", entityTable))
             .equals(Column.create("id", characterTable));
@@ -103,6 +112,7 @@ class WeaponRepositoryInternalImpl extends SimpleR2dbcRepository<Weapon, Long> i
 
     private Weapon process(Row row, RowMetadata metadata) {
         Weapon entity = weaponMapper.apply(row, "e");
+        entity.setCampaign(campaignMapper.apply(row, "campaign"));
         entity.setCharacter(characterMapper.apply(row, "character"));
         return entity;
     }

@@ -10,6 +10,8 @@ import { WeaponService } from '../service/weapon.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
 import { EventManager, EventWithContent } from 'app/core/util/event-manager.service';
 import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
+import { ICampaign } from 'app/entities/campaign/campaign.model';
+import { CampaignService } from 'app/entities/campaign/service/campaign.service';
 import { ICharacter } from 'app/entities/character/character.model';
 import { CharacterService } from 'app/entities/character/service/character.service';
 
@@ -20,6 +22,7 @@ import { CharacterService } from 'app/entities/character/service/character.servi
 export class WeaponUpdateComponent implements OnInit {
   isSaving = false;
 
+  campaignsSharedCollection: ICampaign[] = [];
   charactersSharedCollection: ICharacter[] = [];
 
   editForm = this.fb.group({
@@ -34,6 +37,7 @@ export class WeaponUpdateComponent implements OnInit {
     baseDamage: [null, [Validators.required, Validators.min(0)]],
     requiredST: [null, [Validators.required, Validators.min(1)]],
     damageModifier: [],
+    campaign: [],
     character: [],
   });
 
@@ -41,6 +45,7 @@ export class WeaponUpdateComponent implements OnInit {
     protected dataUtils: DataUtils,
     protected eventManager: EventManager,
     protected weaponService: WeaponService,
+    protected campaignService: CampaignService,
     protected characterService: CharacterService,
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
@@ -94,6 +99,10 @@ export class WeaponUpdateComponent implements OnInit {
     }
   }
 
+  trackCampaignById(index: number, item: ICampaign): number {
+    return item.id!;
+  }
+
   trackCharacterById(index: number, item: ICharacter): number {
     return item.id!;
   }
@@ -130,9 +139,11 @@ export class WeaponUpdateComponent implements OnInit {
       baseDamage: weapon.baseDamage,
       requiredST: weapon.requiredST,
       damageModifier: weapon.damageModifier,
+      campaign: weapon.campaign,
       character: weapon.character,
     });
 
+    this.campaignsSharedCollection = this.campaignService.addCampaignToCollectionIfMissing(this.campaignsSharedCollection, weapon.campaign);
     this.charactersSharedCollection = this.characterService.addCharacterToCollectionIfMissing(
       this.charactersSharedCollection,
       weapon.character
@@ -140,6 +151,16 @@ export class WeaponUpdateComponent implements OnInit {
   }
 
   protected loadRelationshipsOptions(): void {
+    this.campaignService
+      .query()
+      .pipe(map((res: HttpResponse<ICampaign[]>) => res.body ?? []))
+      .pipe(
+        map((campaigns: ICampaign[]) =>
+          this.campaignService.addCampaignToCollectionIfMissing(campaigns, this.editForm.get('campaign')!.value)
+        )
+      )
+      .subscribe((campaigns: ICampaign[]) => (this.campaignsSharedCollection = campaigns));
+
     this.characterService
       .query()
       .pipe(map((res: HttpResponse<ICharacter[]>) => res.body ?? []))
@@ -165,6 +186,7 @@ export class WeaponUpdateComponent implements OnInit {
       baseDamage: this.editForm.get(['baseDamage'])!.value,
       requiredST: this.editForm.get(['requiredST'])!.value,
       damageModifier: this.editForm.get(['damageModifier'])!.value,
+      campaign: this.editForm.get(['campaign'])!.value,
       character: this.editForm.get(['character'])!.value,
     };
   }
