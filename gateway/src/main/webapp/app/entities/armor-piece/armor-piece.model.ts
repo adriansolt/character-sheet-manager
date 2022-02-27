@@ -3,15 +3,6 @@ import { ArmorLocation } from 'app/entities/enumerations/armor-location.model';
 import { IItem } from '../item/item.model';
 
 export interface IArmorPiece extends IItem {
-  id?: number;
-  name?: string;
-  description?: string | null;
-  weight?: number;
-  quality?: number;
-  pictureContentType?: string | null;
-  picture?: string | null;
-  characterId?: number | null;
-  campaignId?: number | null;
   location?: ArmorLocation | null;
   defenseModifier?: number | null;
   characterEquippedArmors?: ICharacterEquippedArmor[] | null;

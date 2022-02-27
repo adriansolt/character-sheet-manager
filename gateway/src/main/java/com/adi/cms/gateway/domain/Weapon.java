@@ -49,6 +49,46 @@ public class Weapon extends Item {
         return this;
     }
 
+    public Weapon name(String name) {
+        this.setName(name);
+        return this;
+    }
+
+    public Weapon description(String description) {
+        this.setDescription(description);
+        return this;
+    }
+
+    public Weapon weight(Integer weight) {
+        this.setWeight(weight);
+        return this;
+    }
+
+    public Weapon quality(Integer quality) {
+        this.setQuality(quality);
+        return this;
+    }
+
+    public Weapon picture(byte[] picture) {
+        this.setPicture(picture);
+        return this;
+    }
+
+    public Weapon pictureContentType(String pictureContentType) {
+        this.pictureContentType = pictureContentType;
+        return this;
+    }
+
+    public Weapon characterId(Long characterId) {
+        this.setCharacterId(characterId);
+        return this;
+    }
+
+    public Weapon campaignId(Long campaignId) {
+        this.setCampaignId(campaignId);
+        return this;
+    }
+
     public Integer getReach() {
         return this.reach;
     }

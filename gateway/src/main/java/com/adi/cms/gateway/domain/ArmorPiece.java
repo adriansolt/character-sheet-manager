@@ -35,6 +35,46 @@ public class ArmorPiece extends Item {
         return this;
     }
 
+    public ArmorPiece name(String name) {
+        this.setName(name);
+        return this;
+    }
+
+    public ArmorPiece description(String description) {
+        this.setDescription(description);
+        return this;
+    }
+
+    public ArmorPiece weight(Integer weight) {
+        this.setWeight(weight);
+        return this;
+    }
+
+    public ArmorPiece quality(Integer quality) {
+        this.setQuality(quality);
+        return this;
+    }
+
+    public ArmorPiece picture(byte[] picture) {
+        this.setPicture(picture);
+        return this;
+    }
+
+    public ArmorPiece pictureContentType(String pictureContentType) {
+        this.pictureContentType = pictureContentType;
+        return this;
+    }
+
+    public ArmorPiece characterId(Long characterId) {
+        this.setCharacterId(characterId);
+        return this;
+    }
+
+    public ArmorPiece campaignId(Long campaignId) {
+        this.setCampaignId(campaignId);
+        return this;
+    }
+
     public ArmorLocation getLocation() {
         return this.location;
     }

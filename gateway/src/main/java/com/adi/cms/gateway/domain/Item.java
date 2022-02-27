@@ -41,7 +41,7 @@ public class Item implements Serializable {
     private byte[] picture;
 
     @Column("picture_content_type")
-    private String pictureContentType;
+    protected String pictureContentType;
 
     @Column("character_id")
     private Long characterId;
